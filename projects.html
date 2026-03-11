@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos | Jesús Gómez</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-header {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .projects-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .back-home {
+            margin-bottom: 20px;
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container glass-card">
+            <a href="index.html" class="logo">
+                <img src="img/logo_final_no_bg.png" alt="Jesús Gómez Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">Bio</a></li>
+                <li><a href="index.html#skills">Stack</a></li>
+                <li><a href="index.html#projects">Portafolio</a></li>
+                <li><a href="index.html#contact" class="btn btn-primary btn-sm">Let's Talk</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="bg-circles">
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+    </div>
+
+    <div class="container">
+        <header class="projects-header">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+            <h1 class="section-title">Todos los Proyectos</h1>
+            <p style="color:var(--text-dim)">Una recopilación detallada de mis análisis técnicos y de negocio.</p>
+        </header>
+
+        <section class="projects">
+            <div class="projects-grid">
+                <!-- Real Project 1 -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                            alt="PBI"></div>
+                    <div class="project-content">
+                        <span class="project-tag">Power BI</span>
+                        <h3>Análisis de Ventas Power BI</h3>
+                        <p class="project-desc">Dashboard comercial avanzado con lógica DAX para cálculo de márgenes y
+                            crecimiento YoY.</p>
+                        <a href="https://github.com/jesusgomez-data/analisis-ventas-powerbi" target="_blank"
+                            class="link-text">Ver Código <i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+
+                <!-- Real Project 2 -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&q=80&w=800"
+                            alt="Retail"></div>
+                    <div class="project-content">
+                        <span class="project-tag">SQL & Python</span>
+                        <h3>Tienda Deportiva</h3>
+                        <p class="project-desc">Limpieza profunda de datos y análisis de estacionalidad en ventas
+                            retail.</p>
+                        <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" target="_blank"
+                            class="link-text">Ver Código <i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+
+                <!-- Fictional Project 3 (Social Media Analysis) -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
+                            alt="NLP"></div>
+                    <div class="project-content">
+                        <span class="project-tag">Python & NLP</span>
+                        <h3>Sentimiento en Redes</h3>
+                        <p class="project-desc">Análisis de +5000 tweets para determinar la percepción de marca mediante
+                            procesamiento de lenguaje natural.</p>
+                        <a href="#" class="link-text">Próximamente <i class="fas fa-lock"></i></a>
+                    </div>
+                </article>
+
+                <!-- Fictional Project 4 (Health) -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1576091160550-217359946f3b?auto=format&fit=crop&q=80&w=800"
+                            alt="Health"></div>
+                    <div class="project-content">
+                        <span class="project-tag">Public Health</span>
+                        <h3>Dashboard Salud Pública</h3>
+                        <p class="project-desc">Visualización geoespacial de brotes epidémicos y capacidad hospitalaria
+                            en tiempo real.</p>
+                        <a href="#" class="link-text">Próximamente <i class="fas fa-lock"></i></a>
+                    </div>
+                </article>
+
+                <!-- Fictional Project 5 (Logistics) -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+                            alt="Logistics"></div>
+                    <div class="project-content">
+                        <span class="project-tag">Supply Chain</span>
+                        <h3>Optimización Logística</h3>
+                        <p class="project-desc">Reducción de costos operativos en un 15% mediante análisis de rutas y
+                            tiempos de entrega.</p>
+                        <a href="#" class="link-text">Próximamente <i class="fas fa-lock"></i></a>
+                    </div>
+                </article>
+
+                <!-- Fictional Project 6 (Fintech) -->
+                <article class="project-card glass-card">
+                    <div class="project-img-container"><img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                            alt="Finance"></div>
+                    <div class="project-content">
+                        <span class="project-tag">Fintech</span>
+                        <h3>Detección de Fraude</h3>
+                        <p class="project-desc">Algoritmo de clasificación para identificar transacciones sospechosas
+                            con un 98% de precisión.</p>
+                        <a href="#" class="link-text">Próximamente <i class="fas fa-lock"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer style="margin-top:100px; padding:40px 0; border-top:1px solid var(--glass-border); text-align:center">
+            <p>&copy; 2026 Jesús Gómez Santiago. Analista de Datos.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

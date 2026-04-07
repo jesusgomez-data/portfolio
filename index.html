@@ -4,27 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesús Gómez | Full-Stack Developer & Data Specialist</title>
-    <meta name="description"
-        content="Explora el portfolio de Jesús Gómez, creador de Rival Fit. Especialista en desarrollo Full-Stack con Next.js y análisis de datos avanzado. Buscando oportunidades profesionales.">
+    <title>Jesús Gómez | Full-Stack Developer & Data Analyst</title>
+    <meta name="description" content="Jesús Gómez — Full-Stack Developer, Data Analyst y creador de RivalFit. 3.5 años de formación autodidacta intensa. Abierto a oportunidades profesionales en España.">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Favicon -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/logo_final_no_bg.png">
-
-    <!-- Icons (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
 
     <!-- Background Decor -->
     <div class="bg-circles">
@@ -36,13 +34,13 @@
     <nav class="navbar">
         <div class="container nav-container glass-card">
             <a href="#hero" class="logo">
-                <img src="img/logo_final_no_bg.png" alt="Jesús Gómez Logo" class="logo-img">
+                <img src="img/logo_final_no_bg.png" alt="Jesús Gómez" class="logo-img">
             </a>
-            <ul class="nav-links">
-                <li><a href="#about">Bio</a></li>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">Historia</a></li>
                 <li><a href="#skills">Stack</a></li>
-                <li><a href="#projects">Portafolio</a></li>
-                <li><a href="#services">Servicios</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#journey">Trayectoria</a></li>
                 <li><a href="#contact" class="btn btn-primary btn-sm">Let's Talk</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -51,339 +49,455 @@
         </div>
     </nav>
 
-    <!-- 1️⃣ HERO SECTION -->
+    <!-- ═══════════════════════════════════════════════
+         1. HERO
+    ═══════════════════════════════════════════════ -->
     <section id="hero" class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
-                <h1>Full-Stack Developer & <span>Data Specialist.</span></h1>
-                <p>Especializado en construir ecosistemas digitales escalables y transformar datos complejos en decisiones estratégicas. Creador de <strong>Rival Fit</strong>.</p>
+                <div class="hero-label reveal-fast">
+                    <span class="pulse"></span>
+                    Disponible para trabajar
+                </div>
+                <h1>
+                    Jesús Gómez —<br>
+                    <span id="typed-text" class="typed-accent"></span><span class="typed-cursor">|</span>
+                </h1>
+                <p>De fisioterapeuta y coach de élite a desarrollador Full-Stack y analista de datos. Creador de <strong>RivalFit</strong>. 3.5 años de formación autodidacta sin parar. Listo para aportar en un equipo real.</p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">Explorar Proyectos</a>
+                    <a href="#projects" class="btn btn-primary">Ver Proyectos <i class="fas fa-arrow-right"></i></a>
                     <a href="#contact" class="btn btn-outline">Contacto</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">años en Fisioterapia</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">años como Coach</span>
+                    </div>
+                    <div class="hero-stat-divider"></div>
+                    <div class="hero-stat">
+                        <span class="stat-number">3.5</span>
+                        <span class="stat-label">años aprendiendo Dev</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-img-box">
-                <img src="img/profile.jpg" alt="Jesús Gómez - Data Analyst">
-                <div class="hero-floating-card">
-                    <i class="fas fa-chart-line" style="color:var(--accent); font-size:1.5rem"></i>
-                    <p style="font-size:0.8rem; margin-top:5px; color:var(--text-dim)">Proyectos Finalizados</p>
-                    <p style="font-weight:bold">+10 Realizados</p>
+                <div class="img-glow"></div>
+                <img src="img/profile.jpg" alt="Jesús Gómez">
+                <div class="hero-floating-card tilt-float">
+                    <i class="fas fa-code" style="color:var(--accent); font-size:1.3rem"></i>
+                    <p style="font-size:0.75rem; margin-top:5px; color:var(--text-dim)">App en producción</p>
+                    <p style="font-weight:800; font-size:0.9rem">RivalFit.app</p>
                 </div>
-                <div class="status-badge">
-                    <span class="pulse"></span>
-                    Open to Work
+                <div class="hero-floating-card-2 tilt-float-2">
+                    <i class="fas fa-database" style="color:#a78bfa; font-size:1.1rem"></i>
+                    <p style="font-size:0.75rem; color:var(--text-dim); margin-top:4px">Proyectos GitHub</p>
+                    <p style="font-weight:800; font-size:0.9rem">+6 Repos</p>
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <div class="mouse"><div></div></div>
+            <p>scroll</p>
+        </div>
     </section>
 
-    <!-- 2️⃣ SOBRE MÍ -->
+    <!-- ═══════════════════════════════════════════════
+         2. SOBRE MÍ
+    ═══════════════════════════════════════════════ -->
     <section id="about" class="about">
         <div class="container">
-            <div class="about-card glass-card">
+            <div class="about-card glass-card reveal">
                 <div class="about-avatar">
-                    <img src="img/avatar_work.jpg" alt="Working Avatar">
+                    <img src="img/avatar_work.jpg" alt="Jesús trabajando">
+                    <div class="avatar-badge">
+                        <i class="fas fa-dumbbell"></i> Coach → Dev
+                    </div>
                 </div>
                 <div class="about-text">
-                    <h2 class="section-title" style="text-align:left; margin-bottom:20px; font-size:2.5rem">Mi Historia
-                    </h2>
-                    <p>Soy Jesús Gómez, un desarrollador Full-Stack y analista de datos con base en España. Mi enfoque combina la precisión técnica del análisis de datos con la capacidad de construir aplicaciones completas desde cero, como mi proyecto más ambicioso hasta la fecha: <strong>Rival Fit</strong>.</p><br>
-                    <p>A través de Rival Fit, he demostrado mi capacidad para gestionar todo el ciclo de vida de un producto digital: desde la arquitectura de bases de datos con Supabase, hasta el desarrollo del frontend de alto rendimiento con Next.js y la implementación de herramientas complejas como editores de video integrados. Mi ética de trabajo se basa en la constancia, la disciplina y una mejora continua obsesiva.</p><br>
-                    <p>Antes de sumergirme en el código, mi formación en fisioterapia me dotó de una capacidad analítica única: entender sistemas complejos y encontrar la raíz de los problemas. Hoy, aplico esa visión para limpiar el "ruido" de los sistemas y construir soluciones claras, útiles y altamente accionables.</p> <br>
-                    <p>No busco solo programar o analizar; busco aportar valor real mediante la convergencia de la tecnología y los datos. Mi objetivo es ayudar a las organizaciones a ver más allá de lo evidente, convirtiendo estructuras complejas en ventajas competitivas. **Actualmente, me encuentro en búsqueda activa de mi primera oportunidad profesional, donde pueda aplicar toda mi disciplina y conocimientos para crecer dentro de un equipo de alto rendimiento.**</p>
-                    <div style="margin-top:30px; display:flex; gap:15px">
-                        <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank"
-                            class="btn btn-outline btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jesusgomezft" target="_blank"
-                            class="btn btn-outline btn-sm">Instagram <i class="fab fa-instagram"></i></a>
-                        <a href="cv.png" download class="btn btn-primary btn-sm">Descargar CV <i
-                                class="fas fa-file-download"></i></a>
+                    <h2 class="section-title" style="text-align:left; margin-bottom:30px; font-size:2.8rem; margin-left:0;">Mi Historia</h2>
+                    <p>Soy Jesús Gómez. Mi historia no es lineal — y eso me hace diferente.</p><br>
+                    <p>Pasé <strong>8 años como fisioterapeuta deportivo</strong>, analizando el cuerpo humano como un sistema complejo, tomando decisiones bajo presión y desarrollando una capacidad analítica que ningún curso puede enseñarte. Después, me convertí en <strong>Coach en boxes de CrossFit y Hyrox</strong>, enseñando halterofilia, gymnastics y rendimiento atlético de alto nivel durante 3 años.</p><br>
+                    <p>Hace <strong>3 años y medio tomé la decisión que cambió todo</strong>: aprender desarrollo web, análisis de datos e inteligencia artificial de forma seria y sin parar. Mientras entrenaba atletas de mañana, estudiaba código de noche. El resultado es <strong>RivalFit</strong>, una plataforma fitness completa en producción, múltiples proyectos de análisis de datos, y un perfil técnico construido desde la disciplina real de quien ha competido y enseñado a competir.</p><br>
+                    <p>No busco solo programar. Busco un equipo que valore la constancia, el aprendizaje continuo y el impacto real.</p>
+                    <div style="margin-top:35px; display:flex; gap:15px; flex-wrap:wrap;">
+                        <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" class="btn btn-outline btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/jesusgomezft" target="_blank" class="btn btn-outline btn-sm">Instagram <i class="fab fa-instagram"></i></a>
+                        <a href="cv.html" target="_blank" class="btn btn-primary btn-sm">Ver CV <i class="fas fa-file-download"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about reveal" style="padding-top: 0;">
+    <!-- Impact Grid -->
+    <section class="about reveal" style="padding-top:0;">
         <div class="container">
             <div class="skills-grid impact-grid">
-                <div class="skill-card glass-card" style="text-align: left; padding: 30px;">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 10px;">99%</div>
-                    <h4 style="margin-bottom: 10px;">Efficiency Obsessed</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Optimización de procesos y estructuras de datos para máximo rendimiento.</p>
+                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
+                    <div class="impact-number">Disciplina</div>
+                    <h4>Mentalidad Atlética</h4>
+                    <p style="font-size:0.9rem; color:var(--text-dim);">8 años en fisioterapia y 3 como coach formaron una mentalidad de trabajo que traslazo al código.</p>
                 </div>
-                <div class="skill-card glass-card" style="text-align: left; padding: 30px;">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 10px;">Architecture</div>
-                    <h4 style="margin-bottom: 10px;">Scalable Logic</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Diseño de sistemas preparados para el crecimiento masivo de usuarios.</p>
+                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
+                    <div class="impact-number">Full-Stack</div>
+                    <h4>Producto Real</h4>
+                    <p style="font-size:0.9rem; color:var(--text-dim);">RivalFit es una app en producción, no un side-project. Next.js 15, Supabase, TypeScript, pagos, dashboard.</p>
                 </div>
-                <div class="skill-card glass-card" style="text-align: left; padding: 30px;">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 10px;">Impact</div>
-                    <h4 style="margin-bottom: 10px;">User Centric</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-dim);">Soluciones técnicas que resuelven problemas reales del negocio.</p>
+                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
+                    <div class="impact-number">IA + Data</div>
+                    <h4>Visión Completa</h4>
+                    <p style="font-size:0.9rem; color:var(--text-dim);">Combino análisis de datos, automatización con IA y desarrollo web en una sola propuesta de valor.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 2.8️⃣ FORMACIÓN & CERTIFICADOS -->
-    <section id="education" class="tech-stack reveal">
+    <!-- ═══════════════════════════════════════════════
+         3. TRAYECTORIA / JOURNEY TIMELINE
+    ═══════════════════════════════════════════════ -->
+    <section id="journey" class="journey reveal">
         <div class="container">
-            <h2 class="section-title">Formación & Certificaciones</h2>
-            <div class="skills-grid education-grid">
-                
-                <!-- Certificación 1 -->
-                <div class="skill-card glass-card" style="text-align: left; display: flex; gap: 20px; align-items: flex-start; padding: 25px;">
-                    <div style="font-size: 2.2rem; color: var(--accent);"><i class="fab fa-google"></i></div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Google Data Analytics</h4>
-                        <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 8px;">Google Professional Certificate</p>
-                        <p style="font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;">Certificación integral cubriendo el ciclo completo de análisis: preparación, limpieza, análisis y visualización de datos.</p>
+            <h2 class="section-title">Mi Trayectoria</h2>
+            <div class="timeline">
+
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon" style="background: rgba(239,68,68,0.15); border-color: var(--accent);">
+                        <i class="fas fa-heartbeat" style="color:var(--accent)"></i>
+                    </div>
+                    <div class="timeline-content glass-card tilt-card">
+                        <span class="timeline-tag">8 años</span>
+                        <h3>Fisioterapeuta Deportivo</h3>
+                        <p>Ejercicio clínico durante 8 años, especializado en fisioterapia deportiva. Esta etapa me dio razonamiento analítico profundo, toma de decisiones basada en evidencia y comprensión sistémica de problemas complejos.</p>
+                        <div class="timeline-skills">
+                            <span>Análisis sistémico</span>
+                            <span>Toma de decisiones</span>
+                            <span>Fisioterapia deportiva</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Certificación 2 -->
-                <div class="skill-card glass-card" style="text-align: left; display: flex; gap: 20px; align-items: flex-start; padding: 25px;">
-                    <div style="font-size: 2.2rem; color: var(--accent);"><i class="fab fa-microsoft"></i></div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Data Analysis & Visualization</h4>
-                        <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 8px;">Microsoft (Power BI)</p>
-                        <p style="font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;">Especialización en modelado de datos complejo, creación de medidas DAX avanzadas y dashboards dinámicos para BI.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon" style="background: rgba(167,139,250,0.15); border-color: #a78bfa;">
+                        <i class="fas fa-dumbbell" style="color:#a78bfa"></i>
+                    </div>
+                    <div class="timeline-content glass-card tilt-card">
+                        <span class="timeline-tag" style="color:#a78bfa; background:rgba(167,139,250,0.1); border-color:rgba(167,139,250,0.3)">3 años · Activo</span>
+                        <h3>Coach · CrossFit & Hyrox</h3>
+                        <p>Entrenador en boxes de CrossFit y centros Hyrox. Enseñando halterofilia, gymnastics, programación y rendimiento atlético. El liderazgo, la constancia y la capacidad de estructurar procesos complejos son el legado directo de esta etapa.</p>
+                        <div class="timeline-skills">
+                            <span>Halterofilia</span>
+                            <span>Gymnastics</span>
+                            <span>Hyrox</span>
+                            <span>Programación atlética</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Certificación 3 -->
-                <div class="skill-card glass-card" style="text-align: left; display: flex; gap: 20px; align-items: flex-start; padding: 25px;">
-                    <div style="font-size: 2.2rem; color: var(--accent);"><i class="fas fa-database"></i></div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Databases & SQL for Data Science</h4>
-                        <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 8px;">IBM (Coursera)</p>
-                        <p style="font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;">Dominio de SQL avanzado, gestión de bases de datos relacionales y su integración con entornos Python.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon" style="background: rgba(34,197,94,0.15); border-color: #22c55e;">
+                        <i class="fas fa-laptop-code" style="color:#22c55e"></i>
+                    </div>
+                    <div class="timeline-content glass-card tilt-card">
+                        <span class="timeline-tag" style="color:#22c55e; background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.3)">3.5 años · En curso</span>
+                        <h3>Self-Taught Developer</h3>
+                        <p>Decisión de aprender desarrollo web, análisis de datos e IA de forma seria. Certificaciones de Google, Microsoft e IBM. Cursos continuos de Next.js, TypeScript, SQL, Python y automatización con IA. Mientras entrenaba atletas, construía software.</p>
+                        <div class="timeline-skills">
+                            <span>Next.js</span>
+                            <span>Python</span>
+                            <span>SQL</span>
+                            <span>Power BI</span>
+                            <span>Claude AI</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Certificación 4 -->
-                <div class="skill-card glass-card" style="text-align: left; display: flex; gap: 20px; align-items: flex-start; padding: 25px;">
-                    <div style="font-size: 2.2rem; color: var(--accent);"><i class="fas fa-laptop-code"></i></div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Full-Stack Web Development</h4>
-                        <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 8px;">Adecco (Especialización)</p>
-                        <p style="font-size: 0.85rem; color: var(--text-dim); line-height: 1.5;">Desarrollo integral de aplicaciones web, conectando interfaces modernas con servicios de backend y bases de datos.</p>
+                <div class="timeline-item reveal">
+                    <div class="timeline-icon" style="background: rgba(239,68,68,0.2); border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow);">
+                        <i class="fas fa-rocket" style="color:var(--accent)"></i>
+                    </div>
+                    <div class="timeline-content glass-card tilt-card" style="border-color: rgba(239,68,68,0.3);">
+                        <span class="timeline-tag">Hoy · En producción</span>
+                        <h3>RivalFit — Creador & Desarrollador</h3>
+                        <p>Plataforma fitness completa: red social para atletas + gestión de centros deportivos. Next.js 15, TypeScript, Supabase, Stripe, IA integrada, dashboard de analytics, sistema de gamificación y mucho más. Producto real, en producción.</p>
+                        <div class="timeline-skills">
+                            <span>Full-Stack</span>
+                            <span>TypeScript</span>
+                            <span>Supabase</span>
+                            <span>IA</span>
+                            <span>Product Owner</span>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-            
-            <!-- Educación Formal -->
-            <div class="skills-grid" style="grid-template-columns: 1fr; margin-top: 25px;">
-                <div class="skill-card glass-card reveal" style="text-align: left; display: flex; gap: 20px; align-items: flex-start; padding: 25px; border-left: 4px solid var(--accent);">
-                    <div style="font-size: 2rem; color: var(--accent);"><i class="fas fa-university"></i></div>
-                    <div>
-                        <h4 style="margin-bottom: 5px;">Licenciado en Fisioterapia</h4>
-                        <p style="font-size: 0.85rem; color: var(--accent); margin-bottom: 10px;">Universidad Arturo Michelena (Venezuela)</p>
-                        <p style="font-size: 0.9rem; color: var(--text-dim);">Trayectoria de 8 años en el sector clínico, donde el razonamiento lógico-analítico y la toma de decisiones basada en evidencia fueron fundamentales. Esta experiencia forjó mi capacidad para el análisis sistémico profundo, la resolución de problemas bajo presión y una visión humana orientada a soluciones eficientes.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- 3️⃣ Ticker de Logos/Herramientas -->
+    <!-- ═══════════════════════════════════════════════
+         4. TECH TICKER
+    ═══════════════════════════════════════════════ -->
     <div class="ticker-wrapper">
         <div class="ticker">
-            <span>Next.js 15</span>
-            <span>TypeScript</span>
-            <span>Supabase</span>
-            <span>PostgreSQL</span>
-            <span>Power BI</span>
-            <span>Python</span>
-            <span>Claude AI</span>
-            <span>AntiGravity</span>
-            <span>AI Engineering</span>
-            <span>React</span>
-            <!-- Duplicado para loop infinito -->
-            <span>Next.js 15</span>
-            <span>TypeScript</span>
-            <span>Supabase</span>
-            <span>PostgreSQL</span>
-            <span>Power BI</span>
-            <span>Python</span>
-            <span>Claude AI</span>
-            <span>AntiGravity</span>
-            <span>AI Engineering</span>
-            <span>React</span>
+            <span>Next.js 15</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span>
+            <span>Power BI</span><span>Python</span><span>Claude AI</span><span>AntiGravity</span>
+            <span>Halterofilia</span><span>React</span><span>SQL Avanzado</span><span>Pandas</span>
+            <span>Automatización</span><span>CrossFit Coach</span><span>Tailwind CSS</span><span>Git</span>
+            <!-- loop -->
+            <span>Next.js 15</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span>
+            <span>Power BI</span><span>Python</span><span>Claude AI</span><span>AntiGravity</span>
+            <span>Halterofilia</span><span>React</span><span>SQL Avanzado</span><span>Pandas</span>
+            <span>Automatización</span><span>CrossFit Coach</span><span>Tailwind CSS</span><span>Git</span>
         </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════════
+         5. SKILLS / STACK
+    ═══════════════════════════════════════════════ -->
     <section id="skills" class="tech-stack reveal">
         <div class="container">
-            <h2 class="section-title">Tecnologías</h2>
-            <div class="skills-grid">
-                <div class="skill-card glass-card reveal">
+            <h2 class="section-title">Tecnologías & Habilidades</h2>
+            <div class="skills-grid skills-4">
+
+                <div class="skill-card glass-card tilt-card reveal">
                     <i class="fas fa-code skill-icon"></i>
                     <h3>Full-Stack Dev</h3>
-                    <p>Next.js 15, React, TypeScript y Node.js para apps escalables.</p>
+                    <p>Next.js 15, React, TypeScript, Tailwind CSS, Node.js. Aplicaciones completas desde la arquitectura hasta el deploy.</p>
+                    <div class="skill-tags">
+                        <span>Next.js</span><span>TypeScript</span><span>React</span><span>Tailwind</span>
+                    </div>
                 </div>
-                <div class="skill-card glass-card">
+
+                <div class="skill-card glass-card tilt-card reveal">
                     <i class="fas fa-database skill-icon"></i>
-                    <h3>Data Architecture</h3>
-                    <p>Supabase (PostgreSQL), SQL Avanzado y modelado de datos complejos.</p>
+                    <h3>Data & BI</h3>
+                    <p>Python (Pandas, NumPy), SQL avanzado, PostgreSQL, Power BI y DAX. Del dato crudo a la decisión estratégica.</p>
+                    <div class="skill-tags">
+                        <span>Python</span><span>SQL</span><span>Power BI</span><span>DAX</span>
+                    </div>
                 </div>
-                <div class="skill-card glass-card">
-                    <i class="fas fa-video skill-icon"></i>
-                    <h3>Cloud Systems</h3>
-                    <p>Integración de APIs cloud, Cloudinary y motores de procesamiento de medios.</p>
+
+                <div class="skill-card glass-card tilt-card reveal">
+                    <i class="fas fa-brain skill-icon"></i>
+                    <h3>AI & Automation</h3>
+                    <p>Claude AI, AntiGravity, automatización de workflows, integración de APIs de IA y sistemas de publicación automatizada.</p>
+                    <div class="skill-tags">
+                        <span>Claude AI</span><span>AntiGravity</span><span>APIs</span><span>Automation</span>
+                    </div>
                 </div>
+
+                <div class="skill-card glass-card tilt-card reveal">
+                    <i class="fas fa-layer-group skill-icon"></i>
+                    <h3>Cloud & Tools</h3>
+                    <p>Supabase, Vercel, Git, Stripe, Cloudinary. Infraestructura moderna lista para escalar.</p>
+                    <div class="skill-tags">
+                        <span>Supabase</span><span>Vercel</span><span>Git</span><span>Stripe</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- 4️⃣ PROYECTOS -->
+    <!-- ═══════════════════════════════════════════════
+         6. PROYECTOS
+    ═══════════════════════════════════════════════ -->
     <section id="projects" class="projects reveal">
         <div class="container">
-            <h2 class="section-title">Mis Proyectos</h2>
+            <h2 class="section-title">Proyectos Reales</h2>
             <div class="projects-grid">
 
-                <!-- Project: Rival Fit (PRINCIPAL) -->
-                <article class="project-card featured-project glass-card">
-                    <div class="project-img-container" style="height: 100%; border-bottom: none; border-right: 1px solid var(--glass-border); background: transparent;">
-                        <img src="img/rivalfit_real.png" alt="Rival Fit - Real Dashboard Mockup" style="object-fit: contain; padding: 20px;">
+                <!-- FEATURED: RivalFit -->
+                <article class="project-card featured-project glass-card tilt-card-featured">
+                    <div class="project-img-container" style="height:100%; border-bottom:none; border-right:1px solid var(--glass-border); background:transparent;">
+                        <img src="img/rivalfit_real.png" alt="RivalFit Dashboard" style="object-fit:contain; padding:20px;">
                     </div>
                     <div class="project-content">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <img src="img/rival_logo_clean.svg" alt="Rival Fit Logo" style="height: 50px; width: auto; filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.3));">
-                            <h3 style="font-size: 2.8rem; margin-bottom: 0;">Rival Fit</h3>
+                        <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+                            <img src="img/rival_logo_clean.svg" alt="RivalFit" style="height:45px; width:auto; filter:drop-shadow(0 0 10px rgba(239,68,68,0.3));">
+                            <h3 style="font-size:2.5rem; margin:0;">Rival Fit</h3>
                         </div>
-                        <span class="project-tag" style="background: var(--accent); color: #fff; border: none;">Featured Project</span>
-                        <div style="display: flex; gap: 10px; margin-top: 15px; margin-bottom: 20px;">
-                            <span class="project-tag">FullStack App</span>
+                        <span class="project-tag" style="background:var(--accent); color:#fff; border:none;">Featured · En Producción</span>
+                        <div style="display:flex; gap:8px; margin-top:15px; margin-bottom:20px; flex-wrap:wrap;">
+                            <span class="project-tag">Full-Stack App</span>
                             <span class="project-tag">Next.js 15</span>
+                            <span class="project-tag">TypeScript</span>
                             <span class="project-tag">Supabase</span>
-                            <span class="project-tag">Video Engine</span>
+                            <span class="project-tag">IA</span>
                         </div>
-                        <p class="project-desc" style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 30px;">
-                            Ecosistema fitness profesional escalable. Implementación de dashboards de alto rendimiento, 
-                            sistemas de gamificación comunitaria y un **motor de edición de video personalizado** para atletas.
+                        <p class="project-desc" style="font-size:1.1rem; color:var(--text-main); margin-bottom:25px; line-height:1.7;">
+                            Plataforma fitness dual: <strong>red social para atletas</strong> (feed, duelos, rankings, comunidad) + <strong>gestión de centros deportivos</strong> (gyms, CrossFit boxes, entrenadores personales). Membresías, WODs con IA, analytics, tienda y sistema multi-sede.
                         </p>
-                        <div style="display: flex; gap: 20px;">
-                            <a href="https://rivalfit.app" target="_blank" class="btn btn-primary">Lanzar Aplicación <i class="fas fa-external-link-alt"></i></a>
-                            <a href="https://github.com/jesusgomez-data" target="_blank" class="btn btn-outline">Ver Código <i class="fab fa-github"></i></a>
+                        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                            <a href="https://rivalfit.app" target="_blank" class="btn btn-primary">Lanzar App <i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/jesusgomez-data/Rival-web" target="_blank" class="btn btn-outline">GitHub <i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </article>
 
-                <!-- Project 1: Power BI -->
-                <article class="project-card glass-card reveal">
-                    <div class="project-img-container" style="background: #000;">
-                        <img src="img/pbi_mockup.png" alt="Dashboard Power BI Avanzado">
+                <!-- Retail Sales Analysis -->
+                <article class="project-card glass-card tilt-card reveal">
+                    <div class="project-img-container" style="background:#000;">
+                        <img src="img/pbi_mockup.png" alt="Retail Sales Analysis">
                     </div>
                     <div class="project-content">
-                        <span class="project-tag">Power BI & DAX</span>
-                        <h3>Análisis de Ventas Pro</h3>
-                        <p class="project-desc">Rendimiento comercial con KPIs clave y filtros dinámicos realizados con DAX avanzado. Enfoque en rentabilidad.</p>
-                        <a href="https://github.com/jesusgomez-data/analisis-ventas-powerbi" target="_blank"
-                            class="btn btn-outline btn-sm" style="margin-top: 15px;">Explorar GitHub <i class="fas fa-external-link-alt"></i></a>
+                        <span class="project-tag">Python · SQL · Power BI</span>
+                        <h3>Retail Sales Analysis</h3>
+                        <p class="project-desc">Análisis completo de ventas 2023 con 7 KPIs. Modelo Star Schema, análisis por canales (online vs físico), ciudades top (Valencia, Bilbao, Barcelona). Pipeline completo: SQL → Python → Power BI.</p>
+                        <a href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </article>
- 
-                <!-- Project 2: Python -->
-                <article class="project-card glass-card reveal">
-                    <div class="project-img-container" style="background: #000;">
-                        <img src="img/python_mockup.png" alt="Python Data Analysis">
+
+                <!-- Tienda Deportiva ETL -->
+                <article class="project-card glass-card tilt-card reveal">
+                    <div class="project-img-container" style="background:#000;">
+                        <img src="img/python_mockup.png" alt="Tienda Deportiva ETL">
                     </div>
                     <div class="project-content">
-                        <span class="project-tag">Python & SQL</span>
+                        <span class="project-tag">Python · SQL · ETL</span>
                         <h3>Tienda Deportiva ETL</h3>
-                        <p class="project-desc">Pipeline de limpieza profunda y análisis predictivo de inventario para sector retail.</p>
-                        <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" target="_blank"
-                            class="btn btn-outline btn-sm" style="margin-top: 15px;">Explorar GitHub <i class="fas fa-external-link-alt"></i></a>
+                        <p class="project-desc">Pipeline completo de limpieza, transformación y análisis de ventas para retail deportivo. SQL para validación, Python para limpieza profunda, Power BI para visualización ejecutiva.</p>
+                        <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </article>
- 
-                <!-- Project 3: Finance -->
-                <article class="project-card glass-card reveal">
-                    <div class="project-img-container" style="background: #000;">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
-                            alt="Superstore Analysis">
+
+                <!-- Superstore Profit -->
+                <article class="project-card glass-card tilt-card reveal">
+                    <div class="project-img-container" style="background:#000;">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Superstore Analysis">
                     </div>
                     <div class="project-content">
-                        <span class="project-tag">BI Specialist</span>
-                        <h3>Superstore Profit</h3>
-                        <p class="project-desc">Optimización de márgenes y rentabilidad logística mediante modelado dimensional.</p>
-                        <a href="https://github.com/jesusgomez-data/superstore-sales-analysis" target="_blank"
-                            class="btn btn-outline btn-sm" style="margin-top: 15px;">Explorar GitHub <i class="fas fa-external-link-alt"></i></a>
+                        <span class="project-tag">Pandas · Matplotlib · Seaborn</span>
+                        <h3>Superstore Profit Analysis</h3>
+                        <p class="project-desc">Análisis de rentabilidad sobre 10,000+ transacciones. Detección de categorías con pérdidas (Furniture, Tables, Bookcases). Visualizaciones con Matplotlib y Seaborn.</p>
+                        <a href="https://github.com/jesusgomez-data/superstore-sales-analysis" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
                     </div>
                 </article>
 
             </div>
             <div class="view-more-container">
-                <a href="projects.html" class="btn btn-outline">Ver todos los proyectos <i
-                        class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/jesusgomez-data" target="_blank" class="btn btn-outline">Ver todos los repos en GitHub <i class="fab fa-github"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- 5️⃣ CAPACIDADES & SOLUCIONES -->
-    <section id="services" class="services" style="background: rgba(239, 68, 68, 0.02); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+    <!-- ═══════════════════════════════════════════════
+         7. FORMACIÓN
+    ═══════════════════════════════════════════════ -->
+    <section id="education" class="tech-stack reveal">
         <div class="container">
-            <h2 class="section-title">Soluciones que aporto</h2>
-            <div class="services-wrapper" style="display: flex; gap: 40px; align-items: center;">
-                <div class="services-grid" style="flex: 1.2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
-                    <div class="service-card glass-card" style="padding: 30px; transition: transform 0.3s ease;">
-                        <div class="service-icon" style="width: 50px; height: 50px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-layer-group" style="color: var(--accent); font-size: 1.5rem;"></i>
-                        </div>
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">Full-Stack Apps</h4>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Desarrollo de aplicaciones completas con Next.js, priorizando rendimiento y escalabilidad.</p>
-                    </div>
-                    <div class="service-card glass-card" style="padding: 30px; transition: transform 0.3s ease;">
-                        <div class="service-icon" style="width: 50px; height: 50px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-database" style="color: var(--accent); font-size: 1.5rem;"></i>
-                        </div>
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">Data Pipelines</h4>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Modelado de bases de datos avanzadas en Supabase y optimización de consultas SQL.</p>
-                    </div>
-                    <div class="service-card glass-card" style="padding: 30px; transition: transform 0.3s ease;">
-                        <div class="service-icon" style="width: 50px; height: 50px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-video" style="color: var(--accent); font-size: 1.5rem;"></i>
-                        </div>
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">Media Engines</h4>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Integración de procesamiento de video y automatización de contenidos multimedia.</p>
-                    </div>
-                    <div class="service-card glass-card" style="padding: 30px; transition: transform 0.3s ease;">
-                        <div class="service-icon" style="width: 50px; height: 50px; background: rgba(239, 68, 68, 0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-chart-pie" style="color: var(--accent); font-size: 1.5rem;"></i>
-                        </div>
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">Business Intelligence</h4>
-                        <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">Creación de Dashboards estratégicos que convierten el ruido de datos en decisiones.</p>
+            <h2 class="section-title">Formación & Certificaciones</h2>
+            <div class="skills-grid education-grid">
+
+                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
+                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fab fa-google"></i></div>
+                    <div>
+                        <h4 style="margin-bottom:5px;">Google Data Analytics</h4>
+                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Google Professional Certificate</p>
+                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Ciclo completo de análisis: preparación, limpieza, análisis y visualización de datos.</p>
                     </div>
                 </div>
-                <div class="service-visual" style="flex: 0.8; position: relative;">
-                    <div class="avatar-frame" style="position: relative; padding: 20px;">
-                        <img src="img/avatar_stats.jpg" alt="Jesús Gómez Avatar" style="width: 100%; border-radius: 30px; border: 1px solid var(--glass-border); box-shadow: 0 40px 80px rgba(0,0,0,0.4);">
-                        <div class="floating-stat glass-card" style="position: absolute; top: -10px; right: -20px; padding: 15px; border-radius: 15px; animation: float 5s ease-in-out infinite;">
-                            <i class="fas fa-bolt" style="color: #FFD700;"></i> Fast Delivery
-                        </div>
+
+                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
+                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fab fa-microsoft"></i></div>
+                    <div>
+                        <h4 style="margin-bottom:5px;">Data Analysis & Visualization</h4>
+                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Microsoft · Power BI</p>
+                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Modelado de datos, DAX avanzado y dashboards dinámicos para Business Intelligence.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
+                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-database"></i></div>
+                    <div>
+                        <h4 style="margin-bottom:5px;">Databases & SQL for Data Science</h4>
+                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">IBM · Coursera</p>
+                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">SQL avanzado, bases de datos relacionales e integración con entornos Python.</p>
+                    </div>
+                </div>
+
+                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
+                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-laptop-code"></i></div>
+                    <div>
+                        <h4 style="margin-bottom:5px;">Full-Stack Web Development</h4>
+                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Adecco · Especialización</p>
+                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Desarrollo integral de aplicaciones web conectando frontend moderno con backend y bases de datos.</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Educación formal -->
+            <div style="margin-top:25px;">
+                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px; border-left:4px solid var(--accent);">
+                    <div style="font-size:2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-university"></i></div>
+                    <div>
+                        <h4 style="margin-bottom:5px;">Licenciado en Fisioterapia</h4>
+                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:10px;">Universidad Arturo Michelena · Venezuela</p>
+                        <p style="font-size:0.9rem; color:var(--text-dim);">8 años de ejercicio clínico en fisioterapia deportiva. Esta trayectoria forjó mi capacidad de análisis sistémico, razonamiento basado en evidencia y resolución de problemas complejos bajo presión — habilidades que hoy aplico directamente al desarrollo de software.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6️⃣ TESTIMONIOS (SOCIAL PROOF) -->
-    <section class="testimonials reveal" style="padding: 100px 0;">
+    <!-- ═══════════════════════════════════════════════
+         8. OPEN TO WORK · CTA
+    ═══════════════════════════════════════════════ -->
+    <section class="open-to-work reveal">
         <div class="container">
-            <h2 class="section-title">Lo que dicen de mi trabajo</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="glass-card" style="padding: 40px; position: relative; border-left: 4px solid var(--accent);">
-                    <i class="fas fa-quote-left" style="position: absolute; top: 20px; left: 20px; font-size: 2rem; color: rgba(239, 68, 68, 0.1);"></i>
-                    <p style="font-size: 1.2rem; font-style: italic; color: var(--text-main); line-height: 1.8; margin-bottom: 25px;">
+            <div class="otw-card glass-card">
+                <div class="otw-left">
+                    <div class="otw-badge">
+                        <span class="pulse"></span>
+                        Open to Work
+                    </div>
+                    <h2>Listo para mi primera oportunidad profesional.</h2>
+                    <p>Busco un puesto como <strong>Full-Stack Developer</strong> o <strong>Data Analyst</strong> en una empresa grande que valore el aprendizaje continuo y el trabajo de impacto real. Presencial, remoto o híbrido en España.</p>
+                </div>
+                <div class="otw-right">
+                    <div class="otw-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Full-Stack Developer (Next.js / TypeScript)</span>
+                    </div>
+                    <div class="otw-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Data Analyst / BI Developer</span>
+                    </div>
+                    <div class="otw-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Disponibilidad inmediata</span>
+                    </div>
+                    <div class="otw-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>España · Remoto · Híbrido</span>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="margin-top:25px; width:100%; justify-content:center;">Hablemos <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         9. TESTIMONIO
+    ═══════════════════════════════════════════════ -->
+    <section class="testimonials reveal" style="padding:100px 0;">
+        <div class="container">
+            <h2 class="section-title">Lo que dicen</h2>
+            <div style="max-width:800px; margin:0 auto;">
+                <div class="glass-card tilt-card" style="padding:40px; position:relative; border-left:4px solid var(--accent);">
+                    <i class="fas fa-quote-left" style="position:absolute; top:20px; left:20px; font-size:2rem; color:rgba(239,68,68,0.1);"></i>
+                    <p style="font-size:1.15rem; font-style:italic; color:var(--text-main); line-height:1.8; margin-bottom:25px;">
                         "He tenido la oportunidad de ver a Jesús trabajando tanto en el análisis de datos como en la creación de Rival Fit y es sorprendente. Su capacidad para estructurar webs escalables y su enfoque analítico son de un nivel superior. Es un profesional que no solo programa, sino que entiende el negocio."
                     </p>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="width: 50px; height: 50px; background: var(--grad-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">CU</div>
+                    <div style="display:flex; align-items:center; gap:15px;">
+                        <div style="width:50px; height:50px; background:var(--grad-main); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">CU</div>
                         <div>
-                            <h4 style="margin: 0;">César Urbina</h4>
-                            <p style="margin: 0; font-size: 0.85rem; color: var(--accent);">Colaborador & Early Tester de Rival Fit</p>
+                            <h4 style="margin:0;">César Urbina</h4>
+                            <p style="margin:0; font-size:0.85rem; color:var(--accent);">Colaborador & Early Tester · RivalFit</p>
                         </div>
                     </div>
                 </div>
@@ -391,23 +505,23 @@
         </div>
     </section>
 
-    <!-- 7️⃣ CONTACTO -->
+    <!-- ═══════════════════════════════════════════════
+         10. CONTACTO
+    ═══════════════════════════════════════════════ -->
     <section id="contact" class="contact reveal">
         <div class="container">
             <h2 class="section-title">Contacto</h2>
             <div class="contact-box glass-card">
                 <div class="contact-info">
                     <h3>Hablemos de tu próximo proyecto.</h3>
-                    <p>Estoy disponible para posiciones full-time o proyectos freelance.</p>
-                    <div style="margin-top:30px; display:flex; flex-direction:column; gap:15px">
-                        <p><i class="fas fa-envelope" style="color:var(--accent)"></i> gomezsantiagojesus@icloud.com</p>
-                        <div style="display:flex; gap:15px; margin-top:20px">
-                            <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank"
-                                style="font-size:1.5rem" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/jesusgomezft" target="_blank"
-                                style="font-size:1.5rem" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://github.com/jesusgomez-data" target="_blank" style="font-size:1.5rem" title="GitHub"><i
-                                    class="fab fa-github"></i></a>
+                    <p>Disponible para posiciones full-time o proyectos freelance.</p>
+                    <div style="margin-top:30px; display:flex; flex-direction:column; gap:15px;">
+                        <p><i class="fas fa-envelope" style="color:var(--accent); margin-right:10px;"></i>gomezsantiagojesus@icloud.com</p>
+                        <p><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-right:10px;"></i>España · Disponible remoto</p>
+                        <div style="display:flex; gap:15px; margin-top:20px;">
+                            <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" style="font-size:1.5rem;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/jesusgomezft" target="_blank" style="font-size:1.5rem;" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/jesusgomez-data" target="_blank" style="font-size:1.5rem;" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -421,10 +535,7 @@
                     <div class="input-group">
                         <textarea name="message" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>
                     </div>
-                    <!-- Formspree setting -->
-                    <!-- <input type="hidden" name="_next" value="https://tuportfolio.com/thanks.html"> -->
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje <i
-                            class="fas fa-paper-plane"></i></button>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
@@ -437,7 +548,7 @@
                 <a href="https://www.instagram.com/jesusgomezft" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://github.com/jesusgomez-data" target="_blank"><i class="fab fa-github"></i></a>
             </div>
-            <p>&copy; 2026 Jesús Gómez Santiago. Portafolio Pro.</p>
+            <p>&copy; 2026 Jesús Gómez Santiago · Full-Stack Developer & Data Analyst</p>
         </div>
     </footer>
 

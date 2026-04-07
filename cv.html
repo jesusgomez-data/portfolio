@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Jesús Gómez Santiago</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #dc2626;
+            --red-light: #fee2e2;
+            --dark: #111827;
+            --mid: #374151;
+            --dim: #6b7280;
+            --border: #e5e7eb;
+            --bg: #ffffff;
+            --sidebar: #f9fafb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e5e7eb;
+            color: var(--dark);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ── Print button (no aparece al imprimir) ── */
+        .print-bar {
+            background: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            gap: 15px;
+        }
+        .print-bar span { color: #9ca3af; }
+        .print-btn {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .print-btn:hover { background: #b91c1c; }
+
+        /* ── CV Wrapper ── */
+        .cv-wrapper {
+            max-width: 900px;
+            margin: 20px auto;
+            background: var(--bg);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        /* ── Header ── */
+        .cv-header {
+            background: var(--dark);
+            color: white;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 30px;
+            padding: 36px 40px;
+            align-items: center;
+        }
+        .header-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--red);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .header-info h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .header-info .title {
+            color: var(--red);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+        .header-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 20px;
+        }
+        .header-contacts a,
+        .header-contacts span {
+            color: #d1d5db;
+            font-size: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .header-contacts a:hover { color: white; }
+        .header-contacts .dot {
+            width: 5px; height: 5px;
+            background: var(--red);
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* ── Body layout ── */
+        .cv-body {
+            display: grid;
+            grid-template-columns: 255px 1fr;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+            padding: 30px 25px;
+        }
+
+        /* ── Main ── */
+        .main {
+            padding: 30px 35px;
+        }
+
+        /* ── Section titles ── */
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--red);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--red-light);
+        }
+
+        .section { margin-bottom: 26px; }
+
+        /* ── Summary ── */
+        .summary p {
+            color: var(--mid);
+            font-size: 12.5px;
+            line-height: 1.7;
+        }
+
+        /* ── Experience ── */
+        .exp-item { margin-bottom: 20px; }
+        .exp-item:last-child { margin-bottom: 0; }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3px;
+            gap: 10px;
+        }
+        .exp-role {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        .exp-date {
+            font-size: 11px;
+            color: var(--red);
+            font-weight: 600;
+            white-space: nowrap;
+            background: var(--red-light);
+            padding: 2px 8px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+        .exp-company {
+            font-size: 12px;
+            color: var(--dim);
+            font-weight: 500;
+            margin-bottom: 7px;
+        }
+        .exp-bullets { padding-left: 14px; }
+        .exp-bullets li {
+            color: var(--mid);
+            font-size: 12px;
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+        .exp-bullets li::marker { color: var(--red); }
+
+        /* ── Projects ── */
+        .project-item {
+            margin-bottom: 14px;
+            padding: 12px 14px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid var(--red);
+        }
+        .project-item:last-child { margin-bottom: 0; }
+        .project-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .project-link {
+            font-size: 10.5px;
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .project-stack {
+            font-size: 10.5px;
+            color: var(--dim);
+            margin-bottom: 5px;
+        }
+        .project-desc {
+            font-size: 11.5px;
+            color: var(--mid);
+            line-height: 1.5;
+        }
+
+        /* ── Sidebar: Skills ── */
+        .skill-group { margin-bottom: 16px; }
+        .skill-group-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 7px;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .skill-tag {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--mid);
+            font-size: 10.5px;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .skill-tag.featured {
+            background: var(--red-light);
+            border-color: #fca5a5;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        /* ── Sidebar: Cert ── */
+        .cert-item {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cert-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cert-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .cert-issuer {
+            font-size: 11px;
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        /* ── Sidebar: Contact ── */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: var(--mid);
+        }
+        .contact-item .icon {
+            width: 18px;
+            height: 18px;
+            background: var(--red-light);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 9px;
+            color: var(--red);
+        }
+        .contact-item a { color: var(--mid); text-decoration: none; }
+        .contact-item a:hover { color: var(--red); }
+
+        /* ── Sidebar: Stats ── */
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 0;
+        }
+        .stat-box {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        .stat-box .num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+        .stat-box .lbl {
+            font-size: 9.5px;
+            color: var(--dim);
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        /* ── Education ── */
+        .edu-item { margin-bottom: 14px; }
+        .edu-item:last-child { margin-bottom: 0; }
+        .edu-degree {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .edu-school {
+            font-size: 11px;
+            color: var(--dim);
+        }
+
+        /* ── Divider ── */
+        .divider { height: 1px; background: var(--border); margin: 4px 0 20px 0; }
+
+        /* ── Print styles ── */
+        @media print {
+            body { background: white; font-size: 11.5px; }
+            .print-bar { display: none; }
+            .cv-wrapper { margin: 0; box-shadow: none; max-width: 100%; }
+            .cv-header { padding: 28px 32px; }
+            .sidebar { padding: 24px 20px; }
+            .main { padding: 24px 28px; }
+            @page { margin: 0; size: A4; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print bar -->
+    <div class="print-bar">
+        <span>Jesús Gómez Santiago — CV 2026 · Para guardar como PDF: Ctrl+P → "Guardar como PDF" → Sin márgenes</span>
+        <button class="print-btn" onclick="window.print()">
+            ⬇ Guardar como PDF
+        </button>
+    </div>
+
+    <div class="cv-wrapper">
+
+        <!-- HEADER -->
+        <div class="cv-header">
+            <img src="img/profile.jpg" alt="Jesús Gómez" class="header-photo">
+            <div class="header-info">
+                <h1>Jesús Gómez Santiago</h1>
+                <div class="title">Full-Stack Developer &amp; Data Analyst</div>
+                <div class="header-contacts">
+                    <span><span class="dot"></span> España · Disponible remoto</span>
+                    <a href="mailto:gomezsantiagojesus@icloud.com"><span class="dot"></span> gomezsantiagojesus@icloud.com</a>
+                    <a href="https://linkedin.com/in/jesusgomez06" target="_blank"><span class="dot"></span> linkedin.com/in/jesusgomez06</a>
+                    <a href="https://github.com/jesusgomez-data" target="_blank"><span class="dot"></span> github.com/jesusgomez-data</a>
+                    <a href="https://rivalfit.app" target="_blank"><span class="dot"></span> rivalfit.app</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="cv-body">
+
+            <!-- ═══ SIDEBAR ═══ -->
+            <aside class="sidebar">
+
+                <!-- Stats -->
+                <div class="section">
+                    <div class="section-title">Trayectoria</div>
+                    <div class="stat-row">
+                        <div class="stat-box">
+                            <div class="num">8</div>
+                            <div class="lbl">años Fisio.</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num">3</div>
+                            <div class="lbl">años Coach</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="num">3.5</div>
+                            <div class="lbl">años Dev</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="section">
+                    <div class="section-title">Contacto</div>
+                    <div class="contact-item">
+                        <div class="icon">✉</div>
+                        <a href="mailto:gomezsantiagojesus@icloud.com">gomezsantiagojesus@icloud.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">in</div>
+                        <a href="https://linkedin.com/in/jesusgomez06" target="_blank">linkedin.com/in/jesusgomez06</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">gh</div>
+                        <a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">🌐</div>
+                        <a href="https://rivalfit.app" target="_blank">rivalfit.app</a>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">📍</div>
+                        <span>España · Open to Remote</span>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="section">
+                    <div class="section-title">Stack Técnico</div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Frontend</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag featured">Next.js 15</span>
+                            <span class="skill-tag featured">TypeScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">HTML / CSS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Backend & Base de Datos</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag featured">Supabase</span>
+                            <span class="skill-tag featured">PostgreSQL</span>
+                            <span class="skill-tag">SQL Avanzado</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Data & BI</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag featured">Python</span>
+                            <span class="skill-tag featured">Power BI</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                            <span class="skill-tag">DAX</span>
+                            <span class="skill-tag">Matplotlib</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">IA & Automatización</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag featured">Claude AI</span>
+                            <span class="skill-tag featured">AntiGravity</span>
+                            <span class="skill-tag">Meta Graph API</span>
+                            <span class="skill-tag">Automatización</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Herramientas</div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git / GitHub</span>
+                            <span class="skill-tag">Vercel</span>
+                            <span class="skill-tag">Stripe</span>
+                            <span class="skill-tag">Formspree</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="section">
+                    <div class="section-title">Certificaciones</div>
+                    <div class="cert-item">
+                        <div class="cert-name">Google Data Analytics</div>
+                        <div class="cert-issuer">Google Professional Certificate</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Data Analysis & Visualization</div>
+                        <div class="cert-issuer">Microsoft · Power BI</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Databases & SQL for Data Science</div>
+                        <div class="cert-issuer">IBM · Coursera</div>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-name">Full-Stack Web Development</div>
+                        <div class="cert-issuer">Adecco · Especialización</div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="section">
+                    <div class="section-title">Idiomas</div>
+                    <div class="contact-item" style="margin-bottom:6px;">
+                        <div class="icon">ES</div>
+                        <span>Español — Nativo</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon">EN</div>
+                        <span>Inglés — Intermedio</span>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- ═══ MAIN ═══ -->
+            <main class="main">
+
+                <!-- Summary -->
+                <div class="section summary">
+                    <div class="section-title">Perfil Profesional</div>
+                    <p>Desarrollador Full-Stack y analista de datos con <strong>3.5 años de formación autodidacta intensa</strong> y un proyecto real en producción: <strong>RivalFit</strong>, plataforma fitness construida con Next.js 15, TypeScript y Supabase. Background de 8 años como fisioterapeuta deportivo y 3 años como coach en CrossFit y Hyrox, experiencias que forjaron capacidad analítica, disciplina y resolución de problemas bajo presión. Busco mi primera oportunidad en una empresa que valore el aprendizaje continuo y el trabajo de impacto real.</p>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Experience -->
+                <div class="section">
+                    <div class="section-title">Experiencia</div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-role">Creador & Desarrollador Full-Stack — RivalFit</div>
+                            <div class="exp-date">2024 – Presente</div>
+                        </div>
+                        <div class="exp-company">Proyecto propio · rivalfit.app · En producción</div>
+                        <ul class="exp-bullets">
+                            <li>Diseño y desarrollo completo de plataforma fitness dual: red social para atletas + gestión de centros deportivos (gyms, CrossFit boxes, entrenadores personales)</li>
+                            <li>Stack: Next.js 15, TypeScript, React, Supabase (PostgreSQL), Tailwind CSS 4, Stripe</li>
+                            <li>Implementación de sistema de pagos (Stripe), dashboards de analytics, gamificación, IA integrada, sistema multi-sede y WODs con generación automática</li>
+                            <li>Automatización de publicaciones en Instagram via Meta Graph API + Python scheduler</li>
+                            <li>Gestión completa del ciclo de producto: arquitectura, desarrollo, deploy y mantenimiento en producción</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-role">Coach & Entrenador Personal</div>
+                            <div class="exp-date">2023 – Presente · 3 años</div>
+                        </div>
+                        <div class="exp-company">Boxes de CrossFit & Centros Hyrox · España</div>
+                        <ul class="exp-bullets">
+                            <li>Entrenamiento y programación en disciplinas de CrossFit, Hyrox, halterofilia y gymnastics</li>
+                            <li>Diseño de programas de entrenamiento individuales y grupales basados en datos de rendimiento</li>
+                            <li>Liderazgo de grupos, seguimiento de progresión atlética y comunicación efectiva bajo presión</li>
+                        </ul>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-role">Fisioterapeuta Deportivo</div>
+                            <div class="exp-date">8 años</div>
+                        </div>
+                        <div class="exp-company">Ejercicio clínico · Venezuela & España</div>
+                        <ul class="exp-bullets">
+                            <li>Especialización en fisioterapia deportiva: diagnóstico, tratamiento y rehabilitación de lesiones</li>
+                            <li>Análisis sistémico de problemas complejos y toma de decisiones basada en evidencia clínica</li>
+                            <li>Esta trayectoria consolidó una capacidad analítica y disciplina metodológica que aplico directamente al desarrollo de software</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Projects -->
+                <div class="section">
+                    <div class="section-title">Proyectos de Datos · GitHub</div>
+
+                    <div class="project-item">
+                        <div class="project-name">
+                            Retail Sales Data Analysis
+                            <a href="https://github.com/jesusgomez-data/retail-sales-data-analysis" class="project-link" target="_blank">github →</a>
+                        </div>
+                        <div class="project-stack">Python · SQL · Power BI · Modelo Star Schema</div>
+                        <div class="project-desc">Análisis completo de ventas 2023 con 7 KPIs. Arquitectura en Star Schema, comparativa de canales online vs físico, análisis geográfico por ciudades. Pipeline ETL completo.</div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-name">
+                            Tienda Deportiva ETL & Análisis
+                            <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" class="project-link" target="_blank">github →</a>
+                        </div>
+                        <div class="project-stack">Python · SQL · Power BI</div>
+                        <div class="project-desc">Pipeline de limpieza, transformación y análisis de ventas para retail deportivo. SQL para validación, Python para limpieza profunda, Power BI para visualización ejecutiva.</div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-name">
+                            Superstore Profit Analysis
+                            <a href="https://github.com/jesusgomez-data/superstore-sales-analysis" class="project-link" target="_blank">github →</a>
+                        </div>
+                        <div class="project-stack">Python · Pandas · Matplotlib · Seaborn</div>
+                        <div class="project-desc">Análisis de rentabilidad sobre 10,000+ transacciones. Identificación de categorías con pérdidas. Visualizaciones profesionales con Matplotlib y Seaborn.</div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Education -->
+                <div class="section">
+                    <div class="section-title">Formación Académica</div>
+                    <div class="edu-item">
+                        <div class="edu-degree">Licenciado en Fisioterapia</div>
+                        <div class="edu-school">Universidad Arturo Michelena · Venezuela</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">Formación continua en Desarrollo Web, Análisis de Datos e IA</div>
+                        <div class="edu-school">Autodidacta · Coursera, Google, IBM, Microsoft, Adecco · 2022 – Presente</div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

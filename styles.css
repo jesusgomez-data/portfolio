@@ -832,3 +832,191 @@ footer p { color: var(--text-dim); font-size: 0.85rem; letter-spacing: 1px; }
     .impact-number { font-size: 1.5rem; }
     .impact-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════
+   AI MASTERY SECTION
+═══════════════════════════════════════════════ */
+.ai-mastery-section {
+    padding: var(--section-p);
+}
+
+.ai-mastery-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.ai-badge-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: var(--accent);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.ai-subtitle {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-top: 1.2rem;
+}
+
+.ai-subtitle strong { color: var(--text-main); }
+
+/* AI Tools Grid */
+.ai-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.ai-tool-card {
+    padding: 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--glass-border);
+}
+
+.ai-tool-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(239, 68, 68, 0.25);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(239,68,68,0.05);
+}
+
+.ai-tool-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.ai-tool-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+}
+
+.ai-tool-top h4 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.ai-level-badge {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 50px;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.ai-tool-card p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.ai-use-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ai-use-tags span {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 50px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+/* AI Impact Row */
+.ai-impact-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ai-impact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.ai-impact-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.ai-impact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ai-impact-text strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+}
+
+.ai-impact-text span {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+}
+
+.ai-impact-divider {
+    width: 1px;
+    height: 50px;
+    background: var(--glass-border);
+    flex-shrink: 0;
+}
+
+/* Responsive AI section */
+@media (max-width: 1024px) {
+    .ai-tools-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .ai-tools-grid { grid-template-columns: 1fr; }
+    .ai-impact-row { flex-direction: column; align-items: flex-start; gap: 20px; padding: 24px; }
+    .ai-impact-divider { width: 100%; height: 1px; }
+    .ai-impact-item { min-width: unset; width: 100%; }
+    .ai-subtitle { font-size: 0.97rem; }
+}

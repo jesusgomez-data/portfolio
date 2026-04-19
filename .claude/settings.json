@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:elianisromero.vercel.app)",
+      "WebFetch(domain:fabianzambrano.vercel.app)"
+    ]
+  }
+}

@@ -1,825 +1,528 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jesús Gómez | Full-Stack Developer & Data Analyst</title>
-    <meta name="description" content="Jesús Gómez — Full-Stack Developer, Data Analyst y creador de RivalFit. 3.5 años de formación autodidacta intensa. Abierto a oportunidades profesionales en España.">
-
+    <title>JGStudio — Diseño, Web & IA · España</title>
+    <meta name="description" content="Estudio creativo digital. Diseño, desarrollo, IA y automatización.">
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo_final_no_bg.png">
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <!-- Cabinet Grotesk (display) + Satoshi (body) via Fontshare -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <!-- JetBrains Mono (labels) + DM Sans fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
+<!-- Preloader -->
+<div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-body">
+        <div class="preloader-logo-wrap">
+            <img src="img/logo_sq_t.png" alt="JGStudio" class="preloader-logo-img">
+            <span class="preloader-wordmark" id="preloader-wordmark">JGStudio</span>
+        </div>
+        <div class="preloader-line"><div class="preloader-fill" id="preloader-fill"></div></div>
+        <div class="preloader-label" id="preloader-label">Cargando</div>
+    </div>
+</div>
 
-    <!-- Particle Canvas -->
-    <canvas id="particles-canvas"></canvas>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Background Decor -->
-    <div class="bg-circles">
-        <div class="circle-1"></div>
-        <div class="circle-2"></div>
+<!-- Nav -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="JGStudio">
+            <img src="img/logo_h_t.png" alt="JGStudio" class="nav-logo-img">
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#contact" class="nav-cta">Hablemos →</a></li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+        <button class="nav-toggle" id="menu-toggle" aria-label="Menú"><i class="fas fa-bars" id="menu-icon"></i></button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero" class="hero">
+    <canvas id="hero-3d" class="hero-canvas" aria-hidden="true"></canvas>
+
+    <!-- Profile photo — right side -->
+    <div class="hero-photo" aria-hidden="true">
+        <img src="img/profile.jpg" alt="">
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container glass-card">
-            <a href="#hero" class="logo">
-                <img src="img/logo_final_no_bg.png" alt="Jesús Gómez" class="logo-img">
+    <div class="hero-content wrap">
+        <p class="hero-kicker" id="hero-kicker">
+            <span class="kicker-dot"></span>
+            JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; Disponible esta semana
+        </p>
+        <h1 class="hero-title" id="hero-mega">
+            Del concepto<br>al lanzamiento.<br><em>Sin fricción.</em>
+        </h1>
+        <div class="hero-bottom">
+            <p class="hero-desc">Diseño · Código · IA · Automatización</p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn-outline magnetic">Ver proyectos</a>
+                <a href="#contact" class="btn-fill magnetic">Hablemos →</a>
+            </div>
+        </div>
+    </div>
+    <div class="hero-indicator" aria-hidden="true">
+        <span>scroll</span>
+        <div class="hi-line"></div>
+    </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="services-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Servicios</span>
+            <span class="label-count">03 pilares</span>
+        </div>
+        <div class="svc-grid">
+            <div class="svc-col" data-reveal>
+                <h3 class="svc-name">Crear</h3>
+                <ul class="svc-list">
+                    <li>Visuales con IA</li>
+                    <li>Video y escenas IA</li>
+                    <li>Identidad visual</li>
+                    <li>Diseño gráfico</li>
+                    <li>Banners y contenido</li>
+                </ul>
+                <p class="svc-stack">Midjourney · Flux · Runway · ComfyUI</p>
+            </div>
+            <div class="svc-col" data-reveal>
+                <h3 class="svc-name">Construir</h3>
+                <ul class="svc-list">
+                    <li>Desarrollo web</li>
+                    <li>Apps móviles</li>
+                    <li>CRM a medida</li>
+                    <li>Dashboards</li>
+                    <li>Automatización IA</li>
+                </ul>
+                <p class="svc-stack">Next.js · Flutter · Supabase · Node.js</p>
+            </div>
+            <div class="svc-col" data-reveal>
+                <h3 class="svc-name">Activar</h3>
+                <ul class="svc-list">
+                    <li>Redes sociales</li>
+                    <li>Estrategia de contenido</li>
+                    <li>Email marketing</li>
+                    <li>SEO y visibilidad</li>
+                    <li>Flujos automáticos</li>
+                </ul>
+                <p class="svc-stack">Instagram · LinkedIn · TikTok · n8n</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="projects-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Proyectos seleccionados</span>
+            <span class="label-count">05 proyectos</span>
+        </div>
+        <!-- Card grid con screenshots reales -->
+        <div class="prc-grid">
+
+            <!-- RivalFit — featured full width -->
+            <a class="prc prc-featured" href="https://rivalfit.app" target="_blank" rel="noopener">
+                <div class="prc-img"><img src="img/screenshot_rivalfit.jpg" alt="RivalFit" loading="lazy"></div>
+                <div class="prc-body">
+                    <div class="prc-top">
+                        <span class="prc-num">01</span>
+                        <span class="prc-badge prc-red">En Producción</span>
+                    </div>
+                    <div class="prc-bottom">
+                        <h3 class="prc-name">RivalFit</h3>
+                        <p class="prc-desc">Red social para atletas + gestión de centros deportivos.</p>
+                        <div class="prc-foot"><span class="prc-tech">Next.js 15 · Supabase · TypeScript · IA</span><span class="prc-arrow">↗</span></div>
+                    </div>
+                </div>
             </a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about">Historia</a></li>
-                <li><a href="#skills">Stack</a></li>
-                <li><a href="#ai-mastery">IA</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#journey">Trayectoria</a></li>
-                <li><a href="#contact" class="btn btn-primary btn-sm">Let's Talk</a></li>
-            </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+
+            <a class="prc" href="https://milucandco.vercel.app/" target="_blank" rel="noopener">
+                <div class="prc-img"><img src="img/screenshot_milu.jpg" alt="Milu & Co" loading="lazy"></div>
+                <div class="prc-body">
+                    <div class="prc-top">
+                        <span class="prc-num">02</span>
+                        <span class="prc-badge prc-green">Cliente · Live</span>
+                    </div>
+                    <div class="prc-bottom">
+                        <h3 class="prc-name">Milu & Co</h3>
+                        <p class="prc-desc">Web para marca de charcutería. Diseño y código en 7 días.</p>
+                        <div class="prc-foot"><span class="prc-tech">Next.js · Tailwind CSS</span><span class="prc-arrow">↗</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="prc" href="https://elianisromero.vercel.app/" target="_blank" rel="noopener">
+                <div class="prc-img"><img src="img/screenshot_elianis.jpg" alt="Elianis Romero" loading="lazy"></div>
+                <div class="prc-body">
+                    <div class="prc-top">
+                        <span class="prc-num">03</span>
+                        <span class="prc-badge prc-green">Cliente · Live</span>
+                    </div>
+                    <div class="prc-bottom">
+                        <h3 class="prc-name">Elianis Romero</h3>
+                        <p class="prc-desc">Web para psicóloga con asistente IA 24/7.</p>
+                        <div class="prc-foot"><span class="prc-tech">Next.js · OpenAI API</span><span class="prc-arrow">↗</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="prc" href="https://fabianzambrano.vercel.app/" target="_blank" rel="noopener">
+                <div class="prc-img"><img src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" loading="lazy"></div>
+                <div class="prc-body">
+                    <div class="prc-top">
+                        <span class="prc-num">04</span>
+                        <span class="prc-badge prc-green">Cliente · Live</span>
+                    </div>
+                    <div class="prc-bottom">
+                        <h3 class="prc-name">Fabián Zambrano</h3>
+                        <p class="prc-desc">Presencia digital completa para fisioterapeuta.</p>
+                        <div class="prc-foot"><span class="prc-tech">Next.js · Tailwind CSS</span><span class="prc-arrow">↗</span></div>
+                    </div>
+                </div>
+            </a>
+
+            <a class="prc" href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" rel="noopener">
+                <div class="prc-img"><img src="img/screenshot_retail.jpg" alt="Retail Sales Analysis" loading="lazy"></div>
+                <div class="prc-body">
+                    <div class="prc-top">
+                        <span class="prc-num">05</span>
+                        <span class="prc-badge prc-gold">Caso de Estudio</span>
+                    </div>
+                    <div class="prc-bottom">
+                        <h3 class="prc-name">Retail Sales Analysis</h3>
+                        <p class="prc-desc">Pipeline SQL → Python → Power BI. Ventas 2023.</p>
+                        <div class="prc-foot"><span class="prc-tech">Python · SQL · Power BI</span><span class="prc-arrow">↗</span></div>
+                    </div>
+                </div>
+            </a>
+
         </div>
-    </nav>
 
-    <!-- ═══════════════════════════════════════════════
-         1. HERO
-    ═══════════════════════════════════════════════ -->
-    <section id="hero" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <div class="hero-label reveal-fast">
-                    <span class="pulse"></span>
-                    Disponible para trabajar
-                </div>
-                <h1>
-                    Jesús Gómez —<br>
-                    <span id="typed-text" class="typed-accent"></span><span class="typed-cursor">|</span>
-                </h1>
-                <p>De fisioterapeuta y coach de élite a desarrollador Full-Stack, analista de datos e <strong>integrador de IA</strong>. Creador de <strong>RivalFit</strong>. Uso Claude, Gemini y herramientas de automatización para multiplicar productividad. 3.5 años construyendo en serio.</p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">Ver Proyectos <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn btn-outline">Contacto</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <span class="stat-number">8</span>
-                        <span class="stat-label">años en Fisioterapia</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">años como Coach</span>
-                    </div>
-                    <div class="hero-stat-divider"></div>
-                    <div class="hero-stat">
-                        <span class="stat-number">3.5</span>
-                        <span class="stat-label">años aprendiendo Dev</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-img-box">
-                <div class="img-glow"></div>
-                <img src="img/profile.jpg" alt="Jesús Gómez">
-                <div class="hero-floating-card tilt-float">
-                    <i class="fas fa-code" style="color:var(--accent); font-size:1.3rem"></i>
-                    <p style="font-size:0.75rem; margin-top:5px; color:var(--text-dim)">App en producción</p>
-                    <p style="font-weight:800; font-size:0.9rem">RivalFit.app</p>
-                </div>
-                <div class="hero-floating-card-2 tilt-float-2">
-                    <i class="fas fa-robot" style="color:#a78bfa; font-size:1.1rem"></i>
-                    <p style="font-size:0.75rem; color:var(--text-dim); margin-top:4px">IAs dominadas</p>
-                    <p style="font-weight:800; font-size:0.9rem">Claude · Gemini · GPT</p>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse"><div></div></div>
-            <p>scroll</p>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         2. SOBRE MÍ
-    ═══════════════════════════════════════════════ -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-card glass-card reveal">
-                <div class="about-avatar">
-                    <img src="img/avatar_work.jpg" alt="Jesús trabajando">
-                    <div class="avatar-badge">
-                        <i class="fas fa-dumbbell"></i> Coach → Dev
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h2 class="section-title" style="text-align:left; margin-bottom:30px; font-size:2.8rem; margin-left:0;">Mi Historia</h2>
-                    <p>Soy Jesús Gómez. Mi historia no es lineal — y eso me hace diferente.</p><br>
-                    <p>Pasé <strong>8 años como fisioterapeuta deportivo</strong>, analizando el cuerpo humano como un sistema complejo, tomando decisiones bajo presión y desarrollando una capacidad analítica que ningún curso puede enseñarte. Después, me convertí en <strong>Coach en boxes de CrossFit y Hyrox</strong>, enseñando halterofilia, gymnastics y rendimiento atlético de alto nivel durante 3 años.</p><br>
-                    <p>Hace <strong>3 años y medio tomé la decisión que cambió todo</strong>: aprender desarrollo web, análisis de datos e inteligencia artificial de forma seria y sin parar. Mientras entrenaba atletas de mañana, estudiaba código de noche. El resultado es <strong>RivalFit</strong>, una plataforma fitness completa en producción, múltiples proyectos de análisis de datos, y un uso real y diario de IA — <strong>Claude, Gemini, ChatGPT, AntiGravity</strong> — para multiplicar mi productividad y construir mejor software.</p><br>
-                    <p>No busco solo programar. Busco un equipo que valore la constancia, el aprendizaje continuo y el impacto real.</p>
-                    <div style="margin-top:35px; display:flex; gap:15px; flex-wrap:wrap;">
-                        <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" class="btn btn-outline btn-sm">LinkedIn <i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.instagram.com/jesusgomezft" target="_blank" class="btn btn-outline btn-sm">Instagram <i class="fab fa-instagram"></i></a>
-                        <a href="cv.html" target="_blank" class="btn btn-primary btn-sm">Ver CV <i class="fas fa-file-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Grid -->
-    <section class="about reveal" style="padding-top:0;">
-        <div class="container">
-            <div class="skills-grid impact-grid">
-                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
-                    <div class="impact-number">Disciplina</div>
-                    <h4>Mentalidad Atlética</h4>
-                    <p style="font-size:0.9rem; color:var(--text-dim);">8 años en fisioterapia y 3 como coach formaron una mentalidad de trabajo que traslazo al código.</p>
-                </div>
-                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
-                    <div class="impact-number">Full-Stack</div>
-                    <h4>Producto Real</h4>
-                    <p style="font-size:0.9rem; color:var(--text-dim);">RivalFit es una app en producción, no un side-project. Next.js 15, Supabase, TypeScript, pagos, dashboard.</p>
-                </div>
-                <div class="skill-card glass-card tilt-card" style="text-align:left; padding:35px;">
-                    <div class="impact-number">IA + Data</div>
-                    <h4>Multiplicador con IA</h4>
-                    <p style="font-size:0.9rem; color:var(--text-dim);">Claude, Gemini, ChatGPT, AntiGravity, Cursor AI — uso IA todos los días para construir más rápido y con más calidad.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         3. TRAYECTORIA / JOURNEY TIMELINE
-    ═══════════════════════════════════════════════ -->
-    <section id="journey" class="journey reveal">
-        <div class="container">
-            <h2 class="section-title">Mi Trayectoria</h2>
-            <div class="timeline">
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-icon" style="background: rgba(239,68,68,0.15); border-color: var(--accent);">
-                        <i class="fas fa-heartbeat" style="color:var(--accent)"></i>
-                    </div>
-                    <div class="timeline-content glass-card tilt-card">
-                        <span class="timeline-tag">8 años</span>
-                        <h3>Fisioterapeuta Deportivo</h3>
-                        <p>Ejercicio clínico durante 8 años, especializado en fisioterapia deportiva. Esta etapa me dio razonamiento analítico profundo, toma de decisiones basada en evidencia y comprensión sistémica de problemas complejos.</p>
-                        <div class="timeline-skills">
-                            <span>Análisis sistémico</span>
-                            <span>Toma de decisiones</span>
-                            <span>Fisioterapia deportiva</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-icon" style="background: rgba(167,139,250,0.15); border-color: #a78bfa;">
-                        <i class="fas fa-dumbbell" style="color:#a78bfa"></i>
-                    </div>
-                    <div class="timeline-content glass-card tilt-card">
-                        <span class="timeline-tag" style="color:#a78bfa; background:rgba(167,139,250,0.1); border-color:rgba(167,139,250,0.3)">3 años · Activo</span>
-                        <h3>Coach · CrossFit & Hyrox</h3>
-                        <p>Entrenador en boxes de CrossFit y centros Hyrox. Enseñando halterofilia, gymnastics, programación y rendimiento atlético. El liderazgo, la constancia y la capacidad de estructurar procesos complejos son el legado directo de esta etapa.</p>
-                        <div class="timeline-skills">
-                            <span>Halterofilia</span>
-                            <span>Gymnastics</span>
-                            <span>Hyrox</span>
-                            <span>Programación atlética</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-icon" style="background: rgba(34,197,94,0.15); border-color: #22c55e;">
-                        <i class="fas fa-laptop-code" style="color:#22c55e"></i>
-                    </div>
-                    <div class="timeline-content glass-card tilt-card">
-                        <span class="timeline-tag" style="color:#22c55e; background:rgba(34,197,94,0.1); border-color:rgba(34,197,94,0.3)">3.5 años · En curso</span>
-                        <h3>Self-Taught Developer</h3>
-                        <p>Decisión de aprender desarrollo web, análisis de datos e IA de forma seria. Certificaciones de Google, Microsoft e IBM. Cursos continuos de Next.js, TypeScript, SQL, Python y automatización con IA. Mientras entrenaba atletas, construía software.</p>
-                        <div class="timeline-skills">
-                            <span>Next.js</span>
-                            <span>Python</span>
-                            <span>SQL</span>
-                            <span>Power BI</span>
-                            <span>Claude AI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-icon" style="background: rgba(239,68,68,0.2); border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow);">
-                        <i class="fas fa-rocket" style="color:var(--accent)"></i>
-                    </div>
-                    <div class="timeline-content glass-card tilt-card" style="border-color: rgba(239,68,68,0.3);">
-                        <span class="timeline-tag">Hoy · En producción</span>
-                        <h3>RivalFit — Creador & Desarrollador</h3>
-                        <p>Plataforma fitness completa: red social para atletas + gestión de centros deportivos. Next.js 15, TypeScript, Supabase, Stripe, IA integrada, dashboard de analytics, sistema de gamificación y mucho más. Producto real, en producción.</p>
-                        <div class="timeline-skills">
-                            <span>Full-Stack</span>
-                            <span>TypeScript</span>
-                            <span>Supabase</span>
-                            <span>IA</span>
-                            <span>Product Owner</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         4. TECH TICKER
-    ═══════════════════════════════════════════════ -->
-    <div class="ticker-wrapper">
-        <div class="ticker">
-            <span>Next.js 15</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span>
-            <span>Power BI</span><span>Python</span><span>Claude AI</span><span>AntiGravity</span>
-            <span>Gemini</span><span>ChatGPT</span><span>Cursor AI</span><span>GitHub Copilot</span>
-            <span>n8n Automation</span><span>React</span><span>SQL Avanzado</span><span>Pandas</span>
-            <span>AI Agents</span><span>Prompt Engineering</span><span>Tailwind CSS</span><span>Git</span>
-            <span>Vercel</span><span>Stripe</span><span>OpenAI API</span><span>Anthropic API</span>
-            <!-- loop -->
-            <span>Next.js 15</span><span>TypeScript</span><span>Supabase</span><span>PostgreSQL</span>
-            <span>Power BI</span><span>Python</span><span>Claude AI</span><span>AntiGravity</span>
-            <span>Gemini</span><span>ChatGPT</span><span>Cursor AI</span><span>GitHub Copilot</span>
-            <span>n8n Automation</span><span>React</span><span>SQL Avanzado</span><span>Pandas</span>
-            <span>AI Agents</span><span>Prompt Engineering</span><span>Tailwind CSS</span><span>Git</span>
-            <span>Vercel</span><span>Stripe</span><span>OpenAI API</span><span>Anthropic API</span>
+        <!-- CTA para portafolio completo -->
+        <div class="proj-footer" data-reveal>
+            <a href="portfolio.html" class="proj-more-btn magnetic">
+                Ver portafolio completo
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
         </div>
     </div>
+</section>
 
-    <!-- ═══════════════════════════════════════════════
-         5. SKILLS / STACK
-    ═══════════════════════════════════════════════ -->
-    <section id="skills" class="tech-stack reveal">
-        <div class="container">
-            <h2 class="section-title">Tecnologías & Habilidades</h2>
-            <div class="skills-grid skills-4">
-
-                <div class="skill-card glass-card tilt-card reveal">
-                    <i class="fas fa-code skill-icon"></i>
-                    <h3>Full-Stack Dev</h3>
-                    <p>Next.js 15, React, TypeScript, Tailwind CSS, Node.js. Aplicaciones completas desde la arquitectura hasta el deploy.</p>
-                    <div class="skill-tags">
-                        <span>Next.js</span><span>TypeScript</span><span>React</span><span>Tailwind</span>
-                    </div>
-                </div>
-
-                <div class="skill-card glass-card tilt-card reveal">
-                    <i class="fas fa-database skill-icon"></i>
-                    <h3>Data & BI</h3>
-                    <p>Python (Pandas, NumPy), SQL avanzado, PostgreSQL, Power BI y DAX. Del dato crudo a la decisión estratégica.</p>
-                    <div class="skill-tags">
-                        <span>Python</span><span>SQL</span><span>Power BI</span><span>DAX</span>
-                    </div>
-                </div>
-
-                <div class="skill-card glass-card tilt-card reveal">
-                    <i class="fas fa-brain skill-icon"></i>
-                    <h3>AI & Automation</h3>
-                    <p>Claude, Gemini, ChatGPT, AntiGravity, Cursor AI. Integración de APIs de IA, agentes autónomos, workflows n8n y automatización de procesos complejos en producción.</p>
-                    <div class="skill-tags">
-                        <span>Claude</span><span>Gemini</span><span>OpenAI</span><span>AntiGravity</span><span>n8n</span>
-                    </div>
-                </div>
-
-                <div class="skill-card glass-card tilt-card reveal">
-                    <i class="fas fa-layer-group skill-icon"></i>
-                    <h3>Cloud & Tools</h3>
-                    <p>Supabase, Vercel, Git, Stripe, Cloudinary. Infraestructura moderna lista para escalar.</p>
-                    <div class="skill-tags">
-                        <span>Supabase</span><span>Vercel</span><span>Git</span><span>Stripe</span>
-                    </div>
-                </div>
-
-            </div>
+<!-- About -->
+<section id="about" class="about-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Sobre mí</span>
         </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         5.5. IA & AUTOMATIZACIÓN — AI MASTERY
-    ═══════════════════════════════════════════════ -->
-    <section id="ai-mastery" class="ai-mastery-section reveal">
-        <div class="container">
-            <div class="ai-mastery-header">
-                <div class="ai-badge-label reveal-fast">
-                    <span class="pulse"></span>
-                    Diferenciador clave
+        <div class="about-grid">
+            <div class="about-photo" data-reveal>
+                <img src="img/avatar_work.jpg" alt="Jesús Gómez">
+                <div class="about-photo-meta">
+                    <strong>Jesús Gómez Santiago</strong>
+                    <span>Fundador · JGStudio · España</span>
                 </div>
-                <h2 class="section-title">La IA es mi Superpoder</h2>
-                <p class="ai-subtitle">No solo sé programar — sé <strong>multiplicarme</strong>. Uso inteligencia artificial para automatizar flujos de trabajo, integrar agentes en aplicaciones reales y tomar mejores decisiones más rápido. Esto no es hype: es mi forma de trabajar cada día.</p>
             </div>
-
-            <!-- AI Tools Grid -->
-            <div class="ai-tools-grid">
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo claude-logo">
-                            <svg viewBox="0 0 100 100" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="22" fill="#D97706"/>
-                                <text x="50" y="65" text-anchor="middle" font-size="52" font-family="serif" fill="white" font-weight="bold">C</text>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Claude (Anthropic)</h4>
-                            <span class="ai-level-badge">Avanzado</span>
-                        </div>
+            <div class="about-body" data-reveal>
+                <h2 class="about-title" data-title>Mi historia no<br>es lineal.</h2>
+                <div class="about-text">
+                    <p>Pasé <strong>8 años como fisioterapeuta deportivo</strong>, analizando el cuerpo humano como un sistema complejo, tomando decisiones bajo presión y desarrollando una capacidad analítica que ningún curso puede enseñarte. Después me convertí en <strong>coach en boxes de CrossFit y Hyrox</strong> durante 3 años — enseñando halterofilia, gymnastics y rendimiento atlético de alto nivel.</p>
+                    <p>Hace 3 años y medio tomé la decisión que cambió todo: <strong>aprender desarrollo web, análisis de datos e IA de forma seria y sin parar.</strong> Mientras entrenaba atletas de mañana, estudiaba código de noche. El resultado es RivalFit en producción, cuatro clientes satisfechos, y un uso real y diario de IA — Claude, Gemini, ChatGPT — para multiplicar la productividad y construir mejor software.</p>
+                    <p>No busco solo un cliente. Busco negocios que valoren la constancia, el aprendizaje continuo y el <strong>impacto real.</strong></p>
+                </div>
+                <div class="about-nums">
+                    <div class="an-item">
+                        <span class="an-n" data-count="8">0</span>
+                        <span class="an-l">años fisio</span>
                     </div>
-                    <p>Mi asistente principal de código. Uso Claude para revisión de arquitectura, generación de componentes complejos, debugging avanzado y construcción de agentes autónomos con la API de Anthropic integrada en proyectos reales.</p>
-                    <div class="ai-use-tags">
-                        <span>Code Review</span><span>AI Agents</span><span>API Integration</span><span>Arquitectura</span>
+                    <div class="an-item">
+                        <span class="an-n" data-count="3">0</span>
+                        <span class="an-l">años coach</span>
+                    </div>
+                    <div class="an-item">
+                        <span class="an-n" data-count="3.5">0</span>
+                        <span class="an-l">años dev & IA</span>
                     </div>
                 </div>
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo antigravity-logo">
-                            <i class="fas fa-atom" style="font-size:1.8rem; color:#ef4444;"></i>
-                        </div>
-                        <div>
-                            <h4>AntiGravity</h4>
-                            <span class="ai-level-badge">Diario</span>
-                        </div>
-                    </div>
-                    <p>Plataforma de agentes IA que uso como orquestador de workflows en mi desarrollo diario. Permite encadenar agentes especializados para tareas complejas: desde research hasta implementación, todo coordinado.</p>
-                    <div class="ai-use-tags">
-                        <span>Orquestación</span><span>Multi-Agent</span><span>Workflows</span><span>Productividad</span>
-                    </div>
-                </div>
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo gemini-logo">
-                            <svg viewBox="0 0 100 100" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="22" fill="url(#gem-grad)"/>
-                                <defs>
-                                    <linearGradient id="gem-grad" x1="0" y1="0" x2="100" y2="100">
-                                        <stop offset="0%" stop-color="#4285f4"/>
-                                        <stop offset="50%" stop-color="#9c27b0"/>
-                                        <stop offset="100%" stop-color="#ea4335"/>
-                                    </linearGradient>
-                                </defs>
-                                <text x="50" y="68" text-anchor="middle" font-size="48" font-family="sans-serif" fill="white" font-weight="bold">G</text>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Gemini (Google)</h4>
-                            <span class="ai-level-badge">Avanzado</span>
-                        </div>
-                    </div>
-                    <p>Uso Gemini para análisis multimodal, procesamiento de documentos largos y como alternativa complementaria a Claude en tareas de investigación y síntesis de datos. Su integración con el ecosistema Google es clave.</p>
-                    <div class="ai-use-tags">
-                        <span>Multimodal</span><span>Análisis</span><span>Research</span><span>Síntesis</span>
-                    </div>
-                </div>
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo gpt-logo">
-                            <svg viewBox="0 0 100 100" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="22" fill="#10a37f"/>
-                                <text x="50" y="65" text-anchor="middle" font-size="38" font-family="sans-serif" fill="white" font-weight="bold">GPT</text>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>ChatGPT / OpenAI</h4>
-                            <span class="ai-level-badge">Avanzado</span>
-                        </div>
-                    </div>
-                    <p>Integro la API de OpenAI para funcionalidades avanzadas en mis aplicaciones — como el asistente IA en RivalFit. GPT-4o para generación de WODs personalizados, análisis de rendimiento atlético y chatbots contextuales.</p>
-                    <div class="ai-use-tags">
-                        <span>OpenAI API</span><span>GPT-4o</span><span>Chatbots</span><span>Personalización</span>
-                    </div>
-                </div>
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo cursor-logo">
-                            <i class="fas fa-terminal" style="font-size:1.8rem; color:#7c3aed;"></i>
-                        </div>
-                        <div>
-                            <h4>Cursor AI</h4>
-                            <span class="ai-level-badge">Diario</span>
-                        </div>
-                    </div>
-                    <p>Editor de código con IA integrada que es mi entorno principal de desarrollo. Combino Cursor con Claude para una experiencia de pair-programming donde la IA entiende el contexto completo del proyecto.</p>
-                    <div class="ai-use-tags">
-                        <span>Pair Programming</span><span>Refactor</span><span>Debugging</span><span>IDE</span>
-                    </div>
-                </div>
-
-                <div class="ai-tool-card glass-card tilt-card reveal">
-                    <div class="ai-tool-top">
-                        <div class="ai-tool-logo n8n-logo">
-                            <i class="fas fa-sitemap" style="font-size:1.8rem; color:#ff6d5a;"></i>
-                        </div>
-                        <div>
-                            <h4>n8n · Automatización</h4>
-                            <span class="ai-level-badge">Producción</span>
-                        </div>
-                    </div>
-                    <p>Construyo pipelines de automatización que conectan APIs, bases de datos y modelos de IA. Workflows que corren solos: desde publicación automatizada hasta alertas inteligentes y procesamiento de datos en tiempo real.</p>
-                    <div class="ai-use-tags">
-                        <span>Pipelines</span><span>API Chaining</span><span>Automation</span><span>Triggers</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- AI Impact Metrics -->
-            <div class="ai-impact-row glass-card reveal">
-                <div class="ai-impact-item">
-                    <div class="ai-impact-icon"><i class="fas fa-bolt"></i></div>
-                    <div class="ai-impact-text">
-                        <strong>10× más rápido</strong>
-                        <span>en desarrollo gracias a IA</span>
-                    </div>
-                </div>
-                <div class="ai-impact-divider"></div>
-                <div class="ai-impact-item">
-                    <div class="ai-impact-icon"><i class="fas fa-robot"></i></div>
-                    <div class="ai-impact-text">
-                        <strong>Agentes autónomos</strong>
-                        <span>integrados en proyectos reales</span>
-                    </div>
-                </div>
-                <div class="ai-impact-divider"></div>
-                <div class="ai-impact-item">
-                    <div class="ai-impact-icon"><i class="fas fa-layer-group"></i></div>
-                    <div class="ai-impact-text">
-                        <strong>6+ herramientas IA</strong>
-                        <span>en uso activo cada semana</span>
-                    </div>
-                </div>
-                <div class="ai-impact-divider"></div>
-                <div class="ai-impact-item">
-                    <div class="ai-impact-icon"><i class="fas fa-cogs"></i></div>
-                    <div class="ai-impact-text">
-                        <strong>Automatización real</strong>
-                        <span>workflows en producción</span>
-                    </div>
+                <div class="about-links">
+                    <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" class="link-pill magnetic"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/jgstudio0/" target="_blank" class="link-pill magnetic"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="cv.html" target="_blank" class="link-pill link-pill--accent magnetic"><i class="fas fa-file"></i> Ver CV</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ═══════════════════════════════════════════════
-         6. PROYECTOS
-    ═══════════════════════════════════════════════ -->
-    <section id="projects" class="projects reveal">
-        <div class="container">
-            <h2 class="section-title">Proyectos Reales</h2>
-            <div class="projects-grid">
-
-                <!-- FEATURED: RivalFit -->
-                <article class="project-card featured-project glass-card tilt-card-featured">
-                    <div class="project-img-container" style="height:100%; border-bottom:none; border-right:1px solid var(--glass-border); background:transparent;">
-                        <img src="img/rivalfit_real.png" alt="RivalFit Dashboard" style="object-fit:contain; padding:20px;">
-                    </div>
-                    <div class="project-content">
-                        <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
-                            <img src="img/rival_logo_clean.svg" alt="RivalFit" style="height:45px; width:auto; filter:drop-shadow(0 0 10px rgba(239,68,68,0.3));">
-                            <h3 style="font-size:2.5rem; margin:0;">Rival Fit</h3>
-                        </div>
-                        <span class="project-tag" style="background:var(--accent); color:#fff; border:none;">Featured · En Producción</span>
-                        <div style="display:flex; gap:8px; margin-top:15px; margin-bottom:20px; flex-wrap:wrap;">
-                            <span class="project-tag">Full-Stack App</span>
-                            <span class="project-tag">Next.js 15</span>
-                            <span class="project-tag">TypeScript</span>
-                            <span class="project-tag">Supabase</span>
-                            <span class="project-tag">IA</span>
-                        </div>
-                        <p class="project-desc" style="font-size:1.1rem; color:var(--text-main); margin-bottom:25px; line-height:1.7;">
-                            Plataforma fitness dual: <strong>red social para atletas</strong> (feed, duelos, rankings, comunidad) + <strong>gestión de centros deportivos</strong> (gyms, CrossFit boxes, entrenadores personales). Membresías, WODs con IA, analytics, tienda y sistema multi-sede.
-                        </p>
-                        <div style="display:flex; gap:15px; flex-wrap:wrap;">
-                            <a href="https://rivalfit.app" target="_blank" class="btn btn-primary">Lanzar App <i class="fas fa-external-link-alt"></i></a>
-                            <a href="https://github.com/jesusgomez-data/Rival-web" target="_blank" class="btn btn-outline">GitHub <i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Retail Sales Analysis -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background:#000;">
-                        <img src="img/pbi_mockup.png" alt="Retail Sales Analysis">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Python · SQL · Power BI</span>
-                        <h3>Retail Sales Analysis</h3>
-                        <p class="project-desc">Análisis completo de ventas 2023 con 7 KPIs. Modelo Star Schema, análisis por canales (online vs físico), ciudades top (Valencia, Bilbao, Barcelona). Pipeline completo: SQL → Python → Power BI.</p>
-                        <a href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
-                    </div>
-                </article>
-
-                <!-- Tienda Deportiva ETL -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background:#000;">
-                        <img src="img/python_mockup.png" alt="Tienda Deportiva ETL">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Python · SQL · ETL</span>
-                        <h3>Tienda Deportiva ETL</h3>
-                        <p class="project-desc">Pipeline completo de limpieza, transformación y análisis de ventas para retail deportivo. SQL para validación, Python para limpieza profunda, Power BI para visualización ejecutiva.</p>
-                        <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
-                    </div>
-                </article>
-
-                <!-- Superstore Profit -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background:#000;">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Superstore Analysis">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Pandas · Matplotlib · Seaborn</span>
-                        <h3>Superstore Profit Analysis</h3>
-                        <p class="project-desc">Análisis de rentabilidad sobre 10,000+ transacciones. Detección de categorías con pérdidas (Furniture, Tables, Bookcases). Visualizaciones con Matplotlib y Seaborn.</p>
-                        <a href="https://github.com/jesusgomez-data/superstore-sales-analysis" target="_blank" class="btn btn-outline btn-sm" style="margin-top:15px;">Ver en GitHub <i class="fab fa-github"></i></a>
-                    </div>
-                </article>
-
-                <!-- MiluCandCo — E-commerce & Brand Web -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background: linear-gradient(135deg, #1a0a2e 0%, #0d0d1a 100%); display:flex; align-items:center; justify-content:center;">
-                        <div style="text-align:center; padding:20px;">
-                            <div style="font-size:2.5rem; font-weight:900; font-family:'Outfit',sans-serif; letter-spacing:-0.03em; color:#fff;">milu<span style="color:#c084fc">&</span>co</div>
-                            <div style="font-size:0.75rem; color:rgba(255,255,255,0.4); letter-spacing:0.2em; margin-top:8px;">BRAND · WEB · DESIGN</div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-                            <span class="project-tag" style="background:rgba(192,132,252,0.15); color:#c084fc; border-color:rgba(192,132,252,0.3);">Live en Vercel</span>
-                            <span class="project-tag">Next.js</span><span class="project-tag">Tailwind</span>
-                        </div>
-                        <h3>Milu & Co</h3>
-                        <p class="project-desc">Web profesional para marca personal. Diseño premium con identidad visual cohesionada, landing page optimizada para conversión y experiencia de usuario cuidada al detalle. Construida con Next.js y desplegada en Vercel.</p>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-                            <a href="https://milucandco.vercel.app/" target="_blank" class="btn btn-primary btn-sm">Ver Sitio <i class="fas fa-external-link-alt"></i></a>
-                            <a href="https://github.com/jesusgomez-data/milucandco" target="_blank" class="btn btn-outline btn-sm">GitHub <i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Elianis Romero — Psicología Clínica -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background: linear-gradient(135deg, #0b1f1a 0%, #0a1729 100%); display:flex; align-items:center; justify-content:center;">
-                        <div style="text-align:center; padding:20px;">
-                            <div style="font-size:0.7rem; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:0.25em; margin-bottom:10px;">PSICOLOGÍA CLÍNICA</div>
-                            <div style="font-size:2.1rem; font-weight:900; font-family:'Outfit',sans-serif; color:#fff; letter-spacing:-0.02em;">Elianis<span style="color:#34d399">.</span></div>
-                            <div style="font-size:0.75rem; color:rgba(255,255,255,0.35); letter-spacing:0.15em; margin-top:6px;">TERAPIA · BIENESTAR · IA</div>
-                            <div style="width:40px; height:2px; background:linear-gradient(90deg,#34d399,#60a5fa); margin:12px auto 0;"></div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-                            <span class="project-tag" style="background:rgba(52,211,153,0.15); color:#34d399; border-color:rgba(52,211,153,0.3);">Cliente · Live</span>
-                            <span class="project-tag">Next.js</span><span class="project-tag">Tailwind</span><span class="project-tag">IA 24/7</span>
-                        </div>
-                        <h3>Elianis Romero · Psicóloga</h3>
-                        <p class="project-desc">Web profesional para psicóloga clínica con consulta en Madrid y pacientes internacionales. Integra asistente IA 24/7, sistema de citas, recursos de bienestar y testimonios. Diseño cálido y accesible optimizado para conversión.</p>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-                            <a href="https://elianisromero.vercel.app/" target="_blank" class="btn btn-primary btn-sm">Ver Sitio <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Fabian Zambrano — Fisioterapia & Pilates -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background: linear-gradient(135deg, #091829 0%, #0d2018 100%); display:flex; align-items:center; justify-content:center;">
-                        <div style="text-align:center; padding:20px;">
-                            <div style="font-size:0.7rem; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:0.25em; margin-bottom:10px;">FISIOTERAPIA & PILATES</div>
-                            <div style="font-size:2.1rem; font-weight:900; font-family:'Outfit',sans-serif; color:#fff; letter-spacing:-0.02em;">Fabián<span style="color:#38bdf8">Z</span></div>
-                            <div style="font-size:0.75rem; color:rgba(255,255,255,0.35); letter-spacing:0.15em; margin-top:6px;">SALUD · MOVIMIENTO · VIDA</div>
-                            <div style="width:40px; height:2px; background:linear-gradient(90deg,#38bdf8,#34d399); margin:12px auto 0;"></div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-                            <span class="project-tag" style="background:rgba(56,189,248,0.15); color:#38bdf8; border-color:rgba(56,189,248,0.3);">Cliente · Live</span>
-                            <span class="project-tag">Next.js</span><span class="project-tag">Tailwind</span>
-                        </div>
-                        <h3>Fabián Zambrano · Fisioterapeuta</h3>
-                        <p class="project-desc">Web profesional para fisioterapeuta e instructor de pilates. Presentación de servicios, identidad visual coherente con la marca, sistema de contacto y booking. Landing page optimizada para atraer y convertir nuevos pacientes.</p>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-                            <a href="https://fabianzambrano.vercel.app/" target="_blank" class="btn btn-primary btn-sm">Ver Sitio <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Portfolio v1 — Primer portfolio personal -->
-                <article class="project-card glass-card tilt-card reveal">
-                    <div class="project-img-container" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); display:flex; align-items:center; justify-content:center;">
-                        <div style="text-align:center; padding:20px;">
-                            <div style="font-size:1.1rem; font-weight:700; color:rgba(255,255,255,0.5); letter-spacing:0.1em; margin-bottom:10px;">PORTFOLIO v1</div>
-                            <div style="font-size:2rem; font-weight:900; font-family:'Outfit',sans-serif; color:#fff;">Jesús<span style="color:#60a5fa">.</span>dev</div>
-                            <div style="width:50px; height:2px; background:linear-gradient(90deg,#60a5fa,#a78bfa); margin:12px auto 0;"></div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
-                            <span class="project-tag" style="background:rgba(96,165,250,0.15); color:#60a5fa; border-color:rgba(96,165,250,0.3);">Primer Proyecto</span>
-                            <span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JS</span>
-                        </div>
-                        <h3>Portfolio Personal v1</h3>
-                        <p class="project-desc">Mi primer portfolio personal creado desde cero. Punto de partida de todo — donde aprendí a diseñar, estructurar y desplegar un sitio web real. Desplegado en Netlify, representa el inicio del camino autodidacta.</p>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-                            <a href="https://jesusgomez.netlify.app/" target="_blank" class="btn btn-primary btn-sm">Ver Sitio <i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-            <div class="view-more-container">
-                <a href="https://github.com/jesusgomez-data" target="_blank" class="btn btn-outline">Ver todos los repos en GitHub <i class="fab fa-github"></i></a>
-            </div>
+<!-- IA SUPERPODER -->
+<section id="ia" class="ia-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Inteligencia Artificial</span>
         </div>
-    </section>
+        <div class="ia-header">
+            <h2 class="ia-headline" data-title>La IA es<br><em>mi superpoder.</em></h2>
+            <p class="ia-sub" data-reveal>No solo sé programar — sé <strong>multiplicarme</strong>. Uso inteligencia artificial para automatizar flujos de trabajo, integrar agentes en aplicaciones reales y tomar mejores decisiones más rápido. Esto no es hype: es mi forma de trabajar cada día.</p>
+        </div>
 
-    <!-- ═══════════════════════════════════════════════
-         7. FORMACIÓN
-    ═══════════════════════════════════════════════ -->
-    <section id="education" class="tech-stack reveal">
-        <div class="container">
-            <h2 class="section-title">Formación & Certificaciones</h2>
-            <div class="skills-grid education-grid">
+        <!-- Bento grid asimétrico -->
+        <div class="ia-bento">
 
-                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
-                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fab fa-google"></i></div>
+            <!-- Claude — card grande (3 cols, 2 filas) -->
+            <div class="iac iac-claude" data-reveal>
+                <div class="iac-deco">Claude</div>
+                <div class="iac-top">
+                    <span class="iac-num">01</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#d97706">C</div>
+                <h4 class="iac-name">Claude<span class="iac-maker">Anthropic</span></h4>
+                <p class="iac-desc">Mi asistente principal de código. Revisión de arquitectura, generación de componentes complejos, debugging avanzado y construcción de agentes autónomos con la API integrada en proyectos reales.</p>
+                <div class="iac-tags"><span>Code Review</span><span>AI Agents</span><span>API Integration</span><span>Arquitectura</span></div>
+            </div>
+
+            <!-- AntiGravity -->
+            <div class="iac iac-antigrav" data-reveal>
+                <div class="iac-deco">AG</div>
+                <div class="iac-top">
+                    <span class="iac-num">02</span>
+                    <span class="iac-pill iac-diario">● Diario</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#D63031">⚛</div>
+                <h4 class="iac-name">AntiGravity<span class="iac-maker">Multi-Agent</span></h4>
+                <p class="iac-desc">Orquestador de workflows IA. Encadena agentes especializados para tareas complejas en mi desarrollo diario.</p>
+                <div class="iac-tags"><span>Multi-Agent</span><span>Workflows</span></div>
+            </div>
+
+            <!-- Gemini -->
+            <div class="iac iac-gemini" data-reveal>
+                <div class="iac-deco">G</div>
+                <div class="iac-top">
+                    <span class="iac-num">03</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#4285f4">G</div>
+                <h4 class="iac-name">Gemini<span class="iac-maker">Google</span></h4>
+                <p class="iac-desc">Análisis multimodal y procesamiento de documentos extensos. Integración clave con el ecosistema Google.</p>
+                <div class="iac-tags"><span>Multimodal</span><span>Research</span></div>
+            </div>
+
+            <!-- ChatGPT -->
+            <div class="iac iac-chatgpt" data-reveal>
+                <div class="iac-deco">GPT</div>
+                <div class="iac-top">
+                    <span class="iac-num">04</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <h4 class="iac-name">ChatGPT <span class="iac-maker">OpenAI</span></h4>
+                <p class="iac-desc">API integrada en RivalFit. GPT-4o para chatbots contextuales y análisis de rendimiento atlético.</p>
+                <div class="iac-tags"><span>OpenAI API</span><span>GPT-4o</span><span>Chatbots</span></div>
+            </div>
+
+            <!-- Cursor -->
+            <div class="iac iac-cursor" data-reveal>
+                <div class="iac-deco">&gt;_</div>
+                <div class="iac-top">
+                    <span class="iac-num">05</span>
+                    <span class="iac-pill iac-diario">● Diario</span>
+                </div>
+                <h4 class="iac-name">Cursor AI<span class="iac-maker">IDE</span></h4>
+                <p class="iac-desc">Entorno principal de desarrollo con IA integrada. Pair-programming real — la IA entiende el contexto completo.</p>
+                <div class="iac-tags"><span>Pair Prog.</span><span>Refactor</span><span>IDE</span></div>
+            </div>
+
+            <!-- n8n — card ancha -->
+            <div class="iac iac-n8n" data-reveal>
+                <div class="iac-deco">n8n</div>
+                <div class="iac-top">
+                    <span class="iac-num">06</span>
+                    <span class="iac-pill iac-produccion">● Producción</span>
+                </div>
+                <div class="iac-n8n-inner">
                     <div>
-                        <h4 style="margin-bottom:5px;">Google Data Analytics</h4>
-                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Google Professional Certificate</p>
-                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Ciclo completo de análisis: preparación, limpieza, análisis y visualización de datos.</p>
+                        <h4 class="iac-name">n8n<span class="iac-maker">Automatización</span></h4>
+                        <p class="iac-desc">Pipelines que conectan APIs, bases de datos y modelos de IA. Workflows en producción: publicaciones automáticas, alertas inteligentes, procesamiento de datos en tiempo real.</p>
                     </div>
+                    <div class="iac-tags"><span>Pipelines</span><span>API Chaining</span><span>Automation</span><span>Triggers</span></div>
                 </div>
-
-                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
-                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fab fa-microsoft"></i></div>
-                    <div>
-                        <h4 style="margin-bottom:5px;">Data Analysis & Visualization</h4>
-                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Microsoft · Power BI</p>
-                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Modelado de datos, DAX avanzado y dashboards dinámicos para Business Intelligence.</p>
-                    </div>
-                </div>
-
-                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
-                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-database"></i></div>
-                    <div>
-                        <h4 style="margin-bottom:5px;">Databases & SQL for Data Science</h4>
-                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">IBM · Coursera</p>
-                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">SQL avanzado, bases de datos relacionales e integración con entornos Python.</p>
-                    </div>
-                </div>
-
-                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px;">
-                    <div style="font-size:2.2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-laptop-code"></i></div>
-                    <div>
-                        <h4 style="margin-bottom:5px;">Full-Stack Web Development</h4>
-                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:8px;">Adecco · Especialización</p>
-                        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.5;">Desarrollo integral de aplicaciones web conectando frontend moderno con backend y bases de datos.</p>
-                    </div>
-                </div>
-
             </div>
-            <!-- Educación formal -->
-            <div style="margin-top:25px;">
-                <div class="skill-card glass-card tilt-card" style="text-align:left; display:flex; gap:20px; align-items:flex-start; padding:25px; border-left:4px solid var(--accent);">
-                    <div style="font-size:2rem; color:var(--accent); flex-shrink:0;"><i class="fas fa-university"></i></div>
-                    <div>
-                        <h4 style="margin-bottom:5px;">Licenciado en Fisioterapia</h4>
-                        <p style="font-size:0.85rem; color:var(--accent); margin-bottom:10px;">Universidad Arturo Michelena · Venezuela</p>
-                        <p style="font-size:0.9rem; color:var(--text-dim);">8 años de ejercicio clínico en fisioterapia deportiva. Esta trayectoria forjó mi capacidad de análisis sistémico, razonamiento basado en evidencia y resolución de problemas complejos bajo presión — habilidades que hoy aplico directamente al desarrollo de software.</p>
-                    </div>
+
+        </div>
+
+        <div class="ia-stats">
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">⚡</div>
+                <div class="ia-stat-n">10×</div>
+                <div class="ia-stat-l">más rápido en desarrollo gracias a IA</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🤖</div>
+                <div class="ia-stat-n">Agentes</div>
+                <div class="ia-stat-l">autónomos integrados en proyectos reales</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🛠</div>
+                <div class="ia-stat-n">6+</div>
+                <div class="ia-stat-l">herramientas IA en uso activo cada semana</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🔄</div>
+                <div class="ia-stat-n">Real</div>
+                <div class="ia-stat-l">workflows en producción, no demos</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STACK TÉCNICO -->
+<section id="stack" class="stack-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Stack técnico</span>
+            <span class="label-count">5 categorías</span>
+        </div>
+        <div class="stack-rows">
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Frontend</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Next.js 15</span>
+                    <span class="sr-tag sr-hot">TypeScript</span>
+                    <span class="sr-tag">React</span>
+                    <span class="sr-tag">Tailwind CSS</span>
+                    <span class="sr-tag">HTML / CSS</span>
+                    <span class="sr-tag">Framer Motion</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Backend &amp; DB</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Supabase</span>
+                    <span class="sr-tag sr-hot">PostgreSQL</span>
+                    <span class="sr-tag">Node.js</span>
+                    <span class="sr-tag">REST APIs</span>
+                    <span class="sr-tag">Stripe</span>
+                    <span class="sr-tag">SQL Avanzado</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Mobile &amp; IA</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">React Native</span>
+                    <span class="sr-tag">Flutter</span>
+                    <span class="sr-tag sr-hot">OpenAI API</span>
+                    <span class="sr-tag sr-hot">Claude API</span>
+                    <span class="sr-tag">n8n</span>
+                    <span class="sr-tag">Make</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Datos &amp; BI</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Python</span>
+                    <span class="sr-tag sr-hot">Power BI</span>
+                    <span class="sr-tag">Pandas</span>
+                    <span class="sr-tag">SQL</span>
+                    <span class="sr-tag">DAX</span>
+                    <span class="sr-tag">Matplotlib</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Deploy &amp; Tools</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Vercel</span>
+                    <span class="sr-tag">Git / GitHub</span>
+                    <span class="sr-tag">Figma</span>
+                    <span class="sr-tag">Midjourney</span>
+                    <span class="sr-tag">Flux AI</span>
+                    <span class="sr-tag">Runway</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ═══════════════════════════════════════════════
-         8. OPEN TO WORK · CTA
-    ═══════════════════════════════════════════════ -->
-    <section class="open-to-work reveal">
-        <div class="container">
-            <div class="otw-card glass-card">
-                <div class="otw-left">
-                    <div class="otw-badge">
-                        <span class="pulse"></span>
-                        Open to Work
-                    </div>
-                    <h2>Listo para mi primera oportunidad profesional.</h2>
-                    <p>Busco un puesto como <strong>Full-Stack Developer</strong>, <strong>Data Analyst</strong> o <strong>AI Integration Developer</strong> en una empresa que valore el aprendizaje continuo, la automatización inteligente y el impacto real. Presencial, remoto o híbrido en España.</p>
+<!-- Contact -->
+<section id="contact" class="contact-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Contacto</span>
+        </div>
+        <div class="contact-grid" data-reveal>
+            <div class="contact-left">
+                <h2 class="contact-heading" data-title>¿Activamos<br>tu negocio?</h2>
+                <a href="mailto:jgscoding@gmail.com" class="contact-email magnetic">jgscoding@gmail.com</a>
+                <div class="contact-meta">
+                    <p><i class="fab fa-whatsapp"></i> WhatsApp directo</p>
+                    <p><i class="fas fa-clock"></i> Respuesta en menos de 24h</p>
+                    <p><i class="fas fa-map-marker-alt"></i> España · Disponible remoto</p>
                 </div>
-                <div class="otw-right">
-                    <div class="otw-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Full-Stack Developer (Next.js / TypeScript)</span>
-                    </div>
-                    <div class="otw-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Data Analyst / BI Developer</span>
-                    </div>
-                    <div class="otw-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>AI Integration Developer / Automation Engineer</span>
-                    </div>
-                    <div class="otw-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Disponibilidad inmediata</span>
-                    </div>
-                    <div class="otw-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>España · Remoto · Híbrido</span>
-                    </div>
-                    <a href="#contact" class="btn btn-primary" style="margin-top:25px; width:100%; justify-content:center;">Hablemos <i class="fas fa-arrow-right"></i></a>
+                <div class="contact-social">
+                    <a href="https://www.instagram.com/jgstudio0/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/jesusgomez-data" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         9. TESTIMONIO
-    ═══════════════════════════════════════════════ -->
-    <section class="testimonials reveal" style="padding:100px 0;">
-        <div class="container">
-            <h2 class="section-title">Lo que dicen</h2>
-            <div style="max-width:800px; margin:0 auto;">
-                <div class="glass-card tilt-card" style="padding:40px; position:relative; border-left:4px solid var(--accent);">
-                    <i class="fas fa-quote-left" style="position:absolute; top:20px; left:20px; font-size:2rem; color:rgba(239,68,68,0.1);"></i>
-                    <p style="font-size:1.15rem; font-style:italic; color:var(--text-main); line-height:1.8; margin-bottom:25px;">
-                        "He tenido la oportunidad de ver a Jesús trabajando tanto en el análisis de datos como en la creación de Rival Fit y es sorprendente. Su capacidad para estructurar webs escalables y su enfoque analítico son de un nivel superior. Es un profesional que no solo programa, sino que entiende el negocio."
-                    </p>
-                    <div style="display:flex; align-items:center; gap:15px;">
-                        <div style="width:50px; height:50px; background:var(--grad-main); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800;">CU</div>
-                        <div>
-                            <h4 style="margin:0;">César Urbina</h4>
-                            <p style="margin:0; font-size:0.85rem; color:var(--accent);">Colaborador & Early Tester · RivalFit</p>
+            <div class="contact-right">
+                <form action="https://formspree.io/f/mqakvjbe" method="POST" class="contact-form">
+                    <div class="form-pair">
+                        <div class="form-field">
+                            <label for="cf-name">Nombre</label>
+                            <input id="cf-name" type="text" name="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-field">
+                            <label for="cf-email">Email</label>
+                            <input id="cf-email" type="email" name="_replyto" required placeholder="tu@email.com">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════
-         10. CONTACTO
-    ═══════════════════════════════════════════════ -->
-    <section id="contact" class="contact reveal">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contact-box glass-card">
-                <div class="contact-info">
-                    <h3>Hablemos de tu próximo proyecto.</h3>
-                    <p>Disponible para posiciones full-time o proyectos freelance.</p>
-                    <div style="margin-top:30px; display:flex; flex-direction:column; gap:15px;">
-                        <p><i class="fas fa-envelope" style="color:var(--accent); margin-right:10px;"></i>gomezsantiagojesus@icloud.com</p>
-                        <p><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-right:10px;"></i>España · Disponible remoto</p>
-                        <div style="display:flex; gap:15px; margin-top:20px;">
-                            <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" style="font-size:1.5rem;" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/jesusgomezft" target="_blank" style="font-size:1.5rem;" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://github.com/jesusgomez-data" target="_blank" style="font-size:1.5rem;" title="GitHub"><i class="fab fa-github"></i></a>
-                        </div>
+                    <div class="form-field">
+                        <label for="cf-msg">Cuéntame</label>
+                        <textarea id="cf-msg" name="message" rows="5" required placeholder="¿Qué necesita tu negocio?"></textarea>
                     </div>
-                </div>
-                <form class="contact-form" action="https://formspree.io/f/mqakvjbe" method="POST">
-                    <div class="input-group">
-                        <input type="text" name="name" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="_replyto" placeholder="Tu email" required>
-                    </div>
-                    <div class="input-group">
-                        <textarea name="message" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensaje <i class="fas fa-paper-plane"></i></button>
+                    <button type="submit" class="btn-fill magnetic">Enviar y empezar →</button>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/jesusgomezft" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/jesusgomez-data" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-            <p>&copy; 2026 Jesús Gómez Santiago · Full-Stack Developer · Data Analyst · AI Integration</p>
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="wrap footer-wrap">
+        <div class="footer-brand">
+            <img src="img/logo_h_t.png" alt="JGStudio" class="footer-logo-img">
         </div>
-    </footer>
+        <p class="footer-copy">© 2026 JGStudio · Jesús Gómez Santiago</p>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/jgstudio0/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/jesusgomez-data" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
 
-    <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="script.js"></script>
 </body>
-
 </html>

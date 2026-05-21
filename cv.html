@@ -3,657 +3,1122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV — Jesús Gómez Santiago</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>CV — Jesús Gómez Santiago · Full-Stack Developer</title>
+    <meta name="description" content="CV de Jesús Gómez Santiago — Full-Stack Developer y fundador de JGStudio.">
+
+    <!-- Fonts — same as main site -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        :root {
-            --red: #dc2626;
-            --red-light: #fee2e2;
-            --dark: #111827;
-            --mid: #374151;
-            --dim: #6b7280;
-            --border: #e5e7eb;
-            --bg: #ffffff;
-            --sidebar: #f9fafb;
-        }
+    /* ── Tokens ─────────────────────────────── */
+    :root {
+        --bg:         #080808;
+        --surface:    #0d0d0d;
+        --sidebar-bg: #0d0d0d;
+        --border:     rgba(255,255,255,.07);
+        --border-s:   rgba(255,255,255,.06);
+        --accent:     #D63031;
+        --accent-dim: rgba(214,48,49,.10);
+        --cream:      #F0ECE5;
+        --gray:       #777;
+        --muted:      #3a3a3a;
+        --dim:        #555;
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        --f-d: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+        --f-b: 'Satoshi', 'DM Sans', sans-serif;
+        --f-m: 'JetBrains Mono', monospace;
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #e5e7eb;
-            color: var(--dark);
-            font-size: 13px;
-            line-height: 1.5;
-        }
+        --ease: cubic-bezier(.16,1,.3,1);
+    }
 
-        /* ── Print button (no aparece al imprimir) ── */
-        .print-bar {
-            background: var(--dark);
-            color: white;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            gap: 15px;
-        }
-        .print-bar span { color: #9ca3af; }
-        .print-btn {
-            background: var(--red);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Inter', sans-serif;
-        }
-        .print-btn:hover { background: #b91c1c; }
+    /* ── Reset ────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--f-b);
+        background: var(--bg);
+        color: var(--cream);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    a { text-decoration: none; color: inherit; }
 
-        /* ── CV Wrapper ── */
+    /* ── Grain overlay ───────────── */
+    body::after {
+        content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .03;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 200px;
+        animation: grain 8s steps(10) infinite;
+    }
+    @keyframes grain {
+        0%,100%{transform:translate(0,0)} 10%{transform:translate(-5%,-10%)}
+        20%{transform:translate(-15%,5%)} 30%{transform:translate(7%,-25%)}
+        40%{transform:translate(-5%,25%)} 50%{transform:translate(-15%,10%)}
+        60%{transform:translate(15%,0%)} 70%{transform:translate(0,15%)}
+        80%{transform:translate(3%,35%)} 90%{transform:translate(-10%,10%)}
+    }
+
+    /* ════════════════════════════════
+       PRINT BAR
+    ════════════════════════════════ */
+    .print-bar {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    .print-bar-hint {
+        font-family: var(--f-m);
+        font-size: .5rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--dim);
+    }
+    .print-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 9px 20px;
+        border-radius: 2px;
+        font-family: var(--f-b);
+        font-weight: 600;
+        font-size: .8rem;
+        cursor: pointer;
+        transition: background .2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .print-btn:hover { background: #b82020; }
+    .print-btn i { font-size: .75rem; }
+
+    /* ════════════════════════════════
+       CV WRAPPER
+    ════════════════════════════════ */
+    .cv-wrapper {
+        max-width: 960px;
+        margin: 24px auto 48px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+    @media (max-width: 899px) {
         .cv-wrapper {
-            max-width: 900px;
-            margin: 20px auto;
-            background: var(--bg);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+            margin: 0;
+            border: none;
+            border-top: 1px solid var(--border);
         }
+    }
 
-        /* ── Header ── */
+    /* ════════════════════════════════
+       HEADER
+    ════════════════════════════════ */
+    .cv-header {
+        background: #000;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 36px 28px 32px;
+        gap: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .cv-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(214,48,49,.05) 0%, transparent 55%, rgba(214,48,49,.02) 100%);
+        pointer-events: none;
+    }
+    @media (min-width: 900px) {
         .cv-header {
-            background: var(--dark);
-            color: white;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 30px;
-            padding: 36px 40px;
+            flex-direction: row;
             align-items: center;
+            text-align: left;
+            padding: 40px 48px;
+            gap: 32px;
         }
-        .header-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid var(--red);
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .header-info h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
-        }
-        .header-info .title {
-            color: var(--red);
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 14px;
-        }
-        .header-contacts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 20px;
-        }
-        .header-contacts a,
-        .header-contacts span {
-            color: #d1d5db;
-            font-size: 12px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .header-contacts a:hover { color: white; }
-        .header-contacts .dot {
-            width: 5px; height: 5px;
-            background: var(--red);
-            border-radius: 50%;
-            display: inline-block;
-            flex-shrink: 0;
-        }
+    }
 
-        /* ── Body layout ── */
+    .header-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        object-fit: cover;
+        object-position: center top;
+        flex-shrink: 0;
+        filter: brightness(.9);
+    }
+    @media (min-width: 900px) {
+        .header-photo { width: 88px; height: 88px; }
+    }
+
+    .header-info { flex: 1; }
+    .header-name {
+        font-family: var(--f-d);
+        font-weight: 800;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        letter-spacing: -1.5px;
+        color: var(--cream);
+        line-height: 1;
+        margin-bottom: 6px;
+    }
+    .header-title {
+        font-family: var(--f-m);
+        font-size: .56rem;
+        font-weight: 700;
+        letter-spacing: 3.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 18px;
+    }
+    .header-contacts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        justify-content: center;
+    }
+    @media (min-width: 900px) {
+        .header-contacts { justify-content: flex-start; }
+    }
+    .hc-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--f-m);
+        font-size: .52rem;
+        letter-spacing: 1px;
+        color: var(--gray);
+        transition: color .2s;
+    }
+    .hc-item:hover { color: var(--cream); }
+    .hc-item i { color: var(--accent); font-size: .68rem; width: 12px; text-align: center; }
+    .hc-dot {
+        width: 3px; height: 3px;
+        background: var(--accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════
+       BODY LAYOUT — mobile first → desktop grid
+    ════════════════════════════════ */
+    .cv-body {
+        display: flex;
+        flex-direction: column;
+    }
+    @media (min-width: 900px) {
         .cv-body {
             display: grid;
-            grid-template-columns: 255px 1fr;
+            grid-template-columns: 260px 1fr;
+        }
+    }
+
+    /* ════════════════════════════════
+       SIDEBAR
+    ════════════════════════════════ */
+    .cv-sidebar {
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--border-s);
+        padding: 32px 28px;
+        order: 2; /* mobile: sidebar below main */
+    }
+    @media (min-width: 900px) {
+        .cv-sidebar {
+            order: 0;
+            border-right: 1px solid var(--border-s);
+            border-top: none;
+            padding: 36px 28px;
+        }
+    }
+    @media (max-width: 899px) {
+        .cv-sidebar {
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+        }
+    }
+
+    /* ════════════════════════════════
+       MAIN CONTENT
+    ════════════════════════════════ */
+    .cv-main {
+        padding: 36px 32px;
+        order: 1; /* mobile: main first */
+    }
+    @media (max-width: 899px) {
+        .cv-main { padding: 28px 24px; }
+    }
+
+    /* ════════════════════════════════
+       SECTION LABELS
+    ════════════════════════════════ */
+    .sec {
+        margin-bottom: 32px;
+    }
+    .sec:last-child { margin-bottom: 0; }
+    .sec-label {
+        font-family: var(--f-m);
+        font-size: .5rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--accent-dim);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .sec-label::before {
+        content: '';
+        width: 12px;
+        height: 1px;
+        background: var(--accent);
+        flex-shrink: 0;
+    }
+
+    /* ════════════════════════════════
+       SUMMARY
+    ════════════════════════════════ */
+    .summary-text {
+        font-size: .88rem;
+        color: var(--gray);
+        line-height: 1.85;
+    }
+    .summary-text strong { color: var(--cream); font-weight: 500; }
+
+    /* ════════════════════════════════
+       EXPERIENCE — timeline style
+    ════════════════════════════════ */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+        padding: 0 0 28px 20px;
+        border-left: 2px solid rgba(214,48,49,.2);
+        position: relative;
+        margin-bottom: 0;
+    }
+    .exp-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .exp-item::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid var(--surface);
+    }
+
+    .exp-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 2px;
+    }
+    .exp-role {
+        font-family: var(--f-d);
+        font-weight: 800;
+        font-size: clamp(.9rem, 1.3vw, 1rem);
+        letter-spacing: -.3px;
+        color: var(--cream);
+        line-height: 1.2;
+    }
+    .exp-date {
+        font-family: var(--f-m);
+        font-size: .46rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-dim);
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border: 1px solid rgba(214,48,49,.18);
+    }
+    .exp-company {
+        font-family: var(--f-m);
+        font-size: .48rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 10px;
+    }
+    .exp-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .exp-bullets li {
+        font-size: .84rem;
+        color: var(--gray);
+        line-height: 1.6;
+        padding-left: 16px;
+        position: relative;
+    }
+    .exp-bullets li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 6px;
+        height: 1px;
+        background: var(--accent);
+        opacity: .6;
+    }
+
+    /* ════════════════════════════════
+       PROJECTS — cards
+    ════════════════════════════════ */
+    .proj-list { display: flex; flex-direction: column; gap: 10px; }
+    .proj-card {
+        padding: 14px 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 2px;
+        transition: background .25s, border-color .25s;
+    }
+    .proj-card:hover { background: rgba(214,48,49,.025); }
+
+    .proj-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 4px;
+        flex-wrap: wrap;
+    }
+    .proj-name {
+        font-family: var(--f-d);
+        font-weight: 800;
+        font-size: .95rem;
+        letter-spacing: -.3px;
+        color: var(--cream);
+    }
+    .proj-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .proj-badge {
+        font-family: var(--f-m);
+        font-size: .42rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 20px;
+        border: 1px solid currentColor;
+    }
+    .proj-badge.live   { color: #34d399; }
+    .proj-badge.prod   { color: var(--accent); }
+    .proj-badge.client { color: #f59e0b; }
+    .proj-link {
+        font-family: var(--f-m);
+        font-size: .46rem;
+        letter-spacing: 1px;
+        color: var(--accent);
+        transition: color .2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .proj-link:hover { color: #ff5252; }
+    .proj-stack {
+        font-family: var(--f-m);
+        font-size: .46rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 6px;
+    }
+
+    /* ════════════════════════════════
+       EDUCATION
+    ════════════════════════════════ */
+    .edu-list { display: flex; flex-direction: column; gap: 14px; }
+    .edu-item {}
+    .edu-degree {
+        font-family: var(--f-d);
+        font-weight: 700;
+        font-size: .9rem;
+        color: var(--cream);
+        margin-bottom: 2px;
+    }
+    .edu-school {
+        font-family: var(--f-m);
+        font-size: .46rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--dim);
+    }
+
+    /* ════════════════════════════════
+       SIDEBAR: SKILL TAGS
+    ════════════════════════════════ */
+    .skill-groups { display: flex; flex-direction: column; gap: 16px; }
+    .skill-group {}
+    .skill-group-name {
+        font-family: var(--f-m);
+        font-size: .44rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--cream);
+        opacity: .6;
+        margin-bottom: 8px;
+    }
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    .tag {
+        font-family: var(--f-m);
+        font-size: .45rem;
+        letter-spacing: .8px;
+        color: var(--gray);
+        background: rgba(255,255,255,.04);
+        border: 1px solid var(--border);
+        padding: 4px 10px;
+        border-radius: 20px;
+        transition: color .2s, border-color .2s;
+    }
+    .tag.hi {
+        color: var(--accent);
+        background: var(--accent-dim);
+        border-color: rgba(214,48,49,.22);
+    }
+
+    /* ════════════════════════════════
+       SIDEBAR: STATS
+    ════════════════════════════════ */
+    .stat-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    .stat-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        padding: 12px 8px;
+        text-align: center;
+    }
+    .stat-num {
+        font-family: var(--f-d);
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        color: var(--accent);
+        line-height: 1;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .stat-lbl {
+        font-family: var(--f-m);
+        font-size: .42rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--dim);
+        line-height: 1.4;
+        display: block;
+    }
+
+    /* ════════════════════════════════
+       SIDEBAR: CERTS
+    ════════════════════════════════ */
+    .cert-list { display: flex; flex-direction: column; gap: 0; }
+    .cert-item {
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+    }
+    .cert-item:first-child { padding-top: 0; }
+    .cert-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .cert-name {
+        font-size: .82rem;
+        font-weight: 600;
+        color: var(--cream);
+        margin-bottom: 2px;
+        line-height: 1.3;
+    }
+    .cert-issuer {
+        font-family: var(--f-m);
+        font-size: .44rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+    }
+
+    /* ════════════════════════════════
+       SIDEBAR: CONTACT
+    ════════════════════════════════ */
+    .sidebar-contacts { display: flex; flex-direction: column; gap: 10px; }
+    .sc-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .sc-icon {
+        width: 22px;
+        height: 22px;
+        background: var(--accent-dim);
+        border: 1px solid rgba(214,48,49,.2);
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: .6rem;
+        color: var(--accent);
+    }
+    .sc-text {
+        font-size: .78rem;
+        color: var(--gray);
+        line-height: 1.4;
+        word-break: break-all;
+    }
+    .sc-text a { color: var(--gray); transition: color .2s; }
+    .sc-text a:hover { color: var(--accent); }
+
+    /* ════════════════════════════════
+       SIDEBAR: LANGUAGES
+    ════════════════════════════════ */
+    .lang-list { display: flex; flex-direction: column; gap: 10px; }
+    .lang-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+    .lang-name {
+        font-size: .84rem;
+        color: var(--cream);
+        font-weight: 500;
+    }
+    .lang-level {
+        font-family: var(--f-m);
+        font-size: .44rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-dim);
+        padding: 3px 8px;
+        border-radius: 20px;
+        border: 1px solid rgba(214,48,49,.18);
+    }
+
+    /* ════════════════════════════════
+       DIVIDER
+    ════════════════════════════════ */
+    .cv-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 8px 0 28px;
+    }
+
+    /* ════════════════════════════════
+       PRINT STYLES
+    ════════════════════════════════ */
+    @media print {
+        body {
+            background: #fff !important;
+            color: #111 !important;
+        }
+        body::after { display: none; }
+
+        .print-bar { display: none !important; }
+
+        .cv-wrapper {
+            margin: 0 !important;
+            max-width: 100% !important;
+            border: none !important;
+            box-shadow: none !important;
         }
 
-        /* ── Sidebar ── */
-        .sidebar {
-            background: var(--sidebar);
-            border-right: 1px solid var(--border);
-            padding: 30px 25px;
+        .cv-header {
+            background: #111 !important;
+            flex-direction: row !important;
+            text-align: left !important;
+            padding: 24px 32px !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .header-name { color: #F0ECE5 !important; }
+        .hc-item { color: #999 !important; }
+
+        .cv-body {
+            display: grid !important;
+            grid-template-columns: 230px 1fr !important;
         }
 
-        /* ── Main ── */
-        .main {
-            padding: 30px 35px;
+        .cv-sidebar {
+            order: 0 !important;
+            background: #f8f8f8 !important;
+            border-right: 1px solid #e0e0e0 !important;
+            padding: 20px 18px !important;
         }
+        .sec-label { color: #D63031 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .cv-main { padding: 20px 24px !important; order: 1 !important; }
 
-        /* ── Section titles ── */
-        .section-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--red);
-            margin-bottom: 14px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid var(--red-light);
-        }
+        .cert-name, .edu-degree { color: #111 !important; }
+        .summary-text { color: #444 !important; }
+        .exp-role { color: #111 !important; }
+        .exp-bullets li { color: #444 !important; }
+        .proj-name { color: #111 !important; }
 
-        .section { margin-bottom: 26px; }
+        .tag { border-color: #ccc !important; color: #555 !important; }
+        .tag.hi { color: #D63031 !important; border-color: rgba(214,48,49,.4) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-        /* ── Summary ── */
-        .summary p {
-            color: var(--mid);
-            font-size: 12.5px;
-            line-height: 1.7;
+        @page {
+            margin: 0;
+            size: A4;
         }
+    }
 
-        /* ── Experience ── */
-        .exp-item { margin-bottom: 20px; }
-        .exp-item:last-child { margin-bottom: 0; }
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 3px;
-            gap: 10px;
-        }
-        .exp-role {
-            font-family: 'Outfit', sans-serif;
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--dark);
-        }
-        .exp-date {
-            font-size: 11px;
-            color: var(--red);
-            font-weight: 600;
-            white-space: nowrap;
-            background: var(--red-light);
-            padding: 2px 8px;
-            border-radius: 20px;
-            flex-shrink: 0;
-        }
-        .exp-company {
-            font-size: 12px;
-            color: var(--dim);
-            font-weight: 500;
-            margin-bottom: 7px;
-        }
-        .exp-bullets { padding-left: 14px; }
-        .exp-bullets li {
-            color: var(--mid);
-            font-size: 12px;
-            margin-bottom: 4px;
-            line-height: 1.5;
-        }
-        .exp-bullets li::marker { color: var(--red); }
+    /* ════════════════════════════════
+       DISPONIBLE PARA — tags
+    ════════════════════════════════ */
+    .avail-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .avail-tag {
+        font-family: var(--f-m);
+        font-size: .44rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--cream);
+        background: rgba(214,48,49,.08);
+        border: 1px solid rgba(214,48,49,.25);
+        padding: 5px 12px;
+        border-radius: 20px;
+        transition: background .2s, border-color .2s;
+    }
+    .avail-tag:hover {
+        background: rgba(214,48,49,.16);
+        border-color: rgba(214,48,49,.5);
+    }
 
-        /* ── Projects ── */
-        .project-item {
-            margin-bottom: 14px;
-            padding: 12px 14px;
-            background: #f9fafb;
-            border-radius: 8px;
-            border-left: 3px solid var(--red);
+    /* ════════════════════════════════
+       MOBILE CRITICAL FIX
+    ════════════════════════════════ */
+    @media (max-width: 899px) {
+        .cv-header {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 28px 20px !important;
         }
-        .project-item:last-child { margin-bottom: 0; }
-        .project-name {
-            font-family: 'Outfit', sans-serif;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 3px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
+        .header-photo {
+            display: block !important;
+            width: 90px !important;
+            height: 90px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 3px solid var(--accent) !important;
+            margin-bottom: 4px !important;
         }
-        .project-link {
-            font-size: 10.5px;
-            color: var(--red);
-            text-decoration: none;
-            font-weight: 600;
+        .header-contacts {
+            justify-content: center !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
         }
-        .project-stack {
-            font-size: 10.5px;
-            color: var(--dim);
-            margin-bottom: 5px;
+        .cv-body {
+            display: flex !important;
+            flex-direction: column !important;
         }
-        .project-desc {
-            font-size: 11.5px;
-            color: var(--mid);
-            line-height: 1.5;
+        .cv-sidebar {
+            order: 2 !important;
         }
+        .cv-main {
+            order: 1 !important;
+        }
+    }
 
-        /* ── Sidebar: Skills ── */
-        .skill-group { margin-bottom: 16px; }
-        .skill-group-title {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 7px;
-        }
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        .skill-tag {
-            background: white;
-            border: 1px solid var(--border);
-            color: var(--mid);
-            font-size: 10.5px;
-            padding: 3px 9px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-        .skill-tag.featured {
-            background: var(--red-light);
-            border-color: #fca5a5;
-            color: var(--red);
-            font-weight: 600;
-        }
-
-        /* ── Sidebar: Cert ── */
-        .cert-item {
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        .cert-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .cert-name {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 2px;
-        }
-        .cert-issuer {
-            font-size: 11px;
-            color: var(--red);
-            font-weight: 500;
-        }
-
-        /* ── Sidebar: Contact ── */
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: var(--mid);
-        }
-        .contact-item .icon {
-            width: 18px;
-            height: 18px;
-            background: var(--red-light);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 9px;
-            color: var(--red);
-        }
-        .contact-item a { color: var(--mid); text-decoration: none; }
-        .contact-item a:hover { color: var(--red); }
-
-        /* ── Sidebar: Stats ── */
-        .stat-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 0;
-        }
-        .stat-box {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 8px;
-            text-align: center;
-        }
-        .stat-box .num {
-            font-family: 'Outfit', sans-serif;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--red);
-            line-height: 1;
-            margin-bottom: 3px;
-        }
-        .stat-box .lbl {
-            font-size: 9.5px;
-            color: var(--dim);
-            line-height: 1.3;
-            font-weight: 500;
-        }
-
-        /* ── Education ── */
-        .edu-item { margin-bottom: 14px; }
-        .edu-item:last-child { margin-bottom: 0; }
-        .edu-degree {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 2px;
-        }
-        .edu-school {
-            font-size: 11px;
-            color: var(--dim);
-        }
-
-        /* ── Divider ── */
-        .divider { height: 1px; background: var(--border); margin: 4px 0 20px 0; }
-
-        /* ── Print styles ── */
-        @media print {
-            body { background: white; font-size: 11.5px; }
-            .print-bar { display: none; }
-            .cv-wrapper { margin: 0; box-shadow: none; max-width: 100%; }
-            .cv-header { padding: 28px 32px; }
-            .sidebar { padding: 24px 20px; }
-            .main { padding: 24px 28px; }
-            @page { margin: 0; size: A4; }
-        }
+    /* ════════════════════════════════
+       RESPONSIVE REFINEMENTS
+    ════════════════════════════════ */
+    @media (max-width: 479px) {
+        .header-name { font-size: 1.5rem; }
+        .header-contacts { gap: 8px 14px; }
+        .print-bar { padding: 10px 16px; }
+        .print-bar-hint { display: none; }
+    }
     </style>
 </head>
 <body>
 
-    <!-- Print bar -->
+    <!-- ── PRINT BAR ── -->
     <div class="print-bar">
-        <span>Jesús Gómez Santiago — CV 2026 · Para guardar como PDF: Ctrl+P → "Guardar como PDF" → Sin márgenes</span>
+        <span class="print-bar-hint">Jesús Gómez Santiago · CV 2026 — Ctrl+P → Guardar como PDF → Sin márgenes</span>
         <button class="print-btn" onclick="window.print()">
-            ⬇ Guardar como PDF
+            <i class="fas fa-download"></i> Descargar PDF
         </button>
     </div>
 
     <div class="cv-wrapper">
 
-        <!-- HEADER -->
-        <div class="cv-header">
-            <img src="img/profile.jpg" alt="Jesús Gómez" class="header-photo">
+        <!-- ══════════════════════ HEADER ══════════════════════ -->
+        <header class="cv-header">
+            <img src="img/profile.jpg" alt="Jesús Gómez Santiago" class="header-photo">
             <div class="header-info">
-                <h1>Jesús Gómez Santiago</h1>
-                <div class="title">Full-Stack Developer &amp; Data Analyst</div>
+                <h1 class="header-name">Jesús Gómez Santiago</h1>
+                <div class="header-title">Full-Stack Developer · Next.js · TypeScript · IA</div>
                 <div class="header-contacts">
-                    <span><span class="dot"></span> España · Disponible remoto</span>
-                    <a href="mailto:gomezsantiagojesus@icloud.com"><span class="dot"></span> gomezsantiagojesus@icloud.com</a>
-                    <a href="https://linkedin.com/in/jesusgomez06" target="_blank"><span class="dot"></span> linkedin.com/in/jesusgomez06</a>
-                    <a href="https://github.com/jesusgomez-data" target="_blank"><span class="dot"></span> github.com/jesusgomez-data</a>
-                    <a href="https://rivalfit.app" target="_blank"><span class="dot"></span> rivalfit.app</a>
+                    <span class="hc-item"><span class="hc-dot"></span> España · Disponible remoto</span>
+                    <a class="hc-item" href="mailto:jgscoding@gmail.com">
+                        <i class="fas fa-envelope"></i> jgscoding@gmail.com
+                    </a>
+                    <a class="hc-item" href="https://linkedin.com/in/jesusgomez06" target="_blank">
+                        <i class="fab fa-linkedin"></i> linkedin.com/in/jesusgomez06
+                    </a>
+                    <a class="hc-item" href="https://github.com/jesusgomez-data" target="_blank">
+                        <i class="fab fa-github"></i> github.com/jesusgomez-data
+                    </a>
+                    <a class="hc-item" href="https://jgstudio.co" target="_blank">
+                        <i class="fas fa-globe"></i> jgstudio.co
+                    </a>
                 </div>
             </div>
-        </div>
+        </header>
 
-        <!-- BODY -->
+        <!-- ══════════════════════ BODY ══════════════════════ -->
         <div class="cv-body">
 
-            <!-- ═══ SIDEBAR ═══ -->
-            <aside class="sidebar">
+            <!-- ═══════════ SIDEBAR ═══════════ -->
+            <aside class="cv-sidebar">
 
-                <!-- Stats -->
-                <div class="section">
-                    <div class="section-title">Trayectoria</div>
+                <!-- Trayectoria stats -->
+                <div class="sec">
+                    <div class="sec-label">Trayectoria</div>
                     <div class="stat-row">
                         <div class="stat-box">
-                            <div class="num">8</div>
-                            <div class="lbl">años Fisio.</div>
+                            <span class="stat-num">8</span>
+                            <span class="stat-lbl">años Fisio.</span>
                         </div>
                         <div class="stat-box">
-                            <div class="num">3</div>
-                            <div class="lbl">años Coach</div>
+                            <span class="stat-num">3</span>
+                            <span class="stat-lbl">años Coach</span>
                         </div>
                         <div class="stat-box">
-                            <div class="num">3.5</div>
-                            <div class="lbl">años Dev</div>
+                            <span class="stat-num">3.5</span>
+                            <span class="stat-lbl">años Dev</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Contact -->
-                <div class="section">
-                    <div class="section-title">Contacto</div>
-                    <div class="contact-item">
-                        <div class="icon">✉</div>
-                        <a href="mailto:gomezsantiagojesus@icloud.com">gomezsantiagojesus@icloud.com</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">in</div>
-                        <a href="https://linkedin.com/in/jesusgomez06" target="_blank">linkedin.com/in/jesusgomez06</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">gh</div>
-                        <a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">🌐</div>
-                        <a href="https://rivalfit.app" target="_blank">rivalfit.app</a>
-                    </div>
-                    <div class="contact-item">
-                        <div class="icon">📍</div>
-                        <span>España · Open to Remote</span>
+                <!-- Stack técnico -->
+                <div class="sec">
+                    <div class="sec-label">Stack Técnico</div>
+                    <div class="skill-groups">
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Frontend</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">Next.js 15</span>
+                                <span class="tag hi">TypeScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">HTML / CSS</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Backend &amp; DB</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">Supabase</span>
+                                <span class="tag hi">PostgreSQL</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Mobile</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">React Native</span>
+                                <span class="tag">Flutter</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">IA &amp; Automatización</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">OpenAI API</span>
+                                <span class="tag hi">Claude AI</span>
+                                <span class="tag">n8n</span>
+                                <span class="tag">Make</span>
+                                <span class="tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Data &amp; BI</div>
+                            <div class="skill-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Pandas</span>
+                                <span class="tag">Power BI</span>
+                                <span class="tag">DAX</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Herramientas</div>
+                            <div class="skill-tags">
+                                <span class="tag">Git / GitHub</span>
+                                <span class="tag">Vercel</span>
+                                <span class="tag">Stripe</span>
+                                <span class="tag">Figma</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Skills -->
-                <div class="section">
-                    <div class="section-title">Stack Técnico</div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-title">Frontend</div>
-                        <div class="skill-tags">
-                            <span class="skill-tag featured">Next.js 15</span>
-                            <span class="skill-tag featured">TypeScript</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Tailwind CSS</span>
-                            <span class="skill-tag">HTML / CSS</span>
+                <!-- Certificaciones -->
+                <div class="sec">
+                    <div class="sec-label">Certificaciones</div>
+                    <div class="cert-list">
+                        <div class="cert-item">
+                            <div class="cert-name">Google Data Analytics Professional Certificate</div>
+                            <div class="cert-issuer">Google · Coursera</div>
                         </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-title">Backend & Base de Datos</div>
-                        <div class="skill-tags">
-                            <span class="skill-tag featured">Supabase</span>
-                            <span class="skill-tag featured">PostgreSQL</span>
-                            <span class="skill-tag">SQL Avanzado</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">REST APIs</span>
+                        <div class="cert-item">
+                            <div class="cert-name">Data Analysis &amp; Visualization</div>
+                            <div class="cert-issuer">Microsoft · Power BI</div>
                         </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-title">Data & BI</div>
-                        <div class="skill-tags">
-                            <span class="skill-tag featured">Python</span>
-                            <span class="skill-tag featured">Power BI</span>
-                            <span class="skill-tag">Pandas</span>
-                            <span class="skill-tag">NumPy</span>
-                            <span class="skill-tag">DAX</span>
-                            <span class="skill-tag">Matplotlib</span>
+                        <div class="cert-item">
+                            <div class="cert-name">Databases &amp; SQL for Data Science</div>
+                            <div class="cert-issuer">IBM · Coursera</div>
                         </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-title">IA & Automatización</div>
-                        <div class="skill-tags">
-                            <span class="skill-tag featured">Claude AI</span>
-                            <span class="skill-tag featured">AntiGravity</span>
-                            <span class="skill-tag">Meta Graph API</span>
-                            <span class="skill-tag">Automatización</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-title">Herramientas</div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Git / GitHub</span>
-                            <span class="skill-tag">Vercel</span>
-                            <span class="skill-tag">Stripe</span>
-                            <span class="skill-tag">Formspree</span>
+                        <div class="cert-item">
+                            <div class="cert-name">Full-Stack Web Development</div>
+                            <div class="cert-issuer">Adecco · Especialización</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Certifications -->
-                <div class="section">
-                    <div class="section-title">Certificaciones</div>
-                    <div class="cert-item">
-                        <div class="cert-name">Google Data Analytics</div>
-                        <div class="cert-issuer">Google Professional Certificate</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-name">Data Analysis & Visualization</div>
-                        <div class="cert-issuer">Microsoft · Power BI</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-name">Databases & SQL for Data Science</div>
-                        <div class="cert-issuer">IBM · Coursera</div>
-                    </div>
-                    <div class="cert-item">
-                        <div class="cert-name">Full-Stack Web Development</div>
-                        <div class="cert-issuer">Adecco · Especialización</div>
+                <!-- Idiomas -->
+                <div class="sec">
+                    <div class="sec-label">Idiomas</div>
+                    <div class="lang-list">
+                        <div class="lang-item">
+                            <span class="lang-name">Español</span>
+                            <span class="lang-level">Nativo</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Inglés</span>
+                            <span class="lang-level">Intermedio</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Languages -->
-                <div class="section">
-                    <div class="section-title">Idiomas</div>
-                    <div class="contact-item" style="margin-bottom:6px;">
-                        <div class="icon">ES</div>
-                        <span>Español — Nativo</span>
+                <!-- Disponible para -->
+                <div class="sec">
+                    <div class="sec-label">Disponible para</div>
+                    <div class="avail-tags">
+                        <span class="avail-tag">Trabajo presencial</span>
+                        <span class="avail-tag">Remoto</span>
+                        <span class="avail-tag">Freelance</span>
                     </div>
-                    <div class="contact-item">
-                        <div class="icon">EN</div>
-                        <span>Inglés — Intermedio</span>
+                </div>
+
+                <!-- Contacto -->
+                <div class="sec">
+                    <div class="sec-label">Contacto</div>
+                    <div class="sidebar-contacts">
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sc-text"><a href="mailto:jgscoding@gmail.com">jgscoding@gmail.com</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-linkedin"></i></div>
+                            <span class="sc-text"><a href="https://linkedin.com/in/jesusgomez06" target="_blank">linkedin.com/in/jesusgomez06</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-github"></i></div>
+                            <span class="sc-text"><a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-globe"></i></div>
+                            <span class="sc-text"><a href="https://jgstudio.co" target="_blank">jgstudio.co</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <span class="sc-text">España · Open to Remote</span>
+                        </div>
                     </div>
                 </div>
 
             </aside>
 
-            <!-- ═══ MAIN ═══ -->
-            <main class="main">
+            <!-- ═══════════ MAIN ═══════════ -->
+            <main class="cv-main">
 
-                <!-- Summary -->
-                <div class="section summary">
-                    <div class="section-title">Perfil Profesional</div>
-                    <p>Desarrollador Full-Stack y analista de datos con <strong>3.5 años de formación autodidacta intensa</strong> y un proyecto real en producción: <strong>RivalFit</strong>, plataforma fitness construida con Next.js 15, TypeScript y Supabase. Background de 8 años como fisioterapeuta deportivo y 3 años como coach en CrossFit y Hyrox, experiencias que forjaron capacidad analítica, disciplina y resolución de problemas bajo presión. Busco mi primera oportunidad en una empresa que valore el aprendizaje continuo y el trabajo de impacto real.</p>
+                <!-- Perfil profesional -->
+                <div class="sec">
+                    <div class="sec-label">Perfil Profesional</div>
+                    <p class="summary-text">
+                        Desarrollador Full-Stack con <strong>3.5 años de experiencia construyendo productos digitales reales</strong>. Fundador de <strong>JGStudio</strong>, estudio creativo digital con 4 proyectos de clientes en producción. Especializado en <strong>Next.js 15, TypeScript, Supabase y automatización con IA</strong>. Vengo de 8 años como fisioterapeuta deportivo y 3 como coach de élite — background que me dio capacidad analítica, disciplina y resolución de problemas bajo presión que aplico directamente al desarrollo. Busco un equipo que valore la constancia, el aprendizaje continuo y el impacto real.
+                    </p>
                 </div>
 
-                <div class="divider"></div>
+                <div class="cv-divider"></div>
 
-                <!-- Experience -->
-                <div class="section">
-                    <div class="section-title">Experiencia</div>
+                <!-- Experiencia -->
+                <div class="sec">
+                    <div class="sec-label">Experiencia</div>
+                    <div class="exp-list">
 
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div class="exp-role">Creador & Desarrollador Full-Stack — RivalFit</div>
-                            <div class="exp-date">2024 – Presente</div>
+                        <div class="exp-item">
+                            <div class="exp-meta">
+                                <div class="exp-role">Fundador &amp; Desarrollador Full-Stack — JGStudio</div>
+                                <span class="exp-date">2023 – Presente</span>
+                            </div>
+                            <div class="exp-company">Estudio Creativo Digital · jgstudio.co</div>
+                            <ul class="exp-bullets">
+                                <li>Estudio creativo digital: diseño, desarrollo web, apps, IA y automatización para clientes</li>
+                                <li>4 proyectos entregados y en producción — ciclo completo diseño → deploy → mantenimiento</li>
+                                <li>Stack principal: Next.js 15, TypeScript, Supabase, React Native, Flutter</li>
+                                <li>Integración de IA (OpenAI API, Claude) en productos de clientes reales</li>
+                                <li>Automatización de flujos con n8n, Make y Python</li>
+                            </ul>
                         </div>
-                        <div class="exp-company">Proyecto propio · rivalfit.app · En producción</div>
-                        <ul class="exp-bullets">
-                            <li>Diseño y desarrollo completo de plataforma fitness dual: red social para atletas + gestión de centros deportivos (gyms, CrossFit boxes, entrenadores personales)</li>
-                            <li>Stack: Next.js 15, TypeScript, React, Supabase (PostgreSQL), Tailwind CSS 4, Stripe</li>
-                            <li>Implementación de sistema de pagos (Stripe), dashboards de analytics, gamificación, IA integrada, sistema multi-sede y WODs con generación automática</li>
-                            <li>Automatización de publicaciones en Instagram via Meta Graph API + Python scheduler</li>
-                            <li>Gestión completa del ciclo de producto: arquitectura, desarrollo, deploy y mantenimiento en producción</li>
-                        </ul>
-                    </div>
 
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div class="exp-role">Coach & Entrenador Personal</div>
-                            <div class="exp-date">2023 – Presente · 3 años</div>
+                        <div class="exp-item">
+                            <div class="exp-meta">
+                                <div class="exp-role">Creador &amp; Desarrollador — RivalFit</div>
+                                <span class="exp-date">2024 – Presente</span>
+                            </div>
+                            <div class="exp-company">Proyecto Propio · En Producción · rivalfit.app</div>
+                            <ul class="exp-bullets">
+                                <li>Plataforma fitness dual: red social para atletas + gestión de centros deportivos</li>
+                                <li>Arquitectura completa: Next.js 15, TypeScript, Supabase (PostgreSQL), Stripe</li>
+                                <li>Dashboard analytics, gamificación, IA integrada, sistema de pagos, WODs automáticos</li>
+                                <li>En producción en rivalfit.app — ciclo completo diseño → deploy → mantenimiento</li>
+                            </ul>
                         </div>
-                        <div class="exp-company">Boxes de CrossFit & Centros Hyrox · España</div>
-                        <ul class="exp-bullets">
-                            <li>Entrenamiento y programación en disciplinas de CrossFit, Hyrox, halterofilia y gymnastics</li>
-                            <li>Diseño de programas de entrenamiento individuales y grupales basados en datos de rendimiento</li>
-                            <li>Liderazgo de grupos, seguimiento de progresión atlética y comunicación efectiva bajo presión</li>
-                        </ul>
-                    </div>
 
-                    <div class="exp-item">
-                        <div class="exp-header">
-                            <div class="exp-role">Fisioterapeuta Deportivo</div>
-                            <div class="exp-date">8 años</div>
+                        <div class="exp-item">
+                            <div class="exp-meta">
+                                <div class="exp-role">Coach &amp; Fisioterapeuta Deportivo</div>
+                                <span class="exp-date">2015 – Presente</span>
+                            </div>
+                            <div class="exp-company">Venezuela &amp; España · Élite Deportivo</div>
+                            <ul class="exp-bullets">
+                                <li>8 años de fisioterapia deportiva: diagnóstico, tratamiento y rehabilitación de lesiones de élite</li>
+                                <li>3 años como coach de CrossFit, Hyrox y halterofilia — programación y liderazgo de equipos</li>
+                                <li>Habilidades transferidas: análisis sistémico, toma de decisiones bajo presión, pensamiento estructurado</li>
+                            </ul>
                         </div>
-                        <div class="exp-company">Ejercicio clínico · Venezuela & España</div>
-                        <ul class="exp-bullets">
-                            <li>Especialización en fisioterapia deportiva: diagnóstico, tratamiento y rehabilitación de lesiones</li>
-                            <li>Análisis sistémico de problemas complejos y toma de decisiones basada en evidencia clínica</li>
-                            <li>Esta trayectoria consolidó una capacidad analítica y disciplina metodológica que aplico directamente al desarrollo de software</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="divider"></div>
-
-                <!-- Projects -->
-                <div class="section">
-                    <div class="section-title">Proyectos de Datos · GitHub</div>
-
-                    <div class="project-item">
-                        <div class="project-name">
-                            Retail Sales Data Analysis
-                            <a href="https://github.com/jesusgomez-data/retail-sales-data-analysis" class="project-link" target="_blank">github →</a>
-                        </div>
-                        <div class="project-stack">Python · SQL · Power BI · Modelo Star Schema</div>
-                        <div class="project-desc">Análisis completo de ventas 2023 con 7 KPIs. Arquitectura en Star Schema, comparativa de canales online vs físico, análisis geográfico por ciudades. Pipeline ETL completo.</div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-name">
-                            Tienda Deportiva ETL & Análisis
-                            <a href="https://github.com/jesusgomez-data/Tienda-Deportiva-analisis-de-Venta" class="project-link" target="_blank">github →</a>
-                        </div>
-                        <div class="project-stack">Python · SQL · Power BI</div>
-                        <div class="project-desc">Pipeline de limpieza, transformación y análisis de ventas para retail deportivo. SQL para validación, Python para limpieza profunda, Power BI para visualización ejecutiva.</div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-name">
-                            Superstore Profit Analysis
-                            <a href="https://github.com/jesusgomez-data/superstore-sales-analysis" class="project-link" target="_blank">github →</a>
-                        </div>
-                        <div class="project-stack">Python · Pandas · Matplotlib · Seaborn</div>
-                        <div class="project-desc">Análisis de rentabilidad sobre 10,000+ transacciones. Identificación de categorías con pérdidas. Visualizaciones profesionales con Matplotlib y Seaborn.</div>
                     </div>
                 </div>
 
-                <div class="divider"></div>
+                <div class="cv-divider"></div>
 
-                <!-- Education -->
-                <div class="section">
-                    <div class="section-title">Formación Académica</div>
-                    <div class="edu-item">
-                        <div class="edu-degree">Licenciado en Fisioterapia</div>
-                        <div class="edu-school">Universidad Arturo Michelena · Venezuela</div>
+                <!-- Proyectos Web -->
+                <div class="sec">
+                    <div class="sec-label">Proyectos · Clientes &amp; Propios</div>
+                    <div class="proj-list">
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">RivalFit</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge prod">En Producción</span>
+                                    <a class="proj-link" href="https://rivalfit.app" target="_blank">rivalfit.app <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">Next.js 15 · Supabase · TypeScript · Stripe · IA Integrada</div>
+                        </div>
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">Elianis Romero</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge client">Cliente</span>
+                                    <span class="proj-badge live">Live</span>
+                                    <a class="proj-link" href="https://elianisromero.vercel.app" target="_blank">ver sitio <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">Next.js · OpenAI API · Tailwind CSS</div>
+                        </div>
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">Milu &amp; Co</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge client">Cliente</span>
+                                    <span class="proj-badge live">Live</span>
+                                    <a class="proj-link" href="https://milucandco.vercel.app" target="_blank">ver sitio <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">Next.js · Tailwind CSS · Vercel</div>
+                        </div>
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">Fabián Zambrano</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge client">Cliente</span>
+                                    <span class="proj-badge live">Live</span>
+                                    <a class="proj-link" href="https://fabianzambrano.vercel.app" target="_blank">ver sitio <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">Next.js · Tailwind CSS · Vercel</div>
+                        </div>
+
                     </div>
-                    <div class="edu-item">
-                        <div class="edu-degree">Formación continua en Desarrollo Web, Análisis de Datos e IA</div>
-                        <div class="edu-school">Autodidacta · Coursera, Google, IBM, Microsoft, Adecco · 2022 – Presente</div>
+                </div>
+
+                <div class="cv-divider"></div>
+
+                <!-- Formación -->
+                <div class="sec">
+                    <div class="sec-label">Formación Académica</div>
+                    <div class="edu-list">
+                        <div class="edu-item">
+                            <div class="edu-degree">Licenciado en Fisioterapia</div>
+                            <div class="edu-school">Universidad Arturo Michelena · Venezuela</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-degree">Formación continua en Desarrollo Web, IA &amp; Datos</div>
+                            <div class="edu-school">Autodidacta · Google · IBM · Microsoft · Adecco · 2022 – Presente</div>
+                        </div>
                     </div>
                 </div>
 
             </main>
         </div>
+        <!-- end .cv-body -->
+
     </div>
+    <!-- end .cv-wrapper -->
 
 </body>
 </html>

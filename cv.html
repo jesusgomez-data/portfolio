@@ -724,47 +724,58 @@
        MOBILE CRITICAL FIX
     ════════════════════════════════ */
     @media (max-width: 899px) {
+        /* Header */
         .cv-header {
             flex-direction: column !important;
             align-items: center !important;
             text-align: center !important;
-            padding: 28px 20px !important;
+            padding: 32px 20px 28px !important;
         }
+        /* Foto visible y centrada */
         .header-photo {
             display: block !important;
-            width: 90px !important;
-            height: 90px !important;
-            border-radius: 50% !important;
-            object-fit: cover !important;
+            width: 90px !important; height: 90px !important;
+            border-radius: 50% !important; object-fit: cover !important;
+            object-position: center top !important;
             border: 3px solid var(--accent) !important;
             margin-bottom: 4px !important;
+            box-shadow: 0 0 0 6px rgba(214,48,49,.12) !important;
         }
+        .header-name  { font-size: clamp(1.5rem, 6vw, 2rem) !important; }
+        .header-title { font-size: .5rem !important; letter-spacing: 2.5px !important; }
+        /* Contacts: row wrap centrado */
         .header-contacts {
             justify-content: center !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 8px !important;
+            flex-wrap: wrap !important;
+            flex-direction: row !important;
+            gap: 8px 16px !important;
         }
-        .cv-body {
-            display: flex !important;
-            flex-direction: column !important;
-        }
-        .cv-sidebar {
-            order: 2 !important;
-        }
-        .cv-main {
-            order: 1 !important;
-        }
+        /* Body: main primero, sidebar debajo */
+        .cv-body    { display: flex !important; flex-direction: column !important; }
+        .cv-sidebar { order: 2 !important; border-left: none !important; border-top: 1px solid var(--border) !important; padding: 24px 20px !important; }
+        .cv-main    { order: 1 !important; padding: 24px 20px !important; }
+        /* Stats row */
+        .stat-row { grid-template-columns: repeat(3,1fr) !important; }
+        /* Exp bullets */
+        .exp-bullets li { font-size: .82rem !important; }
+        /* Skill tags */
+        .skill-tag { font-size: .58rem !important; padding: 4px 10px !important; }
+        /* Section spacing */
+        .sec { margin-bottom: 24px !important; }
     }
 
-    /* ════════════════════════════════
-       RESPONSIVE REFINEMENTS
-    ════════════════════════════════ */
     @media (max-width: 479px) {
-        .header-name { font-size: 1.5rem; }
-        .header-contacts { gap: 8px 14px; }
-        .print-bar { padding: 10px 16px; }
-        .print-bar-hint { display: none; }
+        .header-name      { font-size: 1.4rem !important; }
+        .header-contacts  { gap: 6px 12px !important; }
+        .hc-item          { font-size: .5rem !important; }
+        .print-bar        { padding: 10px 16px !important; flex-wrap: wrap; gap: 8px; }
+        .print-bar-hint   { display: none !important; }
+        .cv-main          { padding: 20px 16px !important; }
+        .cv-sidebar       { padding: 20px 16px !important; }
+        .stat-num         { font-size: 1.4rem !important; }
+        .exp-role         { font-size: .84rem !important; }
+        .summary p        { font-size: .84rem !important; }
+        .project-item     { padding: 10px 12px !important; }
     }
     </style>
 </head>
@@ -797,8 +808,11 @@
                     <a class="hc-item" href="https://github.com/jesusgomez-data" target="_blank">
                         <i class="fab fa-github"></i> github.com/jesusgomez-data
                     </a>
-                    <a class="hc-item" href="https://jgstudio.co" target="_blank">
-                        <i class="fas fa-globe"></i> jgstudio.co
+                    <a class="hc-item" href="https://www.instagram.com/jgstudio0/" target="_blank">
+                        <i class="fab fa-instagram"></i> @jgstudio0
+                    </a>
+                    <a class="hc-item" href="https://jg-studio.vercel.app/" target="_blank">
+                        <i class="fas fa-globe"></i> jg-studio.vercel.app
                     </a>
                 </div>
             </div>
@@ -964,8 +978,12 @@
                             <span class="sc-text"><a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a></span>
                         </div>
                         <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-instagram"></i></div>
+                            <span class="sc-text"><a href="https://www.instagram.com/jgstudio0/" target="_blank">@jgstudio0</a></span>
+                        </div>
+                        <div class="sc-item">
                             <div class="sc-icon"><i class="fas fa-globe"></i></div>
-                            <span class="sc-text"><a href="https://jgstudio.co" target="_blank">jgstudio.co</a></span>
+                            <span class="sc-text"><a href="https://jg-studio.vercel.app/" target="_blank">jg-studio.vercel.app</a></span>
                         </div>
                         <div class="sc-item">
                             <div class="sc-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -999,7 +1017,7 @@
                                 <div class="exp-role">Fundador &amp; Desarrollador Full-Stack — JGStudio</div>
                                 <span class="exp-date">2023 – Presente</span>
                             </div>
-                            <div class="exp-company">Estudio Creativo Digital · jgstudio.co</div>
+                            <div class="exp-company">Estudio Creativo Digital · jg-studio.vercel.app</div>
                             <ul class="exp-bullets">
                                 <li>Estudio creativo digital: diseño, desarrollo web, apps, IA y automatización para clientes</li>
                                 <li>4 proyectos entregados y en producción — ciclo completo diseño → deploy → mantenimiento</li>

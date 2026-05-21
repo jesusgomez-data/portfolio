@@ -170,7 +170,13 @@ function main() {
     /* Smooth scroll (Lenis) */
     let lenis;
     if (window.Lenis) {
-        lenis = new Lenis({ duration:1.1, easing:t => Math.min(1, 1.001 - Math.pow(2, -10*t)) });
+        lenis = new Lenis({
+            duration: 1.25,
+            easing: t => 1 - Math.pow(1 - t, 4),  /* quartic easeOut — más suave */
+            smoothWheel: true,
+            wheelMultiplier: 0.85,
+            touchMultiplier: 1.5,
+        });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
     }

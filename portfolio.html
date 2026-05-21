@@ -328,14 +328,37 @@
         .folio-cta-title { letter-spacing:-1.5px; }
     }
     
-    /* ── Light mode ── */
-    .theme-toggle { background:none; border:1px solid rgba(255,255,255,.1); color:rgba(240,236,229,.5); font-size:.9rem; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .2s, color .2s, transform .3s; flex-shrink:0; }
+    /* ── Theme toggle ── */
+    .theme-toggle { background:none; border:1px solid rgba(255,255,255,.15); color:rgba(240,236,229,.6); font-size:.9rem; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .2s, color .2s, transform .3s; flex-shrink:0; }
     .theme-toggle:hover { border-color:#D63031; color:#D63031; transform:rotate(20deg); }
-    [data-theme="light"] { --bg:#f4f4f2; --surface:#fff; --border:rgba(0,0,0,.09); --cream:#111; --gray:#555; --muted:rgba(0,0,0,.35); }
+    /* Logo switch */
+    [data-theme="light"] .logo-dark  { display:none !important; }
+    [data-theme="light"] .logo-light { display:block !important; }
+    /* Light mode */
+    [data-theme="light"] { --bg:#f2f2f0; --surface:#fff; --border:rgba(0,0,0,.1); --cream:#0d0d0d; --gray:#4a4a4a; --muted:rgba(0,0,0,.35); }
     [data-theme="light"] body { background:var(--bg); color:var(--cream); }
-    [data-theme="light"] .navbar.scrolled { background:rgba(244,244,242,.92); }
-    [data-theme="light"] .pcard { box-shadow:0 2px 20px rgba(0,0,0,.1); }
-    [data-theme="light"] .pg-cta-section { background:#1a0505; }
+    [data-theme="light"] body::after { opacity:.015; }
+    [data-theme="light"] .navbar.scrolled { background:rgba(242,242,240,.95); border-bottom:1px solid rgba(0,0,0,.1); }
+    [data-theme="light"] .nav-links a { color:rgba(0,0,0,.55); }
+    [data-theme="light"] .nav-cta { color:var(--cream) !important; border-color:rgba(0,0,0,.15) !important; }
+    [data-theme="light"] .theme-toggle { border-color:rgba(0,0,0,.15); color:rgba(0,0,0,.5); }
+    [data-theme="light"] .ph-title { color:var(--cream); }
+    [data-theme="light"] .ph-subtitle { color:rgba(0,0,0,.55); }
+    [data-theme="light"] .ph-meta { color:rgba(0,0,0,.35); }
+    [data-theme="light"] .back-link { color:rgba(0,0,0,.5); border-color:rgba(0,0,0,.15); }
+    [data-theme="light"] .back-link:hover { color:var(--cream); }
+    [data-theme="light"] .pcard { box-shadow:0 2px 12px rgba(0,0,0,.06); }
+    [data-theme="light"] .pcard:hover { box-shadow:0 8px 32px rgba(0,0,0,.12); }
+    [data-theme="light"] .pcard-img img { filter:brightness(.55); }
+    [data-theme="light"] .pcard::before { background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.04) 100%); }
+    [data-theme="light"] .pg-cta-section { background:#180505; }
+    [data-theme="light"] .pg-cta-title { color:#fff; }
+    [data-theme="light"] .pg-cta-sub { color:rgba(255,255,255,.7); }
+    [data-theme="light"] .footer-inner { border-top:1px solid rgba(0,0,0,.1); }
+    [data-theme="light"] .footer-name { color:var(--cream); }
+    [data-theme="light"] .footer-copy { color:rgba(0,0,0,.35); }
+    [data-theme="light"] .footer-socials a { color:rgba(0,0,0,.4); }
+    [data-theme="light"] .footer-socials a:hover { color:#D63031; }
     </style>
 </head>
 <body>
@@ -348,16 +371,8 @@
 <nav class="navbar" id="navbar">
     <div class="nav-inner">
         <a href="index.html" class="nav-logo" aria-label="JGStudio">
-            <svg width="28" height="28" viewBox="0 0 200 200" fill="none">
-                <path d="M 140 52 A 56 56 0 1 0 156 140 L 156 100 L 102 100" stroke="#F0ECE5" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                <line x1="140" y1="52" x2="170" y2="24" stroke="#D63031" stroke-width="17" stroke-linecap="round"/>
-                <polygon points="170,24 186,8 156,4 150,28" fill="#D63031"/>
-                <circle cx="140" cy="52" r="10" fill="#D63031"/>
-                <circle cx="140" cy="52" r="4" fill="#080808"/>
-            </svg>
-            <div>
-                
-            </div>
+            <img src="img/logo_h_t.png"     alt="JGStudio" style="height:32px;width:auto;display:block;" class="logo-dark">
+            <img src="img/logo_h_light.png" alt="JGStudio" style="height:32px;width:auto;display:none;" class="logo-light">
         </a>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html#services">Servicios</a></li>

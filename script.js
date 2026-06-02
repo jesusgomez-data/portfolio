@@ -418,8 +418,61 @@ function main() {
     })();
 }
 
+/* ── Video Lightbox ────────────────────────────── */
+function initVideoLightbox() {
+    const vlb      = document.getElementById('vlb');
+    const vid      = document.getElementById('vlb-video');
+    const closeBtn = document.getElementById('vlb-close');
+    const backdrop = document.getElementById('vlb-backdrop');
+    if (!vlb || !vid) return;
+
+    function open(src) {
+        vid.src = src;
+        vid.load();
+        vlb.classList.add('vlb-open');
+        document.body.style.overflow = 'hidden';
+        vid.play().catch(() => {});
+    }
+
+    function close() {
+        vlb.classList.remove('vlb-open');
+        vid.pause();
+        setTimeout(() => { vid.src = ''; }, 300);
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cont-item--video[data-video]').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => open(item.dataset.video));
+    });
+
+    closeBtn.addEventListener('click', close);
+    backdrop.addEventListener('click', close);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && vlb.classList.contains('vlb-open')) close(); });
+}
+
+/* ── Contenido filter ──────────────────────────── */
+function initContenidoFilter() {
+    const btns  = document.querySelectorAll('.cf-btn');
+    const items = document.querySelectorAll('.cont-item');
+    if (!btns.length) return;
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            items.forEach(item => {
+                const show = f === 'all' || item.dataset.cat === f;
+                item.classList.toggle('cf-hidden', !show);
+            });
+        });
+    });
+}
+
 /* ── Boot ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     initThreeHero();
     initPreloader(main);
+    initContenidoFilter();
+    initVideoLightbox();
 });

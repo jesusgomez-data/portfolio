@@ -56,7 +56,10 @@
 
 <!-- Hero -->
 <section id="hero" class="hero">
-    <canvas id="hero-3d" class="hero-canvas" aria-hidden="true"></canvas>
+    <video autoplay muted loop playsinline class="hero-video-bg" aria-hidden="true">
+        <source src="JGStudio/videos/intro/2.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
 
     <!-- Profile photo — right side -->
     <div class="hero-photo" aria-hidden="true">
@@ -98,6 +101,7 @@
         </div>
         <div class="svc-grid">
             <div class="svc-col" data-reveal>
+                <div class="svc-img" data-img="JGStudio/Contenido/TransformoIdeas.png"><img src="JGStudio/Contenido/TransformoIdeas.png" alt="Transformo Ideas"></div>
                 <h3 class="svc-name">Crear</h3>
                 <ul class="svc-list">
                     <li>Visuales con IA</li>
@@ -109,6 +113,7 @@
                 <p class="svc-stack">Midjourney · Flux · Runway · ComfyUI</p>
             </div>
             <div class="svc-col" data-reveal>
+                <div class="svc-img" data-img="JGStudio/Contenido/QueHago.png"><img src="JGStudio/Contenido/QueHago.png" alt="Qué Hago"></div>
                 <h3 class="svc-name">Construir</h3>
                 <ul class="svc-list">
                     <li>Desarrollo web</li>
@@ -120,6 +125,7 @@
                 <p class="svc-stack">Next.js · Flutter · Supabase · Node.js</p>
             </div>
             <div class="svc-col" data-reveal>
+                <div class="svc-img" data-img="JGStudio/Contenido/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png"><img src="JGStudio/Contenido/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png" alt="Web Multiplataforma"></div>
                 <h3 class="svc-name">Activar</h3>
                 <ul class="svc-list">
                     <li>Redes sociales</li>
@@ -169,7 +175,7 @@
                     </div>
                     <div class="prc-bottom">
                         <h3 class="prc-name">Milu & Co</h3>
-                        <p class="prc-desc">Web para marca de charcutería. Diseño y código en 7 días.</p>
+                        <p class="prc-desc">Web para marca de moda vintage y cuero restaurado. Diseño y código en 7 días.</p>
                         <div class="prc-foot"><span class="prc-tech">Next.js · Tailwind CSS</span><span class="prc-arrow">↗</span></div>
                     </div>
                 </div>
@@ -320,7 +326,7 @@
             </div>
 
             <div class="cont-item" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/9e61600e-0451-47d1-9c57-c7714caa4ec1.png" alt="Escena cinematográfica — JGStudio" loading="lazy">
+                <img src="JGStudio/Contenido/01c87ed8-be45-48ed-af62-581125156518.png" alt="Escena cinematográfica — JGStudio" loading="lazy">
                 <div class="cont-overlay">
                     <span class="cont-tag">Cinematic IA</span>
                     <p class="cont-caption">Escena cinematográfica IA</p>
@@ -336,7 +342,7 @@
             </div>
 
             <div class="cont-item" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/b670cea5-8f2f-45cb-8f46-e1d82ce0900e.png" alt="Escena escape — JGStudio" loading="lazy">
+                <img src="JGStudio/Contenido/02d4d4e6-9dfd-4f60-b9c4-428ad5cf7f1e.png" alt="Escena escape — JGStudio" loading="lazy">
                 <div class="cont-overlay">
                     <span class="cont-tag">Cinematic IA</span>
                     <p class="cont-caption">Escena de escape</p>
@@ -344,7 +350,7 @@
             </div>
 
             <div class="cont-item" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/ae92760c-ac2c-41f9-a469-5a6f134ee9b6.png" alt="Bienvenido a Muy Lejano — JGStudio" loading="lazy">
+                <img src="JGStudio/Contenido/1c09aebe-c192-43fa-a83f-80460b5045b3.png" alt="Bienvenido a Muy Lejano — JGStudio" loading="lazy">
                 <div class="cont-overlay">
                     <span class="cont-tag">Cinematic IA</span>
                     <p class="cont-caption">Bienvenido a Muy Lejano</p>
@@ -403,7 +409,7 @@
         </div>
         <div class="about-grid">
             <div class="about-photo" data-reveal>
-                <img src="img/profile_about.png" alt="Jesús Gómez">
+                <img src="JGStudio/Contenido/QuienSoy.png" alt="Jesús Gómez - Quién Soy">
                 <div class="about-photo-meta">
                     <strong>Jesús Gómez Santiago</strong>
                     <span>Fundador · JGStudio · España</span>
@@ -687,16 +693,17 @@
     </div>
 </footer>
 
-<!-- Video Lightbox -->
-<div class="vlb" id="vlb" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+<!-- Media Lightbox -->
+<div class="vlb" id="vlb" role="dialog" aria-modal="true" aria-label="Visor multimedia">
     <div class="vlb-backdrop" id="vlb-backdrop"></div>
     <div class="vlb-inner">
         <button class="vlb-close" id="vlb-close" aria-label="Cerrar">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
-        <video id="vlb-video" controls playsinline preload="none">
+        <video id="vlb-video" controls playsinline preload="none" style="display:none;">
             Tu navegador no soporta video HTML5.
         </video>
+        <img id="vlb-img" src="" alt="Imagen ampliada" style="display:none;">
     </div>
 </div>
 

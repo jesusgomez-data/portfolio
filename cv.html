@@ -12,6 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        (function() {
+            const saved = localStorage.getItem('jgs-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+
     <style>
     /* ── Tokens ─────────────────────────────── */
     :root {
@@ -32,6 +39,50 @@
         --f-m: 'JetBrains Mono', monospace;
 
         --ease: cubic-bezier(.16,1,.3,1);
+    }
+
+    [data-theme="light"] {
+        --bg:         #f2f2f0;
+        --surface:    #ffffff;
+        --sidebar-bg: #f8f8f6;
+        --border:     rgba(0,0,0,.08);
+        --border-s:   rgba(0,0,0,.06);
+        --cream:      #0d0d0d;
+        --gray:       #4a4a4a;
+        --muted:      rgba(0,0,0,.35);
+        --dim:        #777;
+        --accent:     #D63031;
+        --accent-dim: rgba(214,48,49,.08);
+    }
+
+    /* Smooth transitions for theme switching */
+    body, .cv-wrapper, .cv-sidebar, .cv-main, .proj-card, .tag, .sc-icon, .hc-item, .stat-box, .print-bar, .print-btn, .theme-toggle, .avail-tag {
+        transition: background 0.4s var(--ease), border-color 0.4s var(--ease), color 0.4s var(--ease), box-shadow 0.4s var(--ease), transform 0.3s var(--ease);
+    }
+
+    [data-theme="light"] .tag {
+        background: rgba(0,0,0,.03);
+    }
+
+    [data-theme="light"] .proj-card,
+    [data-theme="light"] .stat-box {
+        background: var(--bg);
+    }
+
+    [data-theme="light"] .sc-icon {
+        background: var(--accent-dim);
+        border-color: rgba(214,48,49,.15);
+    }
+
+    [data-theme="light"] .avail-tag {
+        background: rgba(214,48,49,.05);
+        border-color: rgba(214,48,49,.15);
+        color: var(--cream);
+    }
+
+    [data-theme="light"] .avail-tag:hover {
+        background: rgba(214,48,49,.1);
+        border-color: rgba(214,48,49,.3);
     }
 
     /* ── Reset ────────────────────── */
@@ -162,6 +213,11 @@
         object-position: center top;
         flex-shrink: 0;
         filter: brightness(.9);
+        box-shadow: 0 0 0 5px rgba(214,48,49,.08);
+    }
+    .header-photo:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 0 8px rgba(214,48,49,.14);
     }
     @media (min-width: 900px) {
         .header-photo { width: 88px; height: 88px; }
@@ -396,9 +452,52 @@
         border: 1px solid var(--border);
         border-left: 3px solid var(--accent);
         border-radius: 2px;
-        transition: background .25s, border-color .25s;
+        transition: background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
     }
-    .proj-card:hover { background: rgba(214,48,49,.025); }
+    .proj-card:hover {
+        background: rgba(214,48,49,.025);
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        box-shadow: 0 4px 12px rgba(214,48,49,.05);
+    }
+
+    .stat-box {
+        transition: transform .3s var(--ease), border-color .3s var(--ease);
+    }
+    .stat-box:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+    }
+
+    /* Theme toggle button inside print-bar */
+    .theme-toggle {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--cream);
+        font-size: .85rem;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color .2s, color .2s, transform .3s;
+        flex-shrink: 0;
+    }
+    .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: rotate(20deg);
+    }
+    [data-theme="light"] .theme-toggle {
+        border-color: rgba(0,0,0,.15);
+        color: rgba(0,0,0,.5);
+    }
+    [data-theme="light"] .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
 
     .proj-card-top {
         display: flex;
@@ -689,6 +788,12 @@
         .tag { border-color: #ccc !important; color: #555 !important; }
         .tag.hi { color: #D63031 !important; border-color: rgba(214,48,49,.4) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
+        /* Prevent breaking sections and cards across pages in print PDF */
+        .sec, .exp-item, .proj-card, .edu-item, .cert-item {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
         @page {
             margin: 0;
             size: A4;
@@ -784,16 +889,21 @@
     <!-- ── PRINT BAR ── -->
     <div class="print-bar">
         <span class="print-bar-hint">Jesús Gómez Santiago · CV 2026 — Ctrl+P → Guardar como PDF → Sin márgenes</span>
-        <button class="print-btn" onclick="window.print()">
-            <i class="fas fa-download"></i> Descargar PDF
-        </button>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+            <button class="print-btn" onclick="window.print()">
+                <i class="fas fa-download"></i> Descargar PDF
+            </button>
+        </div>
     </div>
 
     <div class="cv-wrapper">
 
         <!-- ══════════════════════ HEADER ══════════════════════ -->
         <header class="cv-header">
-            <img src="img/profile.jpg" alt="Jesús Gómez Santiago" class="header-photo">
+            <img src="img/profile_new.png" alt="Jesús Gómez Santiago" class="header-photo">
             <div class="header-info">
                 <h1 class="header-name">Jesús Gómez Santiago</h1>
                 <div class="header-title">Full-Stack Developer · Next.js · TypeScript · IA</div>
@@ -1138,5 +1248,39 @@
     </div>
     <!-- end .cv-wrapper -->
 
+    <!-- JS Theme Toggle Logic -->
+    <script>
+        (function() {
+            const btn  = document.getElementById('theme-toggle');
+            const icon = document.getElementById('theme-icon');
+            
+            // Initial sync icon state
+            const syncIcon = (theme) => {
+                if (icon) {
+                    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                }
+            };
+            
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            syncIcon(currentTheme);
+
+            btn?.addEventListener('click', () => {
+                const curr = document.documentElement.getAttribute('data-theme') || 'dark';
+                const next = curr === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                localStorage.setItem('jgs-theme', next);
+                syncIcon(next);
+            });
+
+            // Listen to storage events to sync across tabs instantly
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'jgs-theme') {
+                    const nextTheme = e.newValue || 'dark';
+                    document.documentElement.setAttribute('data-theme', nextTheme);
+                    syncIcon(nextTheme);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

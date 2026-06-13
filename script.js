@@ -219,9 +219,9 @@ function main() {
                   scrollTrigger:{ trigger:el, start:'top 90%', once:true } }
             )
         );
-        /* Generic [data-reveal] outside named sections */
+        /* Generic [data-reveal] outside named sections (excluding cont-item to manage its filter animations separately) */
         gsap.utils.toArray('[data-reveal]').forEach(el => {
-            if (!el.closest('.about-section') && !el.closest('.contact-section')) {
+            if (!el.closest('.about-section') && !el.closest('.contact-section') && !el.classList.contains('cont-item')) {
                 gsap.fromTo(el,
                     { y:20, opacity:0 },
                     { y:0, opacity:1, duration:.75, ease:'power3.out',
@@ -456,15 +456,126 @@ function initContenidoFilter() {
     const btns  = document.querySelectorAll('.cf-btn');
     const items = document.querySelectorAll('.cont-item');
     if (!btns.length) return;
+
+    // Filter programmatically on load based on active button
+    const activeBtn = document.querySelector('.cf-btn.active');
+    const initialFilter = activeBtn ? activeBtn.dataset.filter : 'brand';
+
+    // Set initial display and state for gallery items
+    items.forEach(item => {
+        const show = item.dataset.cat === initialFilter;
+        if (show) {
+            item.classList.remove('cf-hidden');
+            if (window.gsap) {
+                gsap.set(item, { opacity: 0, y: 15, scale: 0.95 });
+            }
+        } else {
+            item.classList.add('cf-hidden');
+        }
+    });
+
+    // Animate active items on scroll entry
+    if (window.ScrollTrigger && window.gsap) {
+        const activeItems = Array.from(items).filter(item => item.dataset.cat === initialFilter);
+        ScrollTrigger.create({
+            trigger: '#cont-grid',
+            start: 'top 85%',
+            once: true,
+            onEnter: () => {
+                gsap.to(activeItems, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    stagger: 0.04,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        ScrollTrigger.refresh();
+                    }
+                });
+            }
+        });
+    }
+
     btns.forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.classList.contains('active')) return;
+
             btns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             const f = btn.dataset.filter;
+            const toHide = [];
+            const toShow = [];
+
             items.forEach(item => {
-                const show = f === 'all' || item.dataset.cat === f;
-                item.classList.toggle('cf-hidden', !show);
+                const matches = f === 'all' || item.dataset.cat === f;
+                const isHidden = item.classList.contains('cf-hidden');
+
+                if (matches) {
+                    if (isHidden) toShow.push(item);
+                } else {
+                    if (!isHidden) toHide.push(item);
+                }
             });
+
+            if (window.gsap) {
+                // Kill active tweens on all items
+                gsap.killTweensOf(items);
+
+                // Sequential animation: Fade out old first, then show and fade in new
+                if (toHide.length > 0) {
+                    gsap.to(toHide, {
+                        opacity: 0,
+                        y: -10,
+                        scale: 0.95,
+                        duration: 0.22,
+                        stagger: 0.015,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            toHide.forEach(item => item.classList.add('cf-hidden'));
+                            showAndAnimateNew();
+                        }
+                    });
+                } else {
+                    showAndAnimateNew();
+                }
+
+                function showAndAnimateNew() {
+                    if (toShow.length > 0) {
+                        toShow.forEach(item => item.classList.remove('cf-hidden'));
+                        gsap.fromTo(toShow,
+                            { opacity: 0, y: 15, scale: 0.95 },
+                            {
+                                opacity: 1,
+                                y: 0,
+                                scale: 1,
+                                duration: 0.45,
+                                stagger: 0.03,
+                                ease: 'power2.out',
+                                onComplete: () => {
+                                    if (typeof ScrollTrigger !== 'undefined') {
+                                        ScrollTrigger.refresh();
+                                    }
+                                }
+                            }
+                        );
+                    } else {
+                        if (typeof ScrollTrigger !== 'undefined') {
+                            ScrollTrigger.refresh();
+                        }
+                    }
+                }
+            } else {
+                // Fallback without GSAP
+                items.forEach(item => {
+                    const matches = f === 'all' || item.dataset.cat === f;
+                    item.classList.toggle('cf-hidden', !matches);
+                });
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+            }
         });
     });
 }

@@ -1211,59 +1211,107 @@ img { display:block; max-width:100%; }
     color: var(--cream);
     text-transform: uppercase;
 }
+/* ── Results Cards — Premium redesign ─── */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-}
-.results-card {
-    background: var(--surface);
+    gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 36px 28px;
-    transition: transform 0.4s var(--ease), border-color 0.4s, box-shadow 0.4s;
-    position: relative;
+    border-radius: 20px;
     overflow: hidden;
 }
-.results-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(214,48,49,0.3);
-    box-shadow: 0 12px 36px rgba(214,48,49,0.06);
+.results-card {
+    background: rgba(14,14,14,0.95);
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.4s var(--ease);
+    cursor: default;
 }
+.results-card:hover {
+    background: rgba(214,48,49,0.045);
+}
+/* Número editorial marca de agua */
+.rc-num {
+    position: absolute;
+    top: 18px; right: 22px;
+    font-family: var(--f-d);
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(214,48,49,0.07);
+    letter-spacing: -5px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.4s;
+}
+.results-card:hover .rc-num {
+    color: rgba(214,48,49,0.14);
+}
+/* Línea izquierda de acento */
 .results-card::before {
     content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(214,48,49,0.04) 0%, transparent 100%);
-    opacity: 0; transition: opacity 0.4s;
+    position: absolute;
+    left: 0; top: 15%; bottom: 15%;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--accent) 50%, transparent);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease);
 }
-.results-card:hover::before {
-    opacity: 1;
-}
+.results-card:hover::before { opacity: 1; }
+/* Icono en cápsula */
 .rc-icon-wrap {
-    font-size: 2.2rem;
-    margin-bottom: 24px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; height: 50px;
+    border-radius: 16px;
+    background: rgba(214,48,49,0.08);
+    border: 1px solid rgba(214,48,49,0.18);
+    font-size: 1.4rem;
+    margin-bottom: 26px;
+    transition: background 0.3s, transform 0.35s var(--ease);
+    flex-shrink: 0;
 }
+.results-card:hover .rc-icon-wrap {
+    background: rgba(214,48,49,0.16);
+    transform: scale(1.1) rotate(-4deg);
+}
+.rc-body { flex: 1; display: flex; flex-direction: column; }
 .rc-title {
     font-family: var(--f-d);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--cream);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 .rc-desc {
-    font-size: 0.84rem;
+    font-size: 0.83rem;
     color: var(--gray);
-    line-height: 1.7;
+    line-height: 1.75;
 }
+/* Línea roja que crece al hover */
+.rc-line {
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin-top: 28px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s var(--ease);
+}
+.results-card:hover .rc-line { transform: scaleX(1); }
 
 @media(max-width:1024px) {
-    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid { grid-template-columns: repeat(2, 1fr); border-radius: 16px; }
 }
 @media(max-width:600px) {
-    .results-grid { grid-template-columns: 1fr; }
-    .results-card { padding: 28px 24px; }
+    .results-grid { grid-template-columns: 1fr; border-radius: 14px; }
+    .results-card { padding: 36px 26px; }
+    .rc-num { font-size: 3.5rem; }
 }
 
 /* ── Services & Projects overrides ─────── */

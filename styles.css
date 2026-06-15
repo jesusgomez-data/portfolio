@@ -256,19 +256,21 @@ img { display:block; max-width:100%; }
 
 .hero-logo-float {
     position: absolute;
-    bottom: 42px;
-    right: 52px;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
     z-index: 10;
-    width: 110px;
-    height: 110px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
-    filter: drop-shadow(0 0 18px rgba(214,48,49,0.4));
+    filter: drop-shadow(0 0 24px rgba(214,48,49,0.45));
     animation: logo-float 5s ease-in-out infinite;
     transition: filter 0.4s;
     cursor: default;
+    pointer-events: none;
 }
 .hero-logo-float:hover {
-    filter: drop-shadow(0 0 32px rgba(214,48,49,0.7));
+    filter: drop-shadow(0 0 38px rgba(214,48,49,0.7));
 }
 .hero-logo-spin {
     width: 100%;
@@ -276,23 +278,17 @@ img { display:block; max-width:100%; }
     object-fit: cover;
     border-radius: 50%;
     opacity: 1;
-    animation: logo-spin 22s linear infinite;
+    /* sin rotación — solo levitación */
 }
 @keyframes logo-float {
-    0%,100% { transform: translateY(0px); }
-    50%      { transform: translateY(-10px); }
+    0%,100% { transform: translate(-50%, -50%) translateY(0px); }
+    50%      { transform: translate(-50%, -50%) translateY(-12px); }
 }
-@keyframes logo-spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+@media(max-width:900px) {
+    .hero-logo-float { display: none; }
 }
 @media(max-width:768px) {
-    .hero-logo-float {
-        width: 68px;
-        height: 68px;
-        bottom: 56px;
-        right: 20px;
-    }
+    .hero-logo-float { display: none; }
 }
 
 @media(max-width:768px){

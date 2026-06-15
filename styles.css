@@ -256,8 +256,8 @@ img { display:block; max-width:100%; }
 
 .hero-logo-float {
     position: absolute;
-    top: 50%;
-    left: 25%;
+    top: 28%;
+    left: 12%;
     transform: translate(-50%, -50%);
     z-index: 10;
     width: 160px;

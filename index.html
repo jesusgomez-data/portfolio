@@ -14,7 +14,7 @@
     <!-- JetBrains Mono (labels) + DM Sans fallback -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260619-projects">
 </head>
 <body>
 
@@ -109,43 +109,39 @@
         <div class="results-header" data-reveal>
             <h2 class="results-title">¿QUÉ PODEMOS HACER POR TU EMPRESA?</h2>
         </div>
-        <div class="results-grid">
-            <div class="results-card" data-reveal>
+        <div class="results-orbit" data-reveal>
+            <div class="orbit-ring orbit-ring-one" aria-hidden="true"></div>
+            <div class="orbit-ring orbit-ring-two" aria-hidden="true"></div>
+            <div class="orbit-core">
+                <span class="orbit-kicker">Sistema de crecimiento</span>
+                <strong>Marketing, IA y automatizaci&oacute;n trabajando juntos</strong>
+                <p>Unimos captaci&oacute;n, productividad, conversi&oacute;n y contenido para crear una presencia digital que venda mejor.</p>
+            </div>
+            <div class="results-card orbit-node orbit-node-one">
                 <span class="rc-num">01</span>
-                <div class="rc-body">
-                    <div class="rc-icon-wrap">🚀</div>
-                    <h3 class="rc-title">Más clientes</h3>
-                    <p class="rc-desc">Automatiza procesos y mejora tu presencia digital para captar leads de forma constante.</p>
-                </div>
-                <div class="rc-line"></div>
+                <div class="rc-icon-wrap">&#128640;</div>
+                <h3 class="rc-title">M&aacute;s clientes</h3>
+                <p class="rc-desc">Automatiza procesos y mejora tu presencia digital para captar leads de forma constante.</p>
             </div>
-            <div class="results-card" data-reveal>
+            <div class="results-card orbit-node orbit-node-two">
                 <span class="rc-num">02</span>
-                <div class="rc-body">
-                    <div class="rc-icon-wrap">⚡</div>
-                    <h3 class="rc-title">Más productividad</h3>
-                    <p class="rc-desc">Reduce tareas repetitivas con automatización e IA integrada en tu día a día.</p>
-                </div>
-                <div class="rc-line"></div>
+                <div class="rc-icon-wrap">&#9889;</div>
+                <h3 class="rc-title">M&aacute;s productividad</h3>
+                <p class="rc-desc">Reduce tareas repetitivas con automatizaci&oacute;n e IA integrada en tu d&iacute;a a d&iacute;a.</p>
             </div>
-            <div class="results-card" data-reveal>
+            <div class="results-card orbit-node orbit-node-three">
                 <span class="rc-num">03</span>
-                <div class="rc-body">
-                    <div class="rc-icon-wrap">📈</div>
-                    <h3 class="rc-title">Más ventas</h3>
-                    <p class="rc-desc">Diseños web y embudos optimizados de alta conversión enfocados en captación.</p>
-                </div>
-                <div class="rc-line"></div>
+                <div class="rc-icon-wrap">&#128200;</div>
+                <h3 class="rc-title">M&aacute;s ventas</h3>
+                <p class="rc-desc">Dise&ntilde;os web y embudos optimizados de alta conversi&oacute;n enfocados en captaci&oacute;n.</p>
             </div>
-            <div class="results-card" data-reveal>
+            <div class="results-card orbit-node orbit-node-four">
                 <span class="rc-num">04</span>
-                <div class="rc-body">
-                    <div class="rc-icon-wrap">🎯</div>
-                    <h3 class="rc-title">Más visibilidad</h3>
-                    <p class="rc-desc">Contenido visual premium desarrollado con IA para destacar en redes sociales y publicidad.</p>
-                </div>
-                <div class="rc-line"></div>
+                <div class="rc-icon-wrap">&#127919;</div>
+                <h3 class="rc-title">M&aacute;s visibilidad</h3>
+                <p class="rc-desc">Contenido visual premium desarrollado con IA para destacar en redes sociales y publicidad.</p>
             </div>
+
         </div>
     </div>
 </section>
@@ -210,7 +206,7 @@
         <!-- Card grid con screenshots reales -->
         <div class="prc-grid">
 
-            <!-- RivalFit — featured full width -->
+            <!-- RivalFit -->
             <a class="prc prc-featured" href="https://rivalfit.app" target="_blank" rel="noopener">
                 <div class="prc-img"><img src="img/screenshot_rivalfit.jpg" alt="RivalFit" loading="lazy"></div>
                 <div class="prc-body">
@@ -220,10 +216,15 @@
                     </div>
                     <div class="prc-bottom">
                         <h3 class="prc-name">RivalFit</h3>
-                        <p class="prc-desc">Plataforma SaaS para gimnasios, boxes CrossFit y centros deportivos. Gestión de atletas, reservas, check-in, WODs, comunidad, coach IA y sistema de pagos integrado.</p>
+                        <p class="prc-desc">Plataforma SaaS para gimnasios, boxes CrossFit y centros deportivos. Gesti&oacute;n de atletas, reservas, check-in, WODs, comunidad, coach IA y sistema de pagos integrado.</p>
+                        <div class="prc-stats" aria-label="Datos clave de RivalFit">
+                            <span><strong>SaaS</strong> Producto real</span>
+                            <span><strong>IA</strong> Coach integrado</span>
+                            <span><strong>Stripe</strong> Pagos</span>
+                        </div>
                         <div class="prc-foot">
-                            <span class="prc-tech">Next.js 15 · Supabase · TypeScript · IA · Stripe</span>
-                            <span class="btn-project-cta">Ver Proyecto ↗</span>
+                            <span class="prc-tech">Next.js 15 &middot; Supabase &middot; TypeScript &middot; IA &middot; Stripe</span>
+                            <span class="btn-project-cta">Ver Proyecto &#8599;</span>
                         </div>
                     </div>
                 </div>
@@ -239,10 +240,14 @@
                     </div>
                     <div class="prc-bottom">
                         <h3 class="prc-name">Stencil</h3>
-                        <p class="prc-desc">Página web moderna y minimalista para venta y promoción de gafas. Enfoque visual e interactivo de alto rendimiento.</p>
+                        <p class="prc-desc">P&aacute;gina web moderna y minimalista para venta y promoci&oacute;n de gafas. Enfoque visual e interactivo de alto rendimiento.</p>
+                        <div class="prc-stats" aria-label="Datos clave de Stencil">
+                            <span><strong>Retail</strong> Producto visual</span>
+                            <span><strong>UX</strong> Scroll premium</span>
+                        </div>
                         <div class="prc-foot">
-                            <span class="prc-tech">HTML5 · CSS3 · GSAP · Animación</span>
-                            <span class="btn-project-cta">Ver Proyecto ↗</span>
+                            <span class="prc-tech">HTML5 &middot; CSS3 &middot; GSAP &middot; Animaci&oacute;n</span>
+                            <span class="btn-project-cta">Ver Proyecto &#8599;</span>
                         </div>
                     </div>
                 </div>
@@ -258,10 +263,14 @@
                     </div>
                     <div class="prc-bottom">
                         <h3 class="prc-name">Contenido Comercial IA</h3>
-                        <p class="prc-desc">Colección de anuncios, vídeos y branding desarrollados enteramente con herramientas de IA generativa de última generación.</p>
+                        <p class="prc-desc">Colecci&oacute;n de anuncios, v&iacute;deos y branding desarrollados enteramente con herramientas de IA generativa de &uacute;ltima generaci&oacute;n.</p>
+                        <div class="prc-stats" aria-label="Datos clave de Contenido Comercial IA">
+                            <span><strong>Brand</strong> Direcci&oacute;n visual</span>
+                            <span><strong>AI</strong> Ads &amp; video</span>
+                        </div>
                         <div class="prc-foot">
-                            <span class="prc-tech">Midjourney · Flux · Runway · ComfyUI</span>
-                            <span class="btn-project-cta">Ver Portfolio ↗</span>
+                            <span class="prc-tech">Midjourney &middot; Flux &middot; Runway &middot; ComfyUI</span>
+                            <span class="btn-project-cta">Ver Portfolio &#8599;</span>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ PROJECTS = [
     ("elianisromero",   "https://elianisromero.vercel.app/",                                  "screenshot_elianis.jpg"),
     ("fabianzambrano",  "https://fabianzambrano.vercel.app/",                                 "screenshot_fabian.jpg"),
     ("retail-analysis", "https://github.com/jesusgomez-data/retail-sales-data-analysis",      "screenshot_retail.jpg"),
+    ("stencil",         "https://stencil-2.vercel.app/",                                      "screenshot_optica.jpg"),
 ]
 
 async def capture(page, url, name, out):

@@ -48,19 +48,6 @@
     ul { list-style:none; }
     img { display:block; max-width:100%; }
 
-    /* ── Grain ──────────────────────── */
-    body::after {
-        content:''; position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.03;
-        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-        background-size:200px; animation:grain 8s steps(10) infinite;
-    }
-    @keyframes grain {
-        0%,100%{transform:translate(0,0)} 10%{transform:translate(-5%,-10%)}
-        20%{transform:translate(-15%,5%)} 30%{transform:translate(7%,-25%)}
-        40%{transform:translate(-5%,25%)} 50%{transform:translate(-15%,10%)}
-        60%{transform:translate(15%,0%)} 70%{transform:translate(0,15%)}
-        80%{transform:translate(3%,35%)} 90%{transform:translate(-10%,10%)}
-    }
 
     /* ── Cursor ─────────────────────── */
     .cursor-dot { width:4px; height:4px; background:var(--accent); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:99999; transform:translate(-50%,-50%); }
@@ -177,117 +164,172 @@
     }
 
     /* ── PROJECTS GRID ───────────────── */
-    .portfolio-section { padding:0 0 100px; }
+    .portfolio-section { padding: 40px 0 100px; }
 
     .pcard-grid {
-        display:grid;
-        grid-template-columns:repeat(3, 1fr);
-        gap:3px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+        max-width: var(--w);
+        margin: 0 auto;
+        padding: 0 48px;
     }
 
     /* Card base */
     .pcard {
-        position:relative; overflow:hidden; display:block;
-        cursor:none; background:#0d0d0d;
-        text-decoration:none;
-        aspect-ratio:1/1;
+        position: relative; overflow: hidden; display: block;
+        cursor: none; background: #0e0e0e;
+        text-decoration: none;
+        border-radius: 18px;
+        border: 1px solid rgba(255,255,255,.08);
+        height: 420px;
+        grid-column: span 4;
+        transition: transform .5s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
     }
-    .pcard:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .pcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Bento Featured Card */
+    .pcard.pcard-featured {
+        grid-column: span 8;
+    }
+
+    .pcard:hover {
+        transform: translateY(-8px) rotateX(1deg);
+        border-color: var(--card-accent, var(--accent));
+        box-shadow: 0 24px 60px rgba(0,0,0,.55), 0 0 40px var(--card-glow, rgba(214,48,49,.1));
+    }
 
     /* Image */
     .pcard-img {
-        position:absolute; inset:0; width:100%; height:100%;
-        object-fit:cover;
-        filter:brightness(.38) saturate(.8);
-        transition:filter .65s var(--ease), transform 1s var(--ease);
-        will-change:transform;
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover;
+        filter: brightness(.35) saturate(.85) contrast(1.05);
+        transition: filter .75s, transform 1.1s var(--ease);
+        will-change: transform;
     }
     .pcard:hover .pcard-img {
-        filter:brightness(.62) saturate(1.1);
-        transform:scale(1.05);
+        filter: brightness(.65) saturate(1.05) contrast(1.08);
+        transform: scale(1.05);
     }
 
-    /* Gradient overlay — bottom 60% */
-    .pcard-overlay {
-        position:absolute; inset:0;
-        background:linear-gradient(to top, rgba(8,8,8,.98) 0%, rgba(8,8,8,.6) 42%, rgba(8,8,8,.0) 100%);
-        z-index:1;
+    /* Gradients overlays */
+    .pcard::before {
+        content: ''; position: absolute; inset: 0; z-index: 1;
+        background:
+            linear-gradient(90deg, rgba(8,8,8,.94) 0%, rgba(8,8,8,.65) 45%, rgba(8,8,8,.14) 100%),
+            linear-gradient(to top, rgba(8,8,8,.96) 0%, rgba(8,8,8,.38) 55%, rgba(8,8,8,.08) 100%);
+        pointer-events: none;
+    }
+    .pcard:not(.pcard-featured)::before {
+        background:
+            linear-gradient(to top, rgba(8,8,8,.96) 0%, rgba(8,8,8,.5) 55%, rgba(8,8,8,.1) 100%),
+            radial-gradient(circle at 82% 8%, rgba(255,255,255,.02), transparent 45%);
     }
 
-    /* Red bottom line */
-    .pcard-line {
-        position:absolute; bottom:0; left:0; right:0; height:2px;
-        background:var(--accent);
-        transform:scaleX(0); transform-origin:left;
-        transition:transform .55s cubic-bezier(.16,1,.3,1);
-        z-index:4;
+    /* Elegant border frame */
+    .pcard::after {
+        content: ''; position: absolute; inset: 14px; z-index: 3;
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 12px;
+        pointer-events: none;
+        opacity: .55;
+        transform: scale(.985);
+        transition: opacity .35s var(--ease), transform .45s var(--ease), border-color .35s;
     }
-    .pcard:hover .pcard-line { transform:scaleX(1); }
+    .pcard:hover::after {
+        opacity: 1;
+        transform: scale(1);
+        border-color: var(--card-accent, rgba(214,48,49,.4));
+    }
 
     /* Card body */
     .pcard-body {
-        position:absolute; inset:0; z-index:2;
-        display:flex; flex-direction:column; justify-content:space-between;
-        padding:20px 22px;
-        transition:transform .4s var(--ease);
+        position: absolute; inset: 0; z-index: 2;
+        display: flex; flex-direction: column; justify-content: space-between;
+        padding: 26px;
+        transition: transform .4s var(--ease);
     }
-    .pcard:hover .pcard-body { transform:translateY(-5px); }
+    .pcard-featured .pcard-body { padding: 32px; }
 
     /* Top row */
-    .pcard-top { display:flex; justify-content:space-between; align-items:flex-start; }
-    .pcard-top-left { display:flex; flex-direction:column; gap:8px; }
+    .pcard-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .pcard-top-left { display: flex; flex-direction: column; gap: 6px; }
     .pcard-num {
-        font-family:var(--f-m); font-size:.44rem; letter-spacing:3px;
-        color:rgba(240,236,229,.3);
+        font-family: var(--f-m); font-size: .54rem; letter-spacing: 4px;
+        color: rgba(240,236,229,.44);
+        position: relative;
+        padding-left: 34px;
+    }
+    .pcard-num::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 50%;
+        width: 22px; height: 1px;
+        background: currentColor;
     }
 
-    /* Arrow — hidden by default, appears on hover */
+    /* Arrow */
     .pcard-arrow {
-        font-size:1rem; color:rgba(240,236,229,.0);
-        transition:transform .35s var(--ease), color .3s, opacity .3s;
-        opacity:0;
+        font-size: 1.1rem; color: rgba(240,236,229,.4);
+        transition: transform .35s var(--ease), color .3s;
     }
     .pcard:hover .pcard-arrow {
-        transform:translate(3px,-3px);
-        color:var(--accent);
-        opacity:1;
+        transform: translate(4px,-4px);
+        color: var(--card-accent, var(--accent));
     }
 
     /* Badge */
     .pcard-badge {
-        font-family:var(--f-m); font-size:.4rem; letter-spacing:1.5px; text-transform:uppercase;
-        padding:3px 8px; border:1px solid currentColor; border-radius:2px;
-        display:inline-block;
+        font-family: var(--f-m); font-size: .44rem; letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 5px 12px; border: 1px solid currentColor; border-radius: 999px;
+        display: inline-block;
+        width: fit-content;
     }
-    .pcard-badge.red  { color:var(--accent); }
-    .pcard-badge.green{ color:var(--green); }
-    .pcard-badge.gold { color:var(--gold); }
+    .pcard-badge.red  { color: var(--accent); }
+    .pcard-badge.green{ color: var(--green); }
+    .pcard-badge.gold { color: var(--gold); }
 
     /* Bottom row */
-    .pcard-bottom { display:flex; flex-direction:column; gap:6px; }
+    .pcard-bottom { display: flex; flex-direction: column; gap: 4px; }
     .pcard-name {
-        font-family:var(--f-d);
-        font-size:clamp(1.1rem, 1.5vw, 1.5rem);
-        font-weight:800; letter-spacing:-.4px;
-        color:#F0ECE5; line-height:1.08;
+        font-family: var(--f-d);
+        font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+        font-weight: 800; letter-spacing: -.6px;
+        color: #F0ECE5; line-height: 1.05;
+        transition: color .22s;
+    }
+    .pcard:hover .pcard-name {
+        color: var(--card-accent, var(--accent));
+    }
+    .pcard-desc {
+        font-size: .84rem; color: var(--gray); line-height: 1.5;
+        max-width: 440px;
+        margin-top: 4px;
+        display: none;
+    }
+    .pcard-featured .pcard-desc {
+        display: block;
     }
     .pcard-tech {
-        font-family:var(--f-m);
-        font-size:.4rem; letter-spacing:1.5px; text-transform:uppercase;
-        color:rgba(240,236,229,.28);
-        margin-top:1px;
+        font-family: var(--f-m);
+        font-size: .44rem; letter-spacing: 2px; text-transform: uppercase;
+        color: rgba(240,236,229,.28);
+        margin-top: 2px;
     }
 
     /* Responsive */
     @media(max-width:900px){
-        .pcard-grid { grid-template-columns:repeat(2, 1fr); }
-        .pcard-name { font-size:clamp(1rem, 2.5vw, 1.3rem); }
+        .pcard-grid {
+            padding: 0 24px;
+            gap: 16px;
+        }
+        .pcard { grid-column: span 6 !important; height: 360px; }
+        .pcard-featured .pcard-desc { display: none; }
+        .pcard-name { font-size: clamp(1.1rem, 2.5vw, 1.4rem); }
     }
     @media(max-width:560px){
-        .pcard-grid { grid-template-columns:1fr; }
-        .pcard { aspect-ratio:4/3; }
-        .pcard-body { padding:16px 18px; }
-        .pcard-name { font-size:1.15rem; }
+        .pcard-grid { grid-template-columns: 1fr; }
+        .pcard { grid-column: span 12 !important; height: 320px; }
     }
 
     /* ── CTA SECTION ─────────────────── */
@@ -404,7 +446,7 @@
         <p class="ph-meta">JGStudio · 2026</p>
         <h1 class="ph-title">Portafolio</h1>
         <p class="ph-sub">Trabajo seleccionado — proyectos reales en producción</p>
-        <div class="ph-counter"><strong>05</strong> proyectos · diseño &amp; desarrollo</div>
+        <div class="ph-counter"><strong>07</strong> proyectos · diseño &amp; desarrollo</div>
     </div>
 </header>
 
@@ -414,13 +456,12 @@
 
         <div class="pcard-grid">
 
-            <!-- 01 · RivalFit -->
-            <a class="pcard reveal"
+            <!-- 01 · Rival Fit -->
+            <a class="pcard pcard-featured reveal"
+               style="--card-accent: #D63031; --card-glow: rgba(214, 48, 49, 0.15);"
                href="https://rivalfit.app" target="_blank" rel="noopener"
-               aria-label="RivalFit — ver proyecto">
-                <img class="pcard-img" src="img/screenshot_rivalfit.jpg" alt="RivalFit" loading="eager">
-                <div class="pcard-overlay"></div>
-                <div class="pcard-line"></div>
+               aria-label="Rival Fit — ver proyecto">
+                <img class="pcard-img" src="img/screenshot_rivalfit.jpg" alt="Rival Fit" loading="eager">
                 <div class="pcard-body">
                     <div class="pcard-top">
                         <div class="pcard-top-left">
@@ -430,7 +471,8 @@
                         <span class="pcard-arrow">↗</span>
                     </div>
                     <div class="pcard-bottom">
-                        <h2 class="pcard-name">RivalFit</h2>
+                        <h2 class="pcard-name">Rival Fit</h2>
+                        <p class="pcard-desc">Plataforma SaaS para gimnasios, boxes CrossFit y centros deportivos. Gestión de atletas, reservas, check-in, WODs, comunidad, coach de IA y sistema de pagos integrado con Stripe.</p>
                         <span class="pcard-tech">Next.js 15 · Supabase · TypeScript · IA</span>
                     </div>
                 </div>
@@ -438,11 +480,10 @@
 
             <!-- 02 · Milu & Co -->
             <a class="pcard reveal"
+               style="--card-accent: #34d399; --card-glow: rgba(52, 211, 153, 0.15);"
                href="https://milucandco.vercel.app/" target="_blank" rel="noopener"
                aria-label="Milu &amp; Co — ver proyecto">
                 <img class="pcard-img" src="img/screenshot_milu.jpg" alt="Milu & Co" loading="lazy">
-                <div class="pcard-overlay"></div>
-                <div class="pcard-line"></div>
                 <div class="pcard-body">
                     <div class="pcard-top">
                         <div class="pcard-top-left">
@@ -460,11 +501,10 @@
 
             <!-- 03 · Elianis Romero -->
             <a class="pcard reveal"
+               style="--card-accent: #34d399; --card-glow: rgba(52, 211, 153, 0.15);"
                href="https://elianisromero.vercel.app/" target="_blank" rel="noopener"
                aria-label="Elianis Romero — ver proyecto">
                 <img class="pcard-img" src="img/screenshot_elianis.jpg" alt="Elianis Romero" loading="lazy">
-                <div class="pcard-overlay"></div>
-                <div class="pcard-line"></div>
                 <div class="pcard-body">
                     <div class="pcard-top">
                         <div class="pcard-top-left">
@@ -482,11 +522,10 @@
 
             <!-- 04 · Fabián Zambrano -->
             <a class="pcard reveal"
+               style="--card-accent: #34d399; --card-glow: rgba(52, 211, 153, 0.15);"
                href="https://fabianzambrano.vercel.app/" target="_blank" rel="noopener"
                aria-label="Fabián Zambrano — ver proyecto">
                 <img class="pcard-img" src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" loading="lazy">
-                <div class="pcard-overlay"></div>
-                <div class="pcard-line"></div>
                 <div class="pcard-body">
                     <div class="pcard-top">
                         <div class="pcard-top-left">
@@ -502,17 +541,37 @@
                 </div>
             </a>
 
-            <!-- 05 · Retail Sales Analysis -->
+            <!-- 05 · Stencil -->
             <a class="pcard reveal"
-               href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" rel="noopener"
-               aria-label="Retail Sales Analysis — ver proyecto">
-                <img class="pcard-img" src="img/screenshot_retail.jpg" alt="Retail Sales Analysis" loading="lazy">
-                <div class="pcard-overlay"></div>
-                <div class="pcard-line"></div>
+               style="--card-accent: #34d399; --card-glow: rgba(52, 211, 153, 0.15);"
+               href="https://stencil-2.vercel.app/" target="_blank" rel="noopener"
+               aria-label="Stencil — ver proyecto">
+                <img class="pcard-img" src="img/screenshot_optica.jpg" alt="Stencil" loading="lazy">
                 <div class="pcard-body">
                     <div class="pcard-top">
                         <div class="pcard-top-left">
                             <span class="pcard-num">05</span>
+                            <span class="pcard-badge green">Web Corporativa</span>
+                        </div>
+                        <span class="pcard-arrow">↗</span>
+                    </div>
+                    <div class="pcard-bottom">
+                        <h2 class="pcard-name">Stencil</h2>
+                        <span class="pcard-tech">HTML5 · CSS3 · GSAP · Animación</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 06 · Retail Sales Analysis -->
+            <a class="pcard reveal"
+               style="--card-accent: #00f0ff; --card-glow: rgba(0, 240, 255, 0.15);"
+               href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" rel="noopener"
+               aria-label="Retail Sales Analysis — ver proyecto">
+                <img class="pcard-img" src="img/screenshot_retail.jpg" alt="Retail Sales Analysis" loading="lazy">
+                <div class="pcard-body">
+                    <div class="pcard-top">
+                        <div class="pcard-top-left">
+                            <span class="pcard-num">06</span>
                             <span class="pcard-badge gold">Caso de Estudio</span>
                         </div>
                         <span class="pcard-arrow">↗</span>
@@ -520,6 +579,28 @@
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Retail Sales Analysis</h2>
                         <span class="pcard-tech">Python · SQL · Power BI</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 07 · Contenido Comercial IA -->
+            <a class="pcard pcard-featured reveal"
+               style="--card-accent: #f59e0b; --card-glow: rgba(245, 158, 11, 0.15);"
+               href="index.html#contenido"
+               aria-label="Contenido Comercial IA — ver portafolio">
+                <img class="pcard-img" src="JGStudio/Contenido/TransformoIdeas.png" alt="Contenido Comercial IA" loading="lazy">
+                <div class="pcard-body">
+                    <div class="pcard-top">
+                        <div class="pcard-top-left">
+                            <span class="pcard-num">07</span>
+                            <span class="pcard-badge gold">IA &amp; Branding</span>
+                        </div>
+                        <span class="pcard-arrow">↗</span>
+                    </div>
+                    <div class="pcard-bottom">
+                        <h2 class="pcard-name">Contenido Comercial IA</h2>
+                        <p class="pcard-desc">Colección de anuncios, vídeos y branding desarrollados enteramente con herramientas de IA generativa de última generación, incluyendo composición visual avanzada, diseño de marca y continuidad narrativa.</p>
+                        <span class="pcard-tech">Midjourney · Flux · Runway · ComfyUI</span>
                     </div>
                 </div>
             </a>

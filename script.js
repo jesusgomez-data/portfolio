@@ -350,24 +350,6 @@ function main() {
         });
     });
 
-    /* Custom cursor */
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (dot && ring && matchMedia('(pointer:fine)').matches) {
-        let mx=0,my=0,rx=0,ry=0;
-        document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.cssText=`left:${mx}px;top:${my}px`; }, { passive:true });
-        (function cr() { rx+=(mx-rx)*.11; ry+=(my-ry)*.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(cr); })();
-        document.querySelectorAll('a,button,.svc-col').forEach(el => {
-            el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
-            el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
-        });
-        /* Project items: cursor shows "VER" */
-        document.querySelectorAll('.proj-item').forEach(el => {
-            el.addEventListener('mouseenter', () => { ring.classList.remove('is-hover'); ring.classList.add('is-view'); });
-            el.addEventListener('mouseleave', () => ring.classList.remove('is-view'));
-        });
-    }
-
     /* Magnetic buttons */
     if (window.gsap) {
         document.querySelectorAll('.magnetic').forEach(b => {

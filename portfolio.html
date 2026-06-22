@@ -40,7 +40,6 @@
         color:var(--cream);
         line-height:1.7;
         overflow-x:hidden;
-        cursor:none;
         -webkit-font-smoothing:antialiased;
     }
     h1,h2,h3,h4 { font-family:var(--f-d); font-weight:800; }
@@ -49,13 +48,7 @@
     img { display:block; max-width:100%; }
 
 
-    /* ── Cursor ─────────────────────── */
-    .cursor-dot { width:4px; height:4px; background:var(--accent); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:99999; transform:translate(-50%,-50%); }
-    .cursor-ring { width:22px; height:22px; border:1px solid rgba(214,48,49,.3); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:99998; transform:translate(-50%,-50%); transition:width .25s var(--ease),height .25s var(--ease),border-color .25s; }
-    .cursor-ring.is-hover { width:40px; height:40px; border-color:var(--accent); }
-    .cursor-ring.is-view { width:60px; height:60px; border-color:var(--accent); background:rgba(214,48,49,.06); }
-    .cursor-ring.is-view::after { content:'VER'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--f-m); font-size:.38rem; letter-spacing:2px; color:var(--accent); pointer-events:none; }
-    @media(max-width:768px){ body{cursor:auto;} .cursor-dot,.cursor-ring{display:none;} }
+
 
     /* ── Layout ─────────────────────── */
     .wrap { max-width:var(--w); margin:0 auto; padding:0 48px; }
@@ -70,7 +63,7 @@
         background:var(--accent); color:#fff;
         font-family:var(--f-b); font-weight:600; font-size:.85rem; letter-spacing:.02em;
         padding:14px 28px; border:1px solid var(--accent);
-        border-radius:2px; cursor:none; transition:background .2s,border-color .2s;
+        border-radius:2px; cursor:pointer; transition:background .2s,border-color .2s;
         will-change:transform;
     }
     .btn-fill:hover { background:#b82020; border-color:#b82020; }
@@ -79,7 +72,7 @@
         background:transparent; color:var(--cream);
         font-family:var(--f-b); font-weight:500; font-size:.85rem; letter-spacing:.02em;
         padding:14px 28px; border:1px solid rgba(255,255,255,.12);
-        border-radius:2px; cursor:none; transition:border-color .2s,color .2s;
+        border-radius:2px; cursor:pointer; transition:border-color .2s,color .2s;
         will-change:transform;
     }
     .btn-outline:hover { border-color:rgba(255,255,255,.3); }
@@ -89,7 +82,7 @@
     .navbar.scrolled { background:rgba(8,8,8,.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
     .navbar.nav-hidden { transform:translateY(-100%); }
     .nav-inner { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; max-width:var(--w); margin:0 auto; }
-    .nav-logo { display:flex; align-items:center; gap:12px; cursor:none; }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
     .nav-logo-img { height:34px; width:auto; display:block; transition:opacity .2s; }
     .nav-logo:hover .nav-logo-img { opacity:.85; }
     .nav-logo-light { display:none; }
@@ -100,7 +93,7 @@
     .nav-logo-name em { color:var(--accent); font-style:normal; }
     .nav-logo-tag { display:block; font-family:var(--f-m); font-size:.42rem; letter-spacing:4px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
     .nav-links { display:flex; gap:32px; align-items:center; }
-    .nav-links a { font-size:.82rem; color:var(--gray); transition:color .2s; cursor:none; }
+    .nav-links a { font-size:.82rem; color:var(--gray); transition:color .2s; }
     .nav-links a:hover { color:var(--cream); }
     .nav-cta { font-family:var(--f-m); font-size:.56rem; letter-spacing:2px; text-transform:uppercase; color:var(--cream) !important; border:1px solid rgba(255,255,255,.1); padding:8px 16px; transition:border-color .2s,background .2s !important; }
     .nav-cta:hover { border-color:var(--accent) !important; background:rgba(214,48,49,.07); }
@@ -125,7 +118,7 @@
     .ph-back {
         display:inline-flex; align-items:center; gap:8px;
         font-family:var(--f-m); font-size:.52rem; letter-spacing:3px; text-transform:uppercase;
-        color:var(--muted); cursor:none; margin-bottom:48px;
+        color:var(--muted); margin-bottom:48px;
         transition:color .2s;
     }
     .ph-back:hover { color:var(--cream); }
@@ -178,7 +171,7 @@
     /* Card base */
     .pcard {
         position: relative; overflow: hidden; display: block;
-        cursor: none; background: #0e0e0e;
+        cursor: pointer; background: #0e0e0e;
         text-decoration: none;
         border-radius: 18px;
         border: 1px solid rgba(255,255,255,.08);
@@ -366,7 +359,7 @@
     .footer-brand em { color:var(--accent); font-style:normal; }
     .footer-copy { font-family:var(--f-m); font-size:.48rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
     .footer-links { display:flex; gap:14px; }
-    .footer-links a { font-size:1rem; color:var(--muted); transition:color .2s; cursor:none; }
+    .footer-links a { font-size:1rem; color:var(--muted); transition:color .2s; }
     .footer-links a:hover { color:var(--accent); }
 
     /* ── Reveal animations ───────────── */
@@ -414,8 +407,6 @@
 </head>
 <body>
 
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
 <div class="scroll-progress" id="scroll-progress"></div>
 
 <!-- Nav -->
@@ -615,7 +606,7 @@
         <span class="folio-cta-label">¿El tuyo es el siguiente?</span>
         <h2 class="folio-cta-title">¿Activamos el tuyo?</h2>
         <p class="folio-cta-sub">Cuéntame tu proyecto y te respondo en 24h</p>
-        <a href="index.html#contact" class="btn-fill" style="cursor:none;">Hablemos →</a>
+        <a href="index.html#contact" class="btn-fill">Hablemos →</a>
     </div>
 </section>
 
@@ -643,26 +634,7 @@
 (function() {
     'use strict';
 
-    /* ── Custom cursor ─────────────── */
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function loop() {
-        rx += (mx - rx) * .12;
-        ry += (my - ry) * .12;
-        if (dot)  { dot.style.left  = mx + 'px'; dot.style.top  = my + 'px'; }
-        if (ring) { ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; }
-        requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll('a,button').forEach(el => {
-        el.addEventListener('mouseenter', () => ring && ring.classList.add('is-hover'));
-        el.addEventListener('mouseleave', () => ring && ring.classList.remove('is-hover'));
-    });
-    document.querySelectorAll('.pcard').forEach(el => {
-        el.addEventListener('mouseenter', () => { if(ring){ ring.classList.add('is-view'); ring.classList.remove('is-hover'); } });
-        el.addEventListener('mouseleave', () => ring && ring.classList.remove('is-view'));
-    });
+
 
     /* ── Scroll progress ───────────── */
     const bar = document.getElementById('scroll-progress');

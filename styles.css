@@ -500,12 +500,79 @@ img { display:block; max-width:100%; }
 }
 
 /* ── STATS STRIP ─────────────────── */
-.stats-strip { display:flex; align-items:center; justify-content:center; gap:8px 0; padding:28px 24px; background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); flex-wrap:wrap; }
-.stat-block { display:flex; flex-direction:column; align-items:center; gap:4px; padding:0 32px; }
-.stat-n { font-family:var(--f-d); font-size:1.4rem; font-weight:800; letter-spacing:-1px; color:var(--cream); line-height:1; }
-.stat-l { font-family:var(--f-m); font-size:.5rem; font-weight:500; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); white-space:nowrap; }
-.stats-divider { width:1px; height:30px; background:var(--border); flex-shrink:0; }
-@media(max-width:640px){ .stats-strip{ justify-content:flex-start; overflow-x:auto; } .stats-divider{ display:none; } .stat-block{ padding:0 18px; } }
+.stats-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: calc(var(--w) - 96px);
+    margin: -50px auto 60px;
+    padding: 28px 48px;
+    background: rgba(15, 15, 15, 0.65);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+    transition: transform 0.4s var(--ease), border-color 0.4s;
+}
+.stats-strip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(214, 48, 49, 0.25);
+}
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    transition: transform 0.3s;
+}
+.stat-block:hover {
+    transform: scale(1.05);
+}
+.stat-n {
+    font-family: var(--f-d);
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+.stat-l {
+    font-family: var(--f-m);
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gray);
+    white-space: nowrap;
+}
+.stats-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    flex-shrink: 0;
+}
+@media(max-width:900px) {
+    .stats-strip {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        padding: 20px 16px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    .stats-strip::-webkit-scrollbar { display: none; }
+    .stats-divider { display: none; }
+    .stat-block { padding: 0 18px; }
+}
 
 /* ── CAPACIDADES (Lo que construimos) ── */
 .capabilities-section { padding:100px 0; border-top:1px solid var(--border); }
@@ -1057,8 +1124,19 @@ img { display:block; max-width:100%; }
 [data-theme="light"] .proj-more-btn:hover { border-color:var(--accent); color:var(--accent); background:rgba(214,48,49,.04); }
 
 /* Stats strip */
-[data-theme="light"] .stats-strip { border-color:rgba(0,0,0,.1); }
-[data-theme="light"] .stat-n { color:var(--cream); }
+[data-theme="light"] .stats-strip {
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .stats-strip:hover {
+    border-color: rgba(214, 48, 49, 0.3);
+}
+[data-theme="light"] .stat-n {
+    background: linear-gradient(135deg, var(--cream) 40%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 [data-theme="light"] .stats-divider { background:rgba(0,0,0,.1); }
 
 /* Capacidades */
@@ -1653,20 +1731,21 @@ img { display:block; max-width:100%; }
 }
 .results-card.orbit-node {
     position: absolute;
-    width: clamp(205px, 20vw, 250px);
-    min-height: 205px;
-    border-radius: 999px;
-    padding: 30px 28px;
+    width: clamp(260px, 22vw, 300px);
+    min-height: 220px;
+    border-radius: 16px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     background:
         radial-gradient(circle at 28% 20%, rgba(214,48,49,.16), transparent 36%),
         rgba(14,14,14,.82);
-    border: 1px solid rgba(240,236,229,.11);
+    border: 1px solid rgba(255,255,255,.08);
     box-shadow: 0 18px 50px rgba(0,0,0,.34);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     transition: transform .45s var(--ease), border-color .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
     z-index: 4;
 }
@@ -1718,7 +1797,8 @@ img { display:block; max-width:100%; }
     color: var(--muted);
     border-top: 1px solid var(--border);
     padding-top: 12px;
-    margin-top: 14px;
+    margin-top: auto;
+    width: 100%;
     letter-spacing: .1px;
 }
 [data-theme="light"] .result-proof { color: rgba(0,0,0,.4); border-top-color: rgba(0,0,0,.08); }
@@ -1738,7 +1818,7 @@ img { display:block; max-width:100%; }
     font-size: .78rem;
     color: var(--gray);
     line-height: 1.6;
-    max-width: 170px;
+    max-width: 100%;
 }
 .rc-body,
 .rc-line { display: contents; }
@@ -1931,6 +2011,21 @@ img { display:block; max-width:100%; }
     color: var(--accent);
     line-height: 1;
     letter-spacing: -1px;
+}
+.pc-scope-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(214, 48, 49, 0.08);
+    border: 1px solid rgba(214, 48, 49, 0.25);
+    color: var(--accent);
+    font-family: var(--f-m);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
 }
 .pc-desc {
     font-size: 0.8rem;
@@ -2307,6 +2402,11 @@ img { display:block; max-width:100%; }
 [data-theme="light"] .btn-price:hover {
     border-color: var(--accent);
     background: rgba(214,48,49,0.05);
+}
+[data-theme="light"] .pc-scope-tag {
+    background: rgba(214, 48, 49, 0.05);
+    border-color: rgba(214, 48, 49, 0.2);
+    color: var(--accent);
 }
 [data-theme="light"] .btn-contact-cta {
     border-color: rgba(0,0,0,0.12);

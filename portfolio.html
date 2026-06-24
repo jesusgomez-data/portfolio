@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio — JGStudio · España</title>
     <meta name="description" content="Portafolio completo de JGStudio. Proyectos reales en producción — diseño, desarrollo web e IA.">
+    <meta property="og:title" content="Portafolio — JGStudio · España">
+    <meta property="og:description" content="Portafolio completo de JGStudio. Proyectos reales en producción — diseño, desarrollo web e IA.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jg-studio.vercel.app/portfolio.html">
+    <meta property="og:image" content="https://jg-studio.vercel.app/img/screenshot_rivalfit.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portafolio — JGStudio · España">
+    <meta name="twitter:description" content="Portafolio completo de JGStudio. Proyectos reales en producción — diseño, desarrollo web e IA.">
+    <meta name="twitter:image" content="https://jg-studio.vercel.app/img/screenshot_rivalfit.jpg">
     <link rel="icon" type="image/svg+xml" href="img/logo.svg">
     <link rel="preconnect" href="https://api.fontshare.com">
     <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -310,6 +323,38 @@
         margin-top: 2px;
     }
 
+    /* Live indicator and Stats */
+    .project-live-indicator { display:inline-flex; align-items:center; gap:6px; font-size:.66rem; font-weight:600; color:#34d399; margin-top:8px; }
+    .live-dot { width:6px; height:6px; border-radius:50%; background:#34d399; animation:pulse-green 2s infinite; }
+    @keyframes pulse-green { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.4; transform:scale(.8); } }
+
+    .prc-stats {
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-top:12px;
+        margin-bottom:4px;
+    }
+    .prc-stats span {
+        display:inline-flex;
+        align-items:center;
+        gap:7px;
+        padding:7px 10px;
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:999px;
+        background:rgba(255,255,255,.045);
+        backdrop-filter:blur(10px);
+        font-family:var(--f-m);
+        font-size:.48rem;
+        letter-spacing:1.4px;
+        text-transform:uppercase;
+        color:rgba(240,236,229,.44);
+    }
+    .prc-stats strong {
+        color:var(--cream);
+        font-weight:800;
+    }
+
     /* Responsive */
     @media(max-width:900px){
         .pcard-grid {
@@ -339,14 +384,21 @@
     }
     .folio-cta-title {
         font-family:var(--f-d); font-weight:800;
-        font-size:clamp(2.4rem,5.5vw,6rem);
+        font-size:clamp(2.4rem,5.5vw,5.2rem);
         letter-spacing:-2.5px; line-height:.95;
         color:var(--cream); margin-bottom:20px;
     }
+    .folio-cta-title em { color:var(--accent); font-style:normal; }
     .folio-cta-sub {
         font-size:clamp(.88rem,1.2vw,1rem);
         color:var(--gray); margin-bottom:48px; line-height:1.6;
+        max-width: 600px; margin-left: auto; margin-right: auto;
     }
+    .contact-trust-row { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
+    .contact-trust-row span { font-size:.74rem; font-weight:500; color:var(--gray); letter-spacing:.2px; display:inline-flex; align-items:center; gap:6px; }
+    .contact-trust-row i { color:var(--accent); font-size:.68rem; }
+    [data-theme="light"] .contact-trust-row { border-top-color:rgba(0,0,0,.1); }
+    [data-theme="light"] .contact-trust-row span { color:rgba(0,0,0,.5); }
 
     /* ── FOOTER ──────────────────────── */
     .site-footer { border-top:1px solid var(--border); padding:36px 0; }
@@ -394,6 +446,14 @@
     [data-theme="light"] .pcard { box-shadow:0 2px 12px rgba(0,0,0,.06); }
     [data-theme="light"] .pcard:hover { box-shadow:0 8px 32px rgba(0,0,0,.12); }
     [data-theme="light"] .pcard-img img { filter:brightness(.55); }
+    [data-theme="light"] .prc-stats span {
+        border-color:rgba(0,0,0,.08);
+        background:rgba(0,0,0,.03);
+        color:rgba(0,0,0,.5);
+    }
+    [data-theme="light"] .prc-stats strong {
+        color: #0d0d0d;
+    }
     [data-theme="light"] .pcard::before { background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.04) 100%); }
     [data-theme="light"] .pg-cta-section { background:#180505; }
     [data-theme="light"] .pg-cta-title { color:#fff; }
@@ -457,13 +517,19 @@
                     <div class="pcard-top">
                         <div class="pcard-top-left">
                             <span class="pcard-num">01</span>
-                            <span class="pcard-badge red">En Producción</span>
+                            <span class="pcard-badge red">SaaS Live</span>
                         </div>
                         <span class="pcard-arrow">↗</span>
                     </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · rivalfit.app</span></div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Rival Fit</h2>
                         <p class="pcard-desc">Plataforma SaaS para gimnasios, boxes CrossFit y centros deportivos. Gestión de atletas, reservas, check-in, WODs, comunidad, coach de IA y sistema de pagos integrado con Stripe.</p>
+                        <div class="prc-stats" aria-label="Datos clave de Rival Fit">
+                            <span><strong>SaaS</strong> Producto real</span>
+                            <span><strong>IA</strong> Coach integrado</span>
+                            <span><strong>Stripe</strong> Pagos</span>
+                        </div>
                         <span class="pcard-tech">Next.js 15 · Supabase · TypeScript · IA</span>
                     </div>
                 </div>
@@ -483,8 +549,13 @@
                         </div>
                         <span class="pcard-arrow">↗</span>
                     </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · milucandco.vercel.app</span></div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Milu & Co</h2>
+                        <div class="prc-stats" aria-label="Datos clave de Milu & Co">
+                            <span><strong>Tienda</strong> Live en 12 días</span>
+                            <span><strong>Ventas</strong> Primeras 48h</span>
+                        </div>
                         <span class="pcard-tech">Next.js · Tailwind CSS</span>
                     </div>
                 </div>
@@ -504,8 +575,13 @@
                         </div>
                         <span class="pcard-arrow">↗</span>
                     </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · elianisromero.vercel.app</span></div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Elianis Romero</h2>
+                        <div class="prc-stats" aria-label="Datos clave de Elianis Romero">
+                            <span><strong>IA</strong> Chatbot 24/7</span>
+                            <span><strong>Ahorro</strong> 3h/día de gestión</span>
+                        </div>
                         <span class="pcard-tech">Next.js · OpenAI API</span>
                     </div>
                 </div>
@@ -525,8 +601,13 @@
                         </div>
                         <span class="pcard-arrow">↗</span>
                     </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · fabianzambrano.vercel.app</span></div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Fabián Zambrano</h2>
+                        <div class="prc-stats" aria-label="Datos clave de Fabián Zambrano">
+                            <span><strong>Salud</strong> Web Profesional</span>
+                            <span><strong>Reservas</strong> Aumento directo</span>
+                        </div>
                         <span class="pcard-tech">Next.js · Tailwind CSS</span>
                     </div>
                 </div>
@@ -546,8 +627,13 @@
                         </div>
                         <span class="pcard-arrow">↗</span>
                     </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · stencil-2.vercel.app</span></div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Stencil</h2>
+                        <div class="prc-stats" aria-label="Datos clave de Stencil">
+                            <span><strong>Retail</strong> Gafas de Sol</span>
+                            <span><strong>UX</strong> GSAP Animaciones</span>
+                        </div>
                         <span class="pcard-tech">HTML5 · CSS3 · GSAP · Animación</span>
                     </div>
                 </div>
@@ -569,6 +655,10 @@
                     </div>
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Retail Sales Analysis</h2>
+                        <div class="prc-stats" aria-label="Datos clave de Retail Sales Analysis">
+                            <span><strong>Datos</strong> SQL &amp; Python</span>
+                            <span><strong>BI</strong> Power BI Dashboard</span>
+                        </div>
                         <span class="pcard-tech">Python · SQL · Power BI</span>
                     </div>
                 </div>
@@ -591,6 +681,10 @@
                     <div class="pcard-bottom">
                         <h2 class="pcard-name">Contenido Comercial IA</h2>
                         <p class="pcard-desc">Colección de anuncios, vídeos y branding desarrollados enteramente con herramientas de IA generativa de última generación, incluyendo composición visual avanzada, diseño de marca y continuidad narrativa.</p>
+                        <div class="prc-stats" aria-label="Datos clave de Contenido Comercial IA">
+                            <span><strong>Brand</strong> Director IA</span>
+                            <span><strong>Generación</strong> Midjourney &amp; Kling</span>
+                        </div>
                         <span class="pcard-tech">Midjourney · Flux · Runway · ComfyUI</span>
                     </div>
                 </div>
@@ -604,9 +698,16 @@
 <section class="folio-cta reveal">
     <div class="wrap">
         <span class="folio-cta-label">¿El tuyo es el siguiente?</span>
-        <h2 class="folio-cta-title">¿Activamos el tuyo?</h2>
-        <p class="folio-cta-sub">Cuéntame tu proyecto y te respondo en 24h</p>
-        <a href="index.html#contact" class="btn-fill">Hablemos →</a>
+        <h2 class="folio-cta-title">Tu próximo proyecto<br><em>merece más que una plantilla.</em></h2>
+        <p class="folio-cta-sub">Cuéntame qué necesitas. En menos de 24 horas tienes una propuesta real — con scope, precio y timing exactos. Sin compromiso, sin fórmulas genéricas.</p>
+        <a href="index.html#contact" class="btn-fill">Solicitar propuesta →</a>
+        
+        <div class="contact-trust-row" data-reveal>
+            <span><i class="fas fa-check"></i> Respuesta en menos de 24h</span>
+            <span><i class="fas fa-check"></i> Código 100% propio</span>
+            <span><i class="fas fa-check"></i> Sin compromiso</span>
+            <span><i class="fas fa-check"></i> Propuesta a medida</span>
+        </div>
     </div>
 </section>
 

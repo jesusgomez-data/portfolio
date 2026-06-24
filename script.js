@@ -184,7 +184,25 @@ function main() {
 
         /* Hero entrance */
         const heroTL = gsap.timeline({ defaults:{ ease:'power4.out' } });
+
+        // Revelar foto (deslizamiento de clip-path y escala inversa suave)
+        if (document.querySelector('.hero-photo-inner')) {
+            heroTL.fromTo('.hero-photo-inner', 
+                { clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' },
+                { clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)', duration: 1.5, ease: 'power4.out' },
+                .2
+            );
+            heroTL.fromTo('.hero-photo img',
+                { scale: 1.2 },
+                { scale: 1, duration: 1.8, ease: 'power3.out' },
+                .2
+            );
+        }
+
         heroTL.to('#hero-kicker', { opacity:1, y:0, duration:.7 }, .3);
+        if (document.querySelector('.hero-proof-strip')) {
+            heroTL.fromTo('.hero-proof-strip', { opacity:0, y:10 }, { opacity:1, y:0, duration:.7 }, .38);
+        }
         if (window.SplitType) {
             const h1 = document.getElementById('hero-mega');
             if (h1) {
@@ -193,7 +211,26 @@ function main() {
                 heroTL.to(sp.words, { y:0, opacity:1, stagger:.05, duration:.85, ease:'power3.out' }, .45);
             }
         }
+
+        // Logo flotante con sutil efecto rebote (escala)
+        if (document.querySelector('.hero-logo-float')) {
+            heroTL.fromTo('.hero-logo-float',
+                { opacity: 0, scale: 0.5 },
+                { opacity: 1, scale: 1, duration: 1.1, ease: 'back.out(1.5)' },
+                .65
+            );
+        }
+
         heroTL.to('.hero-bottom', { opacity:1, y:0, duration:.8 }, .9);
+
+        // Stagger premium de los indicadores de servicios
+        if (document.querySelector('.hero-indicator-item')) {
+            heroTL.fromTo('.hero-indicator-item',
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, stagger: 0.08, duration: 0.7, ease: 'power2.out' },
+                1.05
+            );
+        }
 
         /* [data-reveal-l] — slide from left */
         gsap.utils.toArray('[data-reveal-l]').forEach(el =>
@@ -252,12 +289,15 @@ function main() {
         }
 
         /* Hero photo parallax */
-        if (document.querySelector('.hero-photo')) {
-            gsap.to('.hero-photo img', {
-                yPercent: 15,
-                ease: 'none',
-                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
-            });
+        if (document.querySelector('.hero-photo-inner')) {
+            gsap.fromTo('.hero-photo img', 
+                { yPercent: -8 },
+                {
+                    yPercent: 8,
+                    ease: 'none',
+                    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.2 }
+                }
+            );
         }
 
         /* IA cards stagger */

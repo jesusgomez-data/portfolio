@@ -113,7 +113,7 @@ img { display:block; max-width:100%; }
 }
 
 /* ── HERO ────────────────────────── */
-.hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; }
+.hero { position:relative; min-height:9vh; display:flex; align-items:center; overflow:hidden; }
 .hero::before {
     content:''; position:absolute; inset:0;
     background:linear-gradient(135deg, rgba(214,48,49,.04) 0%, transparent 50%, rgba(214,48,49,.02) 100%);
@@ -564,14 +564,24 @@ img { display:block; max-width:100%; }
         border-radius: 0;
         border-left: none;
         border-right: none;
-        padding: 20px 16px;
-        justify-content: flex-start;
-        overflow-x: auto;
-        scrollbar-width: none;
+        padding: 16px 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px 0;
+        overflow-x: visible;
     }
     .stats-strip::-webkit-scrollbar { display: none; }
     .stats-divider { display: none; }
-    .stat-block { padding: 0 18px; }
+    .stat-block { padding: 6px 12px; }
+    .stat-n { font-size: 1.3rem; letter-spacing: -1px; }
+    .stat-l { font-size: 0.4rem; letter-spacing: 1.2px; }
+}
+@media(max-width:420px) {
+    .stats-strip { padding: 12px 8px; }
+    .stat-block { padding: 4px 8px; }
+    .stat-n { font-size: 1.1rem; }
+    .stat-l { font-size: 0.36rem; letter-spacing: 1px; }
 }
 
 /* ── CAPACIDADES (Lo que construimos) ── */

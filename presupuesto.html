@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solicitar Presupuesto — JGStudio</title>
+<meta name="description" content="Cuéntanos sobre tu proyecto y recibe una propuesta a medida en menos de 24h.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root{
+    --bg:#080808; --surface:#0f0f0f; --border:rgba(255,255,255,.08);
+    --accent:#D63031; --cream:#F0ECE5; --gray:#8a8a8a; --muted:#4a4a4a;
+    --f-d:'Cabinet Grotesk','DM Sans',sans-serif; --f-b:'Satoshi','DM Sans',sans-serif; --f-m:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+    font-family:var(--f-b); background:var(--bg); color:var(--cream);
+    min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column;
+}
+img{ display:block; max-width:100%; }
+button{ font-family:inherit; cursor:pointer; }
+a{ color:inherit; text-decoration:none; }
+
+/* Background ambient glow */
+body::before{
+    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at 15% 15%, rgba(214,48,49,.08) 0%, transparent 45%),
+               radial-gradient(circle at 85% 85%, rgba(214,48,49,.05) 0%, transparent 45%);
+}
+
+/* ── Header ───────────────────────── */
+.qf-header{ position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:24px 5vw; }
+.qf-logo{ display:flex; align-items:center; gap:10px; }
+.qf-logo img{ height:32px; width:auto; }
+.qf-back{ font-family:var(--f-m); font-size:.62rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); display:flex; align-items:center; gap:6px; transition:color .2s; }
+.qf-back:hover{ color:var(--cream); }
+
+/* Progress */
+.qf-progress-wrap{ position:relative; z-index:2; padding:0 5vw 8px; }
+.qf-progress-label{ font-family:var(--f-m); font-size:.56rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between; }
+.qf-progress-label span:last-child{ color:var(--accent); }
+.qf-progress-bar{ height:2px; background:var(--border); border-radius:2px; overflow:hidden; }
+.qf-progress-fill{ height:100%; width:16.66%; background:var(--accent); border-radius:2px; transition:width .5s var(--ease); }
+
+/* ── Main wizard area ─────────────── */
+.qf-main{ position:relative; z-index:2; flex:1; display:flex; align-items:center; justify-content:center; padding:40px 5vw 60px; }
+.qf-stage{ width:100%; max-width:720px; }
+
+.qf-step{ display:none; }
+.qf-step.active{ display:block; animation:qfIn .5s var(--ease); }
+@keyframes qfIn{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+
+.qf-eyebrow{ font-family:var(--f-m); font-size:.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:block; }
+.qf-question{ font-family:var(--f-d); font-weight:800; font-size:clamp(1.6rem,3.6vw,2.6rem); letter-spacing:-1px; line-height:1.15; margin-bottom:10px; }
+.qf-hint{ font-size:.85rem; color:var(--gray); margin-bottom:36px; max-width:520px; }
+
+/* Option cards (single/multi select) */
+.qf-options{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.qf-options.qf-options--col{ grid-template-columns:1fr; }
+.qf-opt{
+    background:var(--surface); border:1px solid var(--border); border-radius:8px;
+    padding:20px 22px; display:flex; align-items:center; gap:14px; text-align:left;
+    transition:border-color .2s, background .2s, transform .2s; color:var(--cream); width:100%;
+}
+.qf-opt:hover{ border-color:rgba(255,255,255,.2); transform:translateY(-2px); }
+.qf-opt.selected{ border-color:var(--accent); background:rgba(214,48,49,.08); }
+.qf-opt-icon{ width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.04); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.95rem; color:var(--gray); transition:color .2s, border-color .2s, background .2s; }
+.qf-opt.selected .qf-opt-icon{ color:var(--accent); border-color:rgba(214,48,49,.3); background:rgba(214,48,49,.12); }
+.qf-opt-body{ display:flex; flex-direction:column; gap:2px; }
+.qf-opt-title{ font-weight:700; font-size:.88rem; }
+.qf-opt-sub{ font-size:.7rem; color:var(--gray); }
+.qf-opt-check{ margin-left:auto; width:18px; height:18px; border-radius:50%; border:1.5px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:border-color .2s, background .2s; }
+.qf-opt.selected .qf-opt-check{ border-color:var(--accent); background:var(--accent); }
+.qf-opt.selected .qf-opt-check::after{ content:'✓'; font-size:.6rem; color:#fff; }
+
+/* Chips (multi-select extras) */
+.qf-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+.qf-chip{ font-size:.74rem; padding:9px 16px; border:1px solid var(--border); border-radius:999px; color:var(--gray); transition:all .2s; background:var(--surface); }
+.qf-chip:hover{ border-color:rgba(255,255,255,.25); color:var(--cream); }
+.qf-chip.selected{ border-color:var(--accent); background:rgba(214,48,49,.1); color:var(--cream); }
+
+/* Form fields */
+.qf-field{ margin-bottom:18px; }
+.qf-field label{ display:block; font-family:var(--f-m); font-size:.58rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-bottom:8px; }
+.qf-field input, .qf-field textarea{
+    width:100%; background:var(--surface); border:1px solid var(--border); border-radius:6px;
+    padding:14px 16px; color:var(--cream); font-family:var(--f-b); font-size:.9rem; transition:border-color .2s;
+}
+.qf-field input:focus, .qf-field textarea:focus{ outline:none; border-color:var(--accent); }
+.qf-field textarea{ resize:vertical; min-height:120px; }
+.qf-field-pair{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.qf-optional{ color:var(--muted); font-weight:400; text-transform:none; letter-spacing:0; }
+
+/* Nav buttons */
+.qf-nav{ display:flex; align-items:center; justify-content:space-between; margin-top:40px; gap:16px; }
+.qf-btn-back{ font-family:var(--f-m); font-size:.62rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); background:none; border:none; display:flex; align-items:center; gap:6px; transition:color .2s; }
+.qf-btn-back:hover{ color:var(--cream); }
+.qf-btn-back:disabled{ opacity:0; pointer-events:none; }
+.qf-btn-next{
+    display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff;
+    padding:14px 30px; border:1px solid var(--accent); border-radius:6px; font-weight:700; font-size:.84rem;
+    transition:background .2s, opacity .2s; margin-left:auto;
+}
+.qf-btn-next:hover{ background:#b82020; }
+.qf-btn-next:disabled{ opacity:.35; pointer-events:none; }
+
+/* Summary (step 6) */
+.qf-summary{ background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:28px; margin-bottom:8px; }
+.qf-summary-row{ display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+.qf-summary-row:last-child{ border-bottom:none; }
+.qf-summary-label{ font-family:var(--f-m); font-size:.56rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); flex-shrink:0; padding-top:2px; }
+.qf-summary-value{ font-size:.84rem; color:var(--cream); text-align:right; font-weight:500; max-width:380px; }
+
+/* Success screen */
+.qf-success{ text-align:center; padding:20px 0; }
+.qf-success-icon{ width:64px; height:64px; border-radius:50%; background:rgba(52,211,153,.1); border:1.5px solid rgba(52,211,153,.4); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; font-size:1.6rem; color:#34d399; animation:qfPop .5s var(--ease); }
+@keyframes qfPop{ from{ transform:scale(0); } to{ transform:scale(1); } }
+.qf-success h2{ font-family:var(--f-d); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.4rem); letter-spacing:-1px; margin-bottom:14px; }
+.qf-success p{ font-size:.88rem; color:var(--gray); max-width:440px; margin:0 auto 32px; line-height:1.7; }
+.qf-success-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.qf-success-actions a{ display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:6px; font-size:.82rem; font-weight:700; }
+.qf-success-actions .qf-wa{ background:#25D366; color:#fff; }
+.qf-success-actions .qf-home{ border:1px solid var(--border); color:var(--cream); }
+
+/* Step dots (mobile-friendly alt to progress) */
+.qf-error{ font-size:.72rem; color:var(--accent); margin-top:10px; display:none; }
+.qf-error.show{ display:block; }
+
+@media(max-width:640px){
+    .qf-options{ grid-template-columns:1fr; }
+    .qf-field-pair{ grid-template-columns:1fr; }
+    .qf-summary-row{ flex-direction:column; gap:4px; }
+    .qf-summary-value{ text-align:left; max-width:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="qf-header">
+    <a href="index.html" class="qf-logo"><img src="img/logo_jgs_oficial.png" alt="JGStudio"></a>
+    <a href="index.html" class="qf-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+</header>
+
+<div class="qf-progress-wrap">
+    <div class="qf-progress-label"><span>Solicitud de presupuesto</span><span id="qf-step-label">Paso 1 de 6</span></div>
+    <div class="qf-progress-bar"><div class="qf-progress-fill" id="qf-progress-fill"></div></div>
+</div>
+
+<main class="qf-main">
+    <div class="qf-stage">
+
+        <form id="qf-form" action="https://formspree.io/f/mqakvjbe" method="POST">
+            <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto — JGStudio">
+            <input type="hidden" name="tipo_proyecto" id="f-tipo">
+            <input type="hidden" name="presupuesto" id="f-presupuesto">
+            <input type="hidden" name="plazo" id="f-plazo">
+            <input type="hidden" name="extras" id="f-extras">
+            <input type="hidden" name="region" id="f-region">
+
+            <!-- STEP 1 — Tipo de proyecto -->
+            <div class="qf-step active" data-step="1">
+                <span class="qf-eyebrow">01 · Proyecto</span>
+                <h2 class="qf-question">¿Qué necesitas construir?</h2>
+                <p class="qf-hint">Elige la opción que más se acerque. Lo ajustamos juntos después.</p>
+                <div class="qf-options" id="opt-tipo">
+                    <button type="button" class="qf-opt" data-value="Landing Page">
+                        <span class="qf-opt-icon"><i class="fas fa-bolt"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">Landing Page</span><span class="qf-opt-sub">Captación rápida</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                    <button type="button" class="qf-opt" data-value="Web Corporativa">
+                        <span class="qf-opt-icon"><i class="fas fa-globe"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">Web Corporativa</span><span class="qf-opt-sub">Autoridad de marca</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                    <button type="button" class="qf-opt" data-value="Tienda Online">
+                        <span class="qf-opt-icon"><i class="fas fa-shopping-bag"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">Tienda Online</span><span class="qf-opt-sub">Vender productos</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                    <button type="button" class="qf-opt" data-value="App / SaaS">
+                        <span class="qf-opt-icon"><i class="fas fa-layer-group"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">App / SaaS</span><span class="qf-opt-sub">Plataforma a medida</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                    <button type="button" class="qf-opt" data-value="Automatización & IA">
+                        <span class="qf-opt-icon"><i class="fas fa-robot"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">Automatización &amp; IA</span><span class="qf-opt-sub">Ahorrar tiempo</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                    <button type="button" class="qf-opt" data-value="Branding & Contenido">
+                        <span class="qf-opt-icon"><i class="fas fa-palette"></i></span>
+                        <span class="qf-opt-body"><span class="qf-opt-title">Branding &amp; Contenido</span><span class="qf-opt-sub">Identidad visual</span></span>
+                        <span class="qf-opt-check"></span>
+                    </button>
+                </div>
+                <p class="qf-error" id="err-1">Selecciona una opción para continuar.</p>
+            </div>
+
+            <!-- STEP 2 — Presupuesto -->
+            <div class="qf-step" data-step="2">
+                <span class="qf-eyebrow">02 · Presupuesto</span>
+                <h2 class="qf-question">¿Cuál es tu presupuesto aproximado?</h2>
+                <p class="qf-hint">Sin compromiso — nos ayuda a proponerte la mejor solución desde el primer mensaje.</p>
+                <div class="qf-options qf-options--col" id="opt-presupuesto">
+                    <button type="button" class="qf-opt" data-value="Menos de 500€"><span class="qf-opt-body"><span class="qf-opt-title">Menos de 500€</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="500€ – 1.500€"><span class="qf-opt-body"><span class="qf-opt-title">500€ – 1.500€</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="1.500€ – 3.000€"><span class="qf-opt-body"><span class="qf-opt-title">1.500€ – 3.000€</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="3.000€ – 6.000€"><span class="qf-opt-body"><span class="qf-opt-title">3.000€ – 6.000€</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="Más de 6.000€"><span class="qf-opt-body"><span class="qf-opt-title">Más de 6.000€</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="Prefiero que me orientes"><span class="qf-opt-body"><span class="qf-opt-title">Prefiero que me orientes</span></span><span class="qf-opt-check"></span></button>
+                </div>
+                <p class="qf-error" id="err-2">Selecciona una opción para continuar.</p>
+            </div>
+
+            <!-- STEP 3 — Plazo -->
+            <div class="qf-step" data-step="3">
+                <span class="qf-eyebrow">03 · Plazo</span>
+                <h2 class="qf-question">¿Para cuándo lo necesitas?</h2>
+                <p class="qf-hint">Así priorizamos correctamente tu propuesta.</p>
+                <div class="qf-options qf-options--col" id="opt-plazo">
+                    <button type="button" class="qf-opt" data-value="Lo antes posible"><span class="qf-opt-body"><span class="qf-opt-title">Lo antes posible</span><span class="qf-opt-sub">Es urgente</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="En 2-4 semanas"><span class="qf-opt-body"><span class="qf-opt-title">En 2-4 semanas</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="En 1-3 meses"><span class="qf-opt-body"><span class="qf-opt-title">En 1-3 meses</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="Sin fecha fija, estoy explorando"><span class="qf-opt-body"><span class="qf-opt-title">Sin fecha fija</span><span class="qf-opt-sub">Estoy explorando opciones</span></span><span class="qf-opt-check"></span></button>
+                </div>
+                <p class="qf-error" id="err-3">Selecciona una opción para continuar.</p>
+            </div>
+
+            <!-- STEP 4 — Detalles -->
+            <div class="qf-step" data-step="4">
+                <span class="qf-eyebrow">04 · Detalles</span>
+                <h2 class="qf-question">Cuéntame sobre tu proyecto</h2>
+                <p class="qf-hint">Cuanto más contexto me das, más precisa será la propuesta.</p>
+                <div class="qf-field">
+                    <label for="qf-msg">Describe tu proyecto</label>
+                    <textarea id="qf-msg" name="message" placeholder="¿Qué problema quieres resolver? ¿Tienes referencias o ejemplos que te gusten?"></textarea>
+                </div>
+                <label style="display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin:22px 0 10px;">¿Algo más que debamos saber? <span class="qf-optional">(opcional)</span></label>
+                <div class="qf-chips" id="opt-extras">
+                    <button type="button" class="qf-chip" data-value="Ya tengo dominio/hosting">Ya tengo dominio/hosting</button>
+                    <button type="button" class="qf-chip" data-value="Necesito logo/identidad de marca">Necesito logo/identidad de marca</button>
+                    <button type="button" class="qf-chip" data-value="Quiero migrar contenido existente">Quiero migrar contenido existente</button>
+                    <button type="button" class="qf-chip" data-value="Es para un lanzamiento o evento concreto">Es para un lanzamiento/evento concreto</button>
+                </div>
+                <p class="qf-error" id="err-4">Cuéntanos al menos una frase sobre tu proyecto.</p>
+            </div>
+
+            <!-- STEP 5 — Contacto -->
+            <div class="qf-step" data-step="5">
+                <span class="qf-eyebrow">05 · Contacto</span>
+                <h2 class="qf-question">¿Cómo te localizamos?</h2>
+                <p class="qf-hint">Recibirás la propuesta en menos de 24h.</p>
+                <div class="qf-field-pair">
+                    <div class="qf-field">
+                        <label for="qf-name">Nombre</label>
+                        <input id="qf-name" type="text" name="name" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="qf-field">
+                        <label for="qf-email">Email</label>
+                        <input id="qf-email" type="email" name="_replyto" placeholder="tu@email.com" required>
+                    </div>
+                </div>
+                <div class="qf-field-pair">
+                    <div class="qf-field">
+                        <label for="qf-phone">WhatsApp <span class="qf-optional">(opcional)</span></label>
+                        <input id="qf-phone" type="tel" name="telefono" placeholder="+34 600 000 000">
+                    </div>
+                    <div class="qf-field">
+                        <label for="qf-company">Empresa <span class="qf-optional">(opcional)</span></label>
+                        <input id="qf-company" type="text" name="empresa" placeholder="Nombre de tu negocio">
+                    </div>
+                </div>
+                <label style="display:block;font-family:var(--f-m);font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin:18px 0 10px;">¿Desde dónde nos contactas?</label>
+                <div class="qf-options qf-options--col" id="opt-region">
+                    <button type="button" class="qf-opt" data-value="EUR"><span class="qf-opt-body"><span class="qf-opt-title">España / Europa</span><span class="qf-opt-sub">Euros (€)</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="USD"><span class="qf-opt-body"><span class="qf-opt-title">Estados Unidos / Resto de América</span><span class="qf-opt-sub">Dólares ($)</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="VE"><span class="qf-opt-body"><span class="qf-opt-title">Venezuela</span><span class="qf-opt-sub">Precio ajustado</span></span><span class="qf-opt-check"></span></button>
+                    <button type="button" class="qf-opt" data-value="OTRO"><span class="qf-opt-body"><span class="qf-opt-title">Otro país</span></span><span class="qf-opt-check"></span></button>
+                </div>
+                <p class="qf-error" id="err-5">Necesitamos tu nombre, email y región.</p>
+            </div>
+
+            <!-- STEP 6 — Resumen -->
+            <div class="qf-step" data-step="6">
+                <span class="qf-eyebrow">06 · Confirmación</span>
+                <h2 class="qf-question">Revisa tu solicitud</h2>
+                <p class="qf-hint">Si todo está correcto, dale a enviar — te respondemos en menos de 24h.</p>
+                <div class="qf-summary" id="qf-summary"></div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="qf-nav" id="qf-nav">
+                <button type="button" class="qf-btn-back" id="qf-back"><i class="fas fa-arrow-left"></i> Atrás</button>
+                <button type="button" class="qf-btn-next" id="qf-next">Continuar <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </form>
+
+        <!-- Success screen (hidden until submit) -->
+        <div class="qf-success" id="qf-success" style="display:none;">
+            <div class="qf-success-icon"><i class="fas fa-check"></i></div>
+            <h2>Solicitud recibida</h2>
+            <p>Gracias por contarnos tu proyecto. Vas a recibir una propuesta a medida en menos de 24 horas en tu email.</p>
+            <div class="qf-success-actions">
+                <a href="https://wa.me/34600000000" target="_blank" class="qf-wa"><i class="fab fa-whatsapp"></i> Hablar por WhatsApp</a>
+                <a href="index.html" class="qf-home">Volver al inicio</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+(function(){
+    const steps = Array.from(document.querySelectorAll('.qf-step'));
+    const totalSteps = steps.length;
+    let current = 1;
+
+    const answers = { tipo:'', presupuesto:'', plazo:'', extras:[], region:'' };
+    const regionLabels = { EUR:'España / Europa', USD:'Estados Unidos / Resto de América', VE:'Venezuela', OTRO:'Otro país' };
+
+    const progressFill = document.getElementById('qf-progress-fill');
+    const stepLabel = document.getElementById('qf-step-label');
+    const backBtn = document.getElementById('qf-back');
+    const nextBtn = document.getElementById('qf-next');
+    const form = document.getElementById('qf-form');
+    const nav = document.getElementById('qf-nav');
+
+    /* Pre-fill from URL query param ?tipo= */
+    const params = new URLSearchParams(window.location.search);
+    const presetTipo = params.get('tipo');
+    const tipoMap = {
+        landing: 'Landing Page', web: 'Web Corporativa', tienda: 'Tienda Online',
+        automatizacion: 'Automatización & IA', app: 'App / SaaS', branding: 'Branding & Contenido'
+    };
+    if (presetTipo && tipoMap[presetTipo]) {
+        const btn = document.querySelector(`#opt-tipo [data-value="${tipoMap[presetTipo]}"]`);
+        if (btn) selectSingleFixed(btn, 'opt-tipo', 'tipo', 'f-tipo');
+    }
+
+    document.querySelectorAll('#opt-tipo .qf-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectSingleFixed(btn, 'opt-tipo', 'tipo', 'f-tipo'); hideError(1); });
+    });
+    document.querySelectorAll('#opt-presupuesto .qf-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectSingleFixed(btn, 'opt-presupuesto', 'presupuesto', 'f-presupuesto'); hideError(2); });
+    });
+    document.querySelectorAll('#opt-plazo .qf-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectSingleFixed(btn, 'opt-plazo', 'plazo', 'f-plazo'); hideError(3); });
+    });
+    document.querySelectorAll('#opt-region .qf-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectSingleFixed(btn, 'opt-region', 'region', 'f-region'); hideError(5); });
+    });
+    document.querySelectorAll('#opt-extras .qf-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('selected');
+            const v = btn.dataset.value;
+            const idx = answers.extras.indexOf(v);
+            if (idx > -1) answers.extras.splice(idx, 1); else answers.extras.push(v);
+            document.getElementById('f-extras').value = answers.extras.join(', ');
+        });
+    });
+
+    function selectSingleFixed(btn, groupId, key, hiddenId) {
+        document.querySelectorAll(`#${groupId} .qf-opt`).forEach(o => o.classList.remove('selected'));
+        btn.classList.add('selected');
+        answers[key] = btn.dataset.value;
+        document.getElementById(hiddenId).value = answers[key];
+    }
+
+    function hideError(n) { const e = document.getElementById('err-' + n); if (e) e.classList.remove('show'); }
+    function showError(n) { const e = document.getElementById('err-' + n); if (e) e.classList.add('show'); }
+
+    function validateStep(n) {
+        if (n === 1) { if (!answers.tipo) { showError(1); return false; } }
+        if (n === 2) { if (!answers.presupuesto) { showError(2); return false; } }
+        if (n === 3) { if (!answers.plazo) { showError(3); return false; } }
+        if (n === 4) { const msg = document.getElementById('qf-msg').value.trim(); if (msg.length < 3) { showError(4); return false; } }
+        if (n === 5) {
+            const name = document.getElementById('qf-name').value.trim();
+            const email = document.getElementById('qf-email').value.trim();
+            if (!name || !email || !email.includes('@') || !answers.region) { showError(5); return false; }
+        }
+        return true;
+    }
+
+    function buildSummary() {
+        const rows = [
+            ['Proyecto', answers.tipo],
+            ['Presupuesto', answers.presupuesto],
+            ['Plazo', answers.plazo],
+            ['Detalles', document.getElementById('qf-msg').value.trim() || '—'],
+            ['Extras', answers.extras.length ? answers.extras.join(', ') : '—'],
+            ['Nombre', document.getElementById('qf-name').value.trim()],
+            ['Email', document.getElementById('qf-email').value.trim()],
+            ['WhatsApp', document.getElementById('qf-phone').value.trim() || '—'],
+            ['Empresa', document.getElementById('qf-company').value.trim() || '—'],
+            ['Región', regionLabels[answers.region] || '—'],
+        ];
+        document.getElementById('qf-summary').innerHTML = rows.map(r =>
+            `<div class="qf-summary-row"><span class="qf-summary-label">${r[0]}</span><span class="qf-summary-value">${r[1]}</span></div>`
+        ).join('');
+    }
+
+    function goToStep(n) {
+        steps.forEach(s => s.classList.remove('active'));
+        steps.find(s => +s.dataset.step === n).classList.add('active');
+        current = n;
+        progressFill.style.width = (n / totalSteps * 100) + '%';
+        stepLabel.textContent = `Paso ${n} de ${totalSteps}`;
+        backBtn.disabled = n === 1;
+        if (n === totalSteps) {
+            buildSummary();
+            nextBtn.innerHTML = 'Enviar solicitud <i class="fas fa-paper-plane"></i>';
+        } else {
+            nextBtn.innerHTML = 'Continuar <i class="fas fa-arrow-right"></i>';
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    backBtn.addEventListener('click', () => { if (current > 1) goToStep(current - 1); });
+
+    nextBtn.addEventListener('click', () => {
+        if (!validateStep(current)) return;
+        if (current < totalSteps) {
+            goToStep(current + 1);
+        } else {
+            submitForm();
+        }
+    });
+
+    /* URL del Google Apps Script Web App — se rellena al desplegar la hoja de cálculo */
+    const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzX01G9pz9yjuG7Vw1d-nzMTHFKdO-vZmLiW37I1jg1RaZzTCsNmqJmgmtLXARujCry/exec';
+
+    function submitForm() {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+        const data = new FormData(form);
+        if (SHEETS_WEBAPP_URL) {
+            fetch(SHEETS_WEBAPP_URL, { method: 'POST', mode: 'no-cors', body: data }).catch(() => {});
+        }
+        fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+            .then(() => {
+                form.style.display = 'none';
+                nav.style.display = 'none';
+                document.getElementById('qf-success').style.display = 'block';
+            })
+            .catch(() => {
+                nextBtn.disabled = false;
+                nextBtn.innerHTML = 'Enviar solicitud <i class="fas fa-paper-plane"></i>';
+                alert('Hubo un problema al enviar. Inténtalo de nuevo o escríbenos por WhatsApp.');
+            });
+    }
+
+    /* Enter key advances (except in textarea) */
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            nextBtn.click();
+        }
+    });
+
+    goToStep(1);
+})();
+</script>
+</body>
+</html>

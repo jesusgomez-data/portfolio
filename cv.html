@@ -12,7 +12,8 @@
     <meta property="og:image" content="https://jg-studio.vercel.app/img/profile_new.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
+    <link rel="icon" type="image/png" href="img/logo_jgs_oficial.png">
+
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CV — Jesús Gómez Santiago · Full-Stack Developer">
@@ -127,12 +128,25 @@
         top: 0;
         z-index: 100;
     }
+    .print-bar-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--dim);
+        transition: color .2s;
+        min-width: 0;
+    }
+    .print-bar-home:hover { color: var(--accent); }
+    .print-bar-home i { font-size: .7rem; flex-shrink: 0; }
     .print-bar-hint {
         font-family: var(--f-m);
         font-size: .5rem;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--dim);
+        color: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .print-btn {
         display: inline-flex;
@@ -887,7 +901,9 @@
 
     <!-- ── PRINT BAR ── -->
     <div class="print-bar">
-        <span class="print-bar-hint">Jesús Gómez Santiago · CV 2026 — Ctrl+P → Guardar como PDF → Sin márgenes</span>
+        <a href="index.html" class="print-bar-home" aria-label="Volver al sitio">
+            <i class="fas fa-arrow-left"></i> <span class="print-bar-hint">Jesús Gómez Santiago · CV 2026</span>
+        </a>
         <div style="display: flex; align-items: center; gap: 12px;">
             <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
                 <i class="fas fa-sun" id="theme-icon"></i>
@@ -905,7 +921,7 @@
             <img src="img/profile_new.png" alt="Jesús Gómez Santiago" class="header-photo">
             <div class="header-info">
                 <h1 class="header-name">Jesús Gómez Santiago</h1>
-                <div class="header-title">Full-Stack Developer · Next.js · TypeScript · IA</div>
+                <div class="header-title">Full-Stack Developer · Next.js &amp; IA</div>
                 <div class="header-contacts">
                     <span class="hc-item"><span class="hc-dot"></span> España · Disponible remoto</span>
                     <a class="hc-item" href="mailto:jgscoding@gmail.com">
@@ -965,6 +981,7 @@
                                 <span class="tag">React</span>
                                 <span class="tag">Tailwind CSS</span>
                                 <span class="tag">HTML / CSS</span>
+                                <span class="tag">GSAP</span>
                             </div>
                         </div>
 
@@ -1110,7 +1127,7 @@
                 <div class="sec">
                     <div class="sec-label">Perfil Profesional</div>
                     <p class="summary-text">
-                        Desarrollador Full-Stack con <strong>3.5 años de experiencia construyendo productos digitales reales</strong>. Fundador de <strong>JGStudio</strong>, estudio creativo digital con 4 proyectos de clientes en producción. Especializado en <strong>Next.js 15, TypeScript, Supabase y automatización con IA</strong>. Vengo de 8 años como fisioterapeuta deportivo y 3 como coach de élite — background que me dio capacidad analítica, disciplina y resolución de problemas bajo presión que aplico directamente al desarrollo. Busco un equipo que valore la constancia, el aprendizaje continuo y el impacto real.
+                        Desarrollador Full-Stack con <strong>3.5 años de experiencia construyendo productos digitales reales</strong>. Fundador de <strong>JGStudio</strong>, estudio creativo digital con 5 proyectos en producción (4 de clientes + Rival Fit, producto propio). Especializado en <strong>Next.js 15, TypeScript, Supabase y automatización con IA</strong>, con base sólida en análisis de datos (Python, SQL, Power BI). Vengo de 8 años como fisioterapeuta deportivo y 3 como coach de élite — background que me dio capacidad analítica, disciplina y resolución de problemas bajo presión que aplico directamente al desarrollo. Busco un equipo que valore la constancia, el aprendizaje continuo y el impacto real.
                     </p>
                 </div>
 
@@ -1129,10 +1146,11 @@
                             <div class="exp-company">Estudio Creativo Digital · jg-studio.vercel.app</div>
                             <ul class="exp-bullets">
                                 <li>Estudio creativo digital: diseño, desarrollo web, apps, IA y automatización para clientes</li>
-                                <li>4 proyectos entregados y en producción — ciclo completo diseño → deploy → mantenimiento</li>
+                                <li>5 proyectos entregados y en producción — ciclo completo diseño → deploy → mantenimiento</li>
                                 <li>Stack principal: Next.js 15, TypeScript, Supabase, React Native, Flutter</li>
                                 <li>Integración de IA (OpenAI API, Claude) en productos de clientes reales</li>
                                 <li>Automatización de flujos con n8n, Make y Python</li>
+                                <li>Sistema propio de captación de leads: formulario inteligente + hoja de cálculo automatizada</li>
                             </ul>
                         </div>
 
@@ -1218,6 +1236,29 @@
                                 </div>
                             </div>
                             <div class="proj-stack">Next.js · Tailwind CSS · Vercel</div>
+                        </div>
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">Stencil</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge client">Cliente</span>
+                                    <span class="proj-badge live">Live</span>
+                                    <a class="proj-link" href="https://stencil-2.vercel.app" target="_blank">ver sitio <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">HTML5 · CSS3 · GSAP · Animación premium</div>
+                        </div>
+
+                        <div class="proj-card">
+                            <div class="proj-card-top">
+                                <span class="proj-name">Retail Sales Analysis</span>
+                                <div class="proj-badges">
+                                    <span class="proj-badge prod">Caso de Estudio</span>
+                                    <a class="proj-link" href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank">ver repo <i class="fas fa-arrow-right" style="font-size:.5rem;"></i></a>
+                                </div>
+                            </div>
+                            <div class="proj-stack">Python · SQL · Power BI · Pandas · DAX</div>
                         </div>
 
                     </div>

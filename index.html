@@ -1191,6 +1191,51 @@
     </div>
 </section>
 
+<!-- Iniciativa Solidaria - JGStudio Reconstruye -->
+<section id="reconstruye" class="reconstruye-section" style="display: none;">
+    <div class="wrap">
+        <div class="reconstruye-banner" data-reveal>
+            <div class="reconstruye-eyebrow-container">
+                <span class="reconstruye-line"></span>
+                <span class="reconstruye-eyebrow">INICIATIVA SOLIDARIA · JG STUDIO RECONSTRUYE</span>
+            </div>
+            
+            <h2 class="reconstruye-title">¿Tu negocio en Venezuela fue afectado por el terremoto?</h2>
+            
+            <p class="reconstruye-subtitle">
+                Si perdiste tu local, tus equipos o tus clientes en la emergencia del 24 de junio en La Guaira o en cualquier zona afectada, te ayudo a volver a vender online. <strong class="reconstruye-highlight">Mi trabajo va sin coste.</strong> Tú solo cubres dominio y hosting si los necesitas.
+            </p>
+            
+            <div class="reconstruye-benefits">
+                <div class="reconstruye-benefit">
+                    <span class="reconstruye-check">✓</span>
+                    <span>Catálogo digital para vender por WhatsApp</span>
+                </div>
+                <div class="reconstruye-benefit">
+                    <span class="reconstruye-check">✓</span>
+                    <span>Página web sencilla, rápida y profesional</span>
+                </div>
+                <div class="reconstruye-benefit">
+                    <span class="reconstruye-check">✓</span>
+                    <span>Configuración de Pago Móvil y redes</span>
+                </div>
+                <div class="reconstruye-benefit">
+                    <span class="reconstruye-check">✓</span>
+                    <span>Acompañamiento durante el relanzamiento</span>
+                </div>
+            </div>
+            
+            <div class="reconstruye-cta-container">
+                <a href="reconstruye.html" class="btn-reconstruye magnetic">Postular mi negocio →</a>
+                <p class="reconstruye-note">
+                    Cupos limitados por mes. Revisamos cada caso con cuidado.<br>
+                    Priorizamos comercios afectados en La Guaira.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Testimonials -->
 <section id="testimonials" class="testimonials-section">
     <div class="wrap">
@@ -1526,6 +1571,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="config.js"></script>
+<script>
+    if (window.RECONSTRUYE_ACTIVO) {
+        document.getElementById('reconstruye').style.display = 'block';
+        const navLinks = document.getElementById('nav-links');
+        if (navLinks) {
+            const ctaLi = navLinks.querySelector('li:last-child');
+            const newLi = document.createElement('li');
+            newLi.id = 'nav-reconstruye';
+            newLi.innerHTML = '<a href="#reconstruye">Solidario</a>';
+            navLinks.insertBefore(newLi, ctaLi);
+        }
+    }
+</script>
 <script src="script.js"></script>
 </body>
 </html>

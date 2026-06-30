@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Postular mi Negocio — JGStudio Reconstruye</title>
+<meta name="description" content="Iniciativa solidaria de JGStudio para ayudar a comercios afectados por el terremoto en Venezuela a volver a vender online.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="img/logo.svg">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script src="config.js"></script>
+<script>
+    // Redirección inmediata si la feature flag está inactiva
+    if (!window.RECONSTRUYE_ACTIVO) {
+        window.location.replace("index.html?ref=solidario_inactive");
+    }
+</script>
+
+<style>
+:root{
+    --bg:#080808; --surface:#0f0f0f; --border:rgba(255,255,255,.08);
+    --accent:#D63031; --cream:#F0ECE5; --gray:#8a8a8a; --muted:#4a4a4a;
+    --f-d:'Cabinet Grotesk','DM Sans',sans-serif; --f-b:'Satoshi','DM Sans',sans-serif; --f-m:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+    font-family:var(--f-b); background:var(--bg); color:var(--cream);
+    min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column;
+}
+img{ display:block; max-width:100%; }
+button{ font-family:inherit; cursor:pointer; }
+a{ color:inherit; text-decoration:none; }
+
+/* Background ambient glow */
+body::before{
+    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at 15% 15%, rgba(214,48,49,.08) 0%, transparent 45%),
+               radial-gradient(circle at 85% 85%, rgba(214,48,49,.05) 0%, transparent 45%);
+}
+
+/* ── Header ───────────────────────── */
+.qf-header{ position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:24px 5vw; }
+.qf-logo{ display:flex; align-items:center; gap:10px; }
+.qf-logo img{ height:32px; width:auto; }
+.qf-back{ font-family:var(--f-m); font-size:.62rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); display:flex; align-items:center; gap:6px; transition:color .2s; }
+.qf-back:hover{ color:var(--cream); }
+
+/* ── Main content area ─────────────── */
+.qf-main{ position:relative; z-index:2; flex:1; display:flex; align-items:center; justify-content:center; padding:40px 5vw 60px; }
+.qf-stage{ width:100%; max-width:680px; }
+
+.qf-eyebrow{ font-family:var(--f-m); font-size:.6rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; display:block; }
+.qf-question{ font-family:var(--f-d); font-weight:800; font-size:clamp(1.8rem,3.6vw,2.6rem); letter-spacing:-1px; line-height:1.15; margin-bottom:12px; }
+.qf-hint{ font-size:.88rem; color:var(--gray); margin-bottom:36px; line-height:1.65; }
+
+/* Form fields */
+.qf-field{ margin-bottom:24px; }
+.qf-field label{ display:block; font-family:var(--f-m); font-size:.6rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-bottom:8px; }
+.qf-field input, .qf-field textarea, .qf-field select{
+    width:100%; background:var(--surface); border:1px solid var(--border); border-radius:6px;
+    padding:14px 16px; color:var(--cream); font-family:var(--f-b); font-size:.9rem; transition:border-color .2s;
+}
+.qf-field input:focus, .qf-field textarea:focus, .qf-field select:focus{ outline:none; border-color:var(--accent); }
+.qf-field textarea{ resize:none; min-height:100px; }
+.qf-field-pair{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.qf-optional{ color:var(--muted); font-weight:400; text-transform:none; letter-spacing:0; }
+
+/* Custom select styling */
+.qf-field select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23F0ECE5' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+}
+
+/* Radio button styles */
+.qf-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+.qf-radio-option {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    position: relative;
+}
+.qf-radio-option:hover {
+    border-color: rgba(255,255,255,.2);
+}
+.qf-radio-option.selected {
+    border-color: var(--accent);
+    background: rgba(214,48,49,.06);
+}
+.qf-radio-option input[type="radio"] {
+    accent-color: var(--accent);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.qf-radio-label {
+    font-size: 0.9rem;
+    color: var(--cream);
+}
+
+/* File input styles */
+.qf-field input[type="file"] {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+}
+.qf-field input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--cream);
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 12px;
+    cursor: pointer;
+    font-family: var(--f-b);
+    transition: background 0.2s;
+}
+.qf-field input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Character counter & subtext */
+.qf-sub-text {
+    font-size: 0.72rem;
+    color: var(--gray);
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Submit button */
+.qf-btn-submit {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--accent); color: #fff; border: 1px solid var(--accent);
+    padding: 16px 36px; border-radius: 6px; font-weight: 700; font-size: .88rem;
+    transition: background .2s, opacity .2s; cursor: pointer; width: auto;
+    text-transform: uppercase; letter-spacing: 1px; margin-top: 12px;
+}
+.qf-btn-submit:hover { background: #b82020; border-color: #b82020; }
+.qf-btn-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+.qf-footer-note {
+    font-size: 0.76rem;
+    color: var(--gray);
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* Error message block */
+.qf-form-error {
+    background: rgba(214, 48, 49, 0.1);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+    color: #ff8080;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    display: none;
+}
+.qf-form-error.show {
+    display: block;
+    animation: qfIn .4s var(--ease);
+}
+
+/* Success screen */
+.qf-success{ text-align:center; padding:40px 0; display:none; }
+.qf-success-icon{ width:64px; height:64px; border-radius:50%; background:rgba(52,211,153,.1); border:1.5px solid rgba(52,211,153,.4); display:flex; align-items:center; justify-content:center; margin:0 auto 28px; font-size:1.6rem; color:#34d399; animation:qfPop .5s var(--ease); }
+@keyframes qfPop{ from{ transform:scale(0); } to{ transform:scale(1); } }
+@keyframes qfIn{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:translateY(0); } }
+.qf-success h2{ font-family:var(--f-d); font-weight:800; font-size:clamp(1.6rem,3.4vw,2.4rem); letter-spacing:-1px; margin-bottom:14px; }
+.qf-success p{ font-size:.92rem; color:var(--gray); max-width:480px; margin:0 auto 32px; line-height:1.7; }
+.qf-success-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.qf-success-actions a{ display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:6px; font-size:.82rem; font-weight:700; }
+.qf-success-actions .qf-wa{ background:#25D366; color:#fff; }
+.qf-success-actions .qf-home{ border:1px solid var(--border); color:var(--cream); }
+
+@media(max-width:640px){
+    .qf-field-pair{ grid-template-columns:1fr; }
+    .qf-btn-submit { width: 100%; }
+    .qf-footer-note { text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<header class="qf-header">
+    <a href="index.html" class="qf-logo"><img src="img/logo_jgs_oficial.png" alt="JGStudio"></a>
+    <a href="index.html" class="qf-back"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+</header>
+
+<main class="qf-main">
+    <div class="qf-stage">
+
+        <!-- Error Container -->
+        <div id="form-error-msg" class="qf-form-error"></div>
+
+        <form id="reconstruye-form" novalidate>
+            <span class="qf-eyebrow">POSTULAR MI NEGOCIO</span>
+            <h1 class="qf-question">Cuéntame qué pasó.</h1>
+            <p class="qf-hint">Lee con calma. No hay prisa. Lo que escribas aquí lo lee una sola persona — yo, Jesús — y te respondo en menos de 5 días. No vas a tener que enviar papeleo ni comprobantes complicados.</p>
+
+            <!-- 1. Nombre del negocio -->
+            <div class="qf-field">
+                <label for="negocio">Nombre del negocio</label>
+                <input type="text" id="negocio" name="negocio" required placeholder="Como lo conoce la gente del barrio">
+            </div>
+
+            <!-- 2. Tu nombre y WhatsApp -->
+            <div class="qf-field-pair">
+                <div class="qf-field">
+                    <label for="nombre">Tu nombre</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre y apellido">
+                </div>
+                <div class="qf-field">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+58…">
+                </div>
+            </div>
+
+            <!-- 3. Zona -->
+            <div class="qf-field">
+                <label for="zona">Zona / Ubicación</label>
+                <select id="zona" name="zona" required>
+                    <option value="" disabled selected>Selecciona tu ubicación...</option>
+                    <option value="La Guaira — Catia La Mar">La Guaira — Catia La Mar</option>
+                    <option value="La Guaira — Macuto">La Guaira — Macuto</option>
+                    <option value="La Guaira — Caraballeda">La Guaira — Caraballeda</option>
+                    <option value="La Guaira — otro sector">La Guaira — otro sector</option>
+                    <option value="Caracas / Distrito Capital">Caracas / Distrito Capital</option>
+                    <option value="Aragua">Aragua</option>
+                    <option value="Carabobo">Carabobo</option>
+                    <option value="Falcón">Falcón</option>
+                    <option value="Yaracuy">Yaracuy</option>
+                    <option value="Otro estado">Otro estado</option>
+                </select>
+            </div>
+
+            <!-- 4. Qué vendías -->
+            <div class="qf-field">
+                <label for="que_vendia">¿Qué vendías o qué servicio dabas?</label>
+                <input type="text" id="que_vendia" name="que_vendia" required placeholder="Ejemplo: peluquería, comida criolla, repuestos…">
+            </div>
+
+            <!-- 5. Cómo te afectó -->
+            <div class="qf-field">
+                <label for="como_afecto">¿Cómo te afectó el terremoto?</label>
+                <textarea id="como_afecto" name="como_afecto" required maxlength="300" rows="4" placeholder="Con tus palabras. No hace falta detalle, lo que tú quieras contar."></textarea>
+                <div class="qf-sub-text">
+                    <span>Máx. 300 caracteres. Lo que escribas se queda entre tú y yo.</span>
+                    <span id="char-counter">0 / 300</span>
+                </div>
+            </div>
+
+            <!-- 6. Presencia digital -->
+            <div class="qf-field">
+                <label>¿Tienes alguna presencia en internet hoy?</label>
+                <div class="qf-radio-group">
+                    <label class="qf-radio-option">
+                        <input type="radio" name="presencia_digital" value="No tengo nada" required>
+                        <span class="qf-radio-label">No tengo nada</span>
+                    </label>
+                    <label class="qf-radio-option">
+                        <input type="radio" name="presencia_digital" value="Solo Instagram o Facebook">
+                        <span class="qf-radio-label">Solo Instagram o Facebook</span>
+                    </label>
+                    <label class="qf-radio-option">
+                        <input type="radio" name="presencia_digital" value="Tengo página web pero está sin uso">
+                        <span class="qf-radio-label">Tengo página web pero está sin uso</span>
+                    </label>
+                    <label class="qf-radio-option">
+                        <input type="radio" name="presencia_digital" value="Vendía por WhatsApp">
+                        <span class="qf-radio-label">Vendía por WhatsApp</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 7. Foto del local (opcional) -->
+            <div class="qf-field">
+                <label for="foto">Foto del local o de los daños <span class="qf-optional">(opcional, ayuda mucho)</span></label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+                <div class="qf-sub-text">
+                    <span>Formatos admitidos: JPG, PNG, WEBP. Máx. 5 MB.</span>
+                </div>
+            </div>
+
+            <!-- 8. Referencia (opcional) -->
+            <div class="qf-field">
+                <label for="referencia">¿Alguien que pueda confirmar tu negocio? <span class="qf-optional">(opcional)</span></label>
+                <input type="text" id="referencia" name="referencia" placeholder="Un vecino, otro comerciante, alguien de confianza…">
+                <div class="qf-sub-text">
+                    <span>No es obligatorio. Solo si lo crees útil.</span>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" id="submit-btn" class="qf-btn-submit">Enviar postulación →</button>
+            <p class="qf-footer-note">Te respondo en máximo 5 días, sea cual sea la respuesta. Tus datos se quedan conmigo. No se los paso a nadie.</p>
+        </form>
+
+        <!-- Success Screen -->
+        <div id="qf-success" class="qf-success">
+            <div class="qf-success-icon"><i class="fas fa-check"></i></div>
+            <h2>Gracias. Lo leo personalmente.</h2>
+            <p>Te escribo a tu WhatsApp en máximo 5 días, sea cual sea la respuesta. Mucha fuerza.</p>
+            <div class="qf-success-actions">
+                <a href="https://wa.me/34600000000" class="qf-wa" target="_blank"><i class="fab fa-whatsapp"></i> Escríbeme por WhatsApp</a>
+                <a href="index.html" class="qf-home"><i class="fas fa-home"></i> Volver a la web</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+(function() {
+    const form = document.getElementById('reconstruye-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('form-error-msg');
+    const charCounter = document.getElementById('char-counter');
+    const comoAfecto = document.getElementById('como_afecto');
+    const radioOptions = document.querySelectorAll('.qf-radio-option');
+    const successScreen = document.getElementById('qf-success');
+
+    // Apps Script Web App URL
+    const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzX01G9pz9yjuG7Vw1d-nzMTHFKdO-vZmLiW37I1jg1RaZzTCsNmqJmgmtLXARujCry/exec';
+
+    // Manejo visual de radio buttons seleccionados
+    radioOptions.forEach(opt => {
+        const radio = opt.querySelector('input[type="radio"]');
+        opt.addEventListener('click', () => {
+            radioOptions.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            radio.checked = true;
+        });
+    });
+
+    // Contador de caracteres para el textarea
+    comoAfecto.addEventListener('input', () => {
+        const length = comoAfecto.value.length;
+        charCounter.textContent = `${length} / 300`;
+    });
+
+    function showError(text) {
+        errorMsg.textContent = text;
+        errorMsg.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function hideError() {
+        errorMsg.textContent = '';
+        errorMsg.classList.remove('show');
+    }
+
+    function validateForm() {
+        hideError();
+
+        const negocio = document.getElementById('negocio').value.trim();
+        const nombre = document.getElementById('nombre').value.trim();
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        const zona = document.getElementById('zona').value;
+        const queVendia = document.getElementById('que_vendia').value.trim();
+        const afecto = comoAfecto.value.trim();
+        const presencia = document.querySelector('input[name="presencia_digital"]:checked');
+        const foto = document.getElementById('foto').files[0];
+
+        if (!negocio) { showError('Falta el nombre del negocio.'); return false; }
+        if (!nombre) { showError('Falta tu nombre.'); return false; }
+        if (!whatsapp) { showError('Falta tu número de WhatsApp.'); return false; }
+        if (!zona) { showError('Falta la zona o ubicación.'); return false; }
+        if (!queVendia) { showError('Falta especificar qué vendías o qué servicio dabas.'); return false; }
+        if (!afecto) { showError('Falta explicar cómo te afectó el terremoto.'); return false; }
+        if (afecto.length > 300) { showError('La descripción no puede superar los 300 caracteres.'); return false; }
+        if (!presencia) { showError('Por favor, selecciona alguna opción de presencia en internet.'); return false; }
+
+        if (foto) {
+            if (foto.size > 5 * 1024 * 1024) {
+                showError('La foto seleccionada supera los 5 MB permitidos.');
+                return false;
+            }
+            if (!foto.type.startsWith('image/')) {
+                showError('El archivo seleccionado debe ser una imagen (JPG, PNG, WEBP).');
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!validateForm()) return;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Enviando... <i class="fas fa-spinner fa-spin"></i>';
+
+        const foto = document.getElementById('foto').files[0];
+
+        const dataObj = {
+            formulario_tipo: 'reconstruye',
+            negocio: document.getElementById('negocio').value.trim(),
+            nombre: document.getElementById('nombre').value.trim(),
+            whatsapp: document.getElementById('whatsapp').value.trim(),
+            zona: document.getElementById('zona').value,
+            que_vendia: document.getElementById('que_vendia').value.trim(),
+            como_afecto: comoAfecto.value.trim(),
+            presencia_digital: document.querySelector('input[name="presencia_digital"]:checked').value,
+            referencia: document.getElementById('referencia').value.trim()
+        };
+
+        if (foto) {
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                dataObj.fileData = evt.target.result.split(',')[1];
+                dataObj.fileName = foto.name;
+                dataObj.fileType = foto.type;
+                sendData(dataObj);
+            };
+            reader.onerror = function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Enviar postulación →';
+                showError('Error al leer la foto. Inténtalo de nuevo sin foto o en otro formato.');
+            };
+            reader.readAsDataURL(foto);
+        } else {
+            sendData(dataObj);
+        }
+    });
+
+    function sendData(data) {
+        // Enviar a Google Apps Script
+        const formData = new URLSearchParams();
+        for (const key in data) {
+            formData.append(key, data[key]);
+        }
+
+        fetch(SHEETS_WEBAPP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+        })
+        .then(() => {
+            // Éxito: Ocultar formulario, mostrar éxito
+            form.style.display = 'none';
+            successScreen.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch((err) => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Enviar postulación →';
+            showError('Hubo un problema al enviar la postulación. Por favor, verifica tu conexión o escríbeme directamente por WhatsApp.');
+            console.error('Submit error:', err);
+        });
+    }
+})();
+</script>
+</body>
+</html>

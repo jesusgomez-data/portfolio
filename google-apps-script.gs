@@ -1,10 +1,21 @@
 /**
- * JGStudio — Receptor de solicitudes de presupuesto
+ * JGStudio — Receptor de solicitudes de presupuesto e Iniciativa Solidaria
  * Proyecto independiente (script.google.com) apuntando a la hoja por ID.
  */
 const SHEET_ID = "1ichfOhk5dECd-YONqOGcZO3v7A-TKoHXl7kEPVKJsqc";
-function getSheet_() {
+
+function getBudgetSheet_() {
   return SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
+}
+
+function getReconstruyeSheet_() {
+  const ss = SpreadsheetApp.openById(SHEET_ID);
+  let sheet = ss.getSheetByName("Postulaciones");
+  if (!sheet) {
+    sheet = ss.insertSheet("Postulaciones");
+    setupReconstruyeSheet(sheet);
+  }
+  return sheet;
 }
 
 /* ───────────────────────────────────────────────
@@ -12,7 +23,7 @@ function getSheet_() {
    No toques nada más de este archivo si solo quieres
    cambiar precios.
    EUR = España / Europa · USD = EEUU y resto de América · VE = Venezuela
-─────────────────────────────────────────────── */
+   ─────────────────────────────────────────────── */
 const PRECIOS = {
   "Landing Page":         { EUR: 490,  USD: 530,  VE: 220 },
   "Web Corporativa":      { EUR: 890,  USD: 960,  VE: 380 },
@@ -23,6 +34,7 @@ const PRECIOS = {
 };
 
 const ESTADOS = ["Nuevo", "Contactado", "Propuesta enviada", "Ganado", "Perdido"];
+const ESTADOS_RECONSTRUYE = ["recibida", "en_revision", "admitida", "en_espera", "no_encaja"];
 
 /* Calcula el precio sugerido según tipo de proyecto + región */
 function calcularPrecio(tipo, region) {
@@ -33,41 +45,139 @@ function calcularPrecio(tipo, region) {
   return { precio: entry.USD, moneda: "USD" }; // USD u OTRO -> USD por defecto
 }
 
-/* Recibe cada envío del formulario web y añade una fila */
+/* Recibe cada envío del formulario web (tanto presupuesto como reconstruye) */
 function doPost(e) {
-  const sheet = getSheet_();
   const p = e.parameter;
-  const calc = calcularPrecio(p.tipo_proyecto, p.region);
 
-  sheet.appendRow([
-    new Date(),
-    p.name || "",
-    p._replyto || "",
-    p.telefono || "",
-    p.empresa || "",
-    p.region || "",
-    p.tipo_proyecto || "",
-    p.presupuesto || "",
-    p.plazo || "",
-    calc.precio,
-    calc.moneda,
-    p.message || "",
-    p.extras || "",
-    "Nuevo",
-    ""
-  ]);
+  // RUTEO: ¿Es del formulario solidario Reconstruye?
+  if (p.formulario_tipo === "reconstruye") {
+    const sheet = getReconstruyeSheet_();
+    
+    // Procesamiento opcional de Foto en Google Drive
+    let fileUrl = "";
+    if (p.fileData && p.fileName) {
+      try {
+        let folder;
+        const folders = DriveApp.getFoldersByName("ReconstruyeFotos");
+        if (folders.hasNext()) {
+          folder = folders.next();
+        } else {
+          folder = DriveApp.createFolder("ReconstruyeFotos");
+        }
+        
+        const fileBlob = Utilities.newBlob(Utilities.base64Decode(p.fileData), p.fileType, p.fileName);
+        const file = folder.createFile(fileBlob);
+        file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+        fileUrl = file.getUrl();
+      } catch(err) {
+        fileUrl = "Error al subir foto: " + err.toString();
+      }
+    }
+
+    sheet.appendRow([
+      new Date(),
+      p.negocio || "",
+      p.nombre || "",
+      p.whatsapp || "",
+      p.zona || "",
+      p.que_vendia || "",
+      p.como_afecto || "",
+      p.presencia_digital || "",
+      fileUrl,
+      p.referencia || "",
+      "recibida", // Estado por defecto
+      ""          // Notas internas
+    ]);
+
+  } else {
+    // Presupuestos estándar (presupuesto.html)
+    const sheet = getBudgetSheet_();
+    const calc = calcularPrecio(p.tipo_proyecto, p.region);
+
+    sheet.appendRow([
+      new Date(),
+      p.name || "",
+      p._replyto || "",
+      p.telefono || "",
+      p.empresa || "",
+      p.region || "",
+      p.tipo_proyecto || "",
+      p.presupuesto || "",
+      p.plazo || "",
+      calc.precio,
+      calc.moneda,
+      p.message || "",
+      p.extras || "",
+      "Nuevo",
+      ""
+    ]);
+  }
 
   return ContentService.createTextOutput(JSON.stringify({ ok: true }))
     .setMimeType(ContentService.MimeType.JSON);
 }
 
 /**
- * Ejecuta esta función UNA SOLA VEZ manualmente (botón ▶ en el editor)
- * para darle formato profesional a la hoja: cabecera, columna de
- * Estado con desplegable de colores, etc.
+ * Formatea y estructura la pestaña de Postulaciones.
+ * Se llama automáticamente al crear la hoja o se puede ejecutar manualmente.
+ */
+function setupReconstruyeSheet(sheet) {
+  if (!sheet) {
+    const ss = SpreadsheetApp.openById(SHEET_ID);
+    sheet = ss.getSheetByName("Postulaciones") || ss.insertSheet("Postulaciones");
+  }
+
+  sheet.setFrozenRows(1);
+  const header = sheet.getRange(1, 1, 1, 12);
+  header.setFontWeight("bold").setBackground("#D63031").setFontColor("#ffffff");
+  sheet.setRowHeight(1, 32);
+
+  const headers = [
+    "Fecha", 
+    "Nombre Negocio", 
+    "Nombre Contacto", 
+    "WhatsApp", 
+    "Zona", 
+    "Actividad", 
+    "Cómo afectó", 
+    "Presencia Digital", 
+    "Foto (Google Drive)", 
+    "Referencia", 
+    "Estado", 
+    "Notas Internas"
+  ];
+  sheet.getRange(1, 1, 1, 12).setValues([headers]);
+
+  for (let col = 1; col <= 12; col++) sheet.setColumnWidth(col, 150);
+  sheet.setColumnWidth(7, 280); // Cómo afectó
+  sheet.setColumnWidth(9, 220); // Foto Link
+  sheet.setColumnWidth(12, 220); // Notas
+
+  // Dropdown para Estado (columna 11)
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(ESTADOS_RECONSTRUYE, true)
+    .setAllowInvalid(false)
+    .build();
+  sheet.getRange(2, 11, 500, 1).setDataValidation(rule);
+
+  // Formato condicional
+  const estadoRange = sheet.getRange(2, 11, 500, 1);
+  const rules = [
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("recibida").setBackground("#b8860b").setFontColor("#fff").setRanges([estadoRange]).build(),
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("en_revision").setBackground("#1f5c7a").setFontColor("#fff").setRanges([estadoRange]).build(),
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("admitida").setBackground("#1e7e4f").setFontColor("#fff").setRanges([estadoRange]).build(),
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("en_espera").setBackground("#6b4fa0").setFontColor("#fff").setRanges([estadoRange]).build(),
+    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("no_encaja").setBackground("#7a1f1f").setFontColor("#fff").setRanges([estadoRange]).build()
+  ];
+  sheet.setConditionalFormatRules(rules);
+}
+
+/**
+ * Ejecuta esta función manualmente para dar formato profesional
+ * a la pestaña original de Presupuestos.
  */
 function setupSheet() {
-  const sheet = getSheet_();
+  const sheet = getBudgetSheet_();
 
   sheet.setFrozenRows(1);
   const header = sheet.getRange(1, 1, 1, 15);
@@ -79,14 +189,12 @@ function setupSheet() {
   sheet.setColumnWidth(13, 220); // Extras
   sheet.setColumnWidth(15, 200); // Nota
 
-  // Desplegable para la columna "Estado" (col 14)
   const rule = SpreadsheetApp.newDataValidation()
     .requireValueInList(ESTADOS, true)
     .setAllowInvalid(false)
     .build();
   sheet.getRange(2, 14, 500, 1).setDataValidation(rule);
 
-  // Formato condicional por Estado
   const estadoRange = sheet.getRange(2, 14, 500, 1);
   const rules = [
     SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("Nuevo").setBackground("#b8860b").setFontColor("#fff").setRanges([estadoRange]).build(),
@@ -94,7 +202,6 @@ function setupSheet() {
     SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("Propuesta enviada").setBackground("#6b4fa0").setFontColor("#fff").setRanges([estadoRange]).build(),
     SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("Ganado").setBackground("#1e7e4f").setFontColor("#fff").setRanges([estadoRange]).build(),
     SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("Perdido").setBackground("#7a1f1f").setFontColor("#fff").setRanges([estadoRange]).build(),
-    // Resalta en rojo oscuro las filas de Venezuela en la columna Región (col 6)
     SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo("VE").setBackground("#3a1212").setFontColor("#f0ece5").setRanges([sheet.getRange(2, 6, 500, 1)]).build()
   ];
   sheet.setConditionalFormatRules(rules);

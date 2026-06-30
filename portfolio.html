@@ -730,6 +730,19 @@
 <!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="config.js"></script>
+<script>
+    if (window.RECONSTRUYE_ACTIVO) {
+        const navLinks = document.getElementById('nav-links');
+        if (navLinks) {
+            const ctaLi = navLinks.querySelector('li:last-child');
+            const newLi = document.createElement('li');
+            newLi.id = 'nav-reconstruye';
+            newLi.innerHTML = '<a href="index.html#reconstruye">Solidario</a>';
+            navLinks.insertBefore(newLi, ctaLi);
+        }
+    }
+</script>
 
 <script>
 (function() {

@@ -414,16 +414,38 @@ body::before{
 
         const foto = document.getElementById('foto').files[0];
 
+        const negocioVal = document.getElementById('negocio').value.trim();
+        const nombreVal = document.getElementById('nombre').value.trim();
+        const whatsappVal = document.getElementById('whatsapp').value.trim();
+        const zonaVal = document.getElementById('zona').value;
+        const queVendiaVal = document.getElementById('que_vendia').value.trim();
+        const comoAfectoVal = comoAfecto.value.trim();
+        const presenciaVal = document.querySelector('input[name="presencia_digital"]:checked').value;
+        const referenciaVal = document.getElementById('referencia').value.trim();
+
         const dataObj = {
+            // Campos de compatibilidad con el script antiguo (se guardan en la hoja principal)
+            name: `${nombreVal} (${negocioVal})`,
+            _replyto: 'solidario@jgstudio.com',
+            telefono: whatsappVal,
+            empresa: zonaVal,
+            region: 'VE',
+            tipo_proyecto: queVendiaVal,
+            presupuesto: presenciaVal,
+            plazo: referenciaVal || 'Sin referencia',
+            message: comoAfectoVal,
+            extras: foto ? `Foto: ${foto.name}` : '',
+
+            // Campos del script nuevo (se usarán automáticamente si se logra actualizar el script de Google)
             formulario_tipo: 'reconstruye',
-            negocio: document.getElementById('negocio').value.trim(),
-            nombre: document.getElementById('nombre').value.trim(),
-            whatsapp: document.getElementById('whatsapp').value.trim(),
-            zona: document.getElementById('zona').value,
-            que_vendia: document.getElementById('que_vendia').value.trim(),
-            como_afecto: comoAfecto.value.trim(),
-            presencia_digital: document.querySelector('input[name="presencia_digital"]:checked').value,
-            referencia: document.getElementById('referencia').value.trim()
+            negocio: negocioVal,
+            nombre: nombreVal,
+            whatsapp: whatsappVal,
+            zona: zonaVal,
+            que_vendia: queVendiaVal,
+            como_afecto: comoAfectoVal,
+            presencia_digital: presenciaVal,
+            referencia: referenciaVal
         };
 
         if (foto) {
@@ -446,8 +468,8 @@ body::before{
     });
 
     function sendData(data) {
-        // Enviar a Google Apps Script
-        const formData = new URLSearchParams();
+        // Enviar a Google Apps Script usando FormData para compatibilidad y evitar envíos vacíos
+        const formData = new FormData();
         for (const key in data) {
             formData.append(key, data[key]);
         }
@@ -455,10 +477,7 @@ body::before{
         fetch(SHEETS_WEBAPP_URL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData.toString()
+            body: formData
         })
         .then(() => {
             // Éxito: Ocultar formulario, mostrar éxito

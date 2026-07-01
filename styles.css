@@ -107,7 +107,7 @@ img { display:block; max-width:100%; }
 @media(max-width:768px){
     .nav-inner { padding:16px 24px; }
     .nav-toggle { display:block; position:relative; z-index:1001; }
-    .nav-links { position:fixed; inset:0; background:rgba(8,8,8,.97); backdrop-filter:blur(24px); flex-direction:column; justify-content:center; align-items:center; transform:translateX(100%); transition:transform .4s var(--ease); z-index:999; gap:40px; }
+    .nav-links { position:fixed; inset:0; background:rgba(8,8,8,.97); backdrop-filter:blur(24px); flex-direction:column; justify-content:flex-start; align-items:center; transform:translateX(100%); transition:transform .4s var(--ease); z-index:999; gap:32px; padding:120px 24px 40px; overflow-y:auto; }
     .nav-links.open { transform:translateX(0); }
     .nav-links a { font-size:1.5rem; font-family:var(--f-d); }
     .nav-cta { font-size:1rem !important; border:none !important; padding:0 !important; }

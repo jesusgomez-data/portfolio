@@ -89,7 +89,7 @@
             <img src="img/profile_new.png" alt="Jesús Gómez">
         </div>
         <p class="hero-kicker" id="hero-kicker">
-            JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; <span class="kicker-badge">Disponible esta semana</span>
+            JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; <span class="kicker-badge"><i class="fa-solid fa-laptop"></i>Disponible esta semana</span>
         </p>
         <div class="hero-proof-strip">
             <img src="img/screenshot_milu.jpg" alt="Milu & Co" class="proof-avatar">
@@ -1584,6 +1584,59 @@
             Tu navegador no soporta video HTML5.
         </video>
         <img id="vlb-img" src="" alt="Imagen ampliada" style="display:none;">
+    </div>
+</div>
+<!-- Asistente Virtual Mini -->
+<div class="assistant-widget" id="assistant-widget">
+    <!-- Trigger -->
+    <button class="assistant-trigger" id="assistant-trigger" aria-label="Abrir chat con Jesús">
+        <div class="avatar-base-glow" aria-hidden="true"></div>
+        <div class="avatar-container">
+            <img class="avatar-idle" src="img/assistant_mini.png" alt="Jesús Gómez — JGStudio">
+            <img class="avatar-wave" src="img/assistant_mini_wave.png" alt="Jesús saludando">
+            <span class="status-indicator"></span>
+        </div>
+        <div class="tooltip-bubble" id="assistant-tooltip">
+            <span class="tt-name">Jesús · JGStudio</span>
+            <span class="tt-msg">¿Tienes alguna pregunta? Escríbeme</span>
+        </div>
+    </button>
+
+    <!-- Chat Box -->
+    <div class="assistant-chatbox" id="assistant-chatbox">
+        <div class="chatbox-header">
+            <div class="chatbox-info">
+                <img src="img/assistant_mini.png" alt="Jesús Gómez">
+                <div>
+                    <h4>Jesús · JGStudio</h4>
+                    <span class="status-text"><span class="status-dot" aria-hidden="true"></span>En línea ahora</span>
+                </div>
+            </div>
+            <button class="chatbox-close" id="chatbox-close" aria-label="Cerrar chat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="chatbox-messages" id="chatbox-messages">
+            <div class="message assistant-msg">
+                <div class="msg-bubble">
+                    ¡Hola! Soy el asistente de <strong>JGStudio</strong>. Puedo ayudarte con cualquier duda sobre desarrollo web, automatización con IA o presupuestos. ¿Por dónde empezamos?
+                </div>
+            </div>
+            <div class="quick-options" id="quick-options">
+                <button class="opt-btn" data-question="servicios">Servicios disponibles</button>
+                <button class="opt-btn" data-question="ia">Automatización con IA</button>
+                <button class="opt-btn" data-question="tiempos">Tiempos de entrega</button>
+                <button class="opt-btn" data-question="precios">Tarifas y precios</button>
+                <button class="opt-btn" data-question="quien">¿Quién es Jesús?</button>
+                <button class="opt-btn" data-question="empezar">¿Cómo empezamos?</button>
+            </div>
+        </div>
+        <div class="chatbox-footer">
+            <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." aria-label="Escribe tu pregunta">
+            <button id="chat-send" aria-label="Enviar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
     </div>
 </div>
 

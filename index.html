@@ -71,22 +71,23 @@
 
 <!-- Hero -->
 <section id="hero" class="hero">
+    <canvas id="hero-3d" class="hero-canvas"></canvas>
     <video autoplay muted loop playsinline class="hero-video-bg" aria-hidden="true" webkit-playsinline x5-playsinline>
-        <source src="JGStudio/videos/burger.MOV" type="video/mp4">
+        <source src="JGStudio/videos/burger.MOV?v=20260709" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
 
     <!-- Profile photo — right side -->
     <div class="hero-photo" aria-hidden="true">
         <div class="hero-photo-inner">
-            <img src="img/profile_new.png" alt="">
+            <img src="img/profile_new.png?v=20260709" alt="">
         </div>
     </div>
 
     <div class="hero-content wrap">
         <!-- Avatar solo visible en móvil -->
         <div class="hero-avatar-mobile" aria-hidden="true">
-            <img src="img/profile_new.png" alt="Jesús Gómez">
+            <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez">
         </div>
         <p class="hero-kicker" id="hero-kicker">
             JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; <span class="kicker-badge"><i class="fa-solid fa-laptop"></i>Disponible esta semana</span>
@@ -433,7 +434,7 @@
     <div class="wrap">
         <div class="section-top" data-reveal-l>
             <span class="label">Contenido</span>
-            <span class="label-count">@jgstudio.ia</span>
+            <span class="label-count">@jgstudio.dev</span>
         </div>
         <div class="cont-header">
             <h2 class="cont-title" data-title>Contenido que<br><em>conecta.</em></h2>
@@ -445,6 +446,7 @@
             <button class="cf-btn" data-filter="rivalfit">Rival Fit App</button>
             <button class="cf-btn" data-filter="carousel">Carruseles</button>
             <button class="cf-btn" data-filter="cinematic">Cinematic IA</button>
+            <button class="cf-btn" data-filter="frames">Frames</button>
             <button class="cf-btn" data-filter="foto">Fotografía</button>
             <button class="cf-btn" data-filter="video">Video</button>
         </div>
@@ -452,6 +454,34 @@
         <div class="cont-grid" id="cont-grid">
 
             <!-- BRANDING -->
+            <div class="cont-item" data-img="JGStudio/Contenido/Branding/promobasic.png" data-cat="brand" data-reveal>
+                <img src="JGStudio/Contenido/Branding/promobasic.png" alt="Pieza promocional JGStudio" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Branding</span>
+                    <p class="cont-caption">Pieza promocional de servicios</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Branding/e46a1e3e-b252-466e-b7ae-ea196536b5fd.png" data-cat="brand" data-reveal>
+                <img src="JGStudio/Contenido/Branding/e46a1e3e-b252-466e-b7ae-ea196536b5fd.png" alt="Branding editorial JGStudio" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Branding</span>
+                    <p class="cont-caption">Direcci&oacute;n visual premium</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Branding/c370c40a-f02d-4c53-9e8e-6a1de39d0c9e.png" data-cat="brand" data-reveal>
+                <img src="JGStudio/Contenido/Branding/c370c40a-f02d-4c53-9e8e-6a1de39d0c9e.png" alt="Sistema visual de marca" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Branding</span>
+                    <p class="cont-caption">Sistema visual de marca</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Branding/7158258c-ccdc-495b-8a89-831d46c28615.png" data-cat="brand" data-reveal>
+                <img src="JGStudio/Contenido/Branding/7158258c-ccdc-495b-8a89-831d46c28615.png" alt="Pieza comercial JGStudio" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Branding</span>
+                    <p class="cont-caption">Pieza comercial para redes</p>
+                </div>
+            </div>
             <div class="cont-item" data-img="JGStudio/Contenido/Branding/QuienSoy.png" data-cat="brand" data-reveal>
                 <img src="JGStudio/Contenido/Branding/QuienSoy.png" alt="Quién Soy — JGStudio" loading="lazy">
                 <div class="cont-overlay">
@@ -501,6 +531,41 @@
             </div>
 
             <!-- RIVALFIT APP -->
+            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Alfred/4c064e3b-04e9-4956-b354-9bb4d321010f.png" data-reveal>
+                <img src="JGStudio/Contenido/Alfred/4c064e3b-04e9-4956-b354-9bb4d321010f.png" alt="The Alfred Project — Podcast RivalFit" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">RivalFit App</span>
+                    <p class="cont-caption">The Alfred Project — Podcast oficial</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Alfred/4455f5e9-9737-41a1-ad6a-6cc906ceff0b.png" data-reveal>
+                <img src="JGStudio/Contenido/Alfred/4455f5e9-9737-41a1-ad6a-6cc906ceff0b.png" alt="The Alfred Project — Portada podcast RivalFit" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">RivalFit App</span>
+                    <p class="cont-caption">The Alfred Project — Portada vertical</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/1bcf8e35-09b7-4e8d-8e85-7f1c98197db4.png" data-reveal>
+                <img src="JGStudio/Contenido/Rival Fit App/1bcf8e35-09b7-4e8d-8e85-7f1c98197db4.png" alt="RivalFit nueva pieza promocional" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">RivalFit App</span>
+                    <p class="cont-caption">Nueva pieza promocional</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/43f08b7e-574d-4367-85f4-9222f4b43485.png" data-reveal>
+                <img src="JGStudio/Contenido/Rival Fit App/43f08b7e-574d-4367-85f4-9222f4b43485.png" alt="RivalFit campa&ntilde;a visual" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">RivalFit App</span>
+                    <p class="cont-caption">Campa&ntilde;a visual para producto SaaS</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/3f72991a-5670-46c1-9683-280ce53f8fb1.png" data-reveal>
+                <img src="JGStudio/Contenido/Rival Fit App/3f72991a-5670-46c1-9683-280ce53f8fb1.png" alt="RivalFit contenido comercial" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">RivalFit App</span>
+                    <p class="cont-caption">Contenido comercial para lanzamiento</p>
+                </div>
+            </div>
             <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/PromoComercial.png" data-reveal>
                 <img src="JGStudio/Contenido/Rival Fit App/PromoComercial.png" alt="RivalFit Promo — JGStudio" loading="lazy">
                 <div class="cont-overlay">
@@ -581,6 +646,83 @@
             </div>
 
             <!-- CARRUSELES -->
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap1.png" data-reveal>
+                <img src="JGStudio/Contenido/linkedin/linkedin-Cap1.png" alt="Construyendo JGStudio — Capítulo 1" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 1</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap2.png" data-reveal>
+                <img src="JGStudio/Contenido/linkedin/linkedin-Cap2.png" alt="Construyendo JGStudio — Capítulo 2" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 2</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap3.png" data-reveal>
+                <img src="JGStudio/Contenido/linkedin/linkedin-Cap3.png" alt="Construyendo JGStudio — Capítulo 3" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 3</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap4.png" data-reveal>
+                <img src="JGStudio/Contenido/linkedin/linkedin-Cap4.png" alt="Construyendo JGStudio — Capítulo 4" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 4</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap5.png" data-reveal>
+                <img src="JGStudio/Contenido/linkedin/linkedin-Cap5.png" alt="Construyendo JGStudio — Capítulo 5" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 5</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_01.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_01.png" alt="Carrusel Venezuela slide 1" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 1</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_02.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_02.png" alt="Carrusel Venezuela slide 2" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 2</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_03.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_03.png" alt="Carrusel Venezuela slide 3" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 3</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_04.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_04.png" alt="Carrusel Venezuela slide 4" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 4</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_05.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_05.png" alt="Carrusel Venezuela slide 5" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 5</p>
+                </div>
+            </div>
+            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_06.png" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_06.png" alt="Carrusel Venezuela slide 6" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Carrusel IA</span>
+                    <p class="cont-caption">Serie Venezuela - Slide 6</p>
+                </div>
+            </div>
             <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/1.png" data-reveal>
                 <img src="JGStudio/Contenido/Carruseles/1.png" alt="Carrusel Slide 1 — JGStudio" loading="lazy">
                 <div class="cont-overlay">
@@ -625,6 +767,57 @@
             </div>
 
             <!-- CINEMATIC IA -->
+            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Business_full_of_people_success_202607221323.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Video/business_poster.png" alt="Coworking cinematográfico IA" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Cinematic IA</span>
+                    <p class="cont-caption">Coworking y &eacute;xito — escena IA</p>
+                </div>
+            </div>
+            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Empty_cafe_in_rain_202607221323.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Video/cafe_poster.png" alt="Café en la lluvia cinematográfico IA" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Cinematic IA</span>
+                    <p class="cont-caption">Caf&eacute; vac&iacute;o bajo la lluvia — atm&oacute;sfera IA</p>
+                </div>
+            </div>
+            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Local_transformation_red_lights_202607221323.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Video/transformation_poster.png" alt="Transformación de local cinematográfico IA" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Cinematic IA</span>
+                    <p class="cont-caption">Transformaci&oacute;n de local — luces rojas</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/ba6d86ca-bc17-49f8-9aea-b279c3e2728f.png" data-cat="frames" data-reveal>
+                <img src="JGStudio/Contenido/Frames/ba6d86ca-bc17-49f8-9aea-b279c3e2728f.png" alt="Frame cinematografico IA" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Frames</span>
+                    <p class="cont-caption">Nuevo frame cinematogr&aacute;fico</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/eced3232-b0e4-4a09-8393-5d55ad2de92c.png" data-cat="frames" data-reveal>
+                <img src="JGStudio/Contenido/Frames/eced3232-b0e4-4a09-8393-5d55ad2de92c.png" alt="Frame IA con atmosfera" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Frames</span>
+                    <p class="cont-caption">Frame IA con atm&oacute;sfera</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/b699db5d-1d66-450a-ac0d-b5418898b1d9.png" data-cat="frames" data-reveal>
+                <img src="JGStudio/Contenido/Frames/b699db5d-1d66-450a-ac0d-b5418898b1d9.png" alt="Composicion cinematic IA" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Frames</span>
+                    <p class="cont-caption">Composici&oacute;n cinematic IA</p>
+                </div>
+            </div>
             <div class="cont-item" data-img="JGStudio/Contenido/Branding/620ec73c-c347-44d3-9fad-4d7be122ed4b.png" data-cat="cinematic" data-reveal>
                 <img src="JGStudio/Contenido/Branding/620ec73c-c347-44d3-9fad-4d7be122ed4b.png" alt="Heavy On My Own Mind — JGStudio" loading="lazy">
                 <div class="cont-overlay">
@@ -793,6 +986,27 @@
             </div>
 
             <!-- EDICIÓN FOTOGRÁFICA -->
+            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/cedfcbaa-747f-49be-8c72-a646eb5244b0.png" data-cat="foto" data-reveal>
+                <img src="JGStudio/Contenido/Fotografia/cedfcbaa-747f-49be-8c72-a646eb5244b0.png" alt="Nueva fotografia editorial" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
+                    <p class="cont-caption">Nueva fotograf&iacute;a editorial</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/c060b573-904c-43f6-be57-67ac581ba0b1.png" data-cat="foto" data-reveal>
+                <img src="JGStudio/Contenido/Fotografia/c060b573-904c-43f6-be57-67ac581ba0b1.png" alt="Retrato visual premium" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
+                    <p class="cont-caption">Retrato visual premium</p>
+                </div>
+            </div>
+            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/ee92a9d4-21cb-4c3e-accb-6ac50350f5cf.png" data-cat="foto" data-reveal>
+                <img src="JGStudio/Contenido/Fotografia/ee92a9d4-21cb-4c3e-accb-6ac50350f5cf.png" alt="Composicion fotografica IA" loading="lazy">
+                <div class="cont-overlay">
+                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
+                    <p class="cont-caption">Composici&oacute;n fotogr&aacute;fica IA</p>
+                </div>
+            </div>
             <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/0ddae64e-4ebb-45ff-8be1-fcc952853bc7.png" data-cat="foto" data-reveal>
                 <img src="JGStudio/Contenido/Fotografia/0ddae64e-4ebb-45ff-8be1-fcc952853bc7.png" alt="Alfred — Edición Fotográfica" loading="lazy">
                 <div class="cont-overlay">
@@ -825,34 +1039,34 @@
                 </div>
             </div>
 
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history1.png" data-cat="foto" data-reveal>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history1.png" data-cat="frames" data-reveal>
                 <img src="JGStudio/Contenido/Frames/history1.png" alt="Historia visual — JGStudio" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Historia visual — serie</p>
                 </div>
             </div>
 
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history2.png" data-cat="foto" data-reveal>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history2.png" data-cat="frames" data-reveal>
                 <img src="JGStudio/Contenido/Frames/history2.png" alt="Historia visual — JGStudio" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Historia visual — continuidad</p>
                 </div>
             </div>
 
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history3.png" data-cat="foto" data-reveal>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history3.png" data-cat="frames" data-reveal>
                 <img src="JGStudio/Contenido/Frames/history3.png" alt="Historia visual — JGStudio" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Historia visual — narrativa</p>
                 </div>
             </div>
 
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/9f761a0b-d1ba-41c3-94b4-d2fa14d0d2bf.png" data-cat="foto" data-reveal>
+            <div class="cont-item" data-img="JGStudio/Contenido/Frames/9f761a0b-d1ba-41c3-94b4-d2fa14d0d2bf.png" data-cat="frames" data-reveal>
                 <img src="JGStudio/Contenido/Frames/9f761a0b-d1ba-41c3-94b4-d2fa14d0d2bf.png" alt="Edición IA — JGStudio" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Retrato con IA — atmosférico</p>
                 </div>
             </div>
@@ -929,10 +1143,10 @@
                     <p class="cont-caption">Fotografía y arte digital</p>
                 </div>
             </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Frames/97c9f484-6d0b-457e-8ef9-a2272466ab9a.png" data-reveal>
+            <div class="cont-item" data-cat="frames" data-img="JGStudio/Contenido/Frames/97c9f484-6d0b-457e-8ef9-a2272466ab9a.png" data-reveal>
                 <img src="JGStudio/Contenido/Frames/97c9f484-6d0b-457e-8ef9-a2272466ab9a.png" alt="Composición de retrato" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Composición de retrato</p>
                 </div>
             </div>
@@ -950,15 +1164,45 @@
                     <p class="cont-caption">Retrato de estudio</p>
                 </div>
             </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Frames/fc55d2d5-d4b2-4790-816e-6cf8abc14ca9.png" data-reveal>
+            <div class="cont-item" data-cat="frames" data-img="JGStudio/Contenido/Frames/fc55d2d5-d4b2-4790-816e-6cf8abc14ca9.png" data-reveal>
                 <img src="JGStudio/Contenido/Frames/fc55d2d5-d4b2-4790-816e-6cf8abc14ca9.png" alt="Edición digital premium" loading="lazy">
                 <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
+                    <span class="cont-tag">Frames</span>
                     <p class="cont-caption">Edición digital premium</p>
                 </div>
             </div>
 
             <!-- VIDEO -->
+            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Promo01.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Video/promo01_poster.png" alt="Video promocional JGStudio" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Video IA</span>
+                    <p class="cont-caption">Promo comercial JGStudio</p>
+                </div>
+            </div>
+            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/wodRivalfit.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Video/wodrivalfit_poster.png" alt="Video RivalFit entrenamiento" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Video IA</span>
+                    <p class="cont-caption">RivalFit — entrenamiento y app</p>
+                </div>
+            </div>
+            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/vzla01.mp4" data-reveal>
+                <img src="JGStudio/Contenido/Carruseles/vzla_01.png" alt="Video Venezuela JGStudio" loading="lazy">
+                <div class="cont-play">
+                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
+                </div>
+                <div class="cont-overlay">
+                    <span class="cont-tag">Video IA</span>
+                    <p class="cont-caption">Video Venezuela - pieza completa</p>
+                </div>
+            </div>
             <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Imagenes/escena1.mp4" data-reveal>
                 <img src="JGStudio/videos/Imagenes/esc1.png" alt="Video intro — JGStudio" loading="lazy">
                 <div class="cont-play">
@@ -1028,8 +1272,8 @@
         </div>
 
         <div class="cont-footer" data-reveal>
-            <a href="https://www.instagram.com/jgstudio.ia/" target="_blank" class="btn-fill magnetic">
-                <i class="fab fa-instagram"></i>&nbsp; Ver más en @jgstudio.ia
+            <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" class="btn-fill magnetic">
+                <i class="fab fa-instagram"></i>&nbsp; Ver más en @jgstudio.dev
             </a>
         </div>
     </div>
@@ -1043,7 +1287,7 @@
         </div>
         <div class="about-grid">
             <div class="about-photo" data-reveal>
-                <img src="img/profile_new.png" alt="Jesús Gómez - Fundador de JGStudio">
+                <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez - Fundador de JGStudio">
                 <div class="about-photo-meta">
                     <strong>Jesús Gómez Santiago</strong>
                     <span>Fundador · JGStudio · España</span>
@@ -1078,7 +1322,7 @@
                 </div>
                 <div class="about-links">
                     <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" class="link-pill magnetic"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://www.instagram.com/jgstudio.ia/" target="_blank" class="link-pill magnetic"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" class="link-pill magnetic"><i class="fab fa-instagram"></i> Instagram</a>
                     <a href="cv.html" target="_blank" class="link-pill link-pill--accent magnetic"><i class="fas fa-file"></i> Ver CV</a>
                 </div>
             </div>
@@ -1523,7 +1767,7 @@
                     <p><i class="fas fa-map-marker-alt"></i> España · Disponible remoto</p>
                 </div>
                 <div class="contact-social">
-                    <a href="https://www.instagram.com/jgstudio.ia/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/jesusgomez-data" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 </div>
@@ -1566,7 +1810,7 @@
         </div>
         <p class="footer-copy">© 2026 JGStudio · Jesús Gómez Santiago</p>
         <div class="footer-links">
-            <a href="https://www.instagram.com/jgstudio.ia/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/jesusgomez-data" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>

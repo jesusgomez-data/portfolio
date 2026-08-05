@@ -3438,3 +3438,38 @@ img { display:block; max-width:100%; }
     }
 }
 
+/* ── Interactive Card Spotlight & Glass Glow ── */
+.cap-card, .prc, .price-card, .results-card, .svc-col {
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.cap-card::before, .prc::before, .price-card::before, .results-card::before, .svc-col::before {
+    content: '';
+    position: absolute;
+    top: var(--mouse-y, 50%);
+    left: var(--mouse-x, 50%);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(214, 48, 49, 0.14) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+.cap-card:hover::before, .prc:hover::before, .price-card:hover::before, .results-card:hover::before, .svc-col:hover::before {
+    opacity: 1;
+}
+
+/* Glassmorphism enhancement */
+.cap-card, .prc, .price-card, .results-card, .svc-col {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.cap-card:hover, .price-card:hover, .svc-col:hover {
+    border-color: rgba(214, 48, 49, 0.35);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(214, 48, 49, 0.1);
+}
+
+

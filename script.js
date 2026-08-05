@@ -86,50 +86,6 @@ function initThreeHero() {
     grid.position.set(0, -14, -4);
     scene.add(grid);
 
-    const pN = window.innerWidth < 768 ? 500 : 1100;
-    const pG  = new THREE.BufferGeometry();
-    const pos = new Float32Array(pN * 3);
-    const sz  = new Float32Array(pN);
-    for (let i = 0; i < pN; i++) {
-        pos[i*3]   = (Math.random()-.5)*110;
-        pos[i*3+1] = (Math.random()-.5)*80;
-        pos[i*3+2] = (Math.random()-.5)*55;
-        sz[i]      = Math.random()*1.8 + .4;
-    }
-    pG.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    pG.setAttribute('size',     new THREE.BufferAttribute(sz,  1));
-    const pMat = new THREE.ShaderMaterial({
-        uniforms:{ uTime:{value:0}, uMouse:{value:new THREE.Vector2(0,0)} },
-        vertexShader:`
-            attribute float size; uniform float uTime; uniform vec2 uMouse;
-            varying float vA; varying float vR;
-            void main(){
-                vec3 p=position;
-                p.y+=sin(p.x*.09+uTime*.38)*1.3;
-                p.x+=cos(p.z*.07+uTime*.28)*.9;
-                vec2 mw=uMouse*vec2(50.,36.);
-                float md=length(p.xy-mw);
-                float rep=max(0.,9.-md*.45)*2.2;
-                if(md>.01) p.xy+=normalize(p.xy-mw)*rep;
-                vec4 mv=modelViewMatrix*vec4(p,1.);
-                gl_PointSize=size*(260./-mv.z);
-                gl_Position=projectionMatrix*mv;
-                vA=.25+.2*abs(sin(p.x*.13+uTime*.55));
-                vR=step(.82,sin(p.x*.21+p.y*.16));
-            }`,
-        fragmentShader:`
-            varying float vA; varying float vR;
-            void main(){
-                vec2 c=gl_PointCoord-.5; float d=length(c);
-                if(d>.5) discard;
-                float a=(1.-smoothstep(.25,.5,d))*vA;
-                vec3 col=mix(vec3(.94,.93,.9),vec3(.84,.19,.19),vR);
-                gl_FragColor=vec4(col,a);
-            }`,
-        transparent:true, blending:THREE.AdditiveBlending, depthWrite:false,
-    });
-    scene.add(new THREE.Points(pG, pMat));
-
     const t1 = new THREE.Mesh(new THREE.TorusGeometry(11,.27,8,64), new THREE.MeshBasicMaterial({ color:0xD63031, wireframe:true, transparent:true, opacity:.18 }));
     t1.position.set(22, 4, -8); scene.add(t1);
     const t2 = new THREE.Mesh(new THREE.TorusGeometry(6.5,.18,6,40), new THREE.MeshBasicMaterial({ color:0xF0ECE5, wireframe:true, transparent:true, opacity:.06 }));
@@ -146,8 +102,6 @@ function initThreeHero() {
         m.tx += (m.x-m.tx)*.04; m.ty += (m.y-m.ty)*.04;
         gridMat.uniforms.uTime.value = t;
         gridMat.uniforms.uMouse.value.set(m.tx, m.ty);
-        pMat.uniforms.uTime.value = t;
-        pMat.uniforms.uMouse.value.set(m.tx, m.ty);
         t1.rotation.x = t*.14+m.ty*.28; t1.rotation.y = t*.19+m.tx*.28;
         t2.rotation.x = -t*.09-m.ty*.18; t2.rotation.z = t*.12+Math.PI*.4;
         ico.rotation.y = t*.17+m.tx*.2; ico.rotation.x = t*.1-m.ty*.15;
@@ -400,30 +354,6 @@ function main() {
             b.addEventListener('mouseleave', () => gsap.to(b, { x:0,y:0,duration:.6,ease:'elastic.out(1,.5)' }));
         });
     }
-
-    /* Subtle background particles */
-    const bgCanvas = document.createElement('canvas');
-    bgCanvas.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;';
-    document.body.insertBefore(bgCanvas, document.body.firstChild);
-    const ctx2 = bgCanvas.getContext('2d');
-    let bW = bgCanvas.width = innerWidth, bH = bgCanvas.height = innerHeight;
-    window.addEventListener('resize', () => { bW=bgCanvas.width=innerWidth; bH=bgCanvas.height=innerHeight; }, { passive:true });
-    const bPts = Array.from({ length: bW<768?14:32 }, () => ({
-        x:Math.random()*bW, y:Math.random()*bH,
-        vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.18,
-        r:Math.random()*.8+.2, o:Math.random()*.12+.02,
-    }));
-    (function bgLoop() {
-        ctx2.clearRect(0,0,bW,bH);
-        bPts.forEach(p => {
-            p.x+=p.vx; p.y+=p.vy;
-            if(p.x<0||p.x>bW) p.vx*=-1;
-            if(p.y<0||p.y>bH) p.vy*=-1;
-            ctx2.beginPath(); ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);
-            ctx2.fillStyle=`rgba(214,48,49,${p.o})`; ctx2.fill();
-        });
-        requestAnimationFrame(bgLoop);
-    })();
 }
 
 /* ── Media Lightbox ────────────────────────────── */
@@ -602,10 +532,25 @@ function initContenidoFilter() {
     });
 }
 
+/* ── Card Spotlight Glow ───────────────────────── */
+function initCardSpotlight() {
+    const cards = document.querySelectorAll('.cap-card, .prc, .price-card, .results-card, .svc-col');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+}
+
 /* ── Boot ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     initThreeHero();
     initPreloader(main);
+    initCardSpotlight();
     initContenidoFilter();
     initMediaLightbox();
     initAssistant();

@@ -866,6 +866,14 @@ img { display:block; max-width:100%; }
 /* Hidden when filtered */
 .cont-item.cf-hidden { display:none; }
 
+/* Pagination */
+.cont-pagination { display:flex; align-items:center; justify-content:center; gap:18px; margin:-24px 0 48px; }
+.cont-pagination.cont-pagination--hidden { display:none; }
+.cont-page-btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--f-m); font-size:.62rem; letter-spacing:2px; text-transform:uppercase; padding:10px 18px; border:1px solid var(--border); border-radius:2px; background:none; color:var(--cream); cursor:pointer; transition:all .2s; }
+.cont-page-btn:hover:not(:disabled) { border-color:var(--accent); color:var(--accent); }
+.cont-page-btn:disabled { opacity:.3; cursor:not-allowed; }
+.cont-page-status { font-family:var(--f-m); font-size:.6rem; letter-spacing:2px; color:var(--gray); min-width:44px; text-align:center; }
+
 /* ── VIDEO LIGHTBOX ──────────────────────────── */
 .vlb { position:fixed; inset:0; z-index:99999; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s; }
 .vlb.vlb-open { opacity:1; pointer-events:all; }

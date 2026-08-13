@@ -8,8 +8,8 @@
     <meta property="og:title" content="CV — Jesús Gómez Santiago · Full-Stack Developer">
     <meta property="og:description" content="CV de Jesús Gómez Santiago — Full-Stack Developer y fundador de JGStudio.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jg-studio.vercel.app/cv.html">
-    <meta property="og:image" content="https://jg-studio.vercel.app/img/profile_new.png">
+    <meta property="og:url" content="https://jgstudio.dev/cv.html">
+    <meta property="og:image" content="https://jgstudio.dev/img/profile_new.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <link rel="icon" type="image/png" href="img/logo_jgs_oficial.png">
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CV — Jesús Gómez Santiago · Full-Stack Developer">
     <meta name="twitter:description" content="CV de Jesús Gómez Santiago — Full-Stack Developer y fundador de JGStudio.">
-    <meta name="twitter:image" content="https://jg-studio.vercel.app/img/profile_new.png">
+    <meta name="twitter:image" content="https://jgstudio.dev/img/profile_new.png">
 
     <!-- Fonts — same as main site -->
     <link rel="preconnect" href="https://api.fontshare.com">
@@ -749,14 +749,21 @@
     }
 
     /* ════════════════════════════════
-       PRINT STYLES
+       PRINT STYLES (Recruiter PDF optimized)
     ════════════════════════════════ */
     @media print {
-        body {
-            background: #fff !important;
-            color: #111 !important;
+        @page {
+            margin: 8mm 10mm;
+            size: A4;
         }
-        body::after { display: none; }
+
+        body {
+            background: #ffffff !important;
+            color: #1e293b !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        body::after { display: none !important; }
 
         .print-bar { display: none !important; }
 
@@ -765,51 +772,166 @@
             max-width: 100% !important;
             border: none !important;
             box-shadow: none !important;
+            background: #ffffff !important;
         }
 
         .cv-header {
-            background: #111 !important;
+            background: #0f172a !important;
             flex-direction: row !important;
             text-align: left !important;
-            padding: 24px 32px !important;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
+            align-items: center !important;
+            padding: 24px 28px !important;
+            gap: 24px !important;
+            border-radius: 4px !important;
+            margin-bottom: 16px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
-        .header-name { color: #F0ECE5 !important; }
-        .hc-item { color: #999 !important; }
+        .header-photo {
+            width: 76px !important;
+            height: 76px !important;
+            border: 2px solid #d63031 !important;
+            border-radius: 50% !important;
+            display: block !important;
+        }
+        .header-name { color: #ffffff !important; font-size: 1.8rem !important; }
+        .header-title { color: #ff6b6b !important; font-size: 0.58rem !important; letter-spacing: 3px !important; }
+        .header-contacts { justify-content: flex-start !important; }
+        .hc-item { color: #cbd5e1 !important; font-size: 0.52rem !important; }
+        .hc-item i { color: #ff6b6b !important; }
 
         .cv-body {
             display: grid !important;
-            grid-template-columns: 230px 1fr !important;
+            grid-template-columns: 240px 1fr !important;
+            gap: 20px !important;
         }
 
         .cv-sidebar {
             order: 0 !important;
-            background: #f8f8f8 !important;
-            border-right: 1px solid #e0e0e0 !important;
-            padding: 20px 18px !important;
+            background: #f8fafc !important;
+            border-right: 1px solid #e2e8f0 !important;
+            border-top: none !important;
+            padding: 18px 16px !important;
+            border-radius: 4px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
-        .sec-label { color: #D63031 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        .cv-main { padding: 20px 24px !important; order: 1 !important; }
+        .cv-main { padding: 18px 20px !important; order: 1 !important; }
 
-        .cert-name, .edu-degree { color: #111 !important; }
-        .summary-text { color: #444 !important; }
-        .exp-role { color: #111 !important; }
-        .exp-bullets li { color: #444 !important; }
-        .proj-name { color: #111 !important; }
+        .sec-label {
+            color: #d63031 !important;
+            font-size: 0.52rem !important;
+            font-weight: 700 !important;
+            border-bottom: 1.5px solid rgba(214,48,49,0.3) !important;
+            padding-bottom: 6px !important;
+            margin-bottom: 14px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .sec-label::before { background: #d63031 !important; }
 
-        .tag { border-color: #ccc !important; color: #555 !important; }
-        .tag.hi { color: #D63031 !important; border-color: rgba(214,48,49,.4) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .summary-text { color: #334155 !important; font-size: 0.86rem !important; line-height: 1.7 !important; }
+        .summary-text strong { color: #0f172a !important; font-weight: 700 !important; }
+
+        .exp-item {
+            padding: 0 0 20px 16px !important;
+            border-left: 2px solid #cbd5e1 !important;
+        }
+        .exp-item::before {
+            width: 8px !important;
+            height: 8px !important;
+            background: #d63031 !important;
+            border: 2px solid #ffffff !important;
+            left: -5px !important;
+            top: 3px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .exp-role { color: #0f172a !important; font-size: 0.95rem !important; font-weight: 800 !important; }
+        .exp-date {
+            background: #fef2f2 !important;
+            color: #b91c1c !important;
+            border: 1px solid rgba(214,48,49,0.25) !important;
+            font-size: 0.46rem !important;
+            padding: 2px 8px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .exp-company { color: #64748b !important; font-size: 0.48rem !important; font-weight: 600 !important; margin-bottom: 8px !important; }
+        .exp-bullets li { color: #334155 !important; font-size: 0.82rem !important; line-height: 1.5 !important; }
+        .exp-bullets li::before { background: #d63031 !important; opacity: 0.8 !important; }
+
+        .proj-card {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-left: 3px solid #d63031 !important;
+            padding: 10px 14px !important;
+            margin-bottom: 8px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .proj-name { color: #0f172a !important; font-size: 0.9rem !important; font-weight: 800 !important; }
+        .proj-stack { color: #64748b !important; font-size: 0.46rem !important; }
+        .proj-badge.prod { color: #b91c1c !important; border-color: rgba(214,48,49,0.4) !important; }
+        .proj-badge.client { color: #d97706 !important; border-color: rgba(217,119,6,0.4) !important; }
+        .proj-badge.live { color: #059669 !important; border-color: rgba(5,150,105,0.4) !important; }
+        .proj-link { color: #d63031 !important; }
+
+        .stat-box {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            padding: 8px 4px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .stat-num { color: #d63031 !important; font-size: 1.3rem !important; }
+        .stat-lbl { color: #64748b !important; font-size: 0.42rem !important; }
+
+        .cert-name, .edu-degree { color: #0f172a !important; font-size: 0.84rem !important; font-weight: 700 !important; }
+        .cert-issuer, .edu-school { color: #64748b !important; font-size: 0.44rem !important; }
+
+        .tag {
+            background: #f1f5f9 !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #334155 !important;
+            font-size: 0.46rem !important;
+            padding: 3px 8px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .tag.hi {
+            background: #fef2f2 !important;
+            color: #b91c1c !important;
+            border: 1px solid rgba(214,48,49,0.35) !important;
+            font-weight: 700 !important;
+        }
+        .avail-tag {
+            background: #fef2f2 !important;
+            border: 1px solid rgba(214,48,49,0.3) !important;
+            color: #b91c1c !important;
+            font-size: 0.46rem !important;
+            padding: 4px 10px !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .sc-icon {
+            background: #fef2f2 !important;
+            border: 1px solid rgba(214,48,49,0.2) !important;
+            color: #d63031 !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+        .sc-text, .sc-text a { color: #334155 !important; font-size: 0.76rem !important; }
 
         /* Prevent breaking sections and cards across pages in print PDF */
         .sec, .exp-item, .proj-card, .edu-item, .cert-item {
             break-inside: avoid;
             page-break-inside: avoid;
         }
-
-        @page {
-            margin: 0;
-            size: A4;
+        .sec-label, .exp-role, .proj-name {
+            break-after: avoid;
+            page-break-after: avoid;
         }
     }
 
@@ -936,8 +1058,8 @@
                     <a class="hc-item" href="https://www.instagram.com/jgstudio.dev/" target="_blank">
                         <i class="fab fa-instagram"></i> @jgstudio.dev
                     </a>
-                    <a class="hc-item" href="https://jg-studio.vercel.app/" target="_blank">
-                        <i class="fas fa-globe"></i> jg-studio.vercel.app
+                    <a class="hc-item" href="https://jgstudio.dev/" target="_blank">
+                        <i class="fas fa-globe"></i> jgstudio.dev
                     </a>
                 </div>
             </div>
@@ -1109,7 +1231,7 @@
                         </div>
                         <div class="sc-item">
                             <div class="sc-icon"><i class="fas fa-globe"></i></div>
-                            <span class="sc-text"><a href="https://jg-studio.vercel.app/" target="_blank">jg-studio.vercel.app</a></span>
+                            <span class="sc-text"><a href="https://jgstudio.dev/" target="_blank">jgstudio.dev</a></span>
                         </div>
                         <div class="sc-item">
                             <div class="sc-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -1143,7 +1265,7 @@
                                 <div class="exp-role">Fundador &amp; Desarrollador Full-Stack — JGStudio</div>
                                 <span class="exp-date">2023 – Presente</span>
                             </div>
-                            <div class="exp-company">Estudio Creativo Digital · jg-studio.vercel.app</div>
+                            <div class="exp-company">Estudio Creativo Digital · jgstudio.dev</div>
                             <ul class="exp-bullets">
                                 <li>Estudio creativo digital: diseño, desarrollo web, apps, IA y automatización para clientes</li>
                                 <li>5 proyectos entregados y en producción — ciclo completo diseño → deploy → mantenimiento</li>

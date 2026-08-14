@@ -309,6 +309,8 @@
     @media (min-width: 900px) {
         .cv-sidebar {
             order: 0;
+            grid-column: 1;
+            grid-row: 1;
             border-right: 1px solid var(--border-s);
             border-top: none;
             padding: 36px 28px;
@@ -327,6 +329,9 @@
     .cv-main {
         padding: 36px 32px;
         order: 1; /* mobile: main first */
+    }
+    @media (min-width: 900px) {
+        .cv-main { grid-column: 2; grid-row: 1; }
     }
     @media (max-width: 899px) {
         .cv-main { padding: 28px 24px; }
@@ -780,61 +785,76 @@
             flex-direction: row !important;
             text-align: left !important;
             align-items: center !important;
-            padding: 24px 28px !important;
-            gap: 24px !important;
+            padding: 16px 24px !important;
+            gap: 20px !important;
             border-radius: 4px !important;
-            margin-bottom: 16px !important;
+            margin-bottom: 10px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
         .header-photo {
-            width: 76px !important;
-            height: 76px !important;
+            width: 62px !important;
+            height: 62px !important;
             border: 2px solid #d63031 !important;
             border-radius: 50% !important;
             display: block !important;
         }
-        .header-name { color: #ffffff !important; font-size: 1.8rem !important; }
-        .header-title { color: #ff6b6b !important; font-size: 0.58rem !important; letter-spacing: 3px !important; }
+        .header-name { color: #ffffff !important; font-size: 1.5rem !important; margin-bottom: 4px !important; }
+        .header-title { color: #ff6b6b !important; font-size: 0.56rem !important; letter-spacing: 3px !important; margin-bottom: 10px !important; }
         .header-contacts { justify-content: flex-start !important; }
         .hc-item { color: #cbd5e1 !important; font-size: 0.52rem !important; }
         .hc-item i { color: #ff6b6b !important; }
 
+        /* Single-column flow for print — CSS Grid/Flex containers fragment
+           terribly across pages in Chromium's print engine (each top-level
+           item gets its own page range instead of letting a sibling backfill
+           leftover space), leaving huge blank gaps. Plain block flow
+           paginates like ordinary text, so .cv-main and .cv-sidebar are
+           reordered in the DOM itself (main first — most relevant to
+           recruiters) and print just needs display:block, no flex/grid. */
         .cv-body {
-            display: grid !important;
-            grid-template-columns: 240px 1fr !important;
-            gap: 20px !important;
+            display: block !important;
         }
-
+        .cv-main  { padding: 10px 0 0 !important; }
+        /* Multi-column (not flex/grid) — Chromium fragments CSS multicol
+           across print pages correctly, but treats flex/grid containers as
+           atomic boxes that jump wholesale to the next page if they don't
+           fit, which is what caused the whole sidebar to skip a page. */
         .cv-sidebar {
-            order: 0 !important;
-            background: #f8fafc !important;
-            border-right: 1px solid #e2e8f0 !important;
-            border-top: none !important;
-            padding: 18px 16px !important;
-            border-radius: 4px !important;
+            display: block !important;
+            column-count: 2 !important;
+            column-gap: 28px !important;
+            background: transparent !important;
+            border: none !important;
+            border-top: 2px solid #e2e8f0 !important;
+            padding: 10px 0 0 !important;
+            margin-top: 8px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .cv-main { padding: 18px 20px !important; order: 1 !important; }
+        .cv-sidebar .sec { break-inside: avoid !important; page-break-inside: avoid !important; }
+        .sec--contact-duplicate { display: none !important; }
+
+        .sec { margin-bottom: 9px !important; }
+        .cv-divider { margin: 1px 0 !important; }
 
         .sec-label {
             color: #d63031 !important;
-            font-size: 0.52rem !important;
+            font-size: 0.5rem !important;
             font-weight: 700 !important;
             border-bottom: 1.5px solid rgba(214,48,49,0.3) !important;
-            padding-bottom: 6px !important;
-            margin-bottom: 14px !important;
+            padding-bottom: 5px !important;
+            margin-bottom: 12px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
         .sec-label::before { background: #d63031 !important; }
 
-        .summary-text { color: #334155 !important; font-size: 0.86rem !important; line-height: 1.7 !important; }
+        .summary-text { color: #334155 !important; font-size: 0.82rem !important; line-height: 1.55 !important; }
         .summary-text strong { color: #0f172a !important; font-weight: 700 !important; }
 
         .exp-item {
-            padding: 0 0 20px 16px !important;
+            padding: 0 0 12px 16px !important;
             border-left: 2px solid #cbd5e1 !important;
         }
         .exp-item::before {
@@ -847,7 +867,7 @@
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .exp-role { color: #0f172a !important; font-size: 0.95rem !important; font-weight: 800 !important; }
+        .exp-role { color: #0f172a !important; font-size: 0.9rem !important; font-weight: 800 !important; }
         .exp-date {
             background: #fef2f2 !important;
             color: #b91c1c !important;
@@ -857,16 +877,17 @@
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .exp-company { color: #64748b !important; font-size: 0.48rem !important; font-weight: 600 !important; margin-bottom: 8px !important; }
-        .exp-bullets li { color: #334155 !important; font-size: 0.82rem !important; line-height: 1.5 !important; }
+        .exp-company { color: #64748b !important; font-size: 0.46rem !important; font-weight: 600 !important; margin-bottom: 5px !important; }
+        .exp-bullets { gap: 3px !important; }
+        .exp-bullets li { color: #334155 !important; font-size: 0.78rem !important; line-height: 1.4 !important; }
         .exp-bullets li::before { background: #d63031 !important; opacity: 0.8 !important; }
 
         .proj-card {
             background: #ffffff !important;
             border: 1px solid #e2e8f0 !important;
             border-left: 3px solid #d63031 !important;
-            padding: 10px 14px !important;
-            margin-bottom: 8px !important;
+            padding: 6px 12px !important;
+            margin-bottom: 4px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
@@ -887,8 +908,13 @@
         .stat-num { color: #d63031 !important; font-size: 1.3rem !important; }
         .stat-lbl { color: #64748b !important; font-size: 0.42rem !important; }
 
-        .cert-name, .edu-degree { color: #0f172a !important; font-size: 0.84rem !important; font-weight: 700 !important; }
+        .cert-name, .edu-degree { color: #0f172a !important; font-size: 0.74rem !important; font-weight: 700 !important; }
         .cert-issuer, .edu-school { color: #64748b !important; font-size: 0.44rem !important; }
+        .cert-item { padding: 4px 0 !important; }
+        .edu-list { gap: 6px !important; }
+        .skill-groups { gap: 6px !important; }
+        .skill-group-name { margin-bottom: 4px !important; font-size: 0.42rem !important; }
+        .lang-list { gap: 4px !important; }
 
         .tag {
             background: #f1f5f9 !important;
@@ -924,8 +950,11 @@
         }
         .sc-text, .sc-text a { color: #334155 !important; font-size: 0.76rem !important; }
 
-        /* Prevent breaking sections and cards across pages in print PDF */
-        .sec, .exp-item, .proj-card, .edu-item, .cert-item {
+        /* Prevent breaking individual cards across pages — but NOT whole
+           .sec containers, otherwise a tall section (e.g. Experiencia with
+           3 roles) gets pushed entirely to the next page even when it
+           would mostly fit, leaving huge blank gaps behind it. */
+        .exp-item, .proj-card, .edu-item, .cert-item, .skill-group, .stat-row, .lang-item {
             break-inside: avoid;
             page-break-inside: avoid;
         }
@@ -1067,180 +1096,6 @@
 
         <!-- ══════════════════════ BODY ══════════════════════ -->
         <div class="cv-body">
-
-            <!-- ═══════════ SIDEBAR ═══════════ -->
-            <aside class="cv-sidebar">
-
-                <!-- Trayectoria stats -->
-                <div class="sec">
-                    <div class="sec-label">Trayectoria</div>
-                    <div class="stat-row">
-                        <div class="stat-box">
-                            <span class="stat-num">8</span>
-                            <span class="stat-lbl">años Fisio.</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">3</span>
-                            <span class="stat-lbl">años Coach</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-num">3.5</span>
-                            <span class="stat-lbl">años Dev</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stack técnico -->
-                <div class="sec">
-                    <div class="sec-label">Stack Técnico</div>
-                    <div class="skill-groups">
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">Frontend</div>
-                            <div class="skill-tags">
-                                <span class="tag hi">Next.js 15</span>
-                                <span class="tag hi">TypeScript</span>
-                                <span class="tag">React</span>
-                                <span class="tag">Tailwind CSS</span>
-                                <span class="tag">HTML / CSS</span>
-                                <span class="tag">GSAP</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">Backend &amp; DB</div>
-                            <div class="skill-tags">
-                                <span class="tag hi">Supabase</span>
-                                <span class="tag hi">PostgreSQL</span>
-                                <span class="tag">Node.js</span>
-                                <span class="tag">REST APIs</span>
-                                <span class="tag">SQL</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">Mobile</div>
-                            <div class="skill-tags">
-                                <span class="tag hi">React Native</span>
-                                <span class="tag">Flutter</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">IA &amp; Automatización</div>
-                            <div class="skill-tags">
-                                <span class="tag hi">OpenAI API</span>
-                                <span class="tag hi">Claude AI</span>
-                                <span class="tag">n8n</span>
-                                <span class="tag">Make</span>
-                                <span class="tag">Python</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">Data &amp; BI</div>
-                            <div class="skill-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Pandas</span>
-                                <span class="tag">Power BI</span>
-                                <span class="tag">DAX</span>
-                                <span class="tag">SQL</span>
-                            </div>
-                        </div>
-
-                        <div class="skill-group">
-                            <div class="skill-group-name">Herramientas</div>
-                            <div class="skill-tags">
-                                <span class="tag">Git / GitHub</span>
-                                <span class="tag">Vercel</span>
-                                <span class="tag">Stripe</span>
-                                <span class="tag">Figma</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Certificaciones -->
-                <div class="sec">
-                    <div class="sec-label">Certificaciones</div>
-                    <div class="cert-list">
-                        <div class="cert-item">
-                            <div class="cert-name">Google Data Analytics Professional Certificate</div>
-                            <div class="cert-issuer">Google · Coursera</div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-name">Data Analysis &amp; Visualization</div>
-                            <div class="cert-issuer">Microsoft · Power BI</div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-name">Databases &amp; SQL for Data Science</div>
-                            <div class="cert-issuer">IBM · Coursera</div>
-                        </div>
-                        <div class="cert-item">
-                            <div class="cert-name">Full-Stack Web Development</div>
-                            <div class="cert-issuer">Adecco · Especialización</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Idiomas -->
-                <div class="sec">
-                    <div class="sec-label">Idiomas</div>
-                    <div class="lang-list">
-                        <div class="lang-item">
-                            <span class="lang-name">Español</span>
-                            <span class="lang-level">Nativo</span>
-                        </div>
-                        <div class="lang-item">
-                            <span class="lang-name">Inglés</span>
-                            <span class="lang-level">Intermedio</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Disponible para -->
-                <div class="sec">
-                    <div class="sec-label">Disponible para</div>
-                    <div class="avail-tags">
-                        <span class="avail-tag">Trabajo presencial</span>
-                        <span class="avail-tag">Remoto</span>
-                        <span class="avail-tag">Freelance</span>
-                    </div>
-                </div>
-
-                <!-- Contacto -->
-                <div class="sec">
-                    <div class="sec-label">Contacto</div>
-                    <div class="sidebar-contacts">
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fas fa-envelope"></i></div>
-                            <span class="sc-text"><a href="mailto:jgscoding@gmail.com">jgscoding@gmail.com</a></span>
-                        </div>
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fab fa-linkedin"></i></div>
-                            <span class="sc-text"><a href="https://linkedin.com/in/jesusgomez06" target="_blank">linkedin.com/in/jesusgomez06</a></span>
-                        </div>
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fab fa-github"></i></div>
-                            <span class="sc-text"><a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a></span>
-                        </div>
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fab fa-instagram"></i></div>
-                            <span class="sc-text"><a href="https://www.instagram.com/jgstudio.dev/" target="_blank">@jgstudio.dev</a></span>
-                        </div>
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fas fa-globe"></i></div>
-                            <span class="sc-text"><a href="https://jgstudio.dev/" target="_blank">jgstudio.dev</a></span>
-                        </div>
-                        <div class="sc-item">
-                            <div class="sc-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <span class="sc-text">España · Open to Remote</span>
-                        </div>
-                    </div>
-                </div>
-
-            </aside>
 
             <!-- ═══════════ MAIN ═══════════ -->
             <main class="cv-main">
@@ -1404,6 +1259,181 @@
                 </div>
 
             </main>
+
+            <!-- ═══════════ SIDEBAR ═══════════ -->
+            <aside class="cv-sidebar">
+
+                <!-- Trayectoria stats -->
+                <div class="sec">
+                    <div class="sec-label">Trayectoria</div>
+                    <div class="stat-row">
+                        <div class="stat-box">
+                            <span class="stat-num">8</span>
+                            <span class="stat-lbl">años Fisio.</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">3</span>
+                            <span class="stat-lbl">años Coach</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-num">3.5</span>
+                            <span class="stat-lbl">años Dev</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stack técnico -->
+                <div class="sec">
+                    <div class="sec-label">Stack Técnico</div>
+                    <div class="skill-groups">
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Frontend</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">Next.js 15</span>
+                                <span class="tag hi">TypeScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Tailwind CSS</span>
+                                <span class="tag">HTML / CSS</span>
+                                <span class="tag">GSAP</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Backend &amp; DB</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">Supabase</span>
+                                <span class="tag hi">PostgreSQL</span>
+                                <span class="tag">Node.js</span>
+                                <span class="tag">REST APIs</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Mobile</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">React Native</span>
+                                <span class="tag">Flutter</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">IA &amp; Automatización</div>
+                            <div class="skill-tags">
+                                <span class="tag hi">OpenAI API</span>
+                                <span class="tag hi">Claude AI</span>
+                                <span class="tag">n8n</span>
+                                <span class="tag">Make</span>
+                                <span class="tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Data &amp; BI</div>
+                            <div class="skill-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Pandas</span>
+                                <span class="tag">Power BI</span>
+                                <span class="tag">DAX</span>
+                                <span class="tag">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-group">
+                            <div class="skill-group-name">Herramientas</div>
+                            <div class="skill-tags">
+                                <span class="tag">Git / GitHub</span>
+                                <span class="tag">Vercel</span>
+                                <span class="tag">Stripe</span>
+                                <span class="tag">Figma</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Certificaciones -->
+                <div class="sec">
+                    <div class="sec-label">Certificaciones</div>
+                    <div class="cert-list">
+                        <div class="cert-item">
+                            <div class="cert-name">Google Data Analytics Professional Certificate</div>
+                            <div class="cert-issuer">Google · Coursera</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-name">Data Analysis &amp; Visualization</div>
+                            <div class="cert-issuer">Microsoft · Power BI</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-name">Databases &amp; SQL for Data Science</div>
+                            <div class="cert-issuer">IBM · Coursera</div>
+                        </div>
+                        <div class="cert-item">
+                            <div class="cert-name">Full-Stack Web Development</div>
+                            <div class="cert-issuer">Adecco · Especialización</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Idiomas -->
+                <div class="sec">
+                    <div class="sec-label">Idiomas</div>
+                    <div class="lang-list">
+                        <div class="lang-item">
+                            <span class="lang-name">Español</span>
+                            <span class="lang-level">Nativo</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Inglés</span>
+                            <span class="lang-level">Intermedio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disponible para -->
+                <div class="sec">
+                    <div class="sec-label">Disponible para</div>
+                    <div class="avail-tags">
+                        <span class="avail-tag">Trabajo presencial</span>
+                        <span class="avail-tag">Remoto</span>
+                        <span class="avail-tag">Freelance</span>
+                    </div>
+                </div>
+
+                <!-- Contacto (duplicado del header — oculto en impresión) -->
+                <div class="sec sec--contact-duplicate">
+                    <div class="sec-label">Contacto</div>
+                    <div class="sidebar-contacts">
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-envelope"></i></div>
+                            <span class="sc-text"><a href="mailto:jgscoding@gmail.com">jgscoding@gmail.com</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-linkedin"></i></div>
+                            <span class="sc-text"><a href="https://linkedin.com/in/jesusgomez06" target="_blank">linkedin.com/in/jesusgomez06</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-github"></i></div>
+                            <span class="sc-text"><a href="https://github.com/jesusgomez-data" target="_blank">github.com/jesusgomez-data</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fab fa-instagram"></i></div>
+                            <span class="sc-text"><a href="https://www.instagram.com/jgstudio.dev/" target="_blank">@jgstudio.dev</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-globe"></i></div>
+                            <span class="sc-text"><a href="https://jgstudio.dev/" target="_blank">jgstudio.dev</a></span>
+                        </div>
+                        <div class="sc-item">
+                            <div class="sc-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <span class="sc-text">España · Open to Remote</span>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
         </div>
         <!-- end .cv-body -->
 
@@ -1415,14 +1445,14 @@
         (function() {
             const btn  = document.getElementById('theme-toggle');
             const icon = document.getElementById('theme-icon');
-            
+
             // Initial sync icon state
             const syncIcon = (theme) => {
                 if (icon) {
                     icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
                 }
             };
-            
+
             const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
             syncIcon(currentTheme);
 

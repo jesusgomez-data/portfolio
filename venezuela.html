@@ -1391,7 +1391,230 @@
       }
 
 
-    </style>
+    
+            /* =========================================================
+         JGSTUDIO — REGION DROPDOWN
+         Un solo control. Las regiones aparecen al abrir.
+         ========================================================= */
+
+      .market-selector-dropdown {
+        position: relative !important;
+        display: inline-block !important;
+        width: max-content !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        z-index: 120;
+      }
+
+      .market-selector-trigger {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 9px !important;
+        width: 132px !important;
+        height: 40px !important;
+        padding: 0 13px !important;
+        margin: 0 !important;
+        border: 1px solid rgba(245,240,232,.18) !important;
+        border-radius: 2px !important;
+        outline: 0 !important;
+        background: rgba(5,5,5,.78) !important;
+        color: rgba(245,240,232,.78) !important;
+        font-family: var(--f-m) !important;
+        font-size: .58rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 2.4px !important;
+        line-height: 1 !important;
+        cursor: pointer !important;
+        box-shadow: 7px 7px 0 rgba(0,0,0,.22) !important;
+        transition: background .25s ease, border-color .25s ease, color .25s ease, transform .25s ease !important;
+      }
+
+      .market-selector-trigger::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        flex: 0 0 5px;
+        background: var(--vz-red);
+        box-shadow: 0 0 0 3px rgba(204,34,0,.08);
+      }
+
+      .market-trigger-icon {
+        display: inline-grid !important;
+        place-items: center !important;
+        width: 14px !important;
+        height: 14px !important;
+        color: rgba(245,240,232,.55) !important;
+        font-size: .68rem !important;
+      }
+
+      .market-trigger-chevron {
+        margin-left: auto !important;
+        color: rgba(245,240,232,.40) !important;
+        font-size: .50rem !important;
+        transition: transform .25s ease, color .25s ease !important;
+      }
+
+      .market-selector-trigger:hover,
+      .market-selector-dropdown.open .market-selector-trigger {
+        background: rgba(10,10,10,.94) !important;
+        border-color: rgba(204,34,0,.52) !important;
+        color: #fff !important;
+        transform: translate(-1px,-1px) !important;
+        box-shadow: 8px 8px 0 rgba(0,0,0,.28) !important;
+      }
+
+      .market-selector-dropdown.open .market-trigger-chevron {
+        transform: rotate(180deg) !important;
+        color: var(--vz-red) !important;
+      }
+
+      .market-menu {
+        position: absolute !important;
+        top: calc(100% + 9px) !important;
+        left: 0 !important;
+        width: 292px !important;
+        min-width: 0 !important;
+        padding: 5px !important;
+        margin: 0 !important;
+        border: 1px solid rgba(245,240,232,.14) !important;
+        border-radius: 2px !important;
+        background: rgba(7,7,7,.97) !important;
+        box-shadow: 12px 14px 0 rgba(0,0,0,.24), 0 24px 55px rgba(0,0,0,.35) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-6px) !important;
+        pointer-events: none !important;
+        transition: opacity .18s ease, transform .22s cubic-bezier(.16,1,.3,1), visibility .18s ease !important;
+      }
+
+      .market-selector-dropdown.open .market-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        pointer-events: auto !important;
+      }
+
+      .market-option {
+        position: relative !important;
+        display: grid !important;
+        grid-template-columns: 28px 1fr auto !important;
+        align-items: center !important;
+        gap: 11px !important;
+        min-height: 54px !important;
+        padding: 0 13px !important;
+        margin: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: rgba(245,240,232,.56) !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        transition: background .18s ease, color .18s ease !important;
+      }
+
+      .market-option + .market-option {
+        border-top: 1px solid rgba(245,240,232,.07) !important;
+      }
+
+      .market-option::before {
+        content: "" !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 10px !important;
+        bottom: 10px !important;
+        width: 1px !important;
+        background: var(--vz-red) !important;
+        transform: scaleY(0) !important;
+        transform-origin: center !important;
+        transition: transform .18s ease !important;
+      }
+
+      .market-option:hover,
+      .market-option.active {
+        background: rgba(204,34,0,.07) !important;
+        color: #fff !important;
+      }
+
+      .market-option:hover::before,
+      .market-option.active::before {
+        transform: scaleY(1) !important;
+      }
+
+      .market-option-code {
+        color: var(--vz-red) !important;
+        font-family: var(--f-m) !important;
+        font-size: .50rem !important;
+        letter-spacing: 1.5px !important;
+      }
+
+      .market-option-main {
+        font-family: var(--f-m) !important;
+        font-size: .61rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px !important;
+      }
+
+      .market-option-status {
+        font-family: var(--f-m) !important;
+        font-size: .43rem !important;
+        letter-spacing: 1.2px !important;
+        color: rgba(245,240,232,.30) !important;
+        white-space: nowrap !important;
+      }
+
+      .market-option.active .market-option-status {
+        color: rgba(245,240,232,.52) !important;
+      }
+
+      @media (max-width: 600px) {
+        .market-selector-trigger {
+          width: 124px !important;
+          height: 38px !important;
+        }
+
+        .market-menu {
+          width: 270px !important;
+        }
+
+        .market-option-status {
+          display: none !important;
+        }
+      }
+
+
+
+/* JGStudio — Región: indicador estático, sin parpadeo */
+.jgs-region-trigger .jgs-region-dot,
+.jgs-region-menu .jgs-region-dot,
+.jgs-region-trigger::before,
+.jgs-region-trigger::after,
+.jgs-region-menu::before,
+.jgs-region-menu::after {
+  animation: none !important;
+  -webkit-animation: none !important;
+  transition: none !important;
+}
+
+.jgs-region-trigger .jgs-region-dot,
+.jgs-region-menu .jgs-region-dot {
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+
+/* Si el punto se implementó como pulse/breathe */
+@keyframes jgsRegionPulse { from { opacity: 1; } to { opacity: 1; } }
+@keyframes jgs-region-pulse { from { opacity: 1; } to { opacity: 1; } }
+@keyframes pulse { from { opacity: 1; } to { opacity: 1; } }
+@keyframes blink { from { opacity: 1; } to { opacity: 1; } }
+
+</style>
 </head>
 <body>
 
@@ -1447,15 +1670,24 @@
     </div>
 
     <div class="hero-content wrap">
-        <!-- Market Selector (Studio Command Bar) -->
-        <div class="market-selector" aria-label="Selector de mercado">
-            <div class="market-selector-label"><i class="fa-solid fa-earth-americas"></i> REGIÓN</div>
-            <div class="market-selector-tabs">
-                <a href="index.html" class="market-tab" aria-label="Cambiar a mercado Europa" onclick="trackConversionEvent('market_switch', { target: 'europa' })">
-                    EUROPA
+        <!-- Selector de región -->
+        <div class="market-selector market-selector-dropdown" id="market-selector" aria-label="Selector de región">
+            <button type="button" class="market-selector-trigger" id="market-toggle" aria-expanded="false" aria-haspopup="true">
+                <span class="market-trigger-icon"><i class="fa-solid fa-earth-americas"></i></span>
+                <span>REGIÓN</span>
+                <i class="fa-solid fa-chevron-down market-trigger-chevron"></i>
+            </button>
+
+            <div class="market-menu" id="market-menu" role="menu">
+                <a href="index.html" class="market-option" role="menuitem" onclick="trackConversionEvent('market_switch', { target: 'europa' })">
+                    <span class="market-option-code">01</span>
+                    <span class="market-option-main">EUROPA</span>
+                    <span class="market-option-status">ESPAÑA / EUR</span>
                 </a>
-                <span class="market-tab market-tab-highlight active" aria-current="page">
-                    <span class="market-pulse-dot"></span> AMÉRICA
+                <span class="market-option active" role="menuitem" aria-current="page">
+                    <span class="market-option-code">02</span>
+                    <span class="market-option-main">AMÉRICA</span>
+                    <span class="market-option-status">AMÉRICA / USD</span>
                 </span>
             </div>
         </div>
@@ -2704,6 +2936,34 @@
             }, 600);
         }
     });
+</script>
+
+
+<script>
+(function () {
+  const selector = document.getElementById('market-selector');
+  const toggle = document.getElementById('market-toggle');
+  if (!selector || !toggle) return;
+
+  const close = () => {
+    selector.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const open = selector.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!selector.contains(event.target)) close();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') close();
+  });
+})();
 </script>
 
 </body>

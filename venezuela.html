@@ -903,6 +903,494 @@
         }
         .vz-wa-label { display: none; }
       }
+
+      /* =========================================================
+         JGSTUDIO VENEZUELA — ART DIRECTED UI v3
+         Menos "AI template". Más estudio digital / editorial.
+         ========================================================= */
+
+      :root {
+        --vz-red: #CC2200;
+        --vz-red-soft: rgba(204,34,0,.12);
+        --vz-cream: var(--cream);
+        --vz-line: rgba(245,240,232,.11);
+      }
+
+      /* ---------- GLOBAL CARD LANGUAGE ---------- */
+      .vz-diag-card,
+      .vz-svc-box,
+      .vz-proc-card,
+      .vz-aud-card,
+      .vz-cost-card,
+      .vz-why-card {
+        border-radius: 0 !important;
+        border: 1px solid var(--vz-line) !important;
+        background:
+          linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012) 52%, rgba(0,0,0,.22)) !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.035),
+          0 18px 50px rgba(0,0,0,.18) !important;
+        transition:
+          transform .4s cubic-bezier(.16,1,.3,1),
+          border-color .3s ease,
+          background .3s ease,
+          box-shadow .3s ease !important;
+      }
+
+      .vz-diag-card:hover,
+      .vz-svc-box:hover,
+      .vz-proc-card:hover,
+      .vz-aud-card:hover,
+      .vz-cost-card:hover,
+      .vz-why-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: rgba(204,34,0,.48) !important;
+        background:
+          linear-gradient(145deg, rgba(255,255,255,.065), rgba(204,34,0,.025) 58%, rgba(0,0,0,.24)) !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.055),
+          0 28px 70px rgba(0,0,0,.34) !important;
+      }
+
+      /* Fine red rule — editorial instead of generic glow */
+      .vz-diag-card::before,
+      .vz-cost-card::before {
+        height: 1px !important;
+        opacity: .85 !important;
+        background: linear-gradient(90deg, var(--vz-red), transparent 70%) !important;
+      }
+
+      /* ---------- DIAGNOSTIC CARDS ---------- */
+      .vz-diag-card {
+        min-height: 215px;
+        padding: 30px 30px 32px !important;
+      }
+
+      .vz-diag-header {
+        margin-bottom: 30px !important;
+      }
+
+      .vz-diag-num,
+      .vz-proc-step-badge {
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        border-left: 1px solid var(--vz-red) !important;
+        padding: 3px 0 3px 9px !important;
+        letter-spacing: 2.5px !important;
+      }
+
+      .vz-diag-icon {
+        font-size: .8rem !important;
+        opacity: .45;
+      }
+
+      /* ---------- SERVICES ---------- */
+      .vz-svc-box {
+        padding: 34px 32px 30px !important;
+        min-height: 390px;
+      }
+
+      .vz-svc-tagline {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+        letter-spacing: 2.5px !important;
+      }
+
+      .vz-svc-tagline::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: var(--vz-red);
+        display: inline-block;
+      }
+
+      .vz-svc-pills {
+        gap: 6px !important;
+      }
+
+      .vz-svc-pill,
+      .vz-aud-pill {
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        border-bottom: 1px solid rgba(255,255,255,.12) !important;
+        padding: 5px 2px !important;
+        color: rgba(240,236,229,.65) !important;
+      }
+
+      .vz-svc-pill i,
+      .vz-aud-pill i {
+        color: var(--vz-red) !important;
+      }
+
+      /* ---------- REAL BUTTON SYSTEM ----------
+         No gradients, no pills, no fake glass.
+         Buttons feel like controls from a digital studio. */
+      .btn-fill,
+      .btn-outline {
+        position: relative !important;
+        border-radius: 0 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        transform: none;
+        letter-spacing: 1.1px !important;
+        text-transform: uppercase;
+        overflow: hidden;
+      }
+
+      .btn-fill {
+        background: var(--vz-red) !important;
+        border: 1px solid var(--vz-red) !important;
+        color: #fff !important;
+        padding: 13px 24px !important;
+      }
+
+      .btn-fill::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 0;
+        background: rgba(255,255,255,.12);
+        transition: width .35s cubic-bezier(.16,1,.3,1);
+        z-index: 0;
+      }
+
+      .btn-fill > *,
+      .btn-fill {
+        isolation: isolate;
+      }
+
+      .btn-fill:hover::before {
+        width: 100%;
+      }
+
+      .btn-fill:hover {
+        background: #b91f00 !important;
+        border-color: #b91f00 !important;
+        box-shadow: 8px 8px 0 rgba(204,34,0,.16) !important;
+        transform: translate(-2px,-2px) !important;
+      }
+
+      .btn-fill:active {
+        transform: translate(0,0) !important;
+        box-shadow: none !important;
+      }
+
+      .btn-outline {
+        background: transparent !important;
+        border: 1px solid rgba(245,240,232,.20) !important;
+        color: var(--cream) !important;
+        padding: 13px 24px !important;
+      }
+
+      .btn-outline::after {
+        content: "↗";
+        margin-left: 2px;
+        opacity: .5;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+
+      .btn-outline:hover {
+        background: rgba(245,240,232,.035) !important;
+        border-color: rgba(245,240,232,.55) !important;
+        color: #fff !important;
+        transform: translate(-2px,-2px) !important;
+        box-shadow: 6px 6px 0 rgba(245,240,232,.05) !important;
+      }
+
+      .btn-outline:hover::after {
+        transform: translate(3px,-3px);
+        opacity: 1;
+      }
+
+      /* Avoid duplicate visual arrow when button already contains one */
+      .btn-outline[href] {
+        gap: 8px !important;
+      }
+
+      /* ---------- PROJECT SELECTORS: EUROPA / AMÉRICA ----------
+         Replace generic tabs with a "market switch" command control. */
+      .market-selector {
+        display: inline-flex !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        border: 1px solid rgba(245,240,232,.16) !important;
+        border-radius: 0 !important;
+        background: rgba(5,5,5,.58) !important;
+        box-shadow: 12px 12px 0 rgba(0,0,0,.16) !important;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .market-selector-label {
+        min-height: 40px;
+        display: flex !important;
+        align-items: center;
+        gap: 8px;
+        padding: 0 13px !important;
+        border-right: 1px solid rgba(245,240,232,.12) !important;
+        font-family: var(--f-m) !important;
+        font-size: .55rem !important;
+        letter-spacing: 2.4px !important;
+        color: rgba(245,240,232,.42) !important;
+      }
+
+      .market-selector-label i {
+        color: var(--vz-red) !important;
+        font-size: .72rem;
+      }
+
+      .market-selector-tabs {
+        display: flex !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+      }
+
+      .market-tab {
+        min-height: 40px;
+        display: flex !important;
+        align-items: center;
+        position: relative;
+        padding: 0 17px !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: rgba(245,240,232,.48) !important;
+        font-family: var(--f-m) !important;
+        font-size: .58rem !important;
+        letter-spacing: 1.9px !important;
+        text-decoration: none !important;
+        transition: color .25s ease, background .25s ease !important;
+      }
+
+      .market-tab + .market-tab {
+        border-left: 1px solid rgba(245,240,232,.08) !important;
+      }
+
+      .market-tab::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        right: 15px;
+        bottom: 6px;
+        height: 1px;
+        background: var(--vz-red);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform .3s cubic-bezier(.16,1,.3,1);
+      }
+
+      .market-tab:hover {
+        color: var(--cream) !important;
+        background: rgba(255,255,255,.025) !important;
+      }
+
+      .market-tab:hover::after,
+      .market-tab.active::after {
+        transform: scaleX(1);
+      }
+
+      .market-tab-highlight.active {
+        color: #fff !important;
+        background: rgba(204,34,0,.10) !important;
+      }
+
+      .market-pulse-dot {
+        width: 5px !important;
+        height: 5px !important;
+        border-radius: 0 !important;
+        background: var(--vz-red) !important;
+        box-shadow: none !important;
+        margin-right: 7px;
+      }
+
+      @media(max-width:600px) {
+        .market-selector {
+          width: auto;
+          box-shadow: 7px 7px 0 rgba(0,0,0,.16) !important;
+        }
+
+        .market-selector-label {
+          padding: 0 10px !important;
+        }
+
+        .market-tab {
+          padding: 0 13px !important;
+        }
+      }
+
+      /* ---------- PROJECT CARDS ---------- */
+      .vz-project-card {
+        border-radius: 0 !important;
+        border-color: rgba(255,255,255,.11) !important;
+        background: #090909 !important;
+        box-shadow: 14px 14px 0 rgba(0,0,0,.22) !important;
+      }
+
+      .vz-project-card:hover {
+        border-color: rgba(255,255,255,.24) !important;
+        box-shadow: 18px 18px 0 rgba(0,0,0,.28) !important;
+      }
+
+      .vz-project-media {
+        border-right: 1px solid rgba(255,255,255,.09);
+      }
+
+      .vz-project-content {
+        padding: 38px !important;
+      }
+
+      /* ---------- FEATURED CASE ---------- */
+      .vz-deep-showcase {
+        border-radius: 0 !important;
+        border: 1px solid rgba(204,34,0,.30) !important;
+        background:
+          linear-gradient(120deg, rgba(204,34,0,.055), transparent 55%),
+          #0a0a0a !important;
+        box-shadow: 16px 16px 0 rgba(0,0,0,.20) !important;
+      }
+
+      .vz-gallery-item {
+        border-radius: 0 !important;
+        border-color: rgba(255,255,255,.10) !important;
+      }
+
+      /* ---------- PROCESS ---------- */
+      .vz-proc-card {
+        min-height: 205px;
+      }
+
+      .vz-proc-step-badge {
+        display: block !important;
+        width: fit-content;
+      }
+
+      /* ---------- AUDIENCE ---------- */
+      .vz-aud-icon-wrap,
+      .vz-why-icon-badge {
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,.14) !important;
+        box-shadow: none !important;
+      }
+
+      .vz-aud-card:hover .vz-aud-icon-wrap,
+      .vz-why-card:hover .vz-why-icon-badge {
+        background: var(--vz-red-soft) !important;
+        border-color: rgba(204,34,0,.55) !important;
+      }
+
+      /* ---------- PRICING ---------- */
+      .vz-cost-card {
+        padding: 36px 28px !important;
+      }
+
+      .vz-cost-val {
+        font-size: clamp(1.9rem,3vw,2.35rem) !important;
+        letter-spacing: -1.5px !important;
+      }
+
+      /* ---------- FORM CHIPS ----------
+         Make selections look like an interface, not rounded tags. */
+      .vz-chip-btn {
+        border-radius: 0 !important;
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,.12) !important;
+        padding: 9px 15px !important;
+        position: relative;
+        box-shadow: none !important;
+      }
+
+      .vz-chip-btn:hover {
+        background: rgba(255,255,255,.035) !important;
+        border-color: rgba(255,255,255,.30) !important;
+        transform: translateY(-1px);
+      }
+
+      .vz-chip-btn.selected {
+        background: var(--vz-red-soft) !important;
+        border-color: var(--vz-red) !important;
+        color: #fff !important;
+        box-shadow: inset 3px 0 0 var(--vz-red) !important;
+      }
+
+      /* ---------- FORM FIELDS ---------- */
+      #vz-lead-form .vz-form-input,
+      #vz-lead-form .vz-form-textarea {
+        border-radius: 0 !important;
+        background: rgba(255,255,255,.018) !important;
+        border-color: rgba(255,255,255,.12) !important;
+      }
+
+      #vz-lead-form .vz-form-input:focus,
+      #vz-lead-form .vz-form-textarea:focus {
+        border-color: rgba(204,34,0,.72) !important;
+        background: rgba(255,255,255,.028) !important;
+        box-shadow: inset 3px 0 0 var(--vz-red) !important;
+      }
+
+      /* ---------- BANNERS / CTA SURFACES ---------- */
+      #servicios > .wrap > div[style*="margin-top: 48px"],
+      #portfolio > .wrap > div[style*="margin-top: 48px"] {
+        border-radius: 0 !important;
+        box-shadow: 10px 10px 0 rgba(0,0,0,.14) !important;
+      }
+
+      /* ---------- WHATSAPP ----------
+         Keep recognizable but make it belong to the UI. */
+      .vz-wa-widget {
+        border-radius: 0 !important;
+        background: #0a0a0a !important;
+        border: 1px solid rgba(37,211,102,.35) !important;
+        box-shadow: 8px 8px 0 rgba(0,0,0,.22) !important;
+      }
+
+      .vz-wa-widget:hover {
+        transform: translate(-2px,-2px) !important;
+        box-shadow: 11px 11px 0 rgba(0,0,0,.28) !important;
+      }
+
+      /* ---------- FAQ ---------- */
+      .vz-faq-row {
+        border-bottom-color: rgba(255,255,255,.10) !important;
+      }
+
+      .vz-faq-trigger {
+        padding: 24px 0 !important;
+      }
+
+      /* ---------- MOBILE ---------- */
+      @media(max-width:768px) {
+        .vz-diag-card,
+        .vz-svc-box,
+        .vz-proc-card,
+        .vz-aud-card,
+        .vz-cost-card,
+        .vz-why-card,
+        .vz-project-card,
+        .vz-deep-showcase {
+          border-radius: 0 !important;
+        }
+
+        .vz-project-content {
+          padding: 28px 22px !important;
+        }
+
+        .btn-fill,
+        .btn-outline {
+          width: auto;
+        }
+
+        .vz-svc-box {
+          min-height: auto;
+        }
+      }
+
+
     </style>
 </head>
 <body>
@@ -1844,57 +2332,54 @@
             </div>
 
             <form id="vz-lead-form" onsubmit="handleFormSubmit(event)">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
                     <div>
-                        <label class="label" style="display: block; margin-bottom: 8px;" for="form-name">Nombre *</label>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-name">Nombre *</label>
                         <input type="text" id="form-name" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="Tu nombre" required onfocus="trackConversionEvent('form_start')">
                     </div>
                     <div>
-                        <label class="label" style="display: block; margin-bottom: 8px;" for="form-company">Empresa *</label>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-company">Empresa *</label>
                         <input type="text" id="form-company" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="Nombre de tu empresa" required>
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
                     <div>
-                        <label class="label" style="display: block; margin-bottom: 8px;" for="form-email">Email *</label>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-email">Email *</label>
                         <input type="email" id="form-email" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="tu@empresa.com" required>
                     </div>
                     <div>
-                        <label class="label" style="display: block; margin-bottom: 8px;" for="form-whatsapp">WhatsApp *</label>
-                        <input type="tel" id="form-whatsapp" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="+58 ..." required>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-phone">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="form-phone" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="+58 ..." required>
                     </div>
                 </div>
 
-                <div style="margin-bottom: 20px;">
-                    <label class="label" style="display: block; margin-bottom: 8px;" for="form-city">Ciudad *</label>
+                <div style="margin-bottom:20px;">
+                    <label class="label" style="display:block; margin-bottom:8px;" for="form-city">Ciudad *</label>
                     <input type="text" id="form-city" class="vz-form-input" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b);" placeholder="Ej: Caracas, Valencia, Maracaibo..." required>
                 </div>
 
-                <!-- Tipo de proyecto -->
-                <div style="margin-bottom: 22px;">
-                    <label class="label" style="display: block; margin-bottom: 10px;">Tipo de proyecto *</label>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="project-chips">
-                        <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización')">Automatización</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'IA')">IA</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Otro')">Otro</button>
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">Tipo de proyecto *</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="project-chips">
+                        <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Landing Page')">Landing Page</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Web Corporativa')">Web Corporativa</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Tienda Online')">Tienda Online</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'App / SaaS')">App / SaaS</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización & IA')">Automatización & IA</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Branding & Contenido')">Branding & Contenido</button>
                     </div>
-                    <input type="hidden" id="form-project-type" value="Página web" required>
+                    <input type="hidden" id="form-project-type" value="Landing Page">
                 </div>
 
-                <!-- ¿Qué necesitas? -->
-                <div style="margin-bottom: 22px;">
-                    <label class="label" style="display: block; margin-bottom: 8px;" for="form-details">¿Qué necesitas?</label>
-                    <textarea id="form-details" class="vz-form-textarea" rows="4" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b); resize:vertical;" placeholder="Describe brevemente lo que quieres construir, mejorar o automatizar..."></textarea>
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:8px;" for="form-details">¿Qué necesitas?</label>
+                    <textarea id="form-details" class="vz-form-textarea" rows="5" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px; padding:14px; color:var(--cream); font-family:var(--f-b); resize:vertical;" placeholder="Describe lo que quieres construir, mejorar o automatizar..."></textarea>
                 </div>
 
-                <!-- Presupuesto aproximado -->
-                <div style="margin-bottom: 32px;">
-                    <label class="label" style="display: block; margin-bottom: 10px;">Presupuesto aproximado</label>
-                    <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="budget-chips">
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">Presupuesto aproximado</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="budget-chips">
                         <button type="button" class="vz-chip-btn" onclick="selectBudget(this, 'Menos de $500')">Menos de $500</button>
                         <button type="button" class="vz-chip-btn selected" onclick="selectBudget(this, '$500 – $1.000')">$500 – $1.000</button>
                         <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$1.000 – $2.500')">$1.000 – $2.500</button>
@@ -1904,14 +2389,29 @@
                     <input type="hidden" id="form-budget" value="$500 – $1.000">
                 </div>
 
-                <button type="submit" id="vz-submit-btn" class="btn-fill magnetic" style="width: 100%; justify-content: center; padding: 16px; font-size: 0.95rem;">
+                <div style="margin-bottom:32px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">¿Cuándo te gustaría tenerlo?</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="deadline-chips">
+                        <button type="button" class="vz-chip-btn selected" onclick="selectDeadline(this, 'Lo antes posible')">Lo antes posible</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 semanas')">1 – 2 semanas</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '2 – 4 semanas')">2 – 4 semanas</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 meses')">1 – 2 meses</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, 'Sin fecha definida')">Sin fecha definida</button>
+                    </div>
+                    <input type="hidden" id="form-deadline" value="Lo antes posible">
+                </div>
+
+                <input type="hidden" id="form-extras" value="">
+
+                <button type="submit" id="vz-submit-btn" class="btn-fill magnetic" style="width:100%; justify-content:center; padding:16px; font-size:0.95rem;">
                     ENVIAR SOLICITUD →
                 </button>
-                <p style="font-family: var(--f-m); font-size: 0.62rem; color: var(--gray); text-align: center; margin-top: 14px; letter-spacing: 1px;">
+
+                <p style="font-family:var(--f-m); font-size:0.62rem; color:var(--gray); text-align:center; margin-top:14px; letter-spacing:1px;">
                     Te responderemos con los próximos pasos para evaluar tu proyecto.
                 </p>
 
-                <div id="vz-form-feedback" style="display: none; margin-top: 20px; padding: 16px; border-radius: 4px; text-align: center;"></div>
+                <div id="vz-form-feedback" style="display:none; margin-top:20px; padding:16px; border-radius:4px; text-align:center;"></div>
             </form>
         </div>
     </div>
@@ -1959,7 +2459,7 @@
         }
     }
 
-    // Chip selection
+    // Project type selection
     function selectChip(btn, value) {
         document.querySelectorAll('#project-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
         btn.classList.add('selected');
@@ -1967,6 +2467,7 @@
         trackConversionEvent('project_type_selected', { type: value });
     }
 
+    // Budget selection
     function selectBudget(btn, value) {
         document.querySelectorAll('#budget-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
         btn.classList.add('selected');
@@ -1974,94 +2475,171 @@
         trackConversionEvent('budget_selected', { budget: value });
     }
 
-    // Preselect project type from service CTA
+    // Deadline selection
+    function selectDeadline(btn, value) {
+        document.querySelectorAll('#deadline-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('form-deadline').value = value;
+        trackConversionEvent('deadline_selected', { deadline: value });
+    }
+
+    // Preselect project type from service CTA.
+    // Names are mapped to the exact keys used by the Google Apps Script price table.
     function selectProjectType(typeName, sourceId) {
         trackConversionEvent('click_proposal', { source: sourceId, preselected_type: typeName });
-        const chips = document.querySelectorAll('#project-chips .vz-chip-btn');
-        chips.forEach(btn => {
-            if (btn.innerText.trim().toLowerCase().includes(typeName.toLowerCase()) ||
-                (typeName === 'Automatización / IA' && (btn.innerText.includes('Automatización') || btn.innerText.includes('IA')))) {
+
+        const map = {
+            'Página web': 'Landing Page',
+            'E-commerce': 'Tienda Online',
+            'Automatización / IA': 'Automatización & IA',
+            'Software a medida': 'App / SaaS',
+            'Landing Page': 'Landing Page',
+            'Web Corporativa': 'Web Corporativa',
+            'Tienda Online': 'Tienda Online',
+            'App / SaaS': 'App / SaaS',
+            'Automatización & IA': 'Automatización & IA',
+            'Branding & Contenido': 'Branding & Contenido'
+        };
+
+        const targetType = map[typeName] || typeName;
+
+        document.querySelectorAll('#project-chips .vz-chip-btn').forEach(btn => {
+            if (btn.innerText.trim() === targetType) {
                 btn.click();
             }
         });
+
         const target = document.getElementById('contacto');
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Form Submission
+    // Google Apps Script Web App
     const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzX01G9pz9yjuG7Vw1d-nzMTHFKdO-vZmLiW37I1jg1RaZzTCsNmqJmgmtLXARujCry/exec';
 
     async function handleFormSubmit(e) {
         e.preventDefault();
+
         const submitBtn = document.getElementById('vz-submit-btn');
         const feedback = document.getElementById('vz-form-feedback');
 
         const name = document.getElementById('form-name').value.trim();
         const company = document.getElementById('form-company').value.trim();
         const email = document.getElementById('form-email').value.trim();
-        const whatsapp = document.getElementById('form-whatsapp').value.trim();
+        const phone = document.getElementById('form-phone').value.trim();
         const city = document.getElementById('form-city').value.trim();
         const projectType = document.getElementById('form-project-type').value;
         const details = document.getElementById('form-details').value.trim();
         const budget = document.getElementById('form-budget').value;
+        const deadline = document.getElementById('form-deadline').value;
 
         submitBtn.disabled = true;
         submitBtn.innerText = 'ENVIANDO SOLICITUD...';
 
-        trackConversionEvent('form_submit', { project_type: projectType, budget: budget, city: city });
-
-        const payload = {
-            name: `${name} (${company})`,
-            _replyto: email,
-            whatsapp: whatsapp,
+        trackConversionEvent('form_submit', {
+            project_type: projectType,
+            budget: budget,
             city: city,
-            tipo_proyecto: projectType,
-            presupuesto_estimado: budget,
-            detalles: `[Venezuela Landing] Empresa: ${company} | Ciudad: ${city} | Detalles: ${details}`,
+            region: 'VE'
+        });
+
+        /*
+         * IMPORTANT:
+         * These names match the Google Apps Script exactly:
+         * name, _replyto, telefono, empresa, region,
+         * tipo_proyecto, presupuesto, plazo, message, extras.
+         *
+         * This fixes the previous problem where the frontend sent
+         * "detalles" and "presupuesto_estimado", while the backend
+         * was reading "message" and "presupuesto".
+         */
+        const payload = {
+            name: name,
+            _replyto: email,
+            telefono: phone,
+            empresa: company,
             region: 'VE',
+            tipo_proyecto: projectType,
+            presupuesto: budget,
+            plazo: deadline,
+            message: details,
+            extras: `Ciudad: ${city}`,
             fecha: new Date().toISOString()
         };
 
         try {
             const formData = new URLSearchParams();
-            for (const key in payload) {
-                formData.append(key, payload[key]);
-            }
+
+            Object.entries(payload).forEach(([key, value]) => {
+                formData.append(key, value == null ? '' : String(value));
+            });
 
             await fetch(SHEETS_WEBAPP_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: formData.toString()
             });
 
             feedback.style.display = 'block';
             feedback.style.background = 'rgba(52, 211, 153, 0.12)';
             feedback.style.border = '1px solid rgba(52, 211, 153, 0.3)';
             feedback.style.color = '#34d399';
+
             feedback.innerHTML = `
-                <h4 style="font-size: 1.1rem; margin-bottom: 6px;">¡Solicitud enviada con éxito!</h4>
-                <p style="font-size: 0.88rem; color: #fff; margin-bottom: 12px;">Hemos recibido tus datos. Te contactaremos en menos de 24 horas.</p>
-                <a href="https://wa.me/34638706316?text=${encodeURIComponent(`Hola JGStudio, acabo de enviar mi solicitud para ${company} (${projectType}).`)}" target="_blank" class="btn-fill" style="background:#25D366; border-color:#25D366; font-size:0.8rem; padding:8px 18px;">
+                <h4 style="font-size:1.1rem; margin-bottom:6px;">
+                    ¡Solicitud enviada con éxito!
+                </h4>
+                <p style="font-size:0.88rem; color:#fff; margin-bottom:12px;">
+                    Hemos recibido todos tus datos. Te contactaremos en menos de 24 horas.
+                </p>
+                <a href="https://wa.me/34638706316?text=${encodeURIComponent(
+                    `Hola JGStudio, acabo de enviar mi solicitud para ${company}. Proyecto: ${projectType}.`
+                )}" target="_blank" rel="noopener" class="btn-fill"
+                   style="background:#25D366; border-color:#25D366; font-size:0.8rem; padding:8px 18px;">
                     <i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp →
                 </a>
             `;
 
             document.getElementById('vz-lead-form').reset();
+
+            // Restore hidden defaults after reset
+            document.getElementById('form-project-type').value = 'Landing Page';
+            document.getElementById('form-budget').value = '$500 – $1.000';
+            document.getElementById('form-deadline').value = 'Lo antes posible';
+
+            document.querySelectorAll('#project-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#project-chips .vz-chip-btn')?.classList.add('selected');
+
+            document.querySelectorAll('#budget-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#budget-chips .vz-chip-btn:nth-child(2)')?.classList.add('selected');
+
+            document.querySelectorAll('#deadline-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#deadline-chips .vz-chip-btn')?.classList.add('selected');
+
             submitBtn.style.display = 'none';
 
         } catch (err) {
             console.error('Error submitting form:', err);
+
             feedback.style.display = 'block';
             feedback.style.background = 'rgba(214, 48, 49, 0.15)';
             feedback.style.border = '1px solid var(--accent)';
             feedback.style.color = '#fff';
+
             feedback.innerHTML = `
-                <p style="margin-bottom: 8px;">Hubo un problema de conexión al enviar el formulario.</p>
-                <a href="https://wa.me/34638706316?text=${encodeURIComponent(`Hola JGStudio, quiero solicitar propuesta para ${company} (${projectType}). WhatsApp: ${whatsapp}`)}" target="_blank" class="btn-fill" style="background:#25D366; border-color:#25D366; font-size:0.8rem;">
+                <p style="margin-bottom:8px;">
+                    Hubo un problema de conexión al enviar el formulario.
+                </p>
+                <a href="https://wa.me/34638706316?text=${encodeURIComponent(
+                    `Hola JGStudio, quiero solicitar una propuesta para ${company}. Proyecto: ${projectType}. WhatsApp: ${phone}`
+                )}" target="_blank" rel="noopener" class="btn-fill"
+                   style="background:#25D366; border-color:#25D366; font-size:0.8rem;">
                     <i class="fa-brands fa-whatsapp"></i> Enviar directo por WhatsApp →
                 </a>
             `;
+
             submitBtn.disabled = false;
             submitBtn.innerText = 'REINTENTAR ENVÍO';
         }
@@ -2080,10 +2658,12 @@
     // Mobile nav toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
+
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
+
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => navLinks.classList.remove('open'));
         });
@@ -2094,20 +2674,30 @@
         const btn = document.getElementById('theme-toggle');
         const icon = document.getElementById('theme-icon');
         const saved = localStorage.getItem('jgs-theme') || 'dark';
+
         document.documentElement.setAttribute('data-theme', saved);
-        if(icon) icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+        if (icon) {
+            icon.className = saved === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
         btn?.addEventListener('click', () => {
             const curr = document.documentElement.getAttribute('data-theme') || 'dark';
             const next = curr === 'dark' ? 'light' : 'dark';
+
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('jgs-theme', next);
-            if(icon) icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+            if (icon) {
+                icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
         });
     })();
 
     // Preloader dismissal
     window.addEventListener('load', () => {
         const p = document.getElementById('preloader');
+
         if (p) {
             setTimeout(() => {
                 p.classList.add('hidden');

@@ -41,7 +41,7 @@
     <!-- Fraunces (editorial serif, used for the Reconstruye section headline) -->
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260619-projects">
+    <link rel="stylesheet" href="styles.css?v=20260821-region">
 </head>
 <body>
 
@@ -101,13 +101,21 @@
         <div class="hero-avatar-mobile" aria-hidden="true">
             <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez">
         </div>
-        <!-- Selector de mercado -->
-        <div class="market-selector" aria-label="Seleccionar mercado">
-            <div class="market-selector-label"><i class="fa-solid fa-earth-europe"></i> REGIÓN</div>
-            <div class="market-selector-tabs">
-                <span class="market-tab active" aria-current="page"><span class="market-pulse-dot" style="background:#34d399; box-shadow:0 0 8px #34d399;"></span> EUROPA</span>
-                <a href="venezuela.html" class="market-tab market-tab-highlight" aria-label="Ir a JGStudio América">
-                    AMÉRICA
+        <!-- Selector de región (discreto y expandible) -->
+        <div class="region-switch" aria-label="Seleccionar mercado">
+            <button type="button" class="region-switch-trigger" id="region-switch-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Cambiar de región — actual: Europa">
+                <span class="region-switch-dot" style="background:#34d399; box-shadow:0 0 6px rgba(52,211,153,.6);"></span>
+                <span>Europa</span>
+                <i class="fa-solid fa-chevron-down region-switch-chevron" aria-hidden="true"></i>
+            </button>
+            <div class="region-switch-menu" role="menu">
+                <span class="region-switch-option active" role="menuitem" aria-current="page">
+                    <span>EUROPA</span>
+                    <span class="region-switch-opt-status">ESPAÑA · EUR</span>
+                </span>
+                <a href="venezuela.html" class="region-switch-option" role="menuitem" aria-label="Ir a JGStudio América">
+                    <span>AMÉRICA</span>
+                    <span class="region-switch-opt-status">VENEZUELA · USD</span>
                 </a>
             </div>
         </div>
@@ -1936,6 +1944,6 @@
         }
     }
 </script>
-<script src="script.js"></script>
+<script src="script.js?v=20260821"></script>
 </body>
 </html>

@@ -542,6 +542,32 @@ function initCardSpotlight() {
     });
 }
 
+/* ── Region Switch (discreto y expandible) ─────────── */
+function initRegionSwitch() {
+    const toggle = document.getElementById('region-switch-toggle');
+    const wrap = document.querySelector('.region-switch');
+    if (!toggle || !wrap) return;
+
+    const close = () => {
+        wrap.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = wrap.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+    });
+}
+
 /* ── Boot ──────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
     initThreeHero();
@@ -550,6 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initContenidoFilter();
     initMediaLightbox();
     initAssistant();
+    initRegionSwitch();
 });
 
 /* ── Assistant Mini ─────────────────────────────────── */

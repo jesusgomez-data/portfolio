@@ -1800,6 +1800,13 @@
             region: 'VE'
         });
 
+        // GOOGLE ADS — CONVERSIÓN PRINCIPAL
+        // Se dispara antes del envío a Google Sheets para que una
+        // incidencia en el webhook no impida registrar la conversión.
+        gtag('event', 'conversion', {
+            'send_to': 'AW-18402857875/uBXJCJCavuUcEJOnIcdE'
+        });
+
         /*
          * IMPORTANT:
          * These names match the Google Apps Script exactly:
@@ -1835,10 +1842,6 @@
                 },
                 body: formData.toString()
             });
-
-gtag('event', 'conversion', {
-  'send_to': 'AW-18402857875/uBXJCJCavuUcEJOnIcdE'
-});
 
             feedback.style.display = 'block';
             feedback.style.background = 'rgba(52, 211, 153, 0.12)';

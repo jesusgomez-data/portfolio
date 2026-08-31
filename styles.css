@@ -983,6 +983,76 @@ img { display:block; max-width:100%; }
 .ci-sp-likes span:first-child { color:rgba(255,100,100,0.8);animation:ci-heart-beat 1.2s ease-in-out infinite; }
 @keyframes ci-heart-beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
 
+/* WHATSAPP SCENE (improved) */
+.ci-wa-scene { width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:10px 14px 8px; }
+.ci-wa-stack { display:flex;flex-direction:column;gap:6px; }
+.ci-wa-bubble {
+    display:inline-flex;align-items:center;gap:4px;
+    background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.25);
+    border-radius:14px 14px 14px 4px;
+    padding:5px 10px;font-size:9px;color:rgba(255,255,255,0.85);
+    width:fit-content;max-width:90%;
+    opacity:0;transform:translateX(-6px);
+    animation:ci-bubble-in .35s ease forwards;
+}
+.ci-wa-b1{animation-delay:.1s}.ci-wa-b2{animation-delay:.55s}.ci-wa-b3{animation-delay:1s}.ci-wa-b4{animation-delay:1.45s}
+@keyframes ci-bubble-in { to{opacity:1;transform:translateX(0)} }
+.ci-wa-reply { display:flex;align-items:center;gap:8px;padding:4px 6px;background:rgba(255,255,255,0.04);border-radius:8px; }
+.ci-wa-reply-label { font-size:7.5px;color:rgba(255,255,255,0.3);font-style:italic; }
+.ci-wa-dots { display:flex;gap:3px;align-items:center; }
+.ci-wa-dots span { width:4px;height:4px;border-radius:50%;background:rgba(37,211,102,0.5);animation:ci-bounce .6s ease-in-out infinite alternate; }
+.ci-wa-dots span:nth-child(2){animation-delay:.2s}.ci-wa-dots span:nth-child(3){animation-delay:.4s}
+
+/* UX WIREFRAME (Pilar Diseño) */
+.ci-ux { position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.ci-ux-frame { width:140px;height:90px;background:#12121c;border-radius:6px;border:1px solid rgba(124,58,237,0.25);overflow:hidden;display:flex;flex-direction:column; }
+.ci-ux-topbar { height:14px;background:rgba(124,58,237,0.1);border-bottom:1px solid rgba(124,58,237,0.15);display:flex;align-items:center;justify-content:space-between;padding:0 6px; }
+.ci-ux-logo { width:20px;height:6px;background:rgba(124,58,237,0.5);border-radius:2px; }
+.ci-ux-nav { display:flex;gap:4px; }
+.ci-ux-nav span { width:12px;height:4px;background:rgba(255,255,255,0.12);border-radius:1px; }
+.ci-ux-hero { padding:6px 6px 4px;display:flex;flex-direction:column;gap:4px;border-bottom:1px solid rgba(255,255,255,0.04); }
+.ci-ux-headline { width:80%;height:8px;background:rgba(255,255,255,0.18);border-radius:2px; }
+.ci-ux-cta { width:32px;height:9px;background:linear-gradient(90deg,rgba(124,58,237,0.7),rgba(168,85,247,0.7));border-radius:3px; }
+.ci-ux-grid { display:flex;gap:4px;padding:5px 6px;flex:1; }
+.ci-ux-card { flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px;display:flex;flex-direction:column;gap:3px;padding:3px; }
+.ci-ux-card-img { height:14px;background:rgba(124,58,237,0.15);border-radius:2px; }
+.ci-ux-card-line { height:4px;width:70%;background:rgba(255,255,255,0.08);border-radius:1px; }
+.ci-ux-cursor { position:absolute;bottom:8px;right:16px;font-size:10px;color:rgba(124,58,237,0.8);animation:ci-cursor-move 2s ease-in-out infinite; }
+@keyframes ci-cursor-move { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,-6px)} }
+
+/* CODE BLOCK + CLOUD (Pilar Tecnología) */
+.ci-tech { display:flex;align-items:center;gap:10px;padding:0 8px; }
+.ci-code-block { width:120px;background:#0f0f1a;border-radius:6px;border:1px solid rgba(124,58,237,0.2);overflow:hidden;font-family:monospace; }
+.ci-code-topbar { height:14px;background:rgba(255,255,255,0.05);display:flex;align-items:center;gap:4px;padding:0 6px; }
+.ci-code-topbar span { width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.15); }
+.ci-code-title { margin-left:auto;font-size:6px;color:rgba(255,255,255,0.3); }
+.ci-code-line { font-size:7px;padding:2px 6px;line-height:1.4;white-space:nowrap; }
+.ci-indent { padding-left:14px; }
+.ci-kw { color:rgba(124,58,237,0.9); }
+.ci-str { color:rgba(168,85,247,0.9); }
+.ci-fn { color:rgba(232,121,249,0.8); }
+.ci-pun { color:rgba(255,255,255,0.4); }
+.ci-cloud { display:flex;flex-direction:column;align-items:center;gap:4px; }
+.ci-cloud-body { width:32px;height:18px;background:rgba(124,58,237,0.2);border:1.5px solid rgba(124,58,237,0.4);border-radius:10px;position:relative; }
+.ci-cloud-body::before { content:'';position:absolute;top:-8px;left:5px;width:16px;height:16px;background:rgba(124,58,237,0.2);border:1.5px solid rgba(124,58,237,0.4);border-radius:50%; }
+.ci-cloud-body::after { content:'';position:absolute;top:-5px;right:4px;width:12px;height:12px;background:rgba(124,58,237,0.2);border:1.5px solid rgba(124,58,237,0.4);border-radius:50%; }
+.ci-cloud-dot { width:3px;height:8px;background:rgba(124,58,237,0.5);border-radius:2px;animation:ci-cloud-drop 1.5s ease-in-out infinite; }
+.ci-cloud-d1{animation-delay:0s}.ci-cloud-d2{animation-delay:.3s}.ci-cloud-d3{animation-delay:.6s}
+@keyframes ci-cloud-drop { 0%{opacity:0;transform:translateY(-2px)} 50%{opacity:1} 100%{opacity:0;transform:translateY(6px)} }
+
+/* BUSINESS METRICS + CHART (Pilar Negocio) */
+.ci-bizz { width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:8px 12px 4px; }
+.ci-bizz-metrics { display:flex;gap:10px;justify-content:center; }
+.ci-metric { display:flex;flex-direction:column;align-items:center;gap:2px; }
+.ci-metric-val { font-size:9px;font-weight:700;font-family:monospace;letter-spacing:.5px; }
+.ci-metric-up { color:rgba(52,211,153,0.9); }
+.ci-metric-down { color:rgba(214,48,49,0.9); }
+.ci-metric-lbl { font-size:6.5px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.5px; }
+.ci-bizz-chart { height:40px;width:100%; }
+.ci-bizz-chart svg { width:100%;height:100%; }
+.ci-pulse-dot { animation:ci-pulse-dot-anim 1.5s ease-in-out infinite; }
+@keyframes ci-pulse-dot-anim { 0%,100%{r:3;opacity:1} 50%{r:5;opacity:.6} }
+
 .cap-card {
     position: relative;
     background: linear-gradient(170deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.003) 100%), rgba(12,12,12,0.7);

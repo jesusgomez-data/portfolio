@@ -14,6 +14,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ── Security Headers (via meta) ── -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://script.google.com https://stats.g.doubleclick.net; frame-src 'none'; object-src 'none'; base-uri 'self';">
     <title>JGStudio Venezuela | Desarrollo Web, E-commerce, IA y Software</title>
     <meta name="description" content="Creamos páginas web, tiendas online, automatizaciones, soluciones de IA y software a medida para empresas en Venezuela. Diseño premium y enfoque comercial.">
     <meta name="keywords" content="diseño web Venezuela, páginas web Venezuela, desarrollo web Venezuela, empresa de diseño web Venezuela, páginas web para empresas, tienda online Venezuela, desarrollo de software Venezuela, automatización empresarial Venezuela, inteligencia artificial para empresas Venezuela">
@@ -55,7 +62,7 @@
       "name": "JGStudio Venezuela",
       "image": "https://jgstudio.dev/img/logo_jgs_oficial.png",
       "url": "https://jgstudio.dev/venezuela",
-      "telephone": "+34638706316",
+      "telephone": "+34674885902",
       "priceRange": "$350 - $5000 USD",
       "description": "Desarrollo de páginas web, tiendas online e-commerce, automatizaciones con IA y software a medida para empresas en Venezuela.",
       "areaServed": "Venezuela",
@@ -1685,9 +1692,9 @@
 </footer>
 
 <!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/34638706316?text=Hola%20JGStudio,%20estoy%20interesado%20en%20desarrollar%20un%20proyecto%20digital%20para%20mi%20negocio."
+<a href="https://wa.me/34674885902?text=Hola%20JGStudio,%20estoy%20interesado%20en%20desarrollar%20un%20proyecto%20digital%20para%20mi%20negocio."
    target="_blank"
-   rel="noopener"
+   rel="noopener noreferrer"
    class="vz-wa-widget"
    id="vz-whatsapp-widget"
    aria-label="Hablar con JGStudio por WhatsApp"
@@ -1848,20 +1855,33 @@
             feedback.style.border = '1px solid rgba(52, 211, 153, 0.3)';
             feedback.style.color = '#34d399';
 
-            feedback.innerHTML = `
-                <h4 style="font-size:1.1rem; margin-bottom:6px;">
-                    ¡Solicitud enviada con éxito!
-                </h4>
-                <p style="font-size:0.88rem; color:#fff; margin-bottom:12px;">
-                    Hemos recibido todos tus datos. Te contactaremos en menos de 24 horas.
-                </p>
-                <a href="https://wa.me/34638706316?text=${encodeURIComponent(
-                    `Hola JGStudio, acabo de enviar mi solicitud para ${company}. Proyecto: ${projectType}.`
-                )}" target="_blank" rel="noopener" class="btn-fill"
-                   style="background:#25D366; border-color:#25D366; font-size:0.8rem; padding:8px 18px;">
-                    <i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp →
-                </a>
-            `;
+            // Build success feedback safely to avoid XSS from user-input values
+            const waTextSuccess = encodeURIComponent(
+                `Hola JGStudio, acabo de enviar mi solicitud para ${company}. Proyecto: ${projectType}.`
+            );
+            const waLinkSuccess = `https://wa.me/34674885902?text=${waTextSuccess}`;
+
+            feedback.innerHTML = '';
+
+            const h4 = document.createElement('h4');
+            h4.style.cssText = 'font-size:1.1rem; margin-bottom:6px;';
+            h4.textContent = '¡Solicitud enviada con éxito!';
+
+            const p = document.createElement('p');
+            p.style.cssText = 'font-size:0.88rem; color:#fff; margin-bottom:12px;';
+            p.textContent = 'Hemos recibido todos tus datos. Te contactaremos en menos de 24 horas.';
+
+            const aSuccess = document.createElement('a');
+            aSuccess.href = waLinkSuccess;
+            aSuccess.target = '_blank';
+            aSuccess.rel = 'noopener noreferrer';
+            aSuccess.className = 'btn-fill';
+            aSuccess.style.cssText = 'background:#25D366; border-color:#25D366; font-size:0.8rem; padding:8px 18px;';
+            aSuccess.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp →';
+
+            feedback.appendChild(h4);
+            feedback.appendChild(p);
+            feedback.appendChild(aSuccess);
 
             document.getElementById('vz-lead-form').reset();
 
@@ -1889,22 +1909,116 @@
             feedback.style.border = '1px solid var(--accent)';
             feedback.style.color = '#fff';
 
-            feedback.innerHTML = `
-                <p style="margin-bottom:8px;">
-                    Hubo un problema de conexión al enviar el formulario.
-                </p>
-                <a href="https://wa.me/34638706316?text=${encodeURIComponent(
-                    `Hola JGStudio, quiero solicitar una propuesta para ${company}. Proyecto: ${projectType}. WhatsApp: ${phone}`
-                )}" target="_blank" rel="noopener" class="btn-fill"
-                   style="background:#25D366; border-color:#25D366; font-size:0.8rem;">
-                    <i class="fa-brands fa-whatsapp"></i> Enviar directo por WhatsApp →
-                </a>
-            `;
+            // Build error feedback safely to avoid XSS from user-input values
+            const waTextError = encodeURIComponent(
+                `Hola JGStudio, quiero solicitar una propuesta para ${company}. Proyecto: ${projectType}. WhatsApp: ${phone}`
+            );
+            const waLinkError = `https://wa.me/34674885902?text=${waTextError}`;
+
+            feedback.innerHTML = '';
+
+            const pErr = document.createElement('p');
+            pErr.style.marginBottom = '8px';
+            pErr.textContent = 'Hubo un problema de conexión al enviar el formulario.';
+
+            const aErr = document.createElement('a');
+            aErr.href = waLinkError;
+            aErr.target = '_blank';
+            aErr.rel = 'noopener noreferrer';
+            aErr.className = 'btn-fill';
+            aErr.style.cssText = 'background:#25D366; border-color:#25D366; font-size:0.8rem;';
+            aErr.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Enviar directo por WhatsApp →';
+
+            feedback.appendChild(pErr);
+            feedback.appendChild(aErr);
 
             submitBtn.disabled = false;
             submitBtn.innerText = 'REINTENTAR ENVÍO';
         }
     }
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     COOKIE CONSENT BANNER — GDPR Compliant
+     ═══════════════════════════════════════════════════ -->
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, 560px);
+    background: rgba(12, 12, 20, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    padding: 20px 24px;
+    z-index: 99999;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+    font-family: 'DM Sans', sans-serif;
+    color: #e8e8f0;
+">
+    <p style="margin:0 0 14px; font-size:0.875rem; line-height:1.6;">
+        🍪 Usamos <strong>cookies propias y de terceros</strong> (Google Analytics, Google Ads) para mejorar tu experiencia
+        y analizar el tráfico. Puedes aceptarlas o rechazarlas. Consulta nuestra
+        <a href="/politica-cookies" style="color:#a78bfa; text-underline-offset:3px;">Política de Cookies</a>.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button id="cookie-accept" style="
+            flex:1; min-width:120px;
+            background: linear-gradient(135deg,#7c3aed,#a855f7);
+            color:#fff; border:none; border-radius:10px;
+            padding:10px 18px; font-size:0.875rem; font-weight:600;
+            cursor:pointer; transition: opacity .2s;
+        " onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+            ✅ Aceptar todo
+        </button>
+        <button id="cookie-reject" style="
+            flex:1; min-width:120px;
+            background: rgba(255,255,255,0.07);
+            color:#c4c4d4; border:1px solid rgba(255,255,255,0.12);
+            border-radius:10px; padding:10px 18px; font-size:0.875rem;
+            font-weight:600; cursor:pointer; transition: opacity .2s;
+        " onmouseover="this.style.opacity='.75'" onmouseout="this.style.opacity='1'">
+            ❌ Solo esenciales
+        </button>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    var COOKIE_KEY = 'jgs_vz_cookie_consent';
+    var banner    = document.getElementById('cookie-banner');
+    var btnAccept = document.getElementById('cookie-accept');
+    var btnReject = document.getElementById('cookie-reject');
+
+    function setConsent(value) {
+        try { localStorage.setItem(COOKIE_KEY, value); } catch(e) {}
+        banner.style.display = 'none';
+
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                ad_storage:              value === 'accepted' ? 'granted' : 'denied',
+                analytics_storage:       value === 'accepted' ? 'granted' : 'denied',
+                ad_user_data:            value === 'accepted' ? 'granted' : 'denied',
+                ad_personalization:      value === 'accepted' ? 'granted' : 'denied'
+            });
+        }
+    }
+
+    // Show banner only if no prior consent stored
+    var stored;
+    try { stored = localStorage.getItem(COOKIE_KEY); } catch(e) {}
+
+    if (!stored) {
+        banner.style.display = 'block';
+    }
+
+    btnAccept.addEventListener('click', function() { setConsent('accepted'); });
+    btnReject.addEventListener('click', function() { setConsent('rejected'); });
+})();
 </script>
 
 </body>

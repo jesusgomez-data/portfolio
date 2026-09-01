@@ -754,213 +754,189 @@
     }
 
     /* ════════════════════════════════
-       PRINT STYLES (Recruiter PDF optimized)
+       PRINT STYLES (Exact Web Design PDF)
     ════════════════════════════════ */
     @media print {
         @page {
-            margin: 8mm 10mm;
-            size: A4;
+            margin: 0;
+            size: A4 portrait;
         }
 
-        body {
-            background: #ffffff !important;
-            color: #1e293b !important;
+        html, body {
+            background: var(--bg) !important;
+            color: var(--cream) !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
-        body::after { display: none !important; }
 
         .print-bar { display: none !important; }
 
         .cv-wrapper {
-            margin: 0 !important;
+            margin: 0 auto !important;
             max-width: 100% !important;
             border: none !important;
             box-shadow: none !important;
-            background: #ffffff !important;
+            background: var(--surface) !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
         }
 
         .cv-header {
-            background: #0f172a !important;
+            background: #000000 !important;
             flex-direction: row !important;
             text-align: left !important;
             align-items: center !important;
-            padding: 16px 24px !important;
-            gap: 20px !important;
-            border-radius: 4px !important;
-            margin-bottom: 10px !important;
+            padding: 24px 36px !important;
+            gap: 24px !important;
+            border-bottom: 1px solid rgba(255,255,255,.06) !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
+
         .header-photo {
-            width: 62px !important;
-            height: 62px !important;
-            border: 2px solid #d63031 !important;
+            width: 76px !important;
+            height: 76px !important;
+            border: 2px solid var(--accent) !important;
             border-radius: 50% !important;
             display: block !important;
+            box-shadow: 0 0 0 4px rgba(214,48,49,.1) !important;
         }
-        .header-name { color: #ffffff !important; font-size: 1.5rem !important; margin-bottom: 4px !important; }
-        .header-title { color: #ff6b6b !important; font-size: 0.56rem !important; letter-spacing: 3px !important; margin-bottom: 10px !important; }
-        .header-contacts { justify-content: flex-start !important; }
-        .hc-item { color: #cbd5e1 !important; font-size: 0.52rem !important; }
-        .hc-item i { color: #ff6b6b !important; }
 
-        /* Single-column flow for print — CSS Grid/Flex containers fragment
-           terribly across pages in Chromium's print engine (each top-level
-           item gets its own page range instead of letting a sibling backfill
-           leftover space), leaving huge blank gaps. Plain block flow
-           paginates like ordinary text, so .cv-main and .cv-sidebar are
-           reordered in the DOM itself (main first — most relevant to
-           recruiters) and print just needs display:block, no flex/grid. */
+        .header-name { color: var(--cream) !important; font-size: 1.8rem !important; margin-bottom: 4px !important; }
+        .header-title { color: var(--accent) !important; font-size: 0.52rem !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
+        .header-contacts { justify-content: flex-start !important; gap: 6px 16px !important; }
+        .hc-item { color: var(--gray) !important; font-size: 0.5rem !important; }
+        .hc-item i { color: var(--accent) !important; }
+
         .cv-body {
-            display: block !important;
+            display: grid !important;
+            grid-template-columns: 240px 1fr !important;
+            background: var(--surface) !important;
         }
-        .cv-main  { padding: 10px 0 0 !important; }
-        /* Multi-column (not flex/grid) — Chromium fragments CSS multicol
-           across print pages correctly, but treats flex/grid containers as
-           atomic boxes that jump wholesale to the next page if they don't
-           fit, which is what caused the whole sidebar to skip a page. */
+
         .cv-sidebar {
-            display: block !important;
-            column-count: 2 !important;
-            column-gap: 28px !important;
-            background: transparent !important;
-            border: none !important;
-            border-top: 2px solid #e2e8f0 !important;
-            padding: 10px 0 0 !important;
-            margin-top: 8px !important;
+            order: 0 !important;
+            grid-column: 1 !important;
+            grid-row: 1 !important;
+            background: var(--sidebar-bg) !important;
+            border-right: 1px solid var(--border-s) !important;
+            border-top: none !important;
+            padding: 24px 20px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .cv-sidebar .sec { break-inside: avoid !important; page-break-inside: avoid !important; }
-        .sec--contact-duplicate { display: none !important; }
 
-        .sec { margin-bottom: 9px !important; }
-        .cv-divider { margin: 1px 0 !important; }
+        .cv-main {
+            grid-column: 2 !important;
+            grid-row: 1 !important;
+            padding: 24px 28px !important;
+            background: var(--surface) !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        .sec { margin-bottom: 22px !important; }
+        .cv-divider { margin: 6px 0 20px !important; background: var(--border) !important; }
 
         .sec-label {
-            color: #d63031 !important;
+            color: var(--accent) !important;
+            border-bottom: 1px solid var(--accent-dim) !important;
             font-size: 0.5rem !important;
-            font-weight: 700 !important;
-            border-bottom: 1.5px solid rgba(214,48,49,0.3) !important;
-            padding-bottom: 5px !important;
-            margin-bottom: 12px !important;
+            padding-bottom: 6px !important;
+            margin-bottom: 14px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .sec-label::before { background: #d63031 !important; }
+        .sec-label::before { background: var(--accent) !important; }
 
-        .summary-text { color: #334155 !important; font-size: 0.82rem !important; line-height: 1.55 !important; }
-        .summary-text strong { color: #0f172a !important; font-weight: 700 !important; }
+        .summary-text { color: var(--gray) !important; font-size: 0.84rem !important; line-height: 1.7 !important; }
+        .summary-text strong { color: var(--cream) !important; }
 
         .exp-item {
-            padding: 0 0 12px 16px !important;
-            border-left: 2px solid #cbd5e1 !important;
+            padding: 0 0 20px 16px !important;
+            border-left: 2px solid rgba(214,48,49,.2) !important;
         }
         .exp-item::before {
             width: 8px !important;
             height: 8px !important;
-            background: #d63031 !important;
-            border: 2px solid #ffffff !important;
+            background: var(--accent) !important;
+            border: 2px solid var(--surface) !important;
             left: -5px !important;
-            top: 3px !important;
+            top: 4px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .exp-role { color: #0f172a !important; font-size: 0.9rem !important; font-weight: 800 !important; }
+        .exp-role { color: var(--cream) !important; font-size: 0.92rem !important; }
         .exp-date {
-            background: #fef2f2 !important;
-            color: #b91c1c !important;
-            border: 1px solid rgba(214,48,49,0.25) !important;
-            font-size: 0.46rem !important;
+            background: var(--accent-dim) !important;
+            color: var(--accent) !important;
+            border: 1px solid rgba(214,48,49,.18) !important;
+            font-size: 0.44rem !important;
             padding: 2px 8px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .exp-company { color: #64748b !important; font-size: 0.46rem !important; font-weight: 600 !important; margin-bottom: 5px !important; }
-        .exp-bullets { gap: 3px !important; }
-        .exp-bullets li { color: #334155 !important; font-size: 0.78rem !important; line-height: 1.4 !important; }
-        .exp-bullets li::before { background: #d63031 !important; opacity: 0.8 !important; }
-
-        .proj-card {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            border-left: 3px solid #d63031 !important;
-            padding: 6px 12px !important;
-            margin-bottom: 4px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .proj-name { color: #0f172a !important; font-size: 0.9rem !important; font-weight: 800 !important; }
-        .proj-stack { color: #64748b !important; font-size: 0.46rem !important; }
-        .proj-badge.prod { color: #b91c1c !important; border-color: rgba(214,48,49,0.4) !important; }
-        .proj-badge.client { color: #d97706 !important; border-color: rgba(217,119,6,0.4) !important; }
-        .proj-badge.live { color: #059669 !important; border-color: rgba(5,150,105,0.4) !important; }
-        .proj-link { color: #d63031 !important; }
-
-        .stat-box {
-            background: #ffffff !important;
-            border: 1px solid #e2e8f0 !important;
-            padding: 8px 4px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .stat-num { color: #d63031 !important; font-size: 1.3rem !important; }
-        .stat-lbl { color: #64748b !important; font-size: 0.42rem !important; }
-
-        .cert-name, .edu-degree { color: #0f172a !important; font-size: 0.74rem !important; font-weight: 700 !important; }
-        .cert-issuer, .edu-school { color: #64748b !important; font-size: 0.44rem !important; }
-        .cert-item { padding: 4px 0 !important; }
-        .edu-list { gap: 6px !important; }
-        .skill-groups { gap: 6px !important; }
-        .skill-group-name { margin-bottom: 4px !important; font-size: 0.42rem !important; }
-        .lang-list { gap: 4px !important; }
+        .exp-company { color: var(--dim) !important; font-size: 0.46rem !important; margin-bottom: 8px !important; }
+        .exp-bullets { gap: 4px !important; }
+        .exp-bullets li { color: var(--gray) !important; font-size: 0.8rem !important; line-height: 1.5 !important; }
+        .exp-bullets li::before { background: var(--accent) !important; }
 
         .tag {
-            background: #f1f5f9 !important;
-            border: 1px solid #cbd5e1 !important;
-            color: #334155 !important;
-            font-size: 0.46rem !important;
-            padding: 3px 8px !important;
+            background: rgba(255,255,255,.04) !important;
+            border: 1px solid var(--border) !important;
+            color: var(--gray) !important;
+            font-size: 0.44rem !important;
+            padding: 4px 9px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
         .tag.hi {
-            background: #fef2f2 !important;
-            color: #b91c1c !important;
-            border: 1px solid rgba(214,48,49,0.35) !important;
-            font-weight: 700 !important;
+            background: var(--accent-dim) !important;
+            color: var(--accent) !important;
+            border-color: rgba(214,48,49,.22) !important;
         }
+
         .avail-tag {
-            background: #fef2f2 !important;
-            border: 1px solid rgba(214,48,49,0.3) !important;
-            color: #b91c1c !important;
-            font-size: 0.46rem !important;
+            background: rgba(214,48,49,.08) !important;
+            border: 1px solid rgba(214,48,49,.25) !important;
+            color: var(--cream) !important;
+            font-size: 0.44rem !important;
             padding: 4px 10px !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
 
         .sc-icon {
-            background: #fef2f2 !important;
-            border: 1px solid rgba(214,48,49,0.2) !important;
-            color: #d63031 !important;
+            background: var(--accent-dim) !important;
+            border: 1px solid rgba(214,48,49,.2) !important;
+            color: var(--accent) !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
-        .sc-text, .sc-text a { color: #334155 !important; font-size: 0.76rem !important; }
+        .sc-text, .sc-text a { color: var(--gray) !important; font-size: 0.76rem !important; }
 
-        /* Prevent breaking individual cards across pages — but NOT whole
-           .sec containers, otherwise a tall section (e.g. Experiencia with
-           3 roles) gets pushed entirely to the next page even when it
-           would mostly fit, leaving huge blank gaps behind it. */
-        .exp-item, .proj-card, .edu-item, .cert-item, .skill-group, .stat-row, .lang-item {
+        .cert-name, .edu-degree { color: var(--cream) !important; font-size: 0.8rem !important; }
+        .cert-issuer, .edu-school { color: var(--dim) !important; font-size: 0.44rem !important; }
+        .cert-item { padding: 8px 0 !important; }
+        .edu-list { gap: 10px !important; }
+        .skill-groups { gap: 12px !important; }
+        .skill-group-name { margin-bottom: 6px !important; font-size: 0.42rem !important; }
+        .lang-list { gap: 8px !important; }
+        .lang-name { color: var(--cream) !important; font-size: 0.8rem !important; }
+        .lang-level {
+            background: var(--accent-dim) !important;
+            color: var(--accent) !important;
+            border: 1px solid rgba(214,48,49,.18) !important;
+            font-size: 0.44rem !important;
+            padding: 2px 8px !important;
+        }
+
+        .exp-item, .edu-item, .cert-item, .skill-group, .lang-item {
             break-inside: avoid;
             page-break-inside: avoid;
-        }
-        .sec-label, .exp-role, .proj-name {
-            break-after: avoid;
-            page-break-after: avoid;
         }
     }
 

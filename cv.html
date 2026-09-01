@@ -1475,44 +1475,6 @@
         })();
     </script>
 
-<!-- ═══════════════════════════════════════════════════
-     COOKIE CONSENT BANNER — GDPR Compliant
-     ═══════════════════════════════════════════════════ -->
-<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="
-    display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-    width:min(92vw,560px); background:rgba(12,12,20,0.92); backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.10);
-    border-radius:18px; padding:20px 24px; z-index:99999;
-    box-shadow:0 8px 40px rgba(0,0,0,0.55); font-family:'DM Sans',sans-serif; color:#e8e8f0;">
-    <p style="margin:0 0 14px; font-size:0.875rem; line-height:1.6;">
-        🍪 Usamos <strong>cookies propias y de terceros</strong> (Google Analytics, Google Ads)
-        para mejorar tu experiencia y analizar el tráfico. Puedes aceptarlas o rechazarlas.
-    </p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button id="cookie-accept" style="flex:1;min-width:120px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;">✅ Aceptar todo</button>
-        <button id="cookie-reject" style="flex:1;min-width:120px;background:rgba(255,255,255,0.07);color:#c4c4d4;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;">❌ Solo esenciales</button>
-    </div>
-</div>
-<script>
-(function(){
-    'use strict';
-    var KEY='jgs_cookie_consent',banner=document.getElementById('cookie-banner'),
-        ba=document.getElementById('cookie-accept'),br=document.getElementById('cookie-reject');
-    function setConsent(v){
-        try{localStorage.setItem(KEY,v);}catch(e){}
-        banner.style.display='none';
-        if(typeof gtag==='function') gtag('consent','update',{
-            ad_storage:v==='accepted'?'granted':'denied',
-            analytics_storage:v==='accepted'?'granted':'denied',
-            ad_user_data:v==='accepted'?'granted':'denied',
-            ad_personalization:v==='accepted'?'granted':'denied'
-        });
-    }
-    var stored; try{stored=localStorage.getItem(KEY);}catch(e){}
-    if(!stored) banner.style.display='block';
-    ba.addEventListener('click',function(){setConsent('accepted');});
-    br.addEventListener('click',function(){setConsent('rejected');});
-})();
-</script>
 </body>
 </html>
+

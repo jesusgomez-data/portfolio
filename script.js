@@ -785,3 +785,121 @@ function initAssistant() {
         return "Entiendo. No estoy seguro de tener una respuesta exacta para eso, pero si me dejas tu **correo electrónico (email)** aquí mismo o nos escribes a través de la sección de **Contacto**, Jesús te responderá personalmente en menos de 24 horas.";
     }
 }
+
+/* ══════════════════════════════════════════════════
+   LOGICA: STICKY CTA MOVIL Y DIAGNÓSTICO EXPRESS QUIZ
+══════════════════════════════════════════════════ */
+
+function initMobileStickyCTA() {
+    const bar = document.getElementById('mobile-sticky-cta');
+    if (!bar) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 350) {
+            bar.classList.add('show');
+        } else {
+            bar.classList.remove('show');
+        }
+    }, { passive: true });
+}
+
+function initExpressQuiz() {
+    const quizSection = document.getElementById('express-quiz');
+    if (!quizSection) return;
+
+    const steps = quizSection.querySelectorAll('.quiz-step');
+    const fill = document.getElementById('quiz-progress-fill');
+    const answers = { q1: '', q2: '', q3: '' };
+
+    const opts = quizSection.querySelectorAll('.quiz-opt-btn');
+    opts.forEach(opt => {
+        opt.addEventListener('click', () => {
+            const stepNum = parseInt(opt.dataset.quizQ, 10);
+            const val = opt.dataset.quizVal;
+            answers[`q${stepNum}`] = val;
+
+            if (stepNum < 3) {
+                steps.forEach(s => s.classList.remove('active'));
+                const nextStep = quizSection.querySelector(`.quiz-step[data-step="${stepNum + 1}"]`);
+                if (nextStep) nextStep.classList.add('active');
+                if (fill) fill.style.width = `${((stepNum + 1) / 3) * 100}%`;
+            } else {
+                showQuizResults(answers);
+            }
+        });
+    });
+
+    const resetBtn = document.getElementById('quiz-reset-btn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            answers.q1 = ''; answers.q2 = ''; answers.q3 = '';
+            steps.forEach(s => s.classList.remove('active'));
+            const firstStep = quizSection.querySelector('.quiz-step[data-step="1"]');
+            if (firstStep) firstStep.classList.add('active');
+            if (fill) fill.style.width = '33.33%';
+        });
+    }
+
+    function showQuizResults(ans) {
+        steps.forEach(s => s.classList.remove('active'));
+        const resultStep = quizSection.querySelector('.quiz-step[data-step="result"]');
+        if (!resultStep) return;
+
+        resultStep.classList.add('active');
+        if (fill) fill.style.width = '100%';
+
+        let res = {
+            title: "Web Corporativa & Autoridad",
+            desc: "Tu negocio necesita una presencia digital sólida, de alto impacto y orientada a transmitir confianza absoluta y captar clientes en piloto automático.",
+            tipoParam: "web",
+            features: ["Diseño exclusivo sin plantillas", "SEO para posicionar en Google", "100% Adaptada a móvil", "Formulario de captación rápida"]
+        };
+
+        if (ans.q1 === 'manual' || ans.q2 === 'auto') {
+            res = {
+                title: "Sistema de Automatización con IA",
+                desc: "Tu principal cuello de botella es la pérdida de tiempo en tareas repetitivas. Diseñamos e integramos flujos inteligentes con n8n, Make e IA para liberar más de 15h a la semana.",
+                tipoParam: "automatizacion",
+                features: ["Integración de herramientas (CRM, Email)", "Chatbots inteligentes y atención 24/7", "Eliminación de tareas repetitivas", "Optimización de operativa"]
+            };
+        } else if (ans.q1 === 'app' || ans.q2 === 'app') {
+            res = {
+                title: "Desarrollo de App / Plataforma SaaS",
+                desc: "Necesitas una arquitectura a medida escalable. Desarrollamos portales web privados, CRMs personalizados o plataformas SaaS con Next.js y Supabase.",
+                tipoParam: "app",
+                features: ["Panel de control interactivo", "Base de datos segura", "Gestión de usuarios y pagos", "Código propio escalable"]
+            };
+        } else if (ans.q1 === 'leads') {
+            res = {
+                title: "Landing Page de Alta Conversión",
+                desc: "Ideal para captar leads rápidos y maximizar el retorno de tu publicidad o lanzamientos. Una estructura enfocada a transformar visitas en mensajes directos.",
+                tipoParam: "landing",
+                features: ["Diseño enfocado 100% a ventas", "Carga ultra rápida (<1s)", "Integración con WhatsApp y CRM", "Optimización móvil avanzada"]
+            };
+        }
+
+        const titleEl = document.getElementById('quiz-res-title');
+        const descEl = document.getElementById('quiz-res-desc');
+        const featsEl = document.getElementById('quiz-res-features');
+        const ctaBtn = document.getElementById('quiz-res-cta');
+
+        if (titleEl) titleEl.textContent = res.title;
+        if (descEl) descEl.textContent = res.desc;
+        if (featsEl) featsEl.innerHTML = res.features.map(f => `<span class="quiz-rf-item"><i class="fas fa-check"></i> ${f}</span>`).join('');
+        if (ctaBtn) {
+            ctaBtn.href = `presupuesto.html?tipo=${res.tipoParam}`;
+            ctaBtn.textContent = `Solicitar propuesta para ${res.title} →`;
+        }
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initMobileStickyCTA();
+        initExpressQuiz();
+    });
+} else {
+    initMobileStickyCTA();
+    initExpressQuiz();
+}
+

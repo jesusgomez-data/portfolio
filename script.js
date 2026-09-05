@@ -947,42 +947,20 @@ window.selectProjectType = function(typeName, sourceId) {
         trackConversionEvent('click_proposal', { source: sourceId || 'cta', preselected_type: typeName });
     }
 
-    const map = {
-        'Página web': 'Página web',
-        'Landing Page': 'Página web',
-        'Web Corporativa': 'Página web',
-        'E-commerce': 'E-commerce',
-        'Tienda Online': 'E-commerce',
-        'Automatización / IA': 'Automatización / IA',
-        'Automatización & IA': 'Automatización / IA',
-        'Software a medida': 'Software a medida',
-        'App / SaaS': 'Software a medida'
+    const typeParams = {
+        'Página web': 'web',
+        'Landing Page': 'landing',
+        'Web Corporativa': 'web',
+        'E-commerce': 'ecom',
+        'Tienda Online': 'ecom',
+        'Automatización / IA': 'ia',
+        'Automatización & IA': 'ia',
+        'Software a medida': 'app',
+        'App / SaaS': 'app'
     };
-    const targetType = map[typeName] || typeName;
+    const p = typeParams[typeName] || 'web';
 
-    // Highlight chip in contact form
-    const chips = document.querySelectorAll('#project-chips .vz-chip-btn, #project-chips .chip-btn');
-    chips.forEach(btn => {
-        const txt = btn.innerText.trim();
-        if (txt === targetType || txt === typeName) {
-            window.selectChip(btn, targetType);
-        }
-    });
-
-    const hiddenInput = document.getElementById('form-project-type');
-    if (hiddenInput) hiddenInput.value = targetType;
-
-    // Pre-fill message textarea if appropriate
-    const textarea = document.getElementById('cf-msg') || document.getElementById('form-details');
-    if (textarea && (!textarea.value || textarea.value.startsWith('Hola, me interesa solicitar propuesta para:'))) {
-        textarea.value = `Hola, me interesa solicitar propuesta para: ${targetType}. `;
-    }
-
-    // Smooth scroll down to contact section
-    const target = document.getElementById('contacto') || document.getElementById('contact');
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = `presupuesto.html?tipo=${p}`;
 };
 
 

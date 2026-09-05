@@ -852,7 +852,8 @@ function initExpressQuiz() {
             title: "Web Corporativa & Autoridad",
             desc: "Tu negocio necesita una presencia digital sólida, de alto impacto y orientada a transmitir confianza absoluta y captar clientes en piloto automático.",
             tipoParam: "web",
-            features: ["Diseño exclusivo sin plantillas", "SEO para posicionar en Google", "100% Adaptada a móvil", "Formulario de captación rápida"]
+            priceTag: "Desde $350 USD",
+            features: ["Diseño exclusivo responsive", "SEO & Analítica configurada", "Formulario & WhatsApp directo", "100% Adaptada a móvil"]
         };
 
         if (ans.q1 === 'manual' || ans.q2 === 'auto') {
@@ -860,32 +861,58 @@ function initExpressQuiz() {
                 title: "Sistema de Automatización con IA",
                 desc: "Tu principal cuello de botella es la pérdida de tiempo en tareas repetitivas. Diseñamos e integramos flujos inteligentes con n8n, Make e IA para liberar más de 15h a la semana.",
                 tipoParam: "automatizacion",
-                features: ["Integración de herramientas (CRM, Email)", "Chatbots inteligentes y atención 24/7", "Eliminación de tareas repetitivas", "Optimización de operativa"]
+                priceTag: "Desde $750 USD",
+                features: ["Integración de herramientas (CRM, Email)", "Agentes IA conversacionales 24/7", "Eliminación de tareas repetitivas", "Optimización de operativa interna"]
             };
         } else if (ans.q1 === 'app' || ans.q2 === 'app') {
             res = {
                 title: "Desarrollo de App / Plataforma SaaS",
                 desc: "Necesitas una arquitectura a medida escalable. Desarrollamos portales web privados, CRMs personalizados o plataformas SaaS con Next.js y Supabase.",
                 tipoParam: "app",
-                features: ["Panel de control interactivo", "Base de datos segura", "Gestión de usuarios y pagos", "Código propio escalable"]
+                priceTag: "Desde $1.500 USD",
+                features: ["Panel de control interactivo", "Base de datos segura & APIs", "Gestión de usuarios y pagos", "Código propio 100% escalable"]
             };
-        } else if (ans.q1 === 'leads') {
+        } else if (ans.q1 === 'leads' && ans.q2 === 'sales') {
             res = {
                 title: "Landing Page de Alta Conversión",
-                desc: "Ideal para captar leads rápidos y maximizar el retorno de tu publicidad o lanzamientos. Una estructura enfocada a transformar visitas en mensajes directos.",
+                desc: "Ideal para captar clientes inmediatos y maximizar el retorno de tu publicidad. Una estructura diseñada 100% para transformar visitas en mensajes directos.",
                 tipoParam: "landing",
-                features: ["Diseño enfocado 100% a ventas", "Carga ultra rápida (<1s)", "Integración con WhatsApp y CRM", "Optimización móvil avanzada"]
+                priceTag: "Desde $350 USD",
+                features: ["Estructura orientada a ventas", "Carga ultrarrápida (<1s)", "Integración con WhatsApp & CRM", "Optimización móvil avanzada"]
             };
+        } else if (ans.q1 === 'leads' || ans.q2 === 'sales') {
+            res = {
+                title: "Tienda Online / E-Commerce",
+                desc: "Tu prioridad es impulsar las ventas. Una plataforma e-commerce completa con catálogo, pagos automatizados y checkout sin fricción.",
+                tipoParam: "ecom",
+                priceTag: "Desde $1.200 USD",
+                features: ["Catálogo dinámico de productos", "Pasarelas de pago (Stripe/Zelle)", "Panel de control de pedidos", "Sin comisiones por venta"]
+            };
+        }
+
+        // Incorporar el plazo seleccionado en la pregunta 3
+        if (ans.q3 === 'urgent') {
+            res.features.unshift("Entrega prioritaria (1 - 2 semanas)");
+        } else if (ans.q3 === 'month') {
+            res.features.unshift("Plazo estimado (3 - 4 semanas)");
+        } else if (ans.q3 === 'flexible') {
+            res.features.unshift("Propuesta & alcance a medida");
         }
 
         const titleEl = document.getElementById('quiz-res-title');
         const descEl = document.getElementById('quiz-res-desc');
         const featsEl = document.getElementById('quiz-res-features');
         const ctaBtn = document.getElementById('quiz-res-cta');
+        const badgeEl = quizSection.querySelector('.quiz-result-badge');
 
         if (titleEl) titleEl.textContent = res.title;
         if (descEl) descEl.textContent = res.desc;
-        if (featsEl) featsEl.innerHTML = res.features.map(f => `<span class="quiz-rf-item"><i class="fas fa-check"></i> ${f}</span>`).join('');
+        if (badgeEl) {
+            badgeEl.innerHTML = `<i class="fas fa-star"></i> Solución Recomendada (${res.priceTag})`;
+        }
+        if (featsEl) {
+            featsEl.innerHTML = res.features.map(f => `<span class="quiz-rf-item"><i class="fas fa-check"></i> ${f}</span>`).join('');
+        }
         if (ctaBtn) {
             ctaBtn.href = `presupuesto.html?tipo=${res.tipoParam}`;
             ctaBtn.textContent = `Solicitar propuesta para ${res.title} →`;

@@ -1655,61 +1655,135 @@
         </div>
 
         <div class="vz-price-grid">
-            <div class="cap-card vz-cost-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <span class="label" style="color: var(--accent);">Web Comercial</span>
-                <div class="vz-cost-val">desde $350 <span>USD</span></div>
-                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
-                    Páginas web comerciales <strong>ultrarrápidas</strong>, diseño responsive y <strong>alta conversión</strong>.
-                </p>
-                <div class="pc-micro-quote" style="margin-bottom: 16px;">
-                    <i class="fas fa-quote-left"></i>
-                    <span>"Multiplicamos nuestras consultas en 2 semanas." <strong class="pc-micro-author">— Milu & Co</strong></span>
+            <!-- Card 1: Web Comercial -->
+            <div class="senior-price-card theme-red" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">01</span>
+                    <span class="spc-category">Páginas Web</span>
                 </div>
-                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;" onclick="selectProjectType('Página web', 'pricing_web')">Solicitar propuesta →</a>
+                <h3 class="spc-title">Web Comercial</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$350</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Sitios web corporativos y landing pages <strong>ultrarrápidas</strong>, optimizadas para posicionamiento SEO y conversión de visitas en clientes.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Diseño responsive &amp; UI a medida</li>
+                    <li><i class="fas fa-check-circle"></i> Carga ultra-rápida (Score 95+)</li>
+                    <li><i class="fas fa-check-circle"></i> Integración WhatsApp &amp; CRM</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">M</div>
+                    <div class="spc-quote-text">
+                        <p>"Multiplicamos nuestras consultas en 2 semanas."</p>
+                        <span>Milu &amp; Co · Marca Comercial</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="if(typeof selectProjectType==='function') selectProjectType('Página web', 'pricing_web')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
-            <div class="cap-card highlight vz-cost-card" data-reveal>
-                <span class="svc-badge">Más solicitado</span>
-                <div class="cap-accent-bar"></div>
-                <span class="label" style="color: var(--green);">E-commerce</span>
-                <div class="vz-cost-val">desde $1.200 <span>USD</span></div>
-                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
-                    Tiendas online completas con catálogo, pagos, gestión de stock y <strong>checkout sin fricción</strong>.
-                </p>
-                <div class="pc-micro-quote" style="margin-bottom: 16px;">
-                    <i class="fas fa-quote-left"></i>
-                    <span>"Proceso de compra fluido y ventas automáticas." <strong class="pc-micro-author">— Fabián Z.</strong></span>
+            <!-- Card 2: E-Commerce (FEATURED / POPULAR) -->
+            <div class="senior-price-card theme-featured featured" data-reveal>
+                <div class="spc-badge-pop">
+                    <i class="fas fa-fire"></i> MÁS SOLICITADO
                 </div>
-                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;" onclick="selectProjectType('E-commerce', 'pricing_ecom')">Solicitar propuesta →</a>
+                <div class="spc-top-bar">
+                    <span class="spc-index">02</span>
+                    <span class="spc-category">Ventas Online</span>
+                </div>
+                <h3 class="spc-title">E-Commerce</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$1.200</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Tiendas online de alto rendimiento con catálogo interactivo, pagos automatizados, inventario y <strong>checkout sin fricción</strong>.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Catálogo &amp; Pasarelas de Pago (Stripe/Zelle)</li>
+                    <li><i class="fas fa-check-circle"></i> Panel de control de stock y pedidos</li>
+                    <li><i class="fas fa-check-circle"></i> Arquitectura escalable sin comisiones</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">F</div>
+                    <div class="spc-quote-text">
+                        <p>"Proceso de compra fluido y ventas automáticas."</p>
+                        <span>Fabián Z. · E-Commerce Founder</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-primary" onclick="if(typeof selectProjectType==='function') selectProjectType('E-commerce', 'pricing_ecom')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
-            <div class="cap-card vz-cost-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <span class="label" style="color: #00f0ff;">IA &amp; Workflows</span>
-                <div class="vz-cost-val">desde $750 <span>USD</span></div>
-                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
-                    Agentes conversacionales IA, captura inteligente de leads y <strong>automatización de procesos</strong>.
-                </p>
-                <div class="pc-micro-quote" style="margin-bottom: 16px;">
-                    <i class="fas fa-quote-left"></i>
-                    <span>"Ahorramos más de 15h semanales en datos." <strong class="pc-micro-author">— Cliente SaaS</strong></span>
+            <!-- Card 3: IA & Workflows -->
+            <div class="senior-price-card theme-cyan" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">03</span>
+                    <span class="spc-category">Automatización</span>
                 </div>
-                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">Solicitar propuesta →</a>
+                <h3 class="spc-title">IA &amp; Workflows</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$750</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Agentes conversacionales con IA, sistemas inteligentes de captura de leads y <strong>automatización de procesos</strong> internos.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Agentes IA entrenados con tu conocimiento</li>
+                    <li><i class="fas fa-check-circle"></i> Integración n8n / Make / APIs</li>
+                    <li><i class="fas fa-check-circle"></i> Respuestas 24/7 y cualificación de leads</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">S</div>
+                    <div class="spc-quote-text">
+                        <p>"Ahorramos más de 15h semanales en tareas datos."</p>
+                        <span>Cliente SaaS · Automatización</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="if(typeof selectProjectType==='function') selectProjectType('Automatización / IA', 'pricing_ia')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
-            <div class="cap-card vz-cost-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <span class="label" style="color: #eab308;">Software a Medida</span>
-                <div class="vz-cost-val">desde $1.500 <span>USD</span></div>
-                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
-                    Plataformas a medida, sistemas SaaS, CRM internos y <strong>código propio escalable</strong>.
-                </p>
-                <div class="pc-micro-quote" style="margin-bottom: 16px;">
-                    <i class="fas fa-quote-left"></i>
-                    <span>"Cero fallos, velocidad máxima y código limpio." <strong class="pc-micro-author">— Tech Lead</strong></span>
+            <!-- Card 4: Software a Medida -->
+            <div class="senior-price-card theme-gold" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">04</span>
+                    <span class="spc-category">Desarrollo Custom</span>
                 </div>
-                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;" onclick="selectProjectType('Software a medida', 'pricing_soft')">Solicitar propuesta →</a>
+                <h3 class="spc-title">Software a Medida</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$1.500</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Plataformas web complejas, aplicaciones SaaS, CRMs internos y sistemas empresariales con <strong>código propio y arquitectura limpia</strong>.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Arquitectura full-stack personalizada</li>
+                    <li><i class="fas fa-check-circle"></i> Base de datos dedicada y APIs robustas</li>
+                    <li><i class="fas fa-check-circle"></i> Propiedad 100% del código fuente</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">T</div>
+                    <div class="spc-quote-text">
+                        <p>"Cero fallos, velocidad máxima y código limpio."</p>
+                        <span>Tech Lead · Startup Platform</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="if(typeof selectProjectType==='function') selectProjectType('Software a medida', 'pricing_soft')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>

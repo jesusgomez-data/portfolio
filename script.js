@@ -936,48 +936,41 @@ window.selectProjectType = function(typeName, sourceId) {
         trackConversionEvent('click_proposal', { source: sourceId || 'cta', preselected_type: typeName });
     }
 
-    const map = {
-        'Página web': 'Landing Page',
-        'E-commerce': 'Tienda Online',
-        'Automatización / IA': 'Automatización & IA',
-        'Software a medida': 'App / SaaS',
-        'Landing Page': 'Landing Page',
-        'Web Corporativa': 'Web Corporativa',
-        'Tienda Online': 'Tienda Online',
-        'App / SaaS': 'App / SaaS',
-        'Automatización & IA': 'Automatización & IA',
-        'Branding & Contenido': 'Branding & Contenido'
+    const typeParams = {
+        'Página web': 'web',
+        'Landing Page': 'landing',
+        'Web Corporativa': 'web',
+        'E-commerce': 'ecom',
+        'Tienda Online': 'ecom',
+        'Automatización / IA': 'ia',
+        'Automatización & IA': 'ia',
+        'Software a medida': 'app',
+        'App / SaaS': 'app'
     };
+    const p = typeParams[typeName] || 'web';
 
-    const targetType = map[typeName] || typeName;
-
-    // Check chips if present in form
-    let selected = false;
-    document.querySelectorAll('#project-chips .vz-chip-btn, .chip-btn, [data-project-type]').forEach(btn => {
-        if (btn.innerText.trim() === targetType || btn.dataset.projectType === targetType) {
-            btn.click();
-            selected = true;
-        }
-    });
-
-    const typeInput = document.getElementById('project-type-input') || document.querySelector('select[name="project_type"]');
-    if (typeInput && !selected) {
-        typeInput.value = targetType;
-    }
-
-    const target = document.getElementById('contacto') || document.getElementById('contact');
-    if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-    } else {
-        const typeParams = {
-            'Página web': 'web',
-            'E-commerce': 'ecom',
-            'Automatización / IA': 'ia',
-            'Software a medida': 'app'
+    // If an in-page interactive chip form exists (e.g., venezuela.html)
+    const chipsContainer = document.getElementById('project-chips');
+    if (chipsContainer) {
+        const map = {
+            'Página web': 'Landing Page',
+            'E-commerce': 'Tienda Online',
+            'Automatización / IA': 'Automatización & IA',
+            'Software a medida': 'App / SaaS'
         };
-        const p = typeParams[typeName] || 'web';
-        window.location.href = `presupuesto.html?tipo=${p}`;
+        const targetType = map[typeName] || typeName;
+        chipsContainer.querySelectorAll('.vz-chip-btn, .chip-btn').forEach(btn => {
+            if (btn.innerText.trim() === targetType) btn.click();
+        });
+        const target = document.getElementById('contacto') || document.getElementById('contact');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
     }
+
+    // Default: Open dedicated interactive proposal wizard with pre-selected plan
+    window.location.href = `presupuesto.html?tipo=${p}`;
 };
 
 

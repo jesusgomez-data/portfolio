@@ -339,8 +339,8 @@ body::before{
     const params = new URLSearchParams(window.location.search);
     const presetTipo = params.get('tipo');
     const tipoMap = {
-        landing: 'Landing Page', web: 'Web Corporativa', tienda: 'Tienda Online',
-        automatizacion: 'Automatización & IA', app: 'App / SaaS', branding: 'Branding & Contenido'
+        landing: 'Landing Page', web: 'Web Corporativa', tienda: 'Tienda Online', ecom: 'Tienda Online',
+        automatizacion: 'Automatización & IA', ia: 'Automatización & IA', app: 'App / SaaS', custom: 'App / SaaS', branding: 'Branding & Contenido'
     };
     if (presetTipo && tipoMap[presetTipo]) {
         const btn = document.querySelector(`#opt-tipo [data-value="${tipoMap[presetTipo]}"]`);

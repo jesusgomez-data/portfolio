@@ -72,6 +72,7 @@
             <li><a href="#projects">Proyectos</a></li>
             <li><a href="#about">Sobre mí</a></li>
             <li><a href="#pricing">Precios</a></li>
+            <li><a href="login.html" class="nav-portal"><i class="fas fa-user-circle"></i> Clientes</a></li>
             <li><a href="#contact" class="nav-cta">Hablemos →</a></li>
         </ul>
         <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
@@ -101,24 +102,7 @@
         <div class="hero-avatar-mobile" aria-hidden="true">
             <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez">
         </div>
-        <!-- Selector de región (discreto y expandible) -->
-        <div class="region-switch" aria-label="Seleccionar mercado">
-            <button type="button" class="region-switch-trigger" id="region-switch-toggle" aria-expanded="false" aria-haspopup="true" aria-label="Cambiar de región — actual: Europa">
-                <span class="region-switch-dot" style="background:#34d399; box-shadow:0 0 6px rgba(52,211,153,.6);"></span>
-                <span>Europa</span>
-                <i class="fa-solid fa-chevron-down region-switch-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="region-switch-menu" role="menu">
-                <span class="region-switch-option active" role="menuitem" aria-current="page">
-                    <span>EUROPA</span>
-                    <span class="region-switch-opt-status">ESPAÑA · EUR</span>
-                </span>
-                <a href="venezuela.html" class="region-switch-option" role="menuitem" aria-label="Ir a JGStudio América">
-                    <span>AMÉRICA</span>
-                    <span class="region-switch-opt-status">VENEZUELA · USD</span>
-                </a>
-            </div>
-        </div>
+        <!-- Selector de región (discreto y expandible) eliminado para unificar -->
 
         <p class="hero-kicker" id="hero-kicker">
             JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; <span class="kicker-badge"><i class="fa-solid fa-laptop"></i>Disponible esta semana</span>
@@ -434,55 +418,122 @@
     </div>
 </section>
 
-<!-- Services -->
-<section id="services" class="services-section">
+<!-- Services (Imported from Venezuela) -->
+<section id="solucion" class="vz-section vz-section--alt">
     <div class="wrap">
         <div class="section-top" data-reveal-l>
-            <span class="label">Servicios</span>
-            <span class="label-count">03 pilares</span>
+            <span class="label">Propuesta de Valor</span>
+            <span class="label-count">Estrategia</span>
         </div>
-        <div class="svc-grid">
-            <div class="svc-col" data-reveal>
-                <div class="svc-img" data-img="JGStudio/Contenido/Branding/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png"><img src="JGStudio/Contenido/Branding/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png" alt="Desarrollo Web"></div>
-                <h3 class="svc-name">Desarrollo Web</h3>
-                <ul class="svc-list">
-                    <li>Landing Pages</li>
-                    <li>Webs Corporativas</li>
-                    <li>Tiendas Online</li>
-                    <li>Plataformas Personalizadas</li>
-                    <li>Portales de Clientes</li>
-                    <li>Aplicaciones SaaS</li>
-                </ul>
-                <p class="svc-stack">Next.js · React · Supabase · Stripe</p>
-                <a href="#contact" class="svc-cta magnetic">Solicitar →</a>
+
+        <div class="vz-head" data-reveal>
+            <h2 class="vz-h2" data-title>Construimos lo que tu negocio necesita.</h2>
+            <p class="vz-sub">
+                No trabajamos con soluciones genéricas cuando tu negocio necesita algo diferente. Diseñamos y desarrollamos productos digitales personalizados según tus objetivos.
+            </p>
+        </div>
+
+        <div class="capabilities-grid vz-grid-3">
+            <div class="cap-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <!-- CSS Illustration: UX wireframe mockup -->
+                <div class="cap-illustration" aria-hidden="true">
+                  <div class="ci-ux">
+                    <div class="ci-ux-frame">
+                      <div class="ci-ux-topbar">
+                        <div class="ci-ux-logo"></div>
+                        <div class="ci-ux-nav"><span></span><span></span><span></span></div>
+                      </div>
+                      <div class="ci-ux-hero">
+                        <div class="ci-ux-headline"></div>
+                        <div class="ci-ux-headline" style="width:65%;height:6px;opacity:.5"></div>
+                        <div class="ci-ux-cta"></div>
+                      </div>
+                      <div class="ci-ux-grid">
+                        <div class="ci-ux-card"><div class="ci-ux-card-img"></div><div class="ci-ux-card-line"></div></div>
+                        <div class="ci-ux-card"><div class="ci-ux-card-img" style="background:rgba(168,85,247,0.2)"></div><div class="ci-ux-card-line"></div></div>
+                        <div class="ci-ux-card"><div class="ci-ux-card-img" style="background:rgba(232,121,249,0.15)"></div><div class="ci-ux-card-line"></div></div>
+                      </div>
+                    </div>
+                    <div class="ci-ux-cursor">&#9654;</div>
+                  </div>
+                </div>
+                <div class="cap-head">
+                    <span class="cap-num">PILAR 01</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                </div>
+                <h3>Diseño</h3>
+                <p>Interfaces modernas, claras y estrictamente orientadas al usuario y a la conversión.</p>
+                <div class="cap-examples"><span>UX/UI</span><span>Identidad</span><span>Premium</span></div>
             </div>
-            <div class="svc-col svc-featured" data-reveal>
-                <span class="svc-badge">Más solicitado</span>
-                <div class="svc-img" data-img="JGStudio/Contenido/Branding/QueHago.png"><img src="JGStudio/Contenido/Branding/QueHago.png" alt="Automatización e IA"></div>
-                <h3 class="svc-name">Automatización e IA</h3>
-                <ul class="svc-list">
-                    <li>Automatización de procesos</li>
-                    <li>CRM personalizados</li>
-                    <li>Dashboards</li>
-                    <li>Integraciones</li>
-                    <li>Agentes IA</li>
-                    <li>Atención al cliente IA</li>
-                </ul>
-                <p class="svc-stack">n8n · OpenAI API · Claude API · Make</p>
-                <a href="#contact" class="svc-cta magnetic">Solicitar →</a>
+            <div class="cap-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <!-- CSS Illustration: Code block + cloud -->
+                <div class="cap-illustration" aria-hidden="true">
+                  <div class="ci-tech">
+                    <div class="ci-code-block">
+                      <div class="ci-code-topbar"><span></span><span></span><span></span><span class="ci-code-title">app.tsx</span></div>
+                      <div class="ci-code-line"><span class="ci-kw">import</span> <span class="ci-str">Next</span> <span class="ci-kw">from</span> <span class="ci-str">'next'</span></div>
+                      <div class="ci-code-line"><span class="ci-kw">export</span> <span class="ci-fn">async</span> <span class="ci-fn">function</span> <span class="ci-str">Page</span>()</div>
+                      <div class="ci-code-line ci-indent"><span class="ci-kw">return</span> <span class="ci-pun">&lt;</span><span class="ci-str">App</span> <span class="ci-pun">/&gt;</span></div>
+                    </div>
+                    <div class="ci-cloud">
+                      <div class="ci-cloud-body"></div>
+                      <div class="ci-cloud-dot ci-cloud-d1"></div>
+                      <div class="ci-cloud-dot ci-cloud-d2"></div>
+                      <div class="ci-cloud-dot ci-cloud-d3"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cap-head">
+                    <span class="cap-num">PILAR 02</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div>
+                </div>
+                <h3>Tecnología</h3>
+                <p>Desarrollo moderno, seguro y personalizado utilizando Next.js, APIs y arquitecturas en la nube.</p>
+                <div class="cap-examples"><span>Next.js</span><span>APIs</span><span>Cloud</span></div>
             </div>
-            <div class="svc-col" data-reveal>
-                <div class="svc-img" data-img="JGStudio/Contenido/Branding/TransformoIdeas.png"><img src="JGStudio/Contenido/Branding/TransformoIdeas.png" alt="Contenido Comercial"></div>
-                <h3 class="svc-name">Contenido Comercial</h3>
-                <ul class="svc-list">
-                    <li>Vídeos publicitarios IA</li>
-                    <li>Branding</li>
-                    <li>Diseño gráfico</li>
-                    <li>Creatividades para anuncios</li>
-                    <li>Contenido para redes sociales</li>
-                </ul>
-                <p class="svc-stack">Midjourney · Flux · Runway · Premiere</p>
-                <a href="#contact" class="svc-cta magnetic">Solicitar →</a>
+            <div class="cap-card highlight" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <!-- CSS Illustration: Rising business chart -->
+                <div class="cap-illustration" aria-hidden="true">
+                  <div class="ci-bizz">
+                    <div class="ci-bizz-metrics">
+                      <div class="ci-metric">
+                        <span class="ci-metric-val ci-metric-up">↑ +34%</span>
+                        <span class="ci-metric-lbl">Leads</span>
+                      </div>
+                      <div class="ci-metric">
+                        <span class="ci-metric-val ci-metric-up">↑ +21%</span>
+                        <span class="ci-metric-lbl">Ventas</span>
+                      </div>
+                      <div class="ci-metric">
+                        <span class="ci-metric-val ci-metric-down">↓ −60%</span>
+                        <span class="ci-metric-lbl">Tiempo</span>
+                      </div>
+                    </div>
+                    <div class="ci-bizz-chart">
+                      <svg viewBox="0 0 120 50" fill="none" preserveAspectRatio="none">
+                        <defs>
+                          <linearGradient id="bizz-grad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="rgba(214,48,49,0.4)"/>
+                            <stop offset="100%" stop-color="rgba(214,48,49,0)"/>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0 45 C20 40, 30 35, 50 28 C70 20, 85 15, 120 3" stroke="rgba(214,48,49,0.9)" stroke-width="2" fill="none"/>
+                        <path d="M0 45 C20 40, 30 35, 50 28 C70 20, 85 15, 120 3 L120 50 L0 50Z" fill="url(#bizz-grad)"/>
+                        <circle cx="120" cy="3" r="3" fill="rgba(214,48,49,1)" class="ci-pulse-dot"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="cap-head">
+                    <span class="cap-num">PILAR 03</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                </div>
+                <h3>Negocio</h3>
+                <p>Cada proyecto parte de un objetivo comercial concreto: captar leads, vender más o ahorrar tiempo.</p>
+                <div class="cap-examples"><span>Leads</span><span>Ventas</span><span>Eficiencia</span></div>
             </div>
         </div>
     </div>
@@ -1664,107 +1715,62 @@
             <span class="pricing-trust-item"><i class="fas fa-user-check"></i> <strong>Soporte directo 1 a 1</strong></span>
         </div>
         
-        <div class="pricing-grid">
-            <!-- Plan 1 -->
-            <div class="price-card" data-reveal>
-                <div class="pc-top">
-                    <span class="pc-name">Landing Page</span>
-                    <span class="pc-scope-tag">Conversión Rápida</span>
-                </div>
-                <p class="pc-desc">Ideal para profesionales y pequeños negocios que buscan <strong>captar clientes rápido</strong>.</p>
-                <ul class="pc-features">
-                    <li><i class="fas fa-check"></i> Dise&ntilde;o personalizado y premium</li>
-                    <li><i class="fas fa-check"></i> 100% Responsive (m&oacute;vil y tablet)</li>
-                    <li><i class="fas fa-check"></i> Optimizaci&oacute;n de SEO b&aacute;sico</li>
-                    <li><i class="fas fa-check"></i> Formulario de contacto y WhatsApp</li>
-                </ul>
-                <div class="pc-micro-quote">
+        <div class="vz-price-grid">
+            <div class="cap-card vz-cost-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <span class="label" style="color: var(--accent);">Web Comercial</span>
+                <div class="vz-cost-val">desde $350 <span>USD</span></div>
+                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
+                    Páginas web comerciales <strong>ultrarrápidas</strong>, diseño responsive y <strong>alta conversión</strong>.
+                </p>
+                <div class="pc-micro-quote" style="margin-bottom: 16px;">
                     <i class="fas fa-quote-left"></i>
-                    <span>"Multiplicamos x3 nuestras consultas en 2 semanas." <strong class="pc-micro-author">— Milu & Co</strong></span>
+                    <span>"Multiplicamos nuestras consultas en 2 semanas." <strong class="pc-micro-author">— Milu & Co</strong></span>
                 </div>
-                <a href="presupuesto.html?tipo=landing" class="btn-price magnetic">Solicitar Presupuesto →</a>
+                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;">Solicitar propuesta →</a>
             </div>
 
-            <!-- Plan 2 -->
-            <div class="price-card pc-featured-card" data-reveal>
-                <div class="pc-badge-popular">Recomendado</div>
-                <div class="pc-top">
-                    <span class="pc-name">Web Corporativa</span>
-                    <span class="pc-scope-tag">Autoridad &amp; Marca</span>
-                </div>
-                <p class="pc-desc">Ideal para empresas que necesitan destacar y proyectar <strong>máxima autoridad</strong> en su sector.</p>
-                <ul class="pc-features">
-                    <li><i class="fas fa-check"></i> Estructura multip&aacute;gina avanzada</li>
-                    <li><i class="fas fa-check"></i> Dise&ntilde;o premium a medida</li>
-                    <li><i class="fas fa-check"></i> Optimizaci&oacute;n SEO para Google</li>
-                    <li><i class="fas fa-check"></i> Blog de contenidos auto-gestionable</li>
-                    <li><i class="fas fa-check"></i> Integraciones b&aacute;sicas (CRM, Analytics)</li>
-                </ul>
-                <div class="pc-micro-quote">
-                    <i class="fas fa-quote-left"></i>
-                    <span>"Diseño impecable y posicionamiento orgánico veloz." <strong class="pc-micro-author">— Elianis R.</strong></span>
-                </div>
-                <a href="presupuesto.html?tipo=web" class="btn-price-fill magnetic">Solicitar Presupuesto →</a>
-            </div>
-
-            <!-- Plan 3 -->
-            <div class="price-card" data-reveal>
-                <div class="pc-top">
-                    <span class="pc-name">Tienda Online</span>
-                    <span class="pc-scope-tag">Ventas &amp; E-commerce</span>
-                </div>
-                <p class="pc-desc">Ideal para marcas que quieren <strong>vender productos físicos o digitales sin fricción</strong>.</p>
-                <ul class="pc-features">
-                    <li><i class="fas fa-check"></i> Cat&aacute;logo autogestionable estructurado</li>
-                    <li><i class="fas fa-check"></i> Pasarelas de pago online (Stripe, PayPal)</li>
-                    <li><i class="fas fa-check"></i> Panel de gesti&oacute;n de pedidos intuitivo</li>
-                    <li><i class="fas fa-check"></i> Automatizaci&oacute;n de facturaci&oacute;n b&aacute;sica</li>
-                </ul>
-                <div class="pc-micro-quote">
+            <div class="cap-card highlight vz-cost-card" data-reveal>
+                <span class="svc-badge">Más solicitado</span>
+                <div class="cap-accent-bar"></div>
+                <span class="label" style="color: var(--green);">E-commerce</span>
+                <div class="vz-cost-val">desde $1.200 <span>USD</span></div>
+                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
+                    Tiendas online completas con catálogo, pagos, gestión de stock y <strong>checkout sin fricción</strong>.
+                </p>
+                <div class="pc-micro-quote" style="margin-bottom: 16px;">
                     <i class="fas fa-quote-left"></i>
                     <span>"Proceso de compra fluido y ventas automáticas." <strong class="pc-micro-author">— Fabián Z.</strong></span>
                 </div>
-                <a href="presupuesto.html?tipo=tienda" class="btn-price magnetic">Solicitar Presupuesto →</a>
+                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;">Solicitar propuesta →</a>
             </div>
 
-            <!-- Plan 4 -->
-            <div class="price-card" data-reveal>
-                <div class="pc-top">
-                    <span class="pc-name">Automatización e IA</span>
-                    <span class="pc-scope-tag">Optimización IA</span>
-                </div>
-                <p class="pc-desc">Sistemas a medida para <strong>ahorrar tiempo</strong>, reducir costes y eliminar tareas repetitivas.</p>
-                <ul class="pc-features">
-                    <li><i class="fas fa-check"></i> Automatizaci&oacute;n de procesos de negocio</li>
-                    <li><i class="fas fa-check"></i> Integraci&oacute;n de herramientas mediante APIs</li>
-                    <li><i class="fas fa-check"></i> Agentes IA y chatbots de atenci&oacute;n al cliente</li>
-                    <li><i class="fas fa-check"></i> Flujos autom&aacute;ticos con n8n o Make</li>
-                </ul>
-                <div class="pc-micro-quote">
+            <div class="cap-card vz-cost-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <span class="label" style="color: #00f0ff;">IA &amp; Workflows</span>
+                <div class="vz-cost-val">desde $750 <span>USD</span></div>
+                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
+                    Agentes conversacionales IA, captura inteligente de leads y <strong>automatización de procesos</strong>.
+                </p>
+                <div class="pc-micro-quote" style="margin-bottom: 16px;">
                     <i class="fas fa-quote-left"></i>
-                    <span>"Ahorramos más de 15h a la semana en tareas de datos." <strong class="pc-micro-author">— Cliente SaaS</strong></span>
+                    <span>"Ahorramos más de 15h semanales en datos." <strong class="pc-micro-author">— Cliente SaaS</strong></span>
                 </div>
-                <a href="presupuesto.html?tipo=automatizacion" class="btn-price magnetic">Solicitar Presupuesto →</a>
+                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;">Solicitar propuesta →</a>
             </div>
 
-            <!-- Plan 5 -->
-            <div class="price-card" data-reveal>
-                <div class="pc-top">
-                    <span class="pc-name">Aplicaciones &amp; SaaS</span>
-                    <span class="pc-scope-tag">Plataforma SaaS</span>
-                </div>
-                <p class="pc-desc">Plataformas personalizadas de alto rendimiento diseñadas con <strong>código propio escalable</strong>.</p>
-                <ul class="pc-features">
-                    <li><i class="fas fa-check"></i> CRM y Dashboards interactivos a medida</li>
-                    <li><i class="fas fa-check"></i> Portales privados de clientes o empleados</li>
-                    <li><i class="fas fa-check"></i> Sistemas complejos de reservas o pagos</li>
-                    <li><i class="fas fa-check"></i> C&oacute;digo escalable (Next.js, Supabase, Node)</li>
-                </ul>
-                <div class="pc-micro-quote">
+            <div class="cap-card vz-cost-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <span class="label" style="color: #eab308;">Software a Medida</span>
+                <div class="vz-cost-val">desde $1.500 <span>USD</span></div>
+                <p style="font-size: .88rem; color: var(--gray); line-height: 1.6; margin-bottom: 16px;">
+                    Plataformas a medida, sistemas SaaS, CRM internos y <strong>código propio escalable</strong>.
+                </p>
+                <div class="pc-micro-quote" style="margin-bottom: 16px;">
                     <i class="fas fa-quote-left"></i>
-                    <span>"Cero fallos, máxima velocidad y arquitectura robusta." <strong class="pc-micro-author">— Tech Lead</strong></span>
+                    <span>"Cero fallos, velocidad máxima y código limpio." <strong class="pc-micro-author">— Tech Lead</strong></span>
                 </div>
-                <a href="presupuesto.html?tipo=app" class="btn-price magnetic">Solicitar Presupuesto →</a>
+                <a href="#contacto" class="btn-fill" style="width: 100%; justify-content: center;">Solicitar propuesta →</a>
             </div>
         </div>
 
@@ -2174,19 +2180,15 @@
 <!-- ═══════════════════════════════════════════════════
      COOKIE CONSENT BANNER — GDPR Compliant
      ═══════════════════════════════════════════════════ -->
-<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="
-    display:none; position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-    width:min(92vw,560px); background:rgba(12,12,20,0.92); backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.10);
-    border-radius:18px; padding:20px 24px; z-index:99999;
-    box-shadow:0 8px 40px rgba(0,0,0,0.55); font-family:'DM Sans',sans-serif; color:#e8e8f0;">
-    <p style="margin:0 0 14px; font-size:0.875rem; line-height:1.6;">
-        🍪 Usamos <strong>cookies propias y de terceros</strong> (Google Analytics, Google Ads)
-        para mejorar tu experiencia y analizar el tráfico. Puedes aceptarlas o rechazarlas.
-    </p>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button id="cookie-accept" style="flex:1;min-width:120px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;">✅ Aceptar todo</button>
-        <button id="cookie-reject" style="flex:1;min-width:120px;background:rgba(255,255,255,0.07);color:#c4c4d4;border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 18px;font-size:0.875rem;font-weight:600;cursor:pointer;">❌ Solo esenciales</button>
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="display:none;">
+    <div class="cookie-content">
+        <p class="cookie-text">
+            Usamos <strong>cookies propias y de terceros</strong> para mejorar tu experiencia y analizar el tráfico de forma anónima. Puedes aceptarlas o rechazarlas.
+        </p>
+        <div class="cookie-actions">
+            <button id="cookie-accept" class="cookie-btn cookie-btn-accept">Aceptar todo</button>
+            <button id="cookie-reject" class="cookie-btn cookie-btn-reject">Solo esenciales</button>
+        </div>
     </div>
 </div>
 <script>

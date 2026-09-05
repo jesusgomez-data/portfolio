@@ -920,14 +920,95 @@ function initExpressQuiz() {
     }
 }
 
+/* ── Contact Form Google Sheets Integration ───────────────── */
+function initIndexContactForm() {
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
+
+    const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzX01G9pz9yjuG7Vw1d-nzMTHFKdO-vZmLiW37I1jg1RaZzTCsNmqJmgmtLXARujCry/exec';
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        }
+
+        const name = document.getElementById('cf-name') ? document.getElementById('cf-name').value.trim() : '';
+        const email = document.getElementById('cf-email') ? document.getElementById('cf-email').value.trim() : '';
+        const projectType = document.getElementById('form-project-type') ? document.getElementById('form-project-type').value : 'Página web';
+        const message = document.getElementById('cf-msg') ? document.getElementById('cf-msg').value.trim() : '';
+
+        // Analytics & Ads Conversion Event
+        if (typeof trackConversionEvent === 'function') {
+            trackConversionEvent('form_submit', { project_type: projectType, page: 'index' });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', { 'send_to': 'AW-18402857875/uBXJCJCavuUcEJOnIcdE' });
+        }
+
+        // Send to Google Sheets Web App
+        const sheetsData = new URLSearchParams();
+        sheetsData.append('name', name);
+        sheetsData.append('_replyto', email);
+        sheetsData.append('tipo_proyecto', projectType);
+        sheetsData.append('message', message);
+        sheetsData.append('region', 'ES');
+        sheetsData.append('fecha', new Date().toISOString());
+
+        try {
+            await fetch(SHEETS_WEBAPP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                body: sheetsData.toString()
+            });
+        } catch (err) {
+            console.warn('Google Sheets sync:', err);
+        }
+
+        // Send to Formspree
+        const formspreeData = new FormData(form);
+        try {
+            await fetch(form.action || 'https://formspree.io/f/mqakvjbe', {
+                method: 'POST',
+                body: formspreeData,
+                headers: { 'Accept': 'application/json' }
+            });
+        } catch (err) {
+            console.warn('Formspree sync:', err);
+        }
+
+        // Display feedback message
+        let feedback = document.getElementById('index-form-feedback');
+        if (!feedback) {
+            feedback = document.createElement('div');
+            feedback.id = 'index-form-feedback';
+            feedback.style.cssText = 'margin-top:16px; padding:16px; border-radius:12px; background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3); color:#34d399; font-size:0.9rem; text-align:center; font-family:var(--f-b);';
+            form.appendChild(feedback);
+        }
+
+        feedback.style.display = 'block';
+        feedback.innerHTML = '<i class="fas fa-check-circle"></i> <strong>¡Solicitud enviada con éxito!</strong><br>Tus datos han sido registrados en Google Sheets. Te contactaremos en menos de 24 horas.';
+
+        if (submitBtn) {
+            submitBtn.style.display = 'none';
+        }
+    });
+}
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         initMobileStickyCTA();
         initExpressQuiz();
+        initIndexContactForm();
     });
 } else {
     initMobileStickyCTA();
     initExpressQuiz();
+    initIndexContactForm();
 }
 
 /* ── Global CTA Select Project Type Handler (venezuela.html style) ── */

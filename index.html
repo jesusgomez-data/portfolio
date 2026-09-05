@@ -539,100 +539,143 @@
     </div>
 </section>
 
-<!-- Projects -->
-<section id="projects" class="projects-section">
+<!-- Projects / Portfolio (venezuela.html design) -->
+<section id="projects" class="vz-section">
     <div class="wrap">
         <div class="section-top" data-reveal-l>
-            <span class="label">Proyectos Destacados</span>
-            <span class="label-count">03 destacados</span>
+            <span class="label">Portafolio</span>
+            <span class="label-count">Casos Reales</span>
         </div>
+
+        <div class="vz-head" data-reveal>
+            <h2 class="vz-h2" data-title>Proyectos reales. Productos reales.</h2>
+            <p class="vz-sub">Explicamos exactamente qué problema se resolvió y qué se construyó.</p>
+        </div>
+
         <div class="projects-intro-strip" data-reveal>
             <div class="projects-stat"><span>3 proyectos</span> en producción activa ahora mismo</div>
             <div class="projects-stat"><span>100%</span> con código propio, sin plantillas</div>
             <div class="projects-stat"><span>2 de 3</span> tienen IA integrada en producción</div>
         </div>
-        <!-- Card grid con screenshots reales -->
-        <div class="prc-grid">
 
-            <!-- Rival Fit -->
-            <a class="prc prc-featured" href="https://rivalfit.app" target="_blank" rel="noopener">
-                <div class="prc-img"><img src="img/screenshot_rivalfit.jpg" alt="Rival Fit" loading="lazy"></div>
-                <div class="prc-body">
-                    <div class="prc-top">
+        <!-- Project 1: RivalFit -->
+        <div class="vz-project-card" data-reveal>
+            <div class="vz-project-media">
+                <img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="Rival Fit Dashboard" loading="lazy">
+                <span class="vz-project-frame" aria-hidden="true"></span>
+            </div>
+            <div class="vz-project-content">
+                <div>
+                    <div class="vz-project-badge-row">
                         <span class="prc-num">01</span>
                         <span class="prc-badge prc-red">SaaS Live</span>
                     </div>
-                    <div class="project-live-indicator"><span class="live-dot"></span><span>Live · rivalfit.app</span></div>
-                    <div class="prc-bottom">
-                        <h3 class="prc-name">Rival Fit</h3>
-                        <p class="prc-desc">Plataforma SaaS para gimnasios, boxes CrossFit y centros deportivos. Gesti&oacute;n de atletas, reservas, check-in, WODs, comunidad, coach IA y sistema de pagos integrado.</p>
-                        <div class="prc-stats" aria-label="Datos clave de Rival Fit">
-                            <span><strong>SaaS</strong> Producto real</span>
-                            <span><strong>IA</strong> Coach integrado</span>
-                            <span><strong>Stripe</strong> Pagos</span>
-                        </div>
-                        <div class="prc-foot">
-                            <span class="prc-tech">Next.js 15 &middot; Supabase &middot; TypeScript &middot; IA &middot; Stripe</span>
-                            <span class="btn-project-cta">Ver Proyecto &#8599;</span>
-                        </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>rivalfit.app</span></div>
+                    <h3 class="vz-project-name">RivalFit</h3>
+                    <p class="vz-project-desc">Plataforma digital para la gestión integral de centros deportivos, atletas, reservas y membresías.</p>
+                    <div class="vz-psr-grid">
+                        <div class="vz-psr-col"><h6>Problema</h6><p>Gestión caótica en WhatsApp y planillas sin control de cobros.</p></div>
+                        <div class="vz-psr-col"><h6>Solución</h6><p>SaaS completo con portal de atletas, reservas y pagos Stripe.</p></div>
+                        <div class="vz-psr-col res"><h6>Resultado</h6><p>Plataforma live operando y cobrando en automático.</p></div>
                     </div>
                 </div>
-            </a>
-
-            <!-- Stencil -->
-            <a class="prc" href="https://stencil-2.vercel.app/" target="_blank" rel="noopener">
-                <div class="prc-img"><img src="img/screenshot_optica.jpg" alt="Stencil Eyewear" loading="lazy"></div>
-                <div class="prc-body">
-                    <div class="prc-top">
-                        <span class="prc-num">02</span>
-                        <span class="prc-badge prc-green">Web Corporativa</span>
-                    </div>
-                    <div class="prc-bottom">
-                        <h3 class="prc-name">Stencil</h3>
-                        <p class="prc-desc">P&aacute;gina web moderna y minimalista para venta y promoci&oacute;n de gafas. Enfoque visual e interactivo de alto rendimiento.</p>
-                        <div class="prc-stats" aria-label="Datos clave de Stencil">
-                            <span><strong>Retail</strong> Producto visual</span>
-                            <span><strong>UX</strong> Scroll premium</span>
-                        </div>
-                        <div class="prc-foot">
-                            <span class="prc-tech">HTML5 &middot; CSS3 &middot; GSAP &middot; Animaci&oacute;n</span>
-                            <span class="btn-project-cta">Ver Proyecto &#8599;</span>
-                        </div>
-                    </div>
+                <div class="vz-project-actions">
+                    <a href="https://rivalfit.app" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Visitar app ↗</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('Software a medida', 'port_rivalfit')">Quiero un SaaS similar →</a>
                 </div>
-            </a>
-
-            <!-- Contenido Comercial IA -->
-            <a class="prc" href="#contenido">
-                <div class="prc-img"><img src="JGStudio/Contenido/Branding/TransformoIdeas.png" alt="Contenido Comercial IA" loading="lazy"></div>
-                <div class="prc-body">
-                    <div class="prc-top">
-                        <span class="prc-num">03</span>
-                        <span class="prc-badge prc-gold">IA &amp; Branding</span>
-                    </div>
-                    <div class="prc-bottom">
-                        <h3 class="prc-name">Contenido Comercial IA</h3>
-                        <p class="prc-desc">Colecci&oacute;n de anuncios, v&iacute;deos y branding desarrollados enteramente con herramientas de IA generativa de &uacute;ltima generaci&oacute;n.</p>
-                        <div class="prc-stats" aria-label="Datos clave de Contenido Comercial IA">
-                            <span><strong>Brand</strong> Direcci&oacute;n visual</span>
-                            <span><strong>AI</strong> Ads &amp; video</span>
-                        </div>
-                        <div class="prc-foot">
-                            <span class="prc-tech">Midjourney &middot; Flux &middot; Runway &middot; ComfyUI</span>
-                            <span class="btn-project-cta">Ver Portfolio &#8599;</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
+            </div>
         </div>
 
-        <!-- CTA para portafolio completo -->
-        <div class="proj-footer" data-reveal>
-            <a href="portfolio.html" class="proj-more-btn magnetic">
-                Ver portafolio completo
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <!-- Project 2: Milu & Co -->
+        <div class="vz-project-card" data-reveal>
+            <div class="vz-project-media">
+                <img src="img/screenshot_milu.jpg" alt="Milu & Co E-commerce" loading="lazy">
+                <span class="vz-project-frame" aria-hidden="true"></span>
+            </div>
+            <div class="vz-project-content">
+                <div>
+                    <div class="vz-project-badge-row">
+                        <span class="prc-num">02</span>
+                        <span class="prc-badge prc-green">E-Commerce Live</span>
+                    </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>milucandco.vercel.app</span></div>
+                    <h3 class="vz-project-name">Milu &amp; Co</h3>
+                    <p class="vz-project-desc">Tienda online de moda femenina con catálogo interactivo y checkout simplificado.</p>
+                    <div class="vz-psr-grid">
+                        <div class="vz-psr-col"><h6>Problema</h6><p>Ventas dependientes de atender manualmente por mensaje directo.</p></div>
+                        <div class="vz-psr-col"><h6>Solución</h6><p>Tienda online en Next.js con catálogo y compra directa.</p></div>
+                        <div class="vz-psr-col res"><h6>Resultado</h6><p>Live en 12 días; primeras ventas en menos de 48h.</p></div>
+                    </div>
+                </div>
+                <div class="vz-project-actions">
+                    <a href="https://milucandco.vercel.app/" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Ver tienda ↗</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('E-commerce', 'port_milu')">Quiero una tienda online →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3: Elianis Romero -->
+        <div class="vz-project-card" data-reveal>
+            <div class="vz-project-media">
+                <img src="img/screenshot_elianis.jpg" alt="Elianis Romero Plataforma" loading="lazy">
+                <span class="vz-project-frame" aria-hidden="true"></span>
+            </div>
+            <div class="vz-project-content">
+                <div>
+                    <div class="vz-project-badge-row">
+                        <span class="prc-num">03</span>
+                        <span class="prc-badge vz-badge-cyan">Web &amp; Agente IA</span>
+                    </div>
+                    <div class="project-live-indicator"><span class="live-dot"></span><span>elianisromero.vercel.app</span></div>
+                    <h3 class="vz-project-name">Elianis Romero</h3>
+                    <p class="vz-project-desc">Web profesional de consultoría con agente conversacional de IA integrado para captación.</p>
+                    <div class="vz-psr-grid">
+                        <div class="vz-psr-col"><h6>Problema</h6><p>Horas perdidas respondiendo consultas repetitivas de clientes.</p></div>
+                        <div class="vz-psr-col"><h6>Solución</h6><p>Chatbot inteligente con IA que califica y agenda 24/7.</p></div>
+                        <div class="vz-psr-col res"><h6>Resultado</h6><p>Ahorro de +3h diarias en gestión manual de mensajes.</p></div>
+                    </div>
+                </div>
+                <div class="vz-project-actions">
+                    <a href="https://elianisromero.vercel.app/" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Ver web ↗</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('Automatización / IA', 'port_elianis')">Quiero automatizar con IA →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Banner Post Portfolio -->
+        <div class="vz-banner" data-reveal>
+            <div>
+                <h3 class="vz-h3">¿Quieres un producto digital de este nivel?</h3>
+                <p class="vz-banner-p">Construimos herramientas digitales con código limpio y máxima conversión.</p>
+            </div>
+            <a href="#contacto" class="btn-fill magnetic" onclick="trackConversionEvent('click_proposal', { source: 'portfolio_banner' })">
+                Quiero un proyecto como este →
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- Caso Destacado RivalFit -->
+<section class="vz-section vz-section--alt">
+    <div class="wrap">
+        <div class="vz-deep-showcase" data-reveal>
+            <span class="label" style="color: var(--accent);">Caso de Éxito</span>
+            <h2 class="vz-h2" data-title style="margin: 12px 0 16px;">De una idea a un producto digital.</h2>
+            <p class="vz-sub" style="max-width: 780px;">
+                <strong>RivalFit</strong> es una plataforma digital desarrollada para gestionar atletas, membresías, reservas y operaciones de un centro deportivo.
+            </p>
+
+            <!-- Multi screenshot gallery -->
+            <div class="vz-gallery-strip">
+                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="Dashboard RivalFit" loading="lazy"></div>
+                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/CoachIA.png" alt="Coach IA RivalFit" loading="lazy"></div>
+                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/Agenda.png" alt="Reservas y Clases RivalFit" loading="lazy"></div>
+            </div>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1;">
+                <a href="https://rivalfit.app" target="_blank" rel="noopener" class="btn-outline">Ver proyecto en vivo ↗</a>
+                <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Software a medida', 'case_deep_rivalfit')">Solicitar propuesta →</a>
+            </div>
         </div>
     </div>
 </section>

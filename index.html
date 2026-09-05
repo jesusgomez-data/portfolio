@@ -1743,7 +1743,7 @@
                         <span>Milu &amp; Co · Marca Comercial</span>
                     </div>
                 </div>
-                <a href="presupuesto.html?tipo=web" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Página web', 'pricing_web')">
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Página web', 'pricing_web')">
                     Solicitar propuesta <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -1778,7 +1778,7 @@
                         <span>Fabián Z. · E-Commerce Founder</span>
                     </div>
                 </div>
-                <a href="presupuesto.html?tipo=ecom" class="spc-btn spc-btn-primary" onclick="selectProjectType('E-commerce', 'pricing_ecom')">
+                <a href="#contacto" class="spc-btn spc-btn-primary" onclick="selectProjectType('E-commerce', 'pricing_ecom')">
                     Solicitar propuesta <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -1810,7 +1810,7 @@
                         <span>Cliente SaaS · Automatización</span>
                     </div>
                 </div>
-                <a href="presupuesto.html?tipo=ia" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">
                     Solicitar propuesta <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -1842,7 +1842,7 @@
                         <span>Tech Lead · Startup Platform</span>
                     </div>
                 </div>
-                <a href="presupuesto.html?tipo=app" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Software a medida', 'pricing_custom')">
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Software a medida', 'pricing_custom')">
                     Solicitar propuesta <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -2143,6 +2143,16 @@
                             <label for="cf-email">Email</label>
                             <input id="cf-email" type="email" name="_replyto" required placeholder="tu@email.com">
                         </div>
+                    </div>
+                    <div class="form-field" style="margin-bottom:18px;">
+                        <label style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:8px;">Tipo de proyecto</label>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px;" id="project-chips">
+                            <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización / IA')">Automatización / IA</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
+                        </div>
+                        <input type="hidden" name="project_type" id="form-project-type" value="Página web">
                     </div>
                     <div class="form-field">
                         <label for="cf-msg">Cuéntame</label>

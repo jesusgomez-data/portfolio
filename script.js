@@ -991,7 +991,7 @@ function initIndexContactForm() {
         }
 
         feedback.style.display = 'block';
-        feedback.innerHTML = '<i class="fas fa-check-circle"></i> <strong>¡Solicitud enviada con éxito!</strong><br>Tus datos han sido registrados en Google Sheets. Te contactaremos en menos de 24 horas.';
+        feedback.innerHTML = '<i class="fas fa-check-circle"></i> <strong>¡Solicitud enviada con éxito!</strong><br>Te contactaremos en menos de 24 horas. ¡Muchas gracias!';
 
         if (submitBtn) {
             submitBtn.style.display = 'none';

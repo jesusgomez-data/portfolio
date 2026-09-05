@@ -2,23 +2,22 @@
 <html lang="es">
 <head>
 
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18402857875"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18402857875"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'AW-18402857875');
-</script>
-
+      gtag('config', 'AW-18402857875');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JGStudio — Desarrollo Web, IA y Contenido Digital · España</title>
-    <meta name="description" content="Estudio digital en España especializado en desarrollo web con Next.js, automatización IA, branding, vídeo comercial y apps a medida. Proyectos reales en producción. Respuesta en 24h.">
-    <meta property="og:title" content="JGStudio — Desarrollo Web, IA y Contenido Digital · España">
-    <meta property="og:description" content="Estudio digital en España especializado en desarrollo web con Next.js, automatización IA, branding, vídeo comercial y apps a medida. Proyectos reales en producción. Respuesta en 24h.">
+    <title>JGStudio — Desarrollo Web, IA, E-Commerce y Software a Medida</title>
+    <meta name="description" content="Estudio digital especializado en desarrollo web con Next.js, automatización IA, tiendas online e-commerce y software a medida. Código propio y diseño de alta conversión.">
+    <meta property="og:title" content="JGStudio — Desarrollo Web, IA, E-Commerce y Software a Medida">
+    <meta property="og:description" content="Estudio digital especializado en desarrollo web con Next.js, automatización IA, tiendas online e-commerce y software a medida. Código propio y diseño de alta conversión.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jgstudio.dev">
     <meta property="og:image" content="https://jgstudio.dev/img/logo_jgs_oficial.png">
@@ -27,8 +26,8 @@
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="JGStudio — Desarrollo Web, IA y Contenido Digital · España">
-    <meta name="twitter:description" content="Estudio digital en España especializado en desarrollo web con Next.js, automatización IA, branding, vídeo comercial y apps a medida. Proyectos reales en producción. Respuesta en 24h.">
+    <meta name="twitter:title" content="JGStudio — Desarrollo Web, IA, E-Commerce y Software a Medida">
+    <meta name="twitter:description" content="Estudio digital especializado en desarrollo web con Next.js, automatización IA, tiendas online e-commerce y software a medida. Código propio y diseño de alta conversión.">
     <meta name="twitter:image" content="https://jgstudio.dev/img/logo_jgs_oficial.png">
     <link rel="icon" type="image/svg+xml" href="img/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +37,7 @@
     <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
     <!-- JetBrains Mono (labels) + DM Sans fallback -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Fraunces (editorial serif, used for the Reconstruye section headline) -->
+    <!-- Fraunces (editorial serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css?v=20260904-ux">
@@ -67,13 +66,14 @@
             <img src="img/logo_jgs_largo.png" alt="JGStudio" class="nav-logo-img nav-logo-light">
         </a>
         <ul class="nav-links" id="nav-links">
-            <li><a href="#what-we-build">Capacidades</a></li>
-            <li><a href="#services">Servicios</a></li>
-            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#problema">Fricciones</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#ia">Tecnología &amp; IA</a></li>
+            <li><a href="#portfolio">Proyectos</a></li>
             <li><a href="#about">Sobre mí</a></li>
-            <li><a href="#pricing">Precios</a></li>
+            <li><a href="#precios">Precios</a></li>
             <li><a href="login.html" class="nav-portal"><i class="fas fa-user-circle"></i> Clientes</a></li>
-            <li><a href="#contact" class="nav-cta">Hablemos →</a></li>
+            <li><a href="#contacto" class="nav-cta" onclick="selectProjectType('Página web', 'nav_cta')">Solicitar propuesta →</a></li>
         </ul>
         <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
             <i class="fas fa-sun" id="theme-icon"></i>
@@ -82,8 +82,13 @@
     </div>
 </nav>
 
-<!-- Hero -->
-<section id="hero" class="hero">
+<!-- ═══════════════════════════════════════════════════════════
+     2.1. EL HOOK (HERO SECTION)
+     Visual Base: index.html (canvas 3D + background video)
+     Copywriting: venezuela.html (title + desc)
+     Social Proof: .hero-proof-strip
+     ═══════════════════════════════════════════════════════════ -->
+<section id="hero" class="hero vz-hero-pro">
     <canvas id="hero-3d" class="hero-canvas"></canvas>
     <video autoplay muted loop playsinline class="hero-video-bg" aria-hidden="true" webkit-playsinline x5-playsinline>
         <source src="JGStudio/videos/burger.MOV?v=20260709" type="video/mp4">
@@ -93,7 +98,7 @@
     <!-- Profile photo — right side -->
     <div class="hero-photo" aria-hidden="true">
         <div class="hero-photo-inner">
-            <img src="img/profile_new.png?v=20260709" alt="">
+            <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez · JGStudio">
         </div>
     </div>
 
@@ -102,30 +107,39 @@
         <div class="hero-avatar-mobile" aria-hidden="true">
             <img src="img/profile_new.png?v=20260709" alt="Jesús Gómez">
         </div>
-        <!-- Selector de región (discreto y expandible) eliminado para unificar -->
 
         <p class="hero-kicker" id="hero-kicker">
             JGStudio &nbsp;·&nbsp; España &nbsp;·&nbsp; <span class="kicker-badge"><i class="fa-solid fa-laptop"></i>Disponible esta semana</span>
         </p>
+
         <div class="hero-proof-strip">
             <img src="img/screenshot_milu.jpg" alt="Milu & Co" class="proof-avatar">
             <img src="img/screenshot_elianis.jpg" alt="Elianis Romero" class="proof-avatar">
             <img src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" class="proof-avatar">
             <div class="proof-text">
                 <span class="proof-stars">★★★★★</span>
-                <span>4 clientes · 3 proyectos en producción</span>
+                <span>Proyectos reales en producción · Sin intermediarios</span>
             </div>
         </div>
-        <h1 class="hero-title" id="hero-mega">
-            Diseño, código<br>y contenido visual<br><em>que vende de verdad.</em>
+
+        <h1 class="vz-hero-title" id="hero-mega">
+            Tu negocio necesita más que una <em>página web.</em>
         </h1>
+
         <div class="hero-bottom">
-            <p class="hero-desc">Webs, apps, automatización IA, branding y vídeo comercial — todo en un solo estudio. Resultados medibles, no promesas.</p>
+            <p class="vz-hero-desc">
+                Creamos webs, tiendas online, automatizaciones y software diseñado para ayudarte a <strong>vender, captar clientes y hacer crecer tu negocio</strong>.
+            </p>
             <div class="hero-cta">
-                <a href="presupuesto.html" class="btn-fill magnetic">Solicitar propuesta →</a>
-                <a href="#what-we-build" class="btn-outline magnetic">Ver qué construimos</a>
+                <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Página web', 'hero_primary')">
+                    Solicitar propuesta →
+                </a>
+                <a href="#portfolio" class="btn-outline magnetic">
+                    Ver nuestro trabajo
+                </a>
             </div>
         </div>
+
         <div class="hero-indicators-row">
             <span class="hero-indicator-item"><i class="fas fa-check"></i> Desarrollo Web</span>
             <span class="hero-indicator-item"><i class="fas fa-check"></i> Automatización IA</span>
@@ -137,412 +151,436 @@
 
 <!-- Stats strip -->
 <div class="stats-strip">
-    <div class="stat-block"><span class="stat-n">4</span><span class="stat-l">Clientes satisfechos</span></div>
+    <div class="stat-block"><span class="stat-n">100%</span><span class="stat-l">Código a medida</span></div>
     <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">3</span><span class="stat-l">Proyectos en producción</span></div>
-    <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">3.5a</span><span class="stat-l">Desarrollando con IA</span></div>
+    <div class="stat-block"><span class="stat-n">4+</span><span class="stat-l">Proyectos en producción</span></div>
     <div class="stats-divider"></div>
     <div class="stat-block"><span class="stat-n">&lt;24h</span><span class="stat-l">Tiempo de respuesta</span></div>
     <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">★★★★★</span><span class="stat-l">Valoración media clientes</span></div>
+    <div class="stat-block"><span class="stat-n">0</span><span class="stat-l">Intermediarios</span></div>
+    <div class="stats-divider"></div>
+    <div class="stat-block"><span class="stat-n">★★★★★</span><span class="stat-l">Enfoque comercial</span></div>
 </div>
 
-<!-- Lo que construimos -->
-<section id="what-we-build" class="capabilities-section">
+<!-- ═══════════════════════════════════════════════════════════
+     2.2. EL DOLOR (DIAGNÓSTICO DE FRICCIONES)
+     Source: venezuela.html (#problema)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="problema" class="vz-section">
     <div class="wrap">
         <div class="section-top" data-reveal-l>
-            <span class="label">Capacidades</span>
-            <span class="label-count">08 áreas</span>
-        </div>
-        <div class="cap-header" data-reveal>
-            <h2 class="cap-title" data-title>Un estudio completo.<br><em>Una sola persona.</em></h2>
-            <p class="cap-sub">No somos una agencia de 20 personas con reuniones infinitas. Somos un estudio con IA integrada que entrega más rápido y mejor.</p>
-        </div>
-
-        <div class="capabilities-grid">
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Monitor with web page -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-monitor">
-                    <div class="ci-monitor-screen">
-                      <div class="ci-webpage">
-                        <div class="ci-wp-nav"></div>
-                        <div class="ci-wp-hero"></div>
-                        <div class="ci-wp-rows">
-                          <div class="ci-wp-row"></div>
-                          <div class="ci-wp-row" style="width:75%"></div>
-                          <div class="ci-wp-row" style="width:50%"></div>
-                        </div>
-                        <div class="ci-wp-btn"></div>
-                      </div>
-                    </div>
-                    <div class="ci-monitor-stand"></div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">01</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div></div>
-                <h3>Desarrollo Web</h3>
-                <p>Landing pages, webs corporativas, tiendas online y portales a medida con Next.js.</p>
-                <div class="cap-examples"><span>Landing</span><span>E-commerce</span><span>Portal</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Stacked app windows / dashboard -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-saas">
-                    <div class="ci-saas-win ci-saas-win--back"></div>
-                    <div class="ci-saas-win ci-saas-win--mid">
-                      <div class="ci-saas-topbar"><span></span><span></span></div>
-                      <div class="ci-saas-content">
-                        <div class="ci-saas-sidebar"><div></div><div></div><div></div></div>
-                        <div class="ci-saas-main"><div class="ci-saas-card"></div><div class="ci-saas-card"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">02</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div></div>
-                <h3>Aplicaciones &amp; SaaS</h3>
-                <p>Plataformas completas, CRM propios, dashboards interactivos y apps móviles.</p>
-                <div class="cap-examples"><span>SaaS</span><span>CRM</span><span>Dashboard</span><span>App</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Robot / AI bot with gears -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-robot">
-                    <div class="ci-robot-head">
-                      <div class="ci-robot-eye"></div>
-                      <div class="ci-robot-eye"></div>
-                    </div>
-                    <div class="ci-robot-body">
-                      <div class="ci-robot-gear ci-gear-spin">&#9881;</div>
-                    </div>
-                    <div class="ci-robot-nodes">
-                      <div class="ci-node ci-node-pulse"></div>
-                      <div class="ci-node-line"></div>
-                      <div class="ci-node ci-node-pulse" style="animation-delay:.4s"></div>
-                      <div class="ci-node-line"></div>
-                      <div class="ci-node ci-node-pulse" style="animation-delay:.8s"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">03</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div></div>
-                <h3>Automatización IA</h3>
-                <p>Workflows n8n, agentes IA, chatbots y pipelines que trabajan mientras tú duermes.</p>
-                <div class="cap-examples"><span>n8n</span><span>Agentes</span><span>Chatbots</span><span>APIs</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card highlight" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Color palette + logo shape -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-brand">
-                    <div class="ci-brand-logo">
-                      <div class="ci-brand-shape ci-shape-tri"></div>
-                    </div>
-                    <div class="ci-brand-palette">
-                      <div class="ci-swatch" style="background:#7c3aed"></div>
-                      <div class="ci-swatch" style="background:#a855f7"></div>
-                      <div class="ci-swatch" style="background:#e879f9"></div>
-                      <div class="ci-swatch" style="background:#f0abfc"></div>
-                      <div class="ci-swatch" style="background:#1e1b4b"></div>
-                    </div>
-                    <div class="ci-brand-type">
-                      <div class="ci-type-big"></div>
-                      <div class="ci-type-sm"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">04</span><div class="cap-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l8 8M20 4l-8 8M4 20l8-8M20 20l-8-8"/><circle cx="12" cy="12" r="2.5"/></svg></div></div>
-                <h3>Identidad de Marca</h3>
-                <p>Branding completo desde cero: logo, sistema visual, guía de colores y tipografía.</p>
-                <div class="cap-examples"><span>Logo</span><span>Brand System</span><span>Style Guide</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Video player with play button -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-video">
-                    <div class="ci-video-screen">
-                      <div class="ci-video-play">&#9654;</div>
-                      <div class="ci-video-bar">
-                        <div class="ci-video-progress"></div>
-                      </div>
-                    </div>
-                    <div class="ci-video-sparkle ci-sparkle-1">&#10022;</div>
-                    <div class="ci-video-sparkle ci-sparkle-2">&#10022;</div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">05</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div></div>
-                <h3>Vídeo Comercial IA</h3>
-                <p>Spots publicitarios, contenido para redes y vídeos de marca generados con IA generativa.</p>
-                <div class="cap-examples"><span>Kling AI</span><span>Runway</span><span>Sora</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Photo frame with AI sparkle -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-photo">
-                    <div class="ci-photo-frame">
-                      <div class="ci-photo-sky"></div>
-                      <div class="ci-photo-mountains"></div>
-                      <div class="ci-photo-sun"></div>
-                    </div>
-                    <div class="ci-photo-ai-badge">AI</div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">06</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>
-                <h3>Imagen &amp; Fotografía IA</h3>
-                <p>Creatividades para anuncios, retratos editoriales e imágenes de producto con IA.</p>
-                <div class="cap-examples"><span>Midjourney</span><span>Flux</span><span>ComfyUI</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Bar chart / dashboard -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-analytics">
-                    <div class="ci-bar-chart">
-                      <div class="ci-bar" style="height:55%"></div>
-                      <div class="ci-bar" style="height:75%;animation-delay:.1s"></div>
-                      <div class="ci-bar" style="height:45%;animation-delay:.2s"></div>
-                      <div class="ci-bar" style="height:90%;animation-delay:.3s"></div>
-                      <div class="ci-bar" style="height:60%;animation-delay:.4s"></div>
-                      <div class="ci-bar" style="height:80%;animation-delay:.5s"></div>
-                    </div>
-                    <div class="ci-analytics-line">
-                      <svg viewBox="0 0 100 40" fill="none" stroke="#a78bfa" stroke-width="2">
-                        <polyline points="0,35 20,25 40,30 60,10 80,18 100,5"/>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">07</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div></div>
-                <h3>Dashboards &amp; Analytics</h3>
-                <p>Paneles de control interactivos, métricas en tiempo real y reportes automáticos.</p>
-                <div class="cap-examples"><span>Power BI</span><span>Supabase</span><span>Python</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Phone screens / social posts -->
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-social">
-                    <div class="ci-social-phone ci-sp-back">
-                      <div class="ci-sp-post"></div>
-                      <div class="ci-sp-avatar"></div>
-                    </div>
-                    <div class="ci-social-phone ci-sp-front">
-                      <div class="ci-sp-reel"></div>
-                      <div class="ci-sp-likes">
-                        <span>&#10084;</span><span>2.4k</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="cap-head"><span class="cap-num">08</span><div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div></div>
-                <h3>Contenido para Redes</h3>
-                <p>Carruseles, reels, stories y creatividades optimizadas para cada plataforma.</p>
-                <div class="cap-examples"><span>Instagram</span><span>TikTok</span><span>LinkedIn</span></div>
-                <span class="cap-arrow">→</span>
-            </div>
-        </div>
-
-        <div class="capabilities-cta" data-reveal>
-            <p>¿No ves exactamente lo que necesitas?</p>
-            <a href="#contact">Cuéntame tu proyecto →</a>
-        </div>
-    </div>
-</section>
-
-<!-- Results -->
-<section id="results" class="results-section">
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Resultados</span>
-            <span class="label-count">Enfoque comercial</span>
-        </div>
-        <div class="results-header" data-reveal>
-            <h2 class="results-title">¿QUÉ PODEMOS HACER POR TU EMPRESA?</h2>
-        </div>
-        <div class="results-orbit" data-reveal>
-            <div class="orbit-ring orbit-ring-one" aria-hidden="true"></div>
-            <div class="orbit-ring orbit-ring-two" aria-hidden="true"></div>
-            <div class="orbit-core">
-                <span class="orbit-kicker">Sistema de crecimiento</span>
-                <strong>Marketing, IA y automatizaci&oacute;n trabajando juntos</strong>
-                <p>Unimos captaci&oacute;n, productividad, conversi&oacute;n y contenido para crear una presencia digital que venda mejor.</p>
-            </div>
-            <div class="results-card orbit-node orbit-node-one">
-                <span class="rc-num">01</span>
-                <div class="rc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-                <h3 class="rc-title">Una presencia digital<br>que capta sola</h3>
-                <p class="rc-desc">Web optimizada para conversión + automatización de seguimiento. Tu negocio capta leads mientras tú haces lo que sabes hacer.</p>
-                <div class="result-proof">Rival Fit: +200 registros en las primeras 4 semanas de lanzamiento</div>
-            </div>
-            <div class="results-card orbit-node orbit-node-two">
-                <span class="rc-num">02</span>
-                <div class="rc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-                <h3 class="rc-title">Horas recuperadas<br>cada semana</h3>
-                <p class="rc-desc">Flujos automáticos con n8n y agentes IA que eliminan tareas repetitivas. Tu equipo trabaja en lo que mueve el negocio.</p>
-                <div class="result-proof">Clínica dental: 3h/día ahorradas en gestión de citas con chatbot IA</div>
-            </div>
-            <div class="results-card orbit-node orbit-node-three">
-                <span class="rc-num">03</span>
-                <div class="rc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18M7 14l4-4 4 4 5-6"/></svg></div>
-                <h3 class="rc-title">Diseños que convierten,<br>no solo impresionan</h3>
-                <p class="rc-desc">Cada decisión de diseño tiene una razón comercial. Embudos, CTAs y UX pensados para que el visitante actúe.</p>
-                <div class="result-proof">Milu &amp; Co: tienda online live en 12 días, primeras ventas en 48h</div>
-            </div>
-            <div class="results-card orbit-node orbit-node-four">
-                <span class="rc-num">04</span>
-                <div class="rc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <h3 class="rc-title">Contenido visual que<br>para el scroll</h3>
-                <p class="rc-desc">Imágenes y vídeos generados con IA que parecen producciones de agencia de lujo — a una fracción del coste y tiempo.</p>
-                <div class="result-proof">Vídeos comerciales en 48h vs 3 semanas de producción tradicional</div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- Services (Imported from Venezuela) -->
-<section id="services" class="vz-section vz-section--alt">
-    <div id="servicios" style="position:relative;top:-100px;"></div>
-    <div id="solucion" style="position:relative;top:-100px;"></div>
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Propuesta de Valor</span>
-            <span class="label-count">Estrategia</span>
+            <span class="label">Diagnóstico</span>
+            <span class="label-count">04 Fricciones</span>
         </div>
 
         <div class="vz-head" data-reveal>
-            <h2 class="vz-h2" data-title>Construimos lo que tu negocio necesita.</h2>
+            <h2 class="vz-h2" data-title>Tener presencia online no es suficiente.</h2>
             <p class="vz-sub">
-                No trabajamos con soluciones genéricas cuando tu negocio necesita algo diferente. Diseñamos y desarrollamos productos digitales personalizados según tus objetivos.
+                Tu empresa puede tener Instagram, WhatsApp y una página web. Pero si tus clientes no encuentran fácilmente lo que necesitan, no pueden contactarte rápidamente o el proceso depende completamente de responder mensajes manualmente, <strong>estás perdiendo oportunidades comerciales todos los días</strong>.
             </p>
+            <p class="vz-sub" style="margin-top:14px;"><strong>JGStudio convierte tu presencia digital en una herramienta comercial activa.</strong></p>
         </div>
 
-        <div class="capabilities-grid vz-grid-3">
+        <div class="capabilities-grid vz-grid-2x2">
+            <!-- Fricción 01 -->
             <div class="cap-card" data-reveal>
                 <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: UX wireframe mockup -->
                 <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-ux">
-                    <div class="ci-ux-frame">
-                      <div class="ci-ux-topbar">
-                        <div class="ci-ux-logo"></div>
-                        <div class="ci-ux-nav"><span></span><span></span><span></span></div>
-                      </div>
-                      <div class="ci-ux-hero">
-                        <div class="ci-ux-headline"></div>
-                        <div class="ci-ux-headline" style="width:65%;height:6px;opacity:.5"></div>
-                        <div class="ci-ux-cta"></div>
-                      </div>
-                      <div class="ci-ux-grid">
-                        <div class="ci-ux-card"><div class="ci-ux-card-img"></div><div class="ci-ux-card-line"></div></div>
-                        <div class="ci-ux-card"><div class="ci-ux-card-img" style="background:rgba(168,85,247,0.2)"></div><div class="ci-ux-card-line"></div></div>
-                        <div class="ci-ux-card"><div class="ci-ux-card-img" style="background:rgba(232,121,249,0.15)"></div><div class="ci-ux-card-line"></div></div>
+                  <div class="ci-browser">
+                    <div class="ci-browser-bar"><span></span><span></span><span></span></div>
+                    <div class="ci-browser-body">
+                      <div class="ci-graph">
+                        <div class="ci-graph-line ci-line-flat"></div>
+                        <div class="ci-graph-dots">
+                          <div class="ci-dot" style="bottom:40%;left:10%"></div>
+                          <div class="ci-dot" style="bottom:38%;left:30%"></div>
+                          <div class="ci-dot" style="bottom:36%;left:50%"></div>
+                          <div class="ci-dot" style="bottom:35%;left:70%"></div>
+                          <div class="ci-dot" style="bottom:34%;left:88%"></div>
+                        </div>
+                        <div class="ci-no-sales">0 ventas</div>
                       </div>
                     </div>
-                    <div class="ci-ux-cursor">&#9654;</div>
                   </div>
                 </div>
                 <div class="cap-head">
-                    <span class="cap-num">PILAR 01</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                    <span class="cap-num">01 · FRICCIÓN</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
                 </div>
-                <h3>Diseño</h3>
-                <p>Interfaces modernas, claras y estrictamente orientadas al usuario y a la conversión.</p>
-                <div class="cap-examples"><span>UX/UI</span><span>Identidad</span><span>Premium</span></div>
+                <h3>Tu web no convierte</h3>
+                <p>Una página bonita no sirve si no genera consultas, reservas o ventas directas para tu negocio.</p>
+                <div class="cap-examples"><span>Conversión</span><span>Leads</span></div>
+                <span class="cap-arrow">→</span>
             </div>
+
+            <!-- Fricción 02 -->
             <div class="cap-card" data-reveal>
                 <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Code block + cloud -->
                 <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-tech">
-                    <div class="ci-code-block">
-                      <div class="ci-code-topbar"><span></span><span></span><span></span><span class="ci-code-title">app.tsx</span></div>
-                      <div class="ci-code-line"><span class="ci-kw">import</span> <span class="ci-str">Next</span> <span class="ci-kw">from</span> <span class="ci-str">'next'</span></div>
-                      <div class="ci-code-line"><span class="ci-kw">export</span> <span class="ci-fn">async</span> <span class="ci-fn">function</span> <span class="ci-str">Page</span>()</div>
-                      <div class="ci-code-line ci-indent"><span class="ci-kw">return</span> <span class="ci-pun">&lt;</span><span class="ci-str">App</span> <span class="ci-pun">/&gt;</span></div>
+                  <div class="ci-wa-scene">
+                    <div class="ci-wa-stack">
+                      <div class="ci-wa-bubble ci-wa-b1">&#x1F4AC; ¿Precio?</div>
+                      <div class="ci-wa-bubble ci-wa-b2">&#x1F4C4; Catálogo PDF?</div>
+                      <div class="ci-wa-bubble ci-wa-b3">&#x1F4E6; ¿Hay stock?</div>
+                      <div class="ci-wa-bubble ci-wa-b4">&#x1F4B3; Envío hoy?</div>
                     </div>
-                    <div class="ci-cloud">
-                      <div class="ci-cloud-body"></div>
-                      <div class="ci-cloud-dot ci-cloud-d1"></div>
-                      <div class="ci-cloud-dot ci-cloud-d2"></div>
-                      <div class="ci-cloud-dot ci-cloud-d3"></div>
+                    <div class="ci-wa-reply">
+                      <div class="ci-wa-reply-label">Respondiendo manualmente...</div>
+                      <div class="ci-wa-dots"><span></span><span></span><span></span></div>
                     </div>
                   </div>
                 </div>
                 <div class="cap-head">
-                    <span class="cap-num">PILAR 02</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg></div>
+                    <span class="cap-num">02 · FRICCIÓN</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
                 </div>
-                <h3>Tecnología</h3>
-                <p>Desarrollo moderno, seguro y personalizado utilizando Next.js, APIs y arquitecturas en la nube.</p>
-                <div class="cap-examples"><span>Next.js</span><span>APIs</span><span>Cloud</span></div>
+                <h3>Dependencia de WhatsApp</h3>
+                <p>Si todo depende de responder manualmente cada consulta y enviar catálogos en PDF, tu negocio no escala.</p>
+                <div class="cap-examples"><span>WhatsApp</span><span>Catálogos</span></div>
+                <span class="cap-arrow">→</span>
             </div>
-            <div class="cap-card highlight" data-reveal>
+
+            <!-- Fricción 03 -->
+            <div class="cap-card" data-reveal>
                 <div class="cap-accent-bar"></div>
-                <!-- CSS Illustration: Rising business chart -->
                 <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-bizz">
-                    <div class="ci-bizz-metrics">
-                      <div class="ci-metric">
-                        <span class="ci-metric-val ci-metric-up">↑ +34%</span>
-                        <span class="ci-metric-lbl">Leads</span>
-                      </div>
-                      <div class="ci-metric">
-                        <span class="ci-metric-val ci-metric-up">↑ +21%</span>
-                        <span class="ci-metric-lbl">Ventas</span>
-                      </div>
-                      <div class="ci-metric">
-                        <span class="ci-metric-val ci-metric-down">↓ −60%</span>
-                        <span class="ci-metric-lbl">Tiempo</span>
-                      </div>
-                    </div>
-                    <div class="ci-bizz-chart">
-                      <svg viewBox="0 0 120 50" fill="none" preserveAspectRatio="none">
-                        <defs>
-                          <linearGradient id="bizz-grad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="rgba(214,48,49,0.4)"/>
-                            <stop offset="100%" stop-color="rgba(214,48,49,0)"/>
-                          </linearGradient>
-                        </defs>
-                        <path d="M0 45 C20 40, 30 35, 50 28 C70 20, 85 15, 120 3" stroke="rgba(214,48,49,0.9)" stroke-width="2" fill="none"/>
-                        <path d="M0 45 C20 40, 30 35, 50 28 C70 20, 85 15, 120 3 L120 50 L0 50Z" fill="url(#bizz-grad)"/>
-                        <circle cx="120" cy="3" r="3" fill="rgba(214,48,49,1)" class="ci-pulse-dot"/>
-                      </svg>
-                    </div>
+                  <div class="ci-clipboard">
+                    <div class="ci-clip-top"></div>
+                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:70%"></div></div>
+                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:55%"></div></div>
+                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:80%"></div></div>
+                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:40%"></div></div>
+                    <div class="ci-pen"></div>
                   </div>
                 </div>
                 <div class="cap-head">
-                    <span class="cap-num">PILAR 03</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                    <span class="cap-num">03 · FRICCIÓN</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
                 </div>
-                <h3>Negocio</h3>
-                <p>Cada proyecto parte de un objetivo comercial concreto: captar leads, vender más o ahorrar tiempo.</p>
-                <div class="cap-examples"><span>Leads</span><span>Ventas</span><span>Eficiencia</span></div>
+                <h3>Procesos manuales</h3>
+                <p>Reservas, registros de clientes, formularios y seguimiento de leads pueden y deben automatizarse.</p>
+                <div class="cap-examples"><span>Reservas</span><span>CRM</span><span>Leads</span></div>
+                <span class="cap-arrow">→</span>
+            </div>
+
+            <!-- Fricción 04 -->
+            <div class="cap-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="cap-illustration" aria-hidden="true">
+                  <div class="ci-template">
+                    <div class="ci-tmpl-header"></div>
+                    <div class="ci-tmpl-body">
+                      <div class="ci-tmpl-col ci-tmpl-col--wide">
+                        <div class="ci-tmpl-block"></div>
+                        <div class="ci-tmpl-block" style="height:8px;width:60%"></div>
+                      </div>
+                      <div class="ci-tmpl-col">
+                        <div class="ci-tmpl-block ci-tmpl-img"></div>
+                      </div>
+                    </div>
+                    <div class="ci-lock">
+                      <div class="ci-lock-arch"></div>
+                      <div class="ci-lock-body"><div class="ci-lock-hole"></div></div>
+                    </div>
+                    <div class="ci-tmpl-label">PLANTILLA</div>
+                  </div>
+                </div>
+                <div class="cap-head">
+                    <span class="cap-num">04 · FRICCIÓN</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                </div>
+                <h3>Tecnología limitada</h3>
+                <p>Si tu negocio necesita algo que una plantilla genérica no puede resolver, construimos la solución a medida.</p>
+                <div class="cap-examples"><span>A medida</span><span>Escalable</span></div>
+                <span class="cap-arrow">→</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Projects / Portfolio (venezuela.html design) -->
-<section id="projects" class="vz-section">
+<!-- ═══════════════════════════════════════════════════════════
+     2.3. LA SOLUCIÓN (SERVICIOS BENTO GRID)
+     Source: venezuela.html (#servicios)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="servicios" class="vz-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Servicios</span>
+            <span class="label-count">04 Áreas</span>
+        </div>
+
+        <div class="vz-head" data-reveal>
+            <h2 class="vz-h2" data-title>Cuatro formas de hacer crecer tu negocio.</h2>
+            <p class="vz-sub">Cada servicio se diseña y construye a medida, con código propio y enfoque comercial.</p>
+        </div>
+
+        <div class="capabilities-grid vz-grid-bento">
+            <!-- 01 WEBS COMERCIALES -->
+            <div class="cap-card vz-svc-box" id="srv-web" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="cap-head">
+                    <span class="cap-num">01</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+                </div>
+                <h3>Una web diseñada para conseguir clientes.</h3>
+                <p>Diseñamos y desarrollamos páginas web rápidas, modernas y optimizadas para convertir visitantes en clientes.</p>
+                <div class="cap-examples">
+                    <span>Diseño UX/UI</span><span>Desarrollo a medida</span><span>Responsive</span><span>SEO técnico</span><span>Formularios</span><span>Integración WhatsApp</span><span>Analytics</span><span>Conversión</span><span>Deployment</span>
+                </div>
+                <a href="#contacto" class="vz-card-cta" onclick="selectProjectType('Página web', 'srv_web_btn')">Quiero una web →</a>
+            </div>
+
+            <!-- 02 E-COMMERCE -->
+            <div class="cap-card vz-svc-box" id="srv-ecommerce" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="cap-head">
+                    <span class="cap-num">02</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+                </div>
+                <h3>Convierte tu catálogo en un canal de ventas.</h3>
+                <p>Creamos tiendas online profesionales para vender productos, gestionar pedidos y construir una experiencia de compra moderna.</p>
+                <div class="cap-examples">
+                    <span>Catálogo</span><span>Productos</span><span>Carrito</span><span>Checkout</span><span>Pagos</span><span>Pedidos</span><span>Analytics</span><span>SEO</span><span>Automatizaciones</span>
+                </div>
+                <a href="#contacto" class="vz-card-cta" onclick="selectProjectType('E-commerce', 'srv_ecom_btn')">Quiero vender online →</a>
+            </div>
+
+            <!-- 03 IA & AUTOMATIZACIÓN -->
+            <div class="cap-card vz-svc-box highlight" id="srv-ia" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="cap-head">
+                    <span class="cap-num">03</span>
+                    <div class="cap-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg></div>
+                </div>
+                <h3>Deja que la tecnología haga el trabajo repetitivo.</h3>
+                <p>Automatizamos procesos para reducir tareas manuales, responder más rápido y mejorar el seguimiento de clientes.</p>
+                <div class="cap-examples">
+                    <span>Automatización de leads</span><span>Formularios inteligentes</span><span>Seguimiento automático</span><span>CRM</span><span>Reservas</span><span>Flujos con IA</span><span>Datos</span><span>Asistentes</span>
+                </div>
+                <a href="#contacto" class="vz-card-cta" onclick="selectProjectType('Automatización / IA', 'srv_ia_btn')">Quiero automatizar →</a>
+            </div>
+
+            <!-- 04 SOFTWARE A MEDIDA -->
+            <div class="cap-card vz-svc-box" id="srv-software" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="cap-head">
+                    <span class="cap-num">04</span>
+                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                </div>
+                <h3>Si tu negocio necesita un sistema, lo construimos.</h3>
+                <p>Desarrollamos aplicaciones y plataformas personalizadas para empresas que necesitan algo más que una página web.</p>
+                <div class="cap-examples">
+                    <span>CRM</span><span>Dashboards</span><span>Plataformas</span><span>Portales privados</span><span>Reservas</span><span>SaaS &amp; MVPs</span><span>Apps web</span><span>Integraciones API</span>
+                </div>
+                <a href="#contacto" class="vz-card-cta" onclick="selectProjectType('Software a medida', 'srv_soft_btn')">Cuéntanos tu proyecto →</a>
+            </div>
+        </div>
+
+        <!-- Banner Intermedio -->
+        <div class="vz-banner" data-reveal>
+            <div>
+                <h3 class="vz-h3">¿Tienes un requerimiento especial?</h3>
+                <p class="vz-banner-p">Analizamos la arquitectura adecuada para tu empresa sin intermediarios.</p>
+            </div>
+            <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Página web', 'services_banner')">
+                Cuéntanos tu proyecto →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2.4. AUTORIDAD TÉCNICA (IA Y STACK)
+     Source: index.html (#ia + #stack)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="ia" class="ia-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Inteligencia Artificial</span>
+        </div>
+        <div class="ia-header">
+            <h2 class="ia-headline" data-title>La IA es<br><em>mi superpoder.</em></h2>
+            <p class="ia-sub" data-reveal>No solo sé programar — sé <strong>multiplicarme</strong>. Uso inteligencia artificial para automatizar flujos de trabajo, integrar agentes en aplicaciones reales y tomar mejores decisiones más rápido. Esto no es hype: es mi forma de trabajar cada día.</p>
+        </div>
+
+        <div class="ia-bento">
+            <!-- Claude -->
+            <div class="iac iac-claude" data-reveal>
+                <div class="iac-deco">Claude</div>
+                <div class="iac-top">
+                    <span class="iac-num">01</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#d97706">C</div>
+                <h4 class="iac-name">Claude<span class="iac-maker">Anthropic</span></h4>
+                <p class="iac-desc">Mi asistente principal de código. Revisión de arquitectura, generación de componentes complejos, debugging avanzado y construcción de agentes autónomos con la API integrada en proyectos reales.</p>
+                <div class="iac-tags"><span>Code Review</span><span>AI Agents</span><span>API Integration</span><span>Arquitectura</span></div>
+            </div>
+
+            <!-- AntiGravity -->
+            <div class="iac iac-antigrav" data-reveal>
+                <div class="iac-deco">AG</div>
+                <div class="iac-top">
+                    <span class="iac-num">02</span>
+                    <span class="iac-pill iac-diario">● Diario</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#D63031">⚛</div>
+                <h4 class="iac-name">AntiGravity<span class="iac-maker">Multi-Agent</span></h4>
+                <p class="iac-desc">Orquestador de workflows IA. Encadena agentes especializados para tareas complejas en mi desarrollo diario.</p>
+                <div class="iac-tags"><span>Multi-Agent</span><span>Workflows</span></div>
+            </div>
+
+            <!-- Gemini -->
+            <div class="iac iac-gemini" data-reveal>
+                <div class="iac-deco">G</div>
+                <div class="iac-top">
+                    <span class="iac-num">03</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <div class="iac-icon-wrap" style="--ic:#4285f4">G</div>
+                <h4 class="iac-name">Gemini<span class="iac-maker">Google</span></h4>
+                <p class="iac-desc">Análisis multimodal y procesamiento de documentos extensos. Integración clave con el ecosistema Google.</p>
+                <div class="iac-tags"><span>Multimodal</span><span>Research</span></div>
+            </div>
+
+            <!-- ChatGPT -->
+            <div class="iac iac-chatgpt" data-reveal>
+                <div class="iac-deco">GPT</div>
+                <div class="iac-top">
+                    <span class="iac-num">04</span>
+                    <span class="iac-pill iac-avanzado">● Avanzado</span>
+                </div>
+                <h4 class="iac-name">ChatGPT <span class="iac-maker">OpenAI</span></h4>
+                <p class="iac-desc">API integrada en Rival Fit. GPT-4o para chatbots contextuales y análisis de rendimiento atlético.</p>
+                <div class="iac-tags"><span>OpenAI API</span><span>GPT-4o</span><span>Chatbots</span></div>
+            </div>
+
+            <!-- Cursor -->
+            <div class="iac iac-cursor" data-reveal>
+                <div class="iac-deco">&gt;_</div>
+                <div class="iac-top">
+                    <span class="iac-num">05</span>
+                    <span class="iac-pill iac-diario">● Diario</span>
+                </div>
+                <h4 class="iac-name">Cursor AI<span class="iac-maker">IDE</span></h4>
+                <p class="iac-desc">Entorno principal de desarrollo con IA integrada. Pair-programming real — la IA entiende el contexto completo.</p>
+                <div class="iac-tags"><span>Pair Prog.</span><span>Refactor</span><span>IDE</span></div>
+            </div>
+
+            <!-- n8n -->
+            <div class="iac iac-n8n" data-reveal>
+                <div class="iac-deco">n8n</div>
+                <div class="iac-top">
+                    <span class="iac-num">06</span>
+                    <span class="iac-pill iac-produccion">● Producción</span>
+                </div>
+                <div class="iac-n8n-inner">
+                    <div>
+                        <h4 class="iac-name">n8n<span class="iac-maker">Automatización</span></h4>
+                        <p class="iac-desc">Pipelines que conectan APIs, bases de datos y modelos de IA. Workflows en producción: publicaciones automáticas, alertas inteligentes, procesamiento de datos en tiempo real.</p>
+                    </div>
+                    <div class="iac-tags"><span>Pipelines</span><span>API Chaining</span><span>Automation</span><span>Triggers</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ia-stats">
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">⚡</div>
+                <div class="ia-stat-n">10×</div>
+                <div class="ia-stat-l">más rápido en desarrollo gracias a IA</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🤖</div>
+                <div class="ia-stat-n">Agentes</div>
+                <div class="ia-stat-l">autónomos integrados en proyectos reales</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🛠</div>
+                <div class="ia-stat-n">6+</div>
+                <div class="ia-stat-l">herramientas IA en uso activo cada semana</div>
+            </div>
+            <div class="ia-stat" data-reveal>
+                <div class="ia-stat-icon">🔄</div>
+                <div class="ia-stat-n">Real</div>
+                <div class="ia-stat-l">workflows en producción, no demos</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STACK TÉCNICO -->
+<section id="stack" class="stack-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Stack técnico</span>
+            <span class="label-count">5 categorías</span>
+        </div>
+        <div class="stack-rows">
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Frontend</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Next.js 15</span>
+                    <span class="sr-tag sr-hot">TypeScript</span>
+                    <span class="sr-tag">React</span>
+                    <span class="sr-tag">Tailwind CSS</span>
+                    <span class="sr-tag">HTML / CSS</span>
+                    <span class="sr-tag">Framer Motion</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Backend &amp; DB</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Supabase</span>
+                    <span class="sr-tag sr-hot">PostgreSQL</span>
+                    <span class="sr-tag">Node.js</span>
+                    <span class="sr-tag">REST APIs</span>
+                    <span class="sr-tag">Stripe</span>
+                    <span class="sr-tag">SQL Avanzado</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Mobile &amp; IA</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">React Native</span>
+                    <span class="sr-tag">Flutter</span>
+                    <span class="sr-tag sr-hot">OpenAI API</span>
+                    <span class="sr-tag sr-hot">Claude API</span>
+                    <span class="sr-tag">n8n</span>
+                    <span class="sr-tag">Make</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Datos &amp; BI</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Python</span>
+                    <span class="sr-tag sr-hot">Power BI</span>
+                    <span class="sr-tag">Pandas</span>
+                    <span class="sr-tag">SQL</span>
+                    <span class="sr-tag">DAX</span>
+                    <span class="sr-tag">Matplotlib</span>
+                </div>
+            </div>
+            <div class="stack-row" data-reveal>
+                <span class="sr-cat">Deploy &amp; Tools</span>
+                <div class="sr-tags">
+                    <span class="sr-tag sr-hot">Vercel</span>
+                    <span class="sr-tag">Git / GitHub</span>
+                    <span class="sr-tag">Figma</span>
+                    <span class="sr-tag">Midjourney</span>
+                    <span class="sr-tag">Flux AI</span>
+                    <span class="sr-tag">Runway</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2.5. CASOS REALES (PORTAFOLIO Y DEEP SHOWCASE)
+     Source: venezuela.html (#portfolio + .vz-deep-showcase)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="portfolio" class="vz-section">
     <div class="wrap">
         <div class="section-top" data-reveal-l>
             <span class="label">Portafolio</span>
@@ -583,7 +621,7 @@
                 </div>
                 <div class="vz-project-actions">
                     <a href="https://rivalfit.app" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Visitar app ↗</a>
-                    <a href="presupuesto.html?tipo=app" class="btn-fill vz-btn-sm" onclick="selectProjectType('Software a medida', 'port_rivalfit')">Quiero un SaaS similar →</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('Software a medida', 'port_rivalfit')">Quiero un SaaS similar →</a>
                 </div>
             </div>
         </div>
@@ -611,7 +649,7 @@
                 </div>
                 <div class="vz-project-actions">
                     <a href="https://milucandco.vercel.app/" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Ver tienda ↗</a>
-                    <a href="presupuesto.html?tipo=ecom" class="btn-fill vz-btn-sm" onclick="selectProjectType('E-commerce', 'port_milu')">Quiero una tienda online →</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('E-commerce', 'port_milu')">Quiero una tienda online →</a>
                 </div>
             </div>
         </div>
@@ -639,7 +677,7 @@
                 </div>
                 <div class="vz-project-actions">
                     <a href="https://elianisromero.vercel.app/" target="_blank" rel="noopener" class="btn-outline vz-btn-sm">Ver web ↗</a>
-                    <a href="presupuesto.html?tipo=ia" class="btn-fill vz-btn-sm" onclick="selectProjectType('Automatización / IA', 'port_elianis')">Quiero automatizar con IA →</a>
+                    <a href="#contacto" class="btn-fill vz-btn-sm" onclick="selectProjectType('Automatización / IA', 'port_elianis')">Quiero automatizar con IA →</a>
                 </div>
             </div>
         </div>
@@ -650,7 +688,7 @@
                 <h3 class="vz-h3">¿Quieres un producto digital de este nivel?</h3>
                 <p class="vz-banner-p">Construimos herramientas digitales con código limpio y máxima conversión.</p>
             </div>
-            <a href="presupuesto.html" class="btn-fill magnetic" onclick="trackConversionEvent('click_proposal', { source: 'portfolio_banner' })">
+            <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Página web', 'portfolio_banner')">
                 Quiero un proyecto como este →
             </a>
         </div>
@@ -667,7 +705,6 @@
                 <strong>RivalFit</strong> es una plataforma digital desarrollada para gestionar atletas, membresías, reservas y operaciones de un centro deportivo.
             </p>
 
-            <!-- Multi screenshot gallery -->
             <div class="vz-gallery-strip">
                 <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="Dashboard RivalFit" loading="lazy"></div>
                 <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/CoachIA.png" alt="Coach IA RivalFit" loading="lazy"></div>
@@ -676,873 +713,16 @@
 
             <div style="display: flex; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1;">
                 <a href="https://rivalfit.app" target="_blank" rel="noopener" class="btn-outline">Ver proyecto en vivo ↗</a>
-                <a href="presupuesto.html?tipo=app" class="btn-fill magnetic" onclick="selectProjectType('Software a medida', 'case_deep_rivalfit')">Solicitar propuesta →</a>
+                <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Software a medida', 'case_deep_rivalfit')">Solicitar propuesta →</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Contenido JGStudio -->
-<section id="contenido" class="contenido-section">
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Contenido</span>
-            <span class="label-count">@jgstudio.dev</span>
-        </div>
-        <div class="cont-header">
-            <h2 class="cont-title" data-title>Contenido que<br><em>conecta.</em></h2>
-            <p class="cont-sub" data-reveal>Estrategia visual + IA + narrativa. Cada pieza construida para generar atención real — branding que posiciona y escenas cinematográficas que viralizan.</p>
-        </div>
-
-        <div class="cont-filters" data-reveal>
-            <button class="cf-btn active" data-filter="brand">Branding</button>
-            <button class="cf-btn" data-filter="rivalfit">Rival Fit App</button>
-            <button class="cf-btn" data-filter="carousel">Carruseles</button>
-            <button class="cf-btn" data-filter="cinematic">Cinematic IA</button>
-            <button class="cf-btn" data-filter="frames">Frames</button>
-            <button class="cf-btn" data-filter="foto">Fotografía</button>
-            <button class="cf-btn" data-filter="video">Video</button>
-        </div>
-
-        <div class="cont-grid" id="cont-grid">
-
-            <!-- BRANDING -->
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/promobasic.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/promobasic.png" alt="Pieza promocional JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Pieza promocional de servicios</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/e46a1e3e-b252-466e-b7ae-ea196536b5fd.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/e46a1e3e-b252-466e-b7ae-ea196536b5fd.png" alt="Branding editorial JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Direcci&oacute;n visual premium</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/c370c40a-f02d-4c53-9e8e-6a1de39d0c9e.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/c370c40a-f02d-4c53-9e8e-6a1de39d0c9e.png" alt="Sistema visual de marca" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Sistema visual de marca</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/7158258c-ccdc-495b-8a89-831d46c28615.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/7158258c-ccdc-495b-8a89-831d46c28615.png" alt="Pieza comercial JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Pieza comercial para redes</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/QuienSoy.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/QuienSoy.png" alt="Quién Soy — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Quién soy — Personal brand</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/QueHago.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/QueHago.png" alt="Qué Hago — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Transformo ideas en sistemas que venden</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/TransformoIdeas.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/TransformoIdeas.png" alt="Transformo Ideas — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Transformo ideas en negocios que crecen</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/6bc5efdd-7e70-4821-9c1d-2787de7ff8c8.png" alt="Web Multiplataforma — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Web multiplataforma profesional</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/d4bab327-7cdf-48e5-84ae-3646f2125928.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/d4bab327-7cdf-48e5-84ae-3646f2125928.png" alt="Branding — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Diseño visual de marca</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/fbe71631-d7f5-4b72-b951-56416ea43e18.png" data-cat="brand" data-reveal>
-                <img src="JGStudio/Contenido/Branding/fbe71631-d7f5-4b72-b951-56416ea43e18.png" alt="Branding — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Branding</span>
-                    <p class="cont-caption">Identidad visual estratégica</p>
-                </div>
-            </div>
-
-            <!-- RIVALFIT APP -->
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Alfred/4c064e3b-04e9-4956-b354-9bb4d321010f.png" data-reveal>
-                <img src="JGStudio/Contenido/Alfred/4c064e3b-04e9-4956-b354-9bb4d321010f.png" alt="The Alfred Project — Podcast RivalFit" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">The Alfred Project — Podcast oficial</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Alfred/4455f5e9-9737-41a1-ad6a-6cc906ceff0b.png" data-reveal>
-                <img src="JGStudio/Contenido/Alfred/4455f5e9-9737-41a1-ad6a-6cc906ceff0b.png" alt="The Alfred Project — Portada podcast RivalFit" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">The Alfred Project — Portada vertical</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/1bcf8e35-09b7-4e8d-8e85-7f1c98197db4.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/1bcf8e35-09b7-4e8d-8e85-7f1c98197db4.png" alt="RivalFit nueva pieza promocional" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Nueva pieza promocional</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/43f08b7e-574d-4367-85f4-9222f4b43485.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/43f08b7e-574d-4367-85f4-9222f4b43485.png" alt="RivalFit campa&ntilde;a visual" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Campa&ntilde;a visual para producto SaaS</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/3f72991a-5670-46c1-9683-280ce53f8fb1.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/3f72991a-5670-46c1-9683-280ce53f8fb1.png" alt="RivalFit contenido comercial" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Contenido comercial para lanzamiento</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/PromoComercial.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/PromoComercial.png" alt="RivalFit Promo — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Promo comercial de lanzamiento</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Dashboard.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="RivalFit Dashboard — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Panel de control y analíticas</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/CoachIA.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/CoachIA.png" alt="RivalFit Coach IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Coach IA para WODs y entrenamientos</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Agenda.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Agenda.png" alt="RivalFit Reservas — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Sistema de agenda y reservas de clases</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Check-in.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Check-in.png" alt="RivalFit Check-in — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Check-in rápido de atletas en el box</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Basededatos.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Basededatos.png" alt="RivalFit Database — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Base de datos PostgreSQL estructurada</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Beneficios.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Beneficios.png" alt="RivalFit Beneficios — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Beneficios de la plataforma</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Entrenamientos.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Entrenamientos.png" alt="RivalFit Entrenamientos — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Planificación de entrenamientos</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Equipo.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Equipo.png" alt="RivalFit Equipo — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Gestión de coaches y equipo</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/Promo_Dashboard.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/Promo_Dashboard.png" alt="RivalFit Promo Dashboard — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Promo dashboard estratégico</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="rivalfit" data-img="JGStudio/Contenido/Rival Fit App/promo_dashboard_reels.png" data-reveal>
-                <img src="JGStudio/Contenido/Rival Fit App/promo_dashboard_reels.png" alt="RivalFit Promo Reels — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">RivalFit App</span>
-                    <p class="cont-caption">Promo reels y redes</p>
-                </div>
-            </div>
-
-            <!-- CARRUSELES -->
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap1.png" data-reveal>
-                <img src="JGStudio/Contenido/linkedin/linkedin-Cap1.png" alt="Construyendo JGStudio — Capítulo 1" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 1</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap2.png" data-reveal>
-                <img src="JGStudio/Contenido/linkedin/linkedin-Cap2.png" alt="Construyendo JGStudio — Capítulo 2" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 2</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap3.png" data-reveal>
-                <img src="JGStudio/Contenido/linkedin/linkedin-Cap3.png" alt="Construyendo JGStudio — Capítulo 3" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 3</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap4.png" data-reveal>
-                <img src="JGStudio/Contenido/linkedin/linkedin-Cap4.png" alt="Construyendo JGStudio — Capítulo 4" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 4</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/linkedin/linkedin-Cap5.png" data-reveal>
-                <img src="JGStudio/Contenido/linkedin/linkedin-Cap5.png" alt="Construyendo JGStudio — Capítulo 5" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Construyendo JGStudio — Cap&iacute;tulo 5</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_01.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_01.png" alt="Carrusel Venezuela slide 1" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 1</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_02.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_02.png" alt="Carrusel Venezuela slide 2" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 2</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_03.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_03.png" alt="Carrusel Venezuela slide 3" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 3</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_04.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_04.png" alt="Carrusel Venezuela slide 4" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 4</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_05.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_05.png" alt="Carrusel Venezuela slide 5" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 5</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/vzla_06.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_06.png" alt="Carrusel Venezuela slide 6" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Serie Venezuela - Slide 6</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/1.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/1.png" alt="Carrusel Slide 1 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 1</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/2.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/2.png" alt="Carrusel Slide 2 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 2</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/3.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/3.png" alt="Carrusel Slide 3 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 3</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/4.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/4.png" alt="Carrusel Slide 4 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 4</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/5.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/5.png" alt="Carrusel Slide 5 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 5</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="carousel" data-img="JGStudio/Contenido/Carruseles/6.png" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/6.png" alt="Carrusel Slide 6 — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Carrusel IA</span>
-                    <p class="cont-caption">Estrategia de crecimiento — Slide 6</p>
-                </div>
-            </div>
-
-            <!-- CINEMATIC IA -->
-            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Business_full_of_people_success_202607221323.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Video/business_poster.png" alt="Coworking cinematográfico IA" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Coworking y &eacute;xito — escena IA</p>
-                </div>
-            </div>
-            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Empty_cafe_in_rain_202607221323.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Video/cafe_poster.png" alt="Café en la lluvia cinematográfico IA" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Caf&eacute; vac&iacute;o bajo la lluvia — atm&oacute;sfera IA</p>
-                </div>
-            </div>
-            <div class="cont-item cont-item--video" data-cat="cinematic" data-video="JGStudio/Contenido/Video/Local_transformation_red_lights_202607221323.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Video/transformation_poster.png" alt="Transformación de local cinematográfico IA" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Transformaci&oacute;n de local — luces rojas</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/ba6d86ca-bc17-49f8-9aea-b279c3e2728f.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/ba6d86ca-bc17-49f8-9aea-b279c3e2728f.png" alt="Frame cinematografico IA" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Nuevo frame cinematogr&aacute;fico</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/eced3232-b0e4-4a09-8393-5d55ad2de92c.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/eced3232-b0e4-4a09-8393-5d55ad2de92c.png" alt="Frame IA con atmosfera" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Frame IA con atm&oacute;sfera</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/b699db5d-1d66-450a-ac0d-b5418898b1d9.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/b699db5d-1d66-450a-ac0d-b5418898b1d9.png" alt="Composicion cinematic IA" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Composici&oacute;n cinematic IA</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/620ec73c-c347-44d3-9fad-4d7be122ed4b.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/620ec73c-c347-44d3-9fad-4d7be122ed4b.png" alt="Heavy On My Own Mind — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Heavy on my own mind</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/7daf4302-5145-4d08-895b-3e8a28d8d452.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/7daf4302-5145-4d08-895b-3e8a28d8d452.png" alt="Mini Me — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Mini Me</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/a87499b4-1661-4034-b9ef-01b83b5f1a0e.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/a87499b4-1661-4034-b9ef-01b83b5f1a0e.png" alt="El Villano Final — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">POV: el villano final</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/e9b4356e-5494-4fce-a557-a2e9d99f2dc8.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/e9b4356e-5494-4fce-a557-a2e9d99f2dc8.png" alt="Peleando contigo mismo — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">A veces no estás peleando con el entorno</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/01c87ed8-be45-48ed-af62-581125156518.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/01c87ed8-be45-48ed-af62-581125156518.png" alt="Escena cinematográfica — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena cinematográfica IA</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/c2489b42-21c8-4cdb-9a8d-7173fd36b152.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/c2489b42-21c8-4cdb-9a8d-7173fd36b152.png" alt="POV Pantano — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">POV: pantano equivocado</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/02d4d4e6-9dfd-4f60-b9c4-428ad5cf7f1e.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/02d4d4e6-9dfd-4f60-b9c4-428ad5cf7f1e.png" alt="Escena escape — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena de escape</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/1c09aebe-c192-43fa-a83f-80460b5045b3.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/1c09aebe-c192-43fa-a83f-80460b5045b3.png" alt="Bienvenido a Muy Lejano — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Bienvenido a Muy Lejano</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/da3d3ae4-26b4-4a0d-ac35-6ab64b5d59d4.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/da3d3ae4-26b4-4a0d-ac35-6ab64b5d59d4.png" alt="Cinematic IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Acción</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/cc9feaa1-d60c-4b67-b27e-d00f79fd59d8.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/cc9feaa1-d60c-4b67-b27e-d00f79fd59d8.png" alt="Cinematic IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Cinematografía</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/db4abc03-7523-4753-ad7c-4a6900df70dc.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/db4abc03-7523-4753-ad7c-4a6900df70dc.png" alt="Cinematic IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Drama</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Branding/e359542b-465c-4702-ad65-b6fccc499b4f.png" data-cat="cinematic" data-reveal>
-                <img src="JGStudio/Contenido/Branding/e359542b-465c-4702-ad65-b6fccc499b4f.png" alt="Cinematic IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Tensión</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/244acab7-be3d-460c-a396-476736778086.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/244acab7-be3d-460c-a396-476736778086.png" alt="Escena IA — Composición" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Composición</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/2a5ec301-ebd1-4774-acee-a10bd1ceaeb0.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/2a5ec301-ebd1-4774-acee-a10bd1ceaeb0.png" alt="Escena IA — Iluminación" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Iluminación</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/39fa40b8-ba8a-4c32-b534-06b67d7757a8.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/39fa40b8-ba8a-4c32-b534-06b67d7757a8.png" alt="Escena IA — Retrato" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Retrato</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/642c7220-afa3-4941-b549-cdaee355bdfd.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/642c7220-afa3-4941-b549-cdaee355bdfd.png" alt="Escena IA — Atmosférico" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Atmosférico</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/66326f35-bdad-45b5-8bff-dad73aeb7427.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/66326f35-bdad-45b5-8bff-dad73aeb7427.png" alt="Escena IA — Enfoque" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Enfoque</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/6f9abadb-2f16-4e7a-8afb-54d09d9599bd.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/6f9abadb-2f16-4e7a-8afb-54d09d9599bd.png" alt="Escena IA — Concepto" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Concepto</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/6fb6021e-2d24-45bf-8045-d68e7d80d24a.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/6fb6021e-2d24-45bf-8045-d68e7d80d24a.png" alt="Escena IA — Cinematic" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Cinematic</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/a912770e-b7a3-46df-9755-f961bf7e65b2.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/a912770e-b7a3-46df-9755-f961bf7e65b2.png" alt="Escena IA — Creativa" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Creativa</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/b9684fc9-05c2-4f87-92d4-7d9e42dce95e.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/b9684fc9-05c2-4f87-92d4-7d9e42dce95e.png" alt="Escena IA — Producción" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Producción</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="cinematic" data-img="JGStudio/Contenido/Branding/b9c1614f-4d7e-4eb6-ac48-f02bf516cb06.png" data-reveal>
-                <img src="JGStudio/Contenido/Branding/b9c1614f-4d7e-4eb6-ac48-f02bf516cb06.png" alt="Escena IA — Detalle" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Cinematic IA</span>
-                    <p class="cont-caption">Escena IA — Detalle</p>
-                </div>
-            </div>
-
-            <!-- EDICIÓN FOTOGRÁFICA -->
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/cedfcbaa-747f-49be-8c72-a646eb5244b0.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/cedfcbaa-747f-49be-8c72-a646eb5244b0.png" alt="Nueva fotografia editorial" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
-                    <p class="cont-caption">Nueva fotograf&iacute;a editorial</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/c060b573-904c-43f6-be57-67ac581ba0b1.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/c060b573-904c-43f6-be57-67ac581ba0b1.png" alt="Retrato visual premium" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
-                    <p class="cont-caption">Retrato visual premium</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/ee92a9d4-21cb-4c3e-accb-6ac50350f5cf.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/ee92a9d4-21cb-4c3e-accb-6ac50350f5cf.png" alt="Composicion fotografica IA" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edici&oacute;n Fotogr&aacute;fica</span>
-                    <p class="cont-caption">Composici&oacute;n fotogr&aacute;fica IA</p>
-                </div>
-            </div>
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/0ddae64e-4ebb-45ff-8be1-fcc952853bc7.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/0ddae64e-4ebb-45ff-8be1-fcc952853bc7.png" alt="Alfred — Edición Fotográfica" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Alfred — Retrato editorial</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/fot1.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/fot1.png" alt="Edición Fotográfica — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Retrato con edición IA</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/fot3.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/fot3.png" alt="Edición Fotográfica — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Fotografía editorial</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/fot3.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/fot3.png" alt="Edición Fotográfica — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Composición fotográfica</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history1.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/history1.png" alt="Historia visual — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Historia visual — serie</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history2.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/history2.png" alt="Historia visual — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Historia visual — continuidad</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/history3.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/history3.png" alt="Historia visual — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Historia visual — narrativa</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Frames/9f761a0b-d1ba-41c3-94b4-d2fa14d0d2bf.png" data-cat="frames" data-reveal>
-                <img src="JGStudio/Contenido/Frames/9f761a0b-d1ba-41c3-94b4-d2fa14d0d2bf.png" alt="Edición IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Retrato con IA — atmosférico</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/214c8880-24b8-4a4a-8fc1-a4356cfa8db4.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/214c8880-24b8-4a4a-8fc1-a4356cfa8db4.png" alt="Edición IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Edición fotográfica IA</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-img="JGStudio/Contenido/Fotografia/882cd0d9-1096-4731-834e-72b6172e2a60.png" data-cat="foto" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/882cd0d9-1096-4731-834e-72b6172e2a60.png" alt="Edición IA — JGStudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Composición IA — retrato</p>
-                </div>
-            </div>
-
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/04bc2a2e-fde6-42b2-8d47-dc23d969fa62.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/04bc2a2e-fde6-42b2-8d47-dc23d969fa62.png" alt="Retrato editorial IA" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Retrato editorial IA</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/2e6529a3-c815-47e2-915b-9258c50fb012.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/2e6529a3-c815-47e2-915b-9258c50fb012.png" alt="Fotografía conceptual" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Fotografía conceptual</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/5b1bfd8c-ac99-4af6-b7e2-119a809f03a0.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/5b1bfd8c-ac99-4af6-b7e2-119a809f03a0.png" alt="Edición avanzada de color" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Edición avanzada de color</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/730053e2-79bb-41f3-b82f-e32e46111f81.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/730053e2-79bb-41f3-b82f-e32e46111f81.png" alt="Composición atmosférica" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Composición atmosférica</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/7717c180-aaad-4786-835e-b68679e305c8.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/7717c180-aaad-4786-835e-b68679e305c8.png" alt="Retrato en exteriores" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Retrato en exteriores</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/80c9a4c9-5bdb-4db1-9650-d2c4cfbf5063.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/80c9a4c9-5bdb-4db1-9650-d2c4cfbf5063.png" alt="Composición cinematográfica" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Composición cinematográfica</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/8ea342af-ffaf-407a-9ebd-dee3e29d47ef.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/8ea342af-ffaf-407a-9ebd-dee3e29d47ef.png" alt="Edición de luces y sombras" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Edición de luces y sombras</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/92bc8512-3814-4021-9a55-151d6f44d6df.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/92bc8512-3814-4021-9a55-151d6f44d6df.png" alt="Fotografía y arte digital" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Fotografía y arte digital</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="frames" data-img="JGStudio/Contenido/Frames/97c9f484-6d0b-457e-8ef9-a2272466ab9a.png" data-reveal>
-                <img src="JGStudio/Contenido/Frames/97c9f484-6d0b-457e-8ef9-a2272466ab9a.png" alt="Composición de retrato" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Composición de retrato</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/a01790b0-824a-438a-b4a5-01022fffc952.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/a01790b0-824a-438a-b4a5-01022fffc952.png" alt="Edición de moda" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Edición de moda</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="foto" data-img="JGStudio/Contenido/Fotografia/c22ec187-6356-451d-8757-c8665c06b02f.png" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/c22ec187-6356-451d-8757-c8665c06b02f.png" alt="Retrato de estudio" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Edición Fotográfica</span>
-                    <p class="cont-caption">Retrato de estudio</p>
-                </div>
-            </div>
-            <div class="cont-item" data-cat="frames" data-img="JGStudio/Contenido/Frames/fc55d2d5-d4b2-4790-816e-6cf8abc14ca9.png" data-reveal>
-                <img src="JGStudio/Contenido/Frames/fc55d2d5-d4b2-4790-816e-6cf8abc14ca9.png" alt="Edición digital premium" loading="lazy">
-                <div class="cont-overlay">
-                    <span class="cont-tag">Frames</span>
-                    <p class="cont-caption">Edición digital premium</p>
-                </div>
-            </div>
-
-            <!-- VIDEO -->
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Promo01.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Video/promo01_poster.png" alt="Video promocional JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Promo comercial JGStudio</p>
-                </div>
-            </div>
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/wodRivalfit.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Video/wodrivalfit_poster.png" alt="Video RivalFit entrenamiento" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">RivalFit — entrenamiento y app</p>
-                </div>
-            </div>
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/vzla01.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Carruseles/vzla_01.png" alt="Video Venezuela JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Video Venezuela - pieza completa</p>
-                </div>
-            </div>
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Imagenes/escena1.mp4" data-reveal>
-                <img src="JGStudio/videos/Imagenes/esc1.png" alt="Video intro — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Intro cinematográfica</p>
-                </div>
-            </div>
-
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Escenas/boxescena1.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/fot1.png" alt="Box Escena 1 — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Escena box — IA cinematográfica</p>
-                </div>
-            </div>
-
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Escenas/boxescena2.mp4" data-reveal>
-                <img src="JGStudio/Contenido/Fotografia/fot3.png" alt="Box Escena 2 — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Escena box — acción IA</p>
-                </div>
-            </div>
-
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Escenas/boxescena3.mp4" data-reveal>
-                <img src="JGStudio/videos/Escenas/Boxescena3.png" alt="Box Escena 3 — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Escena box — final épico</p>
-                </div>
-            </div>
-
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Escenas/2escena.mov" data-reveal>
-                <img src="JGStudio/videos/Imagenes/esc2.png" alt="Video escena portátil — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Escena IA con portátil</p>
-                </div>
-            </div>
-
-            <div class="cont-item cont-item--video" data-cat="video" data-video="JGStudio/videos/Escenas/3escena.mov" data-reveal>
-                <img src="JGStudio/videos/Imagenes/esc3.png" alt="Video escena energía — JGStudio" loading="lazy">
-                <div class="cont-play">
-                    <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><path d="M1 1.5L19 12L1 22.5V1.5Z" fill="white"/></svg>
-                </div>
-                <div class="cont-overlay">
-                    <span class="cont-tag">Video IA</span>
-                    <p class="cont-caption">Escena energía IA</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="cont-pagination" id="cont-pagination">
-            <button class="cont-page-btn" id="cont-prev" aria-label="Página anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <span class="cont-page-status" id="cont-page-status">1 / 1</span>
-            <button class="cont-page-btn cont-page-btn--next" id="cont-next" aria-label="Página siguiente">
-                Siguiente <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <div class="cont-footer" data-reveal>
-            <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" class="btn-fill magnetic">
-                <i class="fab fa-instagram"></i>&nbsp; Ver más en @jgstudio.dev
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- About -->
+<!-- ═══════════════════════════════════════════════════════════
+     2.6. CONEXIÓN HUMANA (SOBRE MÍ)
+     Source: index.html (#about)
+     ═══════════════════════════════════════════════════════════ -->
 <section id="about" class="about-section">
     <div class="wrap">
         <div class="section-top" data-reveal-l>
@@ -1593,6 +773,231 @@
     </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     2.7. PRECIOS TRANSPARENTES
+     Source: venezuela.html (#precios + 06 Razones)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="precios" class="vz-section vz-section--alt">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Precios Transparentes</span>
+            <span class="label-count">Inversión</span>
+        </div>
+
+        <div class="vz-head" data-reveal>
+            <h2 class="vz-h2" data-title>Inversión clara. Sin sorpresas.</h2>
+            <p class="vz-sub">Precios base de referencia. Cada proyecto se cotiza con precisión según sus requerimientos y alcance.</p>
+        </div>
+
+        <div class="pricing-trust-strip" data-reveal>
+            <span class="pricing-trust-item"><i class="fas fa-star"></i> <strong>100% Satisfacción</strong></span>
+            <span class="pricing-trust-item"><i class="fas fa-shield-alt"></i> <strong>Código 100% propio</strong></span>
+            <span class="pricing-trust-item"><i class="fas fa-bolt"></i> <strong>Respuesta en &lt; 24h</strong></span>
+            <span class="pricing-trust-item"><i class="fas fa-user-check"></i> <strong>Soporte directo 1 a 1</strong></span>
+        </div>
+
+        <div class="vz-price-grid">
+            <!-- Card 1: Web Comercial -->
+            <div class="senior-price-card theme-red" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">01</span>
+                    <span class="spc-category">Páginas Web</span>
+                </div>
+                <h3 class="spc-title">Web Comercial</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$350</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Sitios web corporativos y landing pages <strong>ultrarrápidas</strong>, optimizadas para posicionamiento SEO y conversión de visitas en clientes.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Diseño responsive &amp; UI a medida</li>
+                    <li><i class="fas fa-check-circle"></i> Carga ultra-rápida (Score 95+)</li>
+                    <li><i class="fas fa-check-circle"></i> Integración WhatsApp &amp; CRM</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">M</div>
+                    <div class="spc-quote-text">
+                        <p>"Multiplicamos nuestras consultas en 2 semanas."</p>
+                        <span>Milu &amp; Co · Marca Comercial</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Página web', 'pricing_web')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Card 2: E-Commerce (FEATURED / POPULAR) -->
+            <div class="senior-price-card theme-featured featured" data-reveal>
+                <div class="spc-badge-pop">
+                    <i class="fas fa-fire"></i> MÁS SOLICITADO
+                </div>
+                <div class="spc-top-bar">
+                    <span class="spc-index">02</span>
+                    <span class="spc-category">Ventas Online</span>
+                </div>
+                <h3 class="spc-title">E-Commerce</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$1.200</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Tiendas online de alto rendimiento con catálogo interactivo, pagos automatizados, inventario y <strong>checkout sin fricción</strong>.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Catálogo &amp; Pasarelas de Pago (Stripe/Zelle)</li>
+                    <li><i class="fas fa-check-circle"></i> Panel de control de stock y pedidos</li>
+                    <li><i class="fas fa-check-circle"></i> Arquitectura escalable sin comisiones</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">F</div>
+                    <div class="spc-quote-text">
+                        <p>"Proceso de compra fluido y ventas automáticas."</p>
+                        <span>Fabián Z. · E-Commerce Founder</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-primary" onclick="selectProjectType('E-commerce', 'pricing_ecom')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Card 3: IA & Workflows -->
+            <div class="senior-price-card theme-cyan" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">03</span>
+                    <span class="spc-category">Automatización</span>
+                </div>
+                <h3 class="spc-title">IA &amp; Workflows</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$750</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Agentes conversacionales con IA, sistemas inteligentes de captura de leads y <strong>automatización de procesos</strong> internos.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Agentes IA entrenados con tu conocimiento</li>
+                    <li><i class="fas fa-check-circle"></i> Integración n8n / Make / APIs</li>
+                    <li><i class="fas fa-check-circle"></i> Respuestas 24/7 y cualificación de leads</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">S</div>
+                    <div class="spc-quote-text">
+                        <p>"Ahorramos más de 15h semanales en tareas datos."</p>
+                        <span>Cliente SaaS · Automatización</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Card 4: Software a Medida -->
+            <div class="senior-price-card theme-gold" data-reveal>
+                <div class="spc-top-bar">
+                    <span class="spc-index">04</span>
+                    <span class="spc-category">Desarrollo Custom</span>
+                </div>
+                <h3 class="spc-title">Software a Medida</h3>
+                <div class="spc-price-box">
+                    <span class="spc-price-prefix">Desde</span>
+                    <div class="spc-price-amount">$1.500</div>
+                    <span class="spc-price-unit">USD</span>
+                </div>
+                <p class="spc-desc">
+                    Plataformas web complejas, aplicaciones SaaS, CRMs internos y sistemas empresariales con <strong>código propio y arquitectura limpia</strong>.
+                </p>
+                <ul class="spc-features">
+                    <li><i class="fas fa-check-circle"></i> Arquitectura full-stack personalizada</li>
+                    <li><i class="fas fa-check-circle"></i> Base de datos dedicada y APIs robustas</li>
+                    <li><i class="fas fa-check-circle"></i> Propiedad 100% del código fuente</li>
+                </ul>
+                <div class="spc-quote">
+                    <div class="spc-avatar">T</div>
+                    <div class="spc-quote-text">
+                        <p>"Cero fallos, velocidad máxima y código limpio."</p>
+                        <span>Tech Lead · Startup Platform</span>
+                    </div>
+                </div>
+                <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Software a medida', 'pricing_soft')">
+                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Por Qué JGStudio (6 Razones) -->
+<section class="vz-section">
+    <div class="wrap">
+        <div class="section-top" data-reveal-l>
+            <span class="label">Ventajas</span>
+            <span class="label-count">06 Razones</span>
+        </div>
+
+        <div class="vz-head" data-reveal>
+            <h2 class="vz-h2" data-title>Un estudio digital. Sin intermediarios.</h2>
+            <p class="vz-sub">
+                Trabaja directamente con la persona que diseña y desarrolla tu proyecto.<br>
+                Sin equipos inflados. Sin capas burocráticas. Sin soluciones genéricas.
+            </p>
+        </div>
+
+        <div class="vz-why-grid">
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-comments"></i></div>
+                <span class="vz-why-num">Beneficio 01</span>
+                <h3>Comunicación directa</h3>
+                <p>Trato directo con el especialista técnico, sin ejecutivos de cuentas ni demoras en decisiones.</p>
+            </div>
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-code"></i></div>
+                <span class="vz-why-num">Beneficio 02</span>
+                <h3>Desarrollo personalizado</h3>
+                <p>Código limpio adaptado exclusivamente a tu modelo de negocio y flujo comercial.</p>
+            </div>
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-bolt"></i></div>
+                <span class="vz-why-num">Beneficio 03</span>
+                <h3>Tecnología moderna</h3>
+                <p>Stack en Next.js, TypeScript, cloud databases y velocidad de carga ultrarrápida.</p>
+            </div>
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-crown"></i></div>
+                <span class="vz-why-num">Beneficio 04</span>
+                <h3>Diseño premium</h3>
+                <p>Identidad visual de alta gama, tipografía editorial cuidada y micro-interacciones sutiles.</p>
+            </div>
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <span class="vz-why-num">Beneficio 05</span>
+                <h3>Enfoque comercial</h3>
+                <p>Estructuras orientadas a que el visitante entienda el valor y ejecute la acción comercial.</p>
+            </div>
+            <div class="cap-card vz-why-card" data-reveal>
+                <div class="cap-accent-bar"></div>
+                <div class="rc-icon-wrap"><i class="fa-solid fa-layer-group"></i></div>
+                <span class="vz-why-num">Beneficio 06</span>
+                <h3>Proyectos escalables</h3>
+                <p>Arquitectura sólida lista para soportar el crecimiento de tu empresa sin rehacer el sistema.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2.8. EL CIERRE (QUIZ + FORMULARIO DE ALTA CONVERSIÓN)
+     Source: venezuela.html (#express-quiz + #contacto)
+     ═══════════════════════════════════════════════════════════ -->
 <!-- Diagnóstico Express Quiz -->
 <section id="express-quiz" class="quiz-section">
     <div class="wrap">
@@ -1725,13 +1130,12 @@
             <div class="quiz-step" data-step="result">
                 <div class="quiz-result-card">
                     <span class="quiz-result-badge"><i class="fas fa-star"></i> Solución Recomendada para tu Negocio</span>
-                    <h3 class="quiz-result-title" id="quiz-res-title">Web Corporativa & Autoridad</h3>
+                    <h3 class="quiz-result-title" id="quiz-res-title">Web Corporativa &amp; Autoridad</h3>
                     <p class="quiz-result-desc" id="quiz-res-desc">Tu negocio necesita una presencia digital sólida, de alto impacto y orientada a transmitir confianza absoluta y captar clientes en piloto automático.</p>
                     <div class="quiz-result-features" id="quiz-res-features">
-                        <!-- Filled by JS -->
                     </div>
                     <div class="quiz-result-actions">
-                        <a href="presupuesto.html?tipo=web" class="btn-fill magnetic" id="quiz-res-cta">Solicitar propuesta para esta solución →</a>
+                        <a href="#contacto" class="btn-fill magnetic" id="quiz-res-cta" onclick="selectProjectType('Página web', 'quiz_result')">Solicitar propuesta para esta solución →</a>
                         <button type="button" class="btn-outline magnetic" id="quiz-reset-btn"><i class="fas fa-redo"></i> Repetir test</button>
                     </div>
                 </div>
@@ -1741,477 +1145,97 @@
     </div>
 </section>
 
-<!-- Pricing -->
-<section id="pricing" class="pricing-section">
+<!-- Formulario de Captación Avanzado -->
+<section id="contacto" style="padding: 100px 0; background: radial-gradient(circle at 50% 0%, rgba(214, 48, 49, 0.12) 0%, var(--bg) 60%); border-top: 1px solid var(--border);">
     <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Precios y Soluciones</span>
-            <span class="label-count">05 opciones</span>
-        </div>
-        <div class="pricing-header" data-reveal>
-            <h2 class="pricing-title">SOLUCIONES A MEDIDA PARA TU NEGOCIO</h2>
-            <p class="pricing-subtitle">Cada proyecto se cotiza individualmente según tus objetivos. Soluciones flexibles con presupuestos adaptados a tu mercado local e internacional.</p>
-        </div>
-
-        <div class="pricing-trust-strip" data-reveal>
-            <span class="pricing-trust-item"><i class="fas fa-star"></i> <strong>100% Satisfacción</strong></span>
-            <span class="pricing-trust-item"><i class="fas fa-shield-alt"></i> <strong>Código 100% propio</strong></span>
-            <span class="pricing-trust-item"><i class="fas fa-bolt"></i> <strong>Respuesta en < 24h</strong></span>
-            <span class="pricing-trust-item"><i class="fas fa-user-check"></i> <strong>Soporte directo 1 a 1</strong></span>
-        </div>
-        
-        <div class="vz-price-grid">
-            <!-- Card 1: Web Comercial -->
-            <div class="senior-price-card theme-red" data-reveal>
-                <div class="spc-top-bar">
-                    <span class="spc-index">01</span>
-                    <span class="spc-category">Páginas Web</span>
-                </div>
-                <h3 class="spc-title">Web Comercial</h3>
-                <div class="spc-price-box">
-                    <span class="spc-price-prefix">Desde</span>
-                    <div class="spc-price-amount">$350</div>
-                    <span class="spc-price-unit">USD</span>
-                </div>
-                <p class="spc-desc">
-                    Sitios web corporativos y landing pages <strong>ultrarrápidas</strong>, optimizadas para posicionamiento SEO y conversión de visitas en clientes.
-                </p>
-                <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Diseño responsive &amp; UI a medida</li>
-                    <li><i class="fas fa-check-circle"></i> Carga ultra-rápida (Score 95+)</li>
-                    <li><i class="fas fa-check-circle"></i> Integración WhatsApp &amp; CRM</li>
-                </ul>
-                <div class="spc-quote">
-                    <div class="spc-avatar">M</div>
-                    <div class="spc-quote-text">
-                        <p>"Multiplicamos nuestras consultas en 2 semanas."</p>
-                        <span>Milu &amp; Co · Marca Comercial</span>
-                    </div>
-                </div>
-                <a href="presupuesto.html?tipo=web" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Página web', 'pricing_web')">
-                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
-                </a>
+        <div class="vz-form-card" data-reveal>
+            <div style="text-align: center; margin-bottom: 36px;">
+                <span class="label" style="color: var(--accent);">Contacto</span>
+                <h3 class="vz-h3" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); letter-spacing: -1px; margin-top: 8px;">
+                    Cuéntanos sobre tu proyecto.
+                </h3>
             </div>
 
-            <!-- Card 2: E-Commerce (FEATURED / POPULAR) -->
-            <div class="senior-price-card theme-featured featured" data-reveal>
-                <div class="spc-badge-pop">
-                    <i class="fas fa-fire"></i> MÁS SOLICITADO
-                </div>
-                <div class="spc-top-bar">
-                    <span class="spc-index">02</span>
-                    <span class="spc-category">Ventas Online</span>
-                </div>
-                <h3 class="spc-title">E-Commerce</h3>
-                <div class="spc-price-box">
-                    <span class="spc-price-prefix">Desde</span>
-                    <div class="spc-price-amount">$1.200</div>
-                    <span class="spc-price-unit">USD</span>
-                </div>
-                <p class="spc-desc">
-                    Tiendas online de alto rendimiento con catálogo interactivo, pagos automatizados, inventario y <strong>checkout sin fricción</strong>.
-                </p>
-                <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Catálogo &amp; Pasarelas de Pago (Stripe/Zelle)</li>
-                    <li><i class="fas fa-check-circle"></i> Panel de control de stock y pedidos</li>
-                    <li><i class="fas fa-check-circle"></i> Arquitectura escalable sin comisiones</li>
-                </ul>
-                <div class="spc-quote">
-                    <div class="spc-avatar">F</div>
-                    <div class="spc-quote-text">
-                        <p>"Proceso de compra fluido y ventas automáticas."</p>
-                        <span>Fabián Z. · E-Commerce Founder</span>
-                    </div>
-                </div>
-                <a href="presupuesto.html?tipo=ecom" class="spc-btn spc-btn-primary" onclick="selectProjectType('E-commerce', 'pricing_ecom')">
-                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- Card 3: IA & Workflows -->
-            <div class="senior-price-card theme-cyan" data-reveal>
-                <div class="spc-top-bar">
-                    <span class="spc-index">03</span>
-                    <span class="spc-category">Automatización</span>
-                </div>
-                <h3 class="spc-title">IA &amp; Workflows</h3>
-                <div class="spc-price-box">
-                    <span class="spc-price-prefix">Desde</span>
-                    <div class="spc-price-amount">$750</div>
-                    <span class="spc-price-unit">USD</span>
-                </div>
-                <p class="spc-desc">
-                    Agentes conversacionales con IA, sistemas inteligentes de captura de leads y <strong>automatización de procesos</strong> internos.
-                </p>
-                <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Agentes IA entrenados con tu conocimiento</li>
-                    <li><i class="fas fa-check-circle"></i> Integración n8n / Make / APIs</li>
-                    <li><i class="fas fa-check-circle"></i> Respuestas 24/7 y cualificación de leads</li>
-                </ul>
-                <div class="spc-quote">
-                    <div class="spc-avatar">S</div>
-                    <div class="spc-quote-text">
-                        <p>"Ahorramos más de 15h semanales en tareas datos."</p>
-                        <span>Cliente SaaS · Automatización</span>
-                    </div>
-                </div>
-                <a href="presupuesto.html?tipo=ia" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">
-                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- Card 4: Software a Medida -->
-            <div class="senior-price-card theme-gold" data-reveal>
-                <div class="spc-top-bar">
-                    <span class="spc-index">04</span>
-                    <span class="spc-category">Desarrollo Custom</span>
-                </div>
-                <h3 class="spc-title">Software a Medida</h3>
-                <div class="spc-price-box">
-                    <span class="spc-price-prefix">Desde</span>
-                    <div class="spc-price-amount">$1.500</div>
-                    <span class="spc-price-unit">USD</span>
-                </div>
-                <p class="spc-desc">
-                    Plataformas web complejas, aplicaciones SaaS, CRMs internos y sistemas empresariales con <strong>código propio y arquitectura limpia</strong>.
-                </p>
-                <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Arquitectura full-stack personalizada</li>
-                    <li><i class="fas fa-check-circle"></i> Base de datos dedicada y APIs robustas</li>
-                    <li><i class="fas fa-check-circle"></i> Propiedad 100% del código fuente</li>
-                </ul>
-                <div class="spc-quote">
-                    <div class="spc-avatar">T</div>
-                    <div class="spc-quote-text">
-                        <p>"Cero fallos, velocidad máxima y código limpio."</p>
-                        <span>Tech Lead · Startup Platform</span>
-                    </div>
-                </div>
-                <a href="presupuesto.html?tipo=app" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Software a medida', 'pricing_custom')">
-                    Solicitar propuesta <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="pricing-note" data-reveal>
-            <div class="pn-icon"><i class="fas fa-info-circle"></i></div>
-            <div class="pn-content">
-                <h3>No creemos en paquetes rígidos</h3>
-                <p>Cada proyecto se estudia de forma individual para adaptarnos a los objetivos, funcionalidades y presupuesto de cada cliente. <strong>Solicita una propuesta personalizada sin compromiso.</strong></p>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Testimonials -->
-<section id="testimonials" class="testimonials-section">
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Testimonios</span>
-            <span class="label-count">Clientes satisfechos</span>
-        </div>
-        <div class="testimonials-header" data-reveal>
-            <h2 class="testimonials-title">LO QUE OPINAN NUESTROS CLIENTES</h2>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testi-card" data-reveal>
-                <div class="testi-result">Tienda online live en 12 días · Primeras ventas en 48h</div>
-                <div class="tc-quote">“</div>
-                <p class="tc-text">Trabajar con Jesús ha sido un acierto total. Diseñó y desarrolló nuestra tienda online en tiempo récord, cuidando cada detalle y entendiendo perfectamente nuestra marca de moda vintage.</p>
-                <div class="tc-footer">
-                    <img class="tc-avatar" src="img/screenshot_milu.jpg" alt="Milu" style="object-fit:cover;">
-                    <div class="tc-info">
-                        <span class="tc-name">Milu</span>
-                        <span class="tc-company">Fundadora de Milu &amp; Co</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card" data-reveal>
-                <div class="testi-result">3h/día ahorradas en gestión · Chatbot IA activo 24/7</div>
-                <div class="tc-quote">“</div>
-                <p class="tc-text">El asistente de IA integrado en mi web ha transformado la forma en que atiendo solicitudes. Mis pacientes obtienen respuestas rápidas y yo ahorro horas de gestión al día.</p>
-                <div class="tc-footer">
-                    <img class="tc-avatar" src="img/screenshot_elianis.jpg" alt="Elianis Romero" style="object-fit:cover;">
-                    <div class="tc-info">
-                        <span class="tc-name">Elianis Romero</span>
-                        <span class="tc-company">Psicóloga Profesional</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testi-card" data-reveal>
-                <div class="testi-result">Aumento directo en reservas de pacientes</div>
-                <div class="tc-quote">“</div>
-                <p class="tc-text">Buscaba una web profesional pero que transmitiera confianza. El diseño de JGStudio superó mis expectativas y he notado un aumento directo en las reservas de pacientes.</p>
-                <div class="tc-footer">
-                    <img class="tc-avatar" src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" style="object-fit:cover;">
-                    <div class="tc-info">
-                        <span class="tc-name">Fabián Zambrano</span>
-                        <span class="tc-company">Fisioterapeuta Deportivo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- IA SUPERPODER -->
-<section id="ia" class="ia-section">
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Inteligencia Artificial</span>
-        </div>
-        <div class="ia-header">
-            <h2 class="ia-headline" data-title>La IA es<br><em>mi superpoder.</em></h2>
-            <p class="ia-sub" data-reveal>No solo sé programar — sé <strong>multiplicarme</strong>. Uso inteligencia artificial para automatizar flujos de trabajo, integrar agentes en aplicaciones reales y tomar mejores decisiones más rápido. Esto no es hype: es mi forma de trabajar cada día.</p>
-        </div>
-
-        <!-- Bento grid asimétrico -->
-        <div class="ia-bento">
-
-            <!-- Claude — card grande (3 cols, 2 filas) -->
-            <div class="iac iac-claude" data-reveal>
-                <div class="iac-deco">Claude</div>
-                <div class="iac-top">
-                    <span class="iac-num">01</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#d97706">C</div>
-                <h4 class="iac-name">Claude<span class="iac-maker">Anthropic</span></h4>
-                <p class="iac-desc">Mi asistente principal de código. Revisión de arquitectura, generación de componentes complejos, debugging avanzado y construcción de agentes autónomos con la API integrada en proyectos reales.</p>
-                <div class="iac-tags"><span>Code Review</span><span>AI Agents</span><span>API Integration</span><span>Arquitectura</span></div>
-            </div>
-
-            <!-- AntiGravity -->
-            <div class="iac iac-antigrav" data-reveal>
-                <div class="iac-deco">AG</div>
-                <div class="iac-top">
-                    <span class="iac-num">02</span>
-                    <span class="iac-pill iac-diario">● Diario</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#D63031">⚛</div>
-                <h4 class="iac-name">AntiGravity<span class="iac-maker">Multi-Agent</span></h4>
-                <p class="iac-desc">Orquestador de workflows IA. Encadena agentes especializados para tareas complejas en mi desarrollo diario.</p>
-                <div class="iac-tags"><span>Multi-Agent</span><span>Workflows</span></div>
-            </div>
-
-            <!-- Gemini -->
-            <div class="iac iac-gemini" data-reveal>
-                <div class="iac-deco">G</div>
-                <div class="iac-top">
-                    <span class="iac-num">03</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#4285f4">G</div>
-                <h4 class="iac-name">Gemini<span class="iac-maker">Google</span></h4>
-                <p class="iac-desc">Análisis multimodal y procesamiento de documentos extensos. Integración clave con el ecosistema Google.</p>
-                <div class="iac-tags"><span>Multimodal</span><span>Research</span></div>
-            </div>
-
-            <!-- ChatGPT -->
-            <div class="iac iac-chatgpt" data-reveal>
-                <div class="iac-deco">GPT</div>
-                <div class="iac-top">
-                    <span class="iac-num">04</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <h4 class="iac-name">ChatGPT <span class="iac-maker">OpenAI</span></h4>
-                <p class="iac-desc">API integrada en Rival Fit. GPT-4o para chatbots contextuales y análisis de rendimiento atlético.</p>
-                <div class="iac-tags"><span>OpenAI API</span><span>GPT-4o</span><span>Chatbots</span></div>
-            </div>
-
-            <!-- Cursor -->
-            <div class="iac iac-cursor" data-reveal>
-                <div class="iac-deco">&gt;_</div>
-                <div class="iac-top">
-                    <span class="iac-num">05</span>
-                    <span class="iac-pill iac-diario">● Diario</span>
-                </div>
-                <h4 class="iac-name">Cursor AI<span class="iac-maker">IDE</span></h4>
-                <p class="iac-desc">Entorno principal de desarrollo con IA integrada. Pair-programming real — la IA entiende el contexto completo.</p>
-                <div class="iac-tags"><span>Pair Prog.</span><span>Refactor</span><span>IDE</span></div>
-            </div>
-
-            <!-- n8n — card ancha -->
-            <div class="iac iac-n8n" data-reveal>
-                <div class="iac-deco">n8n</div>
-                <div class="iac-top">
-                    <span class="iac-num">06</span>
-                    <span class="iac-pill iac-produccion">● Producción</span>
-                </div>
-                <div class="iac-n8n-inner">
+            <form id="vz-lead-form" onsubmit="handleFormSubmit(event)">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
                     <div>
-                        <h4 class="iac-name">n8n<span class="iac-maker">Automatización</span></h4>
-                        <p class="iac-desc">Pipelines que conectan APIs, bases de datos y modelos de IA. Workflows en producción: publicaciones automáticas, alertas inteligentes, procesamiento de datos en tiempo real.</p>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-name">Nombre *</label>
+                        <input type="text" id="form-name" class="vz-form-input" placeholder="Tu nombre" required onfocus="trackConversionEvent('form_start')">
                     </div>
-                    <div class="iac-tags"><span>Pipelines</span><span>API Chaining</span><span>Automation</span><span>Triggers</span></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="ia-stats">
-            <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">⚡</div>
-                <div class="ia-stat-n">10×</div>
-                <div class="ia-stat-l">más rápido en desarrollo gracias a IA</div>
-            </div>
-            <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🤖</div>
-                <div class="ia-stat-n">Agentes</div>
-                <div class="ia-stat-l">autónomos integrados en proyectos reales</div>
-            </div>
-            <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🛠</div>
-                <div class="ia-stat-n">6+</div>
-                <div class="ia-stat-l">herramientas IA en uso activo cada semana</div>
-            </div>
-            <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🔄</div>
-                <div class="ia-stat-n">Real</div>
-                <div class="ia-stat-l">workflows en producción, no demos</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- STACK TÉCNICO -->
-<section id="stack" class="stack-section">
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Stack técnico</span>
-            <span class="label-count">5 categorías</span>
-        </div>
-        <div class="stack-rows">
-            <div class="stack-row" data-reveal>
-                <span class="sr-cat">Frontend</span>
-                <div class="sr-tags">
-                    <span class="sr-tag sr-hot">Next.js 15</span>
-                    <span class="sr-tag sr-hot">TypeScript</span>
-                    <span class="sr-tag">React</span>
-                    <span class="sr-tag">Tailwind CSS</span>
-                    <span class="sr-tag">HTML / CSS</span>
-                    <span class="sr-tag">Framer Motion</span>
-                </div>
-            </div>
-            <div class="stack-row" data-reveal>
-                <span class="sr-cat">Backend &amp; DB</span>
-                <div class="sr-tags">
-                    <span class="sr-tag sr-hot">Supabase</span>
-                    <span class="sr-tag sr-hot">PostgreSQL</span>
-                    <span class="sr-tag">Node.js</span>
-                    <span class="sr-tag">REST APIs</span>
-                    <span class="sr-tag">Stripe</span>
-                    <span class="sr-tag">SQL Avanzado</span>
-                </div>
-            </div>
-            <div class="stack-row" data-reveal>
-                <span class="sr-cat">Mobile &amp; IA</span>
-                <div class="sr-tags">
-                    <span class="sr-tag sr-hot">React Native</span>
-                    <span class="sr-tag">Flutter</span>
-                    <span class="sr-tag sr-hot">OpenAI API</span>
-                    <span class="sr-tag sr-hot">Claude API</span>
-                    <span class="sr-tag">n8n</span>
-                    <span class="sr-tag">Make</span>
-                </div>
-            </div>
-            <div class="stack-row" data-reveal>
-                <span class="sr-cat">Datos &amp; BI</span>
-                <div class="sr-tags">
-                    <span class="sr-tag sr-hot">Python</span>
-                    <span class="sr-tag sr-hot">Power BI</span>
-                    <span class="sr-tag">Pandas</span>
-                    <span class="sr-tag">SQL</span>
-                    <span class="sr-tag">DAX</span>
-                    <span class="sr-tag">Matplotlib</span>
-                </div>
-            </div>
-            <div class="stack-row" data-reveal>
-                <span class="sr-cat">Deploy &amp; Tools</span>
-                <div class="sr-tags">
-                    <span class="sr-tag sr-hot">Vercel</span>
-                    <span class="sr-tag">Git / GitHub</span>
-                    <span class="sr-tag">Figma</span>
-                    <span class="sr-tag">Midjourney</span>
-                    <span class="sr-tag">Flux AI</span>
-                    <span class="sr-tag">Runway</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="contact-section">
-    <div id="contacto" style="position:relative;top:-100px;"></div>
-    <div class="wrap">
-        <div class="section-top" data-reveal-l>
-            <span class="label">Contacto</span>
-        </div>
-        <div class="contact-grid" data-reveal>
-            <div class="contact-left">
-                <h2 class="contact-heading" data-title>Tu próximo proyecto<br><em>merece más que una plantilla.</em></h2>
-                <p class="contact-sub-desc">Cuéntame qué necesitas. En menos de 24 horas tienes una propuesta real — con scope, precio y timing exactos. Sin compromiso, sin fórmulas genéricas.</p>
-                
-                <div class="contact-cta-buttons">
-                    <a href="https://wa.me/34674885902" target="_blank" rel="noopener" class="btn-contact-cta btn-whatsapp-cta magnetic">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="presupuesto.html" class="btn-contact-cta btn-quote-cta magnetic">
-                        <i class="fas fa-calculator"></i> Solicitar Presupuesto
-                    </a>
-                    <a href="mailto:jgscoding@gmail.com" class="btn-contact-cta btn-email-cta magnetic">
-                        <i class="fas fa-envelope"></i> Enviar Email
-                    </a>
-                </div>
-
-                <div class="contact-meta">
-                    <p><i class="fas fa-clock"></i> Respuesta en menos de 24h</p>
-                    <p><i class="fas fa-map-marker-alt"></i> España · Disponible remoto</p>
-                </div>
-                <div class="contact-social">
-                    <a href="https://www.instagram.com/jgstudio.dev/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/jesusgomez06/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/jesusgomez-data" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="contact-right">
-                <form action="https://formspree.io/f/mqakvjbe" method="POST" class="contact-form">
-                    <div class="form-pair">
-                        <div class="form-field">
-                            <label for="cf-name">Nombre</label>
-                            <input id="cf-name" type="text" name="name" required placeholder="Tu nombre">
-                        </div>
-                        <div class="form-field">
-                            <label for="cf-email">Email</label>
-                            <input id="cf-email" type="email" name="_replyto" required placeholder="tu@email.com">
-                        </div>
+                    <div>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-company">Empresa *</label>
+                        <input type="text" id="form-company" class="vz-form-input" placeholder="Nombre de tu empresa" required>
                     </div>
-                    <div class="form-field" style="margin-bottom:18px;">
-                        <label style="display:block; font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:8px;">Tipo de proyecto</label>
-                        <div style="display:flex; flex-wrap:wrap; gap:8px;" id="project-chips">
-                            <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
-                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
-                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización / IA')">Automatización / IA</button>
-                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
-                        </div>
-                        <input type="hidden" name="project_type" id="form-project-type" value="Página web">
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
+                    <div>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-email">Email *</label>
+                        <input type="email" id="form-email" class="vz-form-input" placeholder="tu@empresa.com" required>
                     </div>
-                    <div class="form-field">
-                        <label for="cf-msg">Cuéntame</label>
-                        <textarea id="cf-msg" name="message" rows="5" required placeholder="¿Qué necesita tu negocio?"></textarea>
+                    <div>
+                        <label class="label" style="display:block; margin-bottom:8px;" for="form-phone">Teléfono / WhatsApp *</label>
+                        <input type="tel" id="form-phone" class="vz-form-input" placeholder="+34 ..." required>
                     </div>
-                    <button type="submit" class="btn-fill magnetic">Enviar y empezar →</button>
-                </form>
-            </div>
-        </div>
-        <div class="contact-trust-row" data-reveal>
-            <span><i class="fas fa-check"></i> Respuesta en menos de 24h</span>
-            <span><i class="fas fa-check"></i> Código 100% propio</span>
-            <span><i class="fas fa-check"></i> Sin compromiso</span>
-            <span><i class="fas fa-check"></i> Propuesta a medida</span>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <label class="label" style="display:block; margin-bottom:8px;" for="form-city">Ciudad / Ubicación *</label>
+                    <input type="text" id="form-city" class="vz-form-input" placeholder="Ej: Madrid, Barcelona, Caracas..." required>
+                </div>
+
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">Tipo de proyecto *</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="project-chips">
+                        <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización / IA')">Automatización / IA</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
+                    </div>
+                    <input type="hidden" id="form-project-type" value="Página web">
+                </div>
+
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:8px;" for="form-details">¿Qué necesitas?</label>
+                    <textarea id="form-details" class="vz-form-textarea" rows="5" placeholder="Describe lo que quieres construir, mejorar o automatizar..."></textarea>
+                </div>
+
+                <div style="margin-bottom:22px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">Presupuesto aproximado</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="budget-chips">
+                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, 'Menos de $500')">Menos de $500</button>
+                        <button type="button" class="vz-chip-btn selected" onclick="selectBudget(this, '$500 – $1.000')">$500 – $1.000</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$1.000 – $2.500')">$1.000 – $2.500</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$2.500 – $5.000')">$2.500 – $5.000</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$5.000+')">$5.000+</button>
+                    </div>
+                    <input type="hidden" id="form-budget" value="$500 – $1.000">
+                </div>
+
+                <div style="margin-bottom:32px;">
+                    <label class="label" style="display:block; margin-bottom:10px;">¿Cuándo te gustaría tenerlo?</label>
+                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="deadline-chips">
+                        <button type="button" class="vz-chip-btn selected" onclick="selectDeadline(this, 'Lo antes posible')">Lo antes posible</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 semanas')">1 – 2 semanas</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '2 – 4 semanas')">2 – 4 semanas</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 meses')">1 – 2 meses</button>
+                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, 'Sin fecha definida')">Sin fecha definida</button>
+                    </div>
+                    <input type="hidden" id="form-deadline" value="Lo antes posible">
+                </div>
+
+                <input type="hidden" id="form-extras" value="">
+
+                <button type="submit" id="vz-submit-btn" class="btn-fill magnetic" style="width:100%; justify-content:center; padding:16px; font-size:0.95rem;">
+                    Enviar solicitud →
+                </button>
+
+                <p style="font-family:var(--f-m); font-size:0.62rem; color:var(--gray); text-align:center; margin-top:14px; letter-spacing:1px;">
+                    Te responderemos en menos de 24 horas con una propuesta a medida.
+                </p>
+
+                <div id="vz-form-feedback" style="display:none; margin-top:20px; padding:16px; border-radius:14px; text-align:center;"></div>
+            </form>
         </div>
     </div>
 </section>
@@ -2245,9 +1269,9 @@
         <img id="vlb-img" src="" alt="Imagen ampliada" style="display:none;">
     </div>
 </div>
+
 <!-- Asistente Virtual Mini -->
 <div class="assistant-widget" id="assistant-widget">
-    <!-- Trigger -->
     <button class="assistant-trigger" id="assistant-trigger" aria-label="Abrir chat con Jesús">
         <div class="avatar-base-glow" aria-hidden="true"></div>
         <div class="avatar-container">
@@ -2261,7 +1285,6 @@
         </div>
     </button>
 
-    <!-- Chat Box -->
     <div class="assistant-chatbox" id="assistant-chatbox">
         <div class="chatbox-header">
             <div class="chatbox-info">
@@ -2307,9 +1330,171 @@
 <script src="config.js"></script>
 <script src="script.js?v=20260904-ux"></script>
 
-<!-- ═══════════════════════════════════════════════════
-     COOKIE CONSENT BANNER — GDPR Compliant
-     ═══════════════════════════════════════════════════ -->
+<!-- Form & Chip Helper Scripts -->
+<script>
+    function selectChip(btn, value) {
+        document.querySelectorAll('#project-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('form-project-type').value = value;
+        if (typeof trackConversionEvent === 'function') trackConversionEvent('project_type_selected', { type: value });
+    }
+
+    function selectBudget(btn, value) {
+        document.querySelectorAll('#budget-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('form-budget').value = value;
+        if (typeof trackConversionEvent === 'function') trackConversionEvent('budget_selected', { budget: value });
+    }
+
+    function selectDeadline(btn, value) {
+        document.querySelectorAll('#deadline-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('form-deadline').value = value;
+        if (typeof trackConversionEvent === 'function') trackConversionEvent('deadline_selected', { deadline: value });
+    }
+
+    function selectProjectType(typeName, sourceId) {
+        if (typeof trackConversionEvent === 'function') {
+            trackConversionEvent('click_proposal', { source: sourceId, preselected_type: typeName });
+        }
+        const map = {
+            'Página web': 'Página web',
+            'E-commerce': 'E-commerce',
+            'Automatización / IA': 'Automatización / IA',
+            'Software a medida': 'Software a medida',
+            'Landing Page': 'Página web',
+            'Web Corporativa': 'Página web',
+            'Tienda Online': 'E-commerce',
+            'App / SaaS': 'Software a medida',
+            'Automatización & IA': 'Automatización / IA',
+            'Branding & Contenido': 'Página web'
+        };
+        const targetType = map[typeName] || typeName;
+        document.querySelectorAll('#project-chips .vz-chip-btn').forEach(btn => {
+            if (btn.innerText.trim() === targetType) {
+                btn.click();
+            }
+        });
+        const target = document.getElementById('contacto');
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbzX01G9pz9yjuG7Vw1d-nzMTHFKdO-vZmLiW37I1jg1RaZzTCsNmqJmgmtLXARujCry/exec';
+
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('vz-submit-btn');
+        const feedback = document.getElementById('vz-form-feedback');
+
+        const name = document.getElementById('form-name').value.trim();
+        const company = document.getElementById('form-company').value.trim();
+        const email = document.getElementById('form-email').value.trim();
+        const phone = document.getElementById('form-phone').value.trim();
+        const city = document.getElementById('form-city').value.trim();
+        const projectType = document.getElementById('form-project-type').value;
+        const details = document.getElementById('form-details').value.trim();
+        const budget = document.getElementById('form-budget').value;
+        const deadline = document.getElementById('form-deadline').value;
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'ENVIANDO SOLICITUD...';
+
+        if (typeof trackConversionEvent === 'function') {
+            trackConversionEvent('form_submit', {
+                project_type: projectType,
+                budget: budget,
+                city: city,
+                region: 'ES'
+            });
+        }
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18402857875/uBXJCJCavuUcEJOnIcdE'
+            });
+        }
+
+        const payload = {
+            name: name,
+            _replyto: email,
+            telefono: phone,
+            empresa: company,
+            region: 'ES',
+            tipo_proyecto: projectType,
+            presupuesto: budget,
+            plazo: deadline,
+            message: details,
+            extras: `Ciudad: ${city}`,
+            fecha: new Date().toISOString()
+        };
+
+        try {
+            const formData = new URLSearchParams();
+            Object.entries(payload).forEach(([key, value]) => {
+                formData.append(key, value == null ? '' : String(value));
+            });
+
+            await fetch(SHEETS_WEBAPP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: formData.toString()
+            });
+
+            feedback.style.display = 'block';
+            feedback.style.background = 'rgba(52, 211, 153, 0.12)';
+            feedback.style.border = '1px solid rgba(52, 211, 153, 0.3)';
+            feedback.style.color = '#34d399';
+
+            feedback.innerHTML = `
+                <h4 style="font-size:1.1rem; margin-bottom:6px;">¡Solicitud enviada con éxito!</h4>
+                <p style="font-size:0.88rem; color:#fff; margin-bottom:12px;">Te contactaremos en menos de 24 horas. ¡Muchas gracias!</p>
+                <a href="https://wa.me/34674885902?text=${encodeURIComponent('Hola JGStudio, acabo de enviar mi solicitud para ' + company + '.')}" target="_blank" rel="noopener" class="btn-fill" style="background:#25D366; border-color:#25D366; font-size:0.8rem; padding:8px 18px;">
+                    <i class="fa-brands fa-whatsapp"></i> Confirmar vía WhatsApp →
+                </a>
+            `;
+
+            document.getElementById('vz-lead-form').reset();
+            document.getElementById('form-project-type').value = 'Página web';
+            document.getElementById('form-budget').value = '$500 – $1.000';
+            document.getElementById('form-deadline').value = 'Lo antes posible';
+
+            document.querySelectorAll('#project-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#project-chips .vz-chip-btn')?.classList.add('selected');
+
+            document.querySelectorAll('#budget-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#budget-chips .vz-chip-btn:nth-child(2)')?.classList.add('selected');
+
+            document.querySelectorAll('#deadline-chips .vz-chip-btn').forEach(el => el.classList.remove('selected'));
+            document.querySelector('#deadline-chips .vz-chip-btn')?.classList.add('selected');
+
+            submitBtn.style.display = 'none';
+
+        } catch (err) {
+            console.error('Error submitting form:', err);
+
+            feedback.style.display = 'block';
+            feedback.style.background = 'rgba(214, 48, 49, 0.15)';
+            feedback.style.border = '1px solid var(--accent)';
+            feedback.style.color = '#fff';
+
+            feedback.innerHTML = `
+                <p style="margin-bottom:8px;">Hubo un problema de conexión al enviar el formulario.</p>
+                <a href="https://wa.me/34674885902?text=${encodeURIComponent('Hola JGStudio, quiero solicitar una propuesta para ' + company + '. Proyecto: ' + projectType)}" target="_blank" rel="noopener" class="btn-fill" style="background:#25D366; border-color:#25D366; font-size:0.8rem;">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar directo por WhatsApp →
+                </a>
+            `;
+
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'REINTENTAR ENVÍO';
+        }
+    }
+</script>
+
+<!-- Cookie Consent Banner -->
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" style="display:none;">
     <div class="cookie-content">
         <p class="cookie-text">
@@ -2338,14 +1523,14 @@
     }
     var stored; try{stored=localStorage.getItem(KEY);}catch(e){}
     if(!stored) banner.style.display='block';
-    ba.addEventListener('click',function(){setConsent('accepted');});
-    br.addEventListener('click',function(){setConsent('rejected');});
+    if(ba) ba.addEventListener('click',function(){setConsent('accepted');});
+    if(br) br.addEventListener('click',function(){setConsent('rejected');});
 })();
 </script>
 
 <!-- Floating Mobile Sticky CTA -->
 <div id="mobile-sticky-cta" class="mobile-sticky-cta" aria-label="Acciones rápidas">
-    <a href="presupuesto.html" class="m-sticky-btn-main">
+    <a href="#contacto" class="m-sticky-btn-main">
         <i class="fas fa-paper-plane"></i> Solicitar propuesta
     </a>
 </div>

@@ -930,3 +930,54 @@ if (document.readyState === 'loading') {
     initExpressQuiz();
 }
 
+/* ── Global CTA Select Project Type Handler ────────────────── */
+window.selectProjectType = function(typeName, sourceId) {
+    if (typeof trackConversionEvent === 'function') {
+        trackConversionEvent('click_proposal', { source: sourceId || 'cta', preselected_type: typeName });
+    }
+
+    const map = {
+        'Página web': 'Landing Page',
+        'E-commerce': 'Tienda Online',
+        'Automatización / IA': 'Automatización & IA',
+        'Software a medida': 'App / SaaS',
+        'Landing Page': 'Landing Page',
+        'Web Corporativa': 'Web Corporativa',
+        'Tienda Online': 'Tienda Online',
+        'App / SaaS': 'App / SaaS',
+        'Automatización & IA': 'Automatización & IA',
+        'Branding & Contenido': 'Branding & Contenido'
+    };
+
+    const targetType = map[typeName] || typeName;
+
+    // Check chips if present in form
+    let selected = false;
+    document.querySelectorAll('#project-chips .vz-chip-btn, .chip-btn, [data-project-type]').forEach(btn => {
+        if (btn.innerText.trim() === targetType || btn.dataset.projectType === targetType) {
+            btn.click();
+            selected = true;
+        }
+    });
+
+    const typeInput = document.getElementById('project-type-input') || document.querySelector('select[name="project_type"]');
+    if (typeInput && !selected) {
+        typeInput.value = targetType;
+    }
+
+    const target = document.getElementById('contacto') || document.getElementById('contact');
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        const typeParams = {
+            'Página web': 'web',
+            'E-commerce': 'ecom',
+            'Automatización / IA': 'ia',
+            'Software a medida': 'app'
+        };
+        const p = typeParams[typeName] || 'web';
+        window.location.href = `presupuesto.html?tipo=${p}`;
+    }
+};
+
+

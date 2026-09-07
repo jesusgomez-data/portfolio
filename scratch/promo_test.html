@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo 2 - Test de Fricción Digital</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --bg: #080808;
+    --surface: #121212;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #D63031;
+    --cream: #F0ECE5;
+    --gray: #8a8a8a;
+    --f-d: 'Cabinet Grotesk', sans-serif;
+    --f-b: 'Satoshi', sans-serif;
+    --f-m: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    width: 1080px;
+    height: 1920px;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--f-b);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 50px;
+}
+/* Ambient glow */
+body::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 750px;
+    height: 750px;
+    background: radial-gradient(circle, rgba(214, 48, 49, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.brand-header {
+    position: absolute;
+    top: 80px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.brand-logo {
+    height: 54px;
+}
+.brand-name {
+    font-family: var(--f-d);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+.badge-tag {
+    font-family: var(--f-m);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(214, 48, 49, 0.12);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+    padding: 8px 20px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.promo-container {
+    width: 100%;
+    max-width: 960px;
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 60px 50px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 2;
+}
+
+.promo-title {
+    font-family: var(--f-d);
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.promo-title span {
+    color: var(--accent);
+}
+.promo-sub {
+    text-align: center;
+    font-size: 1.35rem;
+    color: var(--gray);
+    margin-bottom: 40px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 33.33%;
+    background: var(--accent);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-box {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+.step-box.active { display: block; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.q-label {
+    font-family: var(--f-d);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.q-num {
+    font-family: var(--f-m);
+    font-size: 1rem;
+    background: rgba(214, 48, 49, 0.15);
+    color: var(--accent);
+    padding: 6px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(214, 48, 49, 0.3);
+}
+
+.opts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+.opt-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 28px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.opt-card.selected {
+    border-color: var(--accent);
+    background: rgba(214, 48, 49, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(214, 48, 49, 0.2);
+}
+.opt-icon {
+    font-size: 2.2rem;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.opt-text h4 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.opt-text p {
+    font-size: 1rem;
+    color: var(--gray);
+}
+
+/* Result Box */
+.res-card {
+    background: radial-gradient(circle at top right, rgba(214,48,49,0.2) 0%, rgba(18,18,18,0.95) 80%);
+    border: 1.5px solid rgba(214, 48, 49, 0.4);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+}
+.res-diag-badge {
+    font-family: var(--f-m);
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FF5252;
+    background: rgba(214, 48, 49, 0.15);
+    border: 1px solid rgba(214, 48, 49, 0.4);
+    padding: 8px 24px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.res-headline {
+    font-family: var(--f-d);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+.res-desc {
+    font-size: 1.3rem;
+    color: #ccc;
+    max-width: 720px;
+    margin: 0 auto 36px auto;
+    line-height: 1.6;
+}
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--f-d);
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 24px 48px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 12px 35px rgba(214, 48, 49, 0.45);
+}
+
+.footer-brand {
+    position: absolute;
+    bottom: 60px;
+    font-family: var(--f-m);
+    font-size: 1rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="brand-header">
+    <img src="img/logo_jgs_oficial.png" alt="JGStudio" class="brand-logo">
+    <span class="brand-name">JGStudio</span>
+</div>
+
+<div class="promo-container">
+    <div style="text-align:center;">
+        <span class="badge-tag"><i class="fas fa-microscope"></i> Test para Negocios</span>
+    </div>
+    <h1 class="promo-title">Test de <span>Fricción Digital</span></h1>
+    <p class="promo-sub">Analiza los cuellos de botella de tu negocio en 3 preguntas</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-box active" id="step-1">
+        <div class="q-label">
+            <span class="q-num">PREGUNTA 1 DE 3</span>
+            <span>¿Cómo capta clientes tu negocio hoy?</span>
+        </div>
+        <div class="opts-grid">
+            <div class="opt-card" id="opt1-1">
+                <div class="opt-icon">📱</div>
+                <div class="opt-text">
+                    <h4>Redes Sociales</h4>
+                    <p>Publicaciones manuales sin embudo automatizado</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-2">
+                <div class="opt-icon">💬</div>
+                <div class="opt-text">
+                    <h4>Manual por WhatsApp</h4>
+                    <p>Atención uno a uno consume todo el día</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-3">
+                <div class="opt-icon">🌐</div>
+                <div class="opt-text">
+                    <h4>Web Antigua / Lenta</h4>
+                    <p>Las visitas entran pero no convierten</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-4">
+                <div class="opt-icon">⚠️</div>
+                <div class="opt-text">
+                    <h4>Cero Automatización</h4>
+                    <p>Dependencia total de procesos manuales</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-box" id="step-2">
+        <div class="q-label">
+            <span class="q-num">PREGUNTA 2 DE 3</span>
+            <span>¿Qué te quita más tiempo al día?</span>
+        </div>
+        <div class="opts-grid">
+            <div class="opt-card" id="opt2-1">
+                <div class="opt-icon">📩</div>
+                <div class="opt-text">
+                    <h4>Mensajes repetitivos</h4>
+                    <p>Responder las mismas preguntas una y otra vez</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-2">
+                <div class="opt-icon">📆</div>
+                <div class="opt-text">
+                    <h4>Gestionar citas y agenda</h4>
+                    <p>Coordinación manual de horarios y clientes</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-3">
+                <div class="opt-icon">🎬</div>
+                <div class="opt-text">
+                    <h4>Creación de contenido</h4>
+                    <p>Diseño y edición constante para redes</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-4">
+                <div class="opt-icon">⚙️</div>
+                <div class="opt-text">
+                    <h4>Papeleo y tareas manuales</h4>
+                    <p>Sin integración de CRM ni facturación</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 / Result -->
+    <div class="step-box" id="step-3">
+        <div class="res-card">
+            <span class="res-diag-badge">Diagnóstico Final</span>
+            <h3 class="res-headline">Tu negocio está perdiendo +15 horas a la semana en tareas repetitivas</h3>
+            <p class="res-desc">Una estructura web moderna con agentes de IA y automatizaciones puede filtrar leads, responder mensajes y cerrar clientes en piloto automático.</p>
+            <div class="btn-cta">
+                Quiero solucionar esto →
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-brand">
+    JGStudio.dev · Inteligencia Artificial & Desarrollo Web
+</div>
+
+<script>
+window.showStep = function(n) {
+    document.querySelectorAll('.step-box').forEach(el => el.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    document.getElementById('progress-fill').style.width = (n * 33.33) + '%';
+};
+window.selectOpt = function(step, id) {
+    const card = document.getElementById(id);
+    if(card) card.classList.add('selected');
+};
+</script>
+</body>
+</html>

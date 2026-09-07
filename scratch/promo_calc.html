@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo 1 - Calculadora de Presupuestos Express</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --bg: #080808;
+    --surface: #121212;
+    --border: rgba(255, 255, 255, 0.1);
+    --accent: #D63031;
+    --cream: #F0ECE5;
+    --gray: #8a8a8a;
+    --f-d: 'Cabinet Grotesk', sans-serif;
+    --f-b: 'Satoshi', sans-serif;
+    --f-m: 'JetBrains Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    width: 1080px;
+    height: 1920px;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--f-b);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 50px;
+}
+/* Subtle background glow */
+body::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(214, 48, 49, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.brand-header {
+    position: absolute;
+    top: 80px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.brand-logo {
+    height: 54px;
+}
+.brand-name {
+    font-family: var(--f-d);
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+.badge-tag {
+    font-family: var(--f-m);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(214, 48, 49, 0.12);
+    border: 1px solid rgba(214, 48, 49, 0.3);
+    padding: 8px 20px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.promo-container {
+    width: 100%;
+    max-width: 960px;
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 60px 50px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 2;
+}
+
+.promo-title {
+    font-family: var(--f-d);
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.promo-title span {
+    color: var(--accent);
+}
+.promo-sub {
+    text-align: center;
+    font-size: 1.35rem;
+    color: var(--gray);
+    margin-bottom: 40px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    width: 33.33%;
+    background: var(--accent);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.step-box {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+.step-box.active { display: block; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.q-label {
+    font-family: var(--f-d);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.q-num {
+    font-family: var(--f-m);
+    font-size: 1rem;
+    background: rgba(214, 48, 49, 0.15);
+    color: var(--accent);
+    padding: 6px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(214, 48, 49, 0.3);
+}
+
+.opts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+.opt-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 28px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.opt-card.selected {
+    border-color: var(--accent);
+    background: rgba(214, 48, 49, 0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(214, 48, 49, 0.2);
+}
+.opt-icon {
+    font-size: 2.2rem;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.opt-text h4 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.opt-text p {
+    font-size: 1rem;
+    color: var(--gray);
+}
+
+/* Result Box */
+.res-card {
+    background: radial-gradient(circle at top right, rgba(214,48,49,0.2) 0%, rgba(18,18,18,0.95) 80%);
+    border: 1.5px solid rgba(214, 48, 49, 0.4);
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+}
+.res-price {
+    font-family: var(--f-d);
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 24px 0 12px 0;
+}
+.res-price span {
+    font-size: 2rem;
+    color: var(--accent);
+}
+.res-desc {
+    font-size: 1.25rem;
+    color: #ccc;
+    max-width: 720px;
+    margin: 0 auto 36px auto;
+    line-height: 1.6;
+}
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--f-d);
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 24px 48px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 12px 35px rgba(214, 48, 49, 0.45);
+}
+
+.footer-brand {
+    position: absolute;
+    bottom: 60px;
+    font-family: var(--f-m);
+    font-size: 1rem;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="brand-header">
+    <img src="img/logo_jgs_oficial.png" alt="JGStudio" class="brand-logo">
+    <span class="brand-name">JGStudio</span>
+</div>
+
+<div class="promo-container">
+    <div style="text-align:center;">
+        <span class="badge-tag"><i class="fas fa-calculator"></i> Herramienta Interactiva</span>
+    </div>
+    <h1 class="promo-title">Calculadora de <span>Presupuestos Express</span></h1>
+    <p class="promo-sub">Cotiza tu proyecto web o solución de IA en 3 pasos</p>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step-box active" id="step-1">
+        <div class="q-label">
+            <span class="q-num">PASO 1 DE 3</span>
+            <span>¿Qué tipo de proyecto necesitas?</span>
+        </div>
+        <div class="opts-grid">
+            <div class="opt-card" id="opt1-1">
+                <div class="opt-icon">⚡</div>
+                <div class="opt-text">
+                    <h4>Landing Page</h4>
+                    <p>Conversión rápida y captación de leads</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-2">
+                <div class="opt-icon">🌐</div>
+                <div class="opt-text">
+                    <h4>Web Corporativa</h4>
+                    <p>Autoridad de marca y multipágina</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-3">
+                <div class="opt-icon">🛒</div>
+                <div class="opt-text">
+                    <h4>Tienda Online</h4>
+                    <p>E-commerce con catálogo y Stripe/PayPal</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt1-4">
+                <div class="opt-icon">🤖</div>
+                <div class="opt-text">
+                    <h4>Automatización e IA</h4>
+                    <p>Workflows, CRM y agentes inteligentes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-box" id="step-2">
+        <div class="q-label">
+            <span class="q-num">PASO 2 DE 3</span>
+            <span>¿Qué nivel de urgencia o extras requieres?</span>
+        </div>
+        <div class="opts-grid">
+            <div class="opt-card" id="opt2-1">
+                <div class="opt-icon">📅</div>
+                <div class="opt-text">
+                    <h4>Estándar (2-3 semanas)</h4>
+                    <p>Desarrollo y entrega a ritmo normal</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-2">
+                <div class="opt-icon">🧠</div>
+                <div class="opt-text">
+                    <h4>Con IA integrada</h4>
+                    <p>Chatbot inteligente y captura automática</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-3">
+                <div class="opt-icon">🔥</div>
+                <div class="opt-text">
+                    <h4>Urgente / Prioritario</h4>
+                    <p>Entrega express en 7 días</p>
+                </div>
+            </div>
+            <div class="opt-card" id="opt2-4">
+                <div class="opt-icon">🚀</div>
+                <div class="opt-text">
+                    <h4>App / Plataforma SaaS</h4>
+                    <p>Código custom con Supabase y Node</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3 / Result -->
+    <div class="step-box" id="step-3">
+        <div class="res-card">
+            <span class="badge-tag" style="background:rgba(37,211,102,0.15); color:#25D366; border-color:rgba(37,211,102,0.3);">Estimación Personalizada</span>
+            <div class="res-price">desde $350 <span>USD</span></div>
+            <p class="res-desc">Solución adaptada a tus requerimientos. Incluye código 100% propio, diseño ultra rápido, optimización SEO y entrega llave en mano.</p>
+            <div class="btn-cta">
+                Solicitar este presupuesto →
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-brand">
+    JGStudio.dev · Diseño, Código e Inteligencia Artificial
+</div>
+
+<script>
+window.showStep = function(n) {
+    document.querySelectorAll('.step-box').forEach(el => el.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    document.getElementById('progress-fill').style.width = (n * 33.33) + '%';
+};
+window.selectOpt = function(step, id) {
+    const card = document.getElementById(id);
+    if(card) card.classList.add('selected');
+};
+</script>
+</body>
+</html>

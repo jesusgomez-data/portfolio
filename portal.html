@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Privado — JGStudio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+    <!-- Fontshare & Google Fonts -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Premium Bento Styles -->
+    <link rel="stylesheet" href="portal-premium.css">
+</head>
+<body>
+
+    <header class="p-header">
+        <div class="p-brand">
+            <img src="img/logo_jgs_oficial.png" alt="JGStudio" style="height:28px;">
+        </div>
+        <div class="p-user">
+            <span class="p-email" id="userEmail">Cargando...</span>
+            <a href="#" class="p-logout" onclick="logout(event)"><i class="fas fa-sign-out-alt"></i> Salir</a>
+        </div>
+    </header>
+
+    <main class="p-layout">
+        
+        <div class="bento-grid">
+            
+            <!-- PANEL 1: IDENTIDAD Y PROGRESO -->
+            <div class="bento-card card-identity">
+                <div class="noise-overlay"></div>
+                <div class="card-content">
+                    <div>
+                        <div class="b-label"><i class="fas fa-rocket"></i> Desarrollo Activo</div>
+                        <h1 class="b-title" id="projectName">Iniciando...</h1>
+                        <p class="b-subtitle" id="phaseDesc">Conectando con tu entorno seguro.</p>
+                    </div>
+
+                    <div class="radial-container">
+                        <div class="radial-chart">
+                            <svg>
+                                <circle class="radial-bg" cx="60" cy="60" r="45"></circle>
+                                <circle class="radial-progress" id="progressCircle" cx="60" cy="60" r="45"></circle>
+                            </svg>
+                            <div class="radial-text"><span id="progressText">0</span>%</div>
+                        </div>
+                        <div class="radial-info">
+                            <h4 id="phaseText">--</h4>
+                            <p>Fase actual del proyecto</p>
+                            <a id="projectUrlBtn" href="#" target="_blank" style="display:none; margin-top:12px; padding: 8px 16px; background: rgba(255,42,64,0.1); border: 1px solid rgba(255,42,64,0.2); color: var(--accent); border-radius: 20px; text-decoration:none; font-family:var(--f-mono); font-size:0.85rem; align-items:center; gap:8px; width: fit-content; transition: background 0.3s ease;">
+                                <i class="fas fa-external-link-alt"></i> Visitar Proyecto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: ESTADO FINANCIERO -->
+            <div class="bento-card card-finance">
+                <div class="noise-overlay"></div>
+                <div class="card-content">
+                    <div class="b-label"><i class="fas fa-file-invoice-dollar"></i> Facturación & Mantenimiento</div>
+                    
+                    <div style="flex-grow: 1; display:flex; flex-direction:column; justify-content:center;">
+                        <div class="fin-status" id="finStatusBadge">
+                            <div class="fin-dot"></div>
+                            <span id="finStatusText">Cargando</span>
+                        </div>
+                        
+                        <div class="fin-amount" id="finAmount">$0 <span>/mes</span></div>
+                        <div class="fin-desc" id="finDesc" style="margin-bottom: 16px;">Actualizando estado de cuenta...</div>
+                        <button id="payBtn" style="display:none; width:100%; padding: 12px; font-size: 0.95rem; font-family: var(--f-mono); border-radius: 12px; background: var(--accent); color: white; border: none; font-weight: bold; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 15px var(--accent-glow);" onclick="alert('Próximamente: Integración con Stripe para pagos con Tarjeta y Apple/Google Pay.')"><i class="fas fa-credit-card"></i> Pagar Ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: VISITAS (SPARKLINE) -->
+            <div class="bento-card card-metric" style="grid-column: span 6;">
+                <div class="noise-overlay"></div>
+                <svg class="sparkline" preserveAspectRatio="none" viewBox="0 0 100 40">
+                    <path d="M0,40 Q10,30 20,35 T40,20 T60,25 T80,10 T100,5"></path>
+                </svg>
+                <div class="card-content">
+                    <div class="b-label"><i class="fas fa-chart-line"></i> Tráfico Web</div>
+                    <div class="m-value" id="statVisits">--</div>
+                    <div class="m-trend"><i class="fas fa-arrow-up"></i> Alto impacto reciente</div>
+                </div>
+            </div>
+
+            <!-- PANEL 4: LEADS / CONVERSIONES -->
+            <div class="bento-card card-metric" style="grid-column: span 6; border-color: rgba(255,42,64,0.3);">
+                <div class="noise-overlay"></div>
+                <svg class="sparkline alt" preserveAspectRatio="none" viewBox="0 0 100 40">
+                    <path d="M0,35 Q20,40 30,20 T60,25 T80,5 T100,0"></path>
+                </svg>
+                <div class="card-content">
+                    <div class="b-label" style="color:var(--text-main)"><i class="fas fa-users"></i> Nuevos Leads</div>
+                    <div class="m-value" id="statLeads" style="color:var(--accent)">--</div>
+                    <div class="m-trend" style="color:rgba(255,255,255,0.7)">Captación activa</div>
+                </div>
+            </div>
+
+            <!-- PANEL 6: SOPORTE DIRECTO (CHAT) -->
+            <div class="bento-card card-chat">
+                <div class="noise-overlay"></div>
+                <div class="card-content">
+                    <div class="b-label"><i class="far fa-comments"></i> Mensajes y Reportes (CEO)</div>
+                    <div class="chat-container">
+                        <div class="chat-messages" id="clientChatMsgs">
+                            <div class="msg-bubble msg-client">Hola, tengo una duda con la sección de pagos de mi web. <div class="msg-time">Ayer 14:30</div></div>
+                            <div class="msg-bubble msg-ceo">Hola. Ya lo reviso y te aviso en unos minutos. <div class="msg-time">Ayer 15:00</div></div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="clientChatIn" class="chat-input" placeholder="Escribe tu consulta al CEO...">
+                            <button type="button" class="chat-send" onclick="sendClientMsg()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Supabase JS & Auth Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="jg_core_v3.js"></script>
+    
+    <script>
+        async function logout(e) {
+            e.preventDefault();
+            localStorage.removeItem('demo_email');
+            try { await supabaseClient.auth.signOut(); } catch(e){}
+            window.location.href = 'login.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            let email = localStorage.getItem('jg_user_email') || localStorage.getItem('demo_email');
+            if(!email) { window.location.href = 'login.html'; return; }
+            
+            const role = localStorage.getItem('jg_user_role');
+            const urlParams = new URLSearchParams(window.location.search);
+            const viewAs = urlParams.get('viewAs');
+            
+            if (role === 'admin' && viewAs) {
+                email = viewAs; // CEO is viewing this client's portal
+            }
+            
+            document.getElementById('userEmail').textContent = email;
+
+            try {
+                // Obtener datos reales de Supabase
+                const project = await getClientProject(email);
+                
+                if (!project) {
+                    document.getElementById('projectName').textContent = "Proyecto no encontrado";
+                    return;
+                }
+                
+                window.currentProjectId = project.id;
+
+                // Cargar mensajes iniciales
+                loadClientChat(project.id);
+
+                // Asignar Textos Base
+                document.getElementById('projectName').textContent = project.nombre_proyecto;
+                document.getElementById('phaseText').textContent = project.estado;
+                document.getElementById('phaseDesc').textContent = 'Progreso actualizado por JGStudio.';
+                
+                const urlBtn = document.getElementById('projectUrlBtn');
+                if (project.proyecto_url && project.proyecto_url.trim() !== '') {
+                    urlBtn.href = project.proyecto_url;
+                    urlBtn.style.display = 'inline-flex';
+                } else {
+                    urlBtn.style.display = 'none';
+                }
+                
+                // Animar Radial
+                setTimeout(() => {
+                    const offset = 283 - (283 * project.progreso) / 100;
+                    const circle = document.getElementById('progressCircle');
+                    circle.style.strokeDashoffset = offset;
+                    
+                    if(project.progreso >= 100) {
+                        circle.style.stroke = 'var(--success)';
+                        circle.style.filter = 'drop-shadow(0 0 10px var(--success-glow))';
+                        document.querySelector('.b-label').innerHTML = '<i class="fas fa-check-circle" style="color:var(--success)"></i> Proyecto Finalizado';
+                    }
+                    
+                    animateValue("progressText", 0, project.progreso, 1500);
+                }, 300);
+
+                // Asignar Métricas
+                document.getElementById('statVisits').innerText = project.visitas || '0';
+                document.getElementById('statLeads').innerText = project.leads || '0';
+
+                // Modulo Financiero
+                const badge = document.getElementById('finStatusBadge');
+                const badgeText = document.getElementById('finStatusText');
+                const amount = document.getElementById('finAmount');
+                const desc = document.getElementById('finDesc');
+                
+                amount.innerHTML = '$' + (project.monto_mantenimiento || 0) + ' <span>/mes</span>';
+                
+                const payBtn = document.getElementById('payBtn');
+                
+                if(project.mantenimiento === 'paid') {
+                    badge.className = 'fin-status paid';
+                    badgeText.textContent = 'Al Día';
+                    desc.textContent = 'Gracias por tu pago. Todo está operando correctamente.';
+                    payBtn.style.display = 'none';
+                } else if(project.mantenimiento === 'pending') {
+                    badge.className = 'fin-status pending';
+                    badgeText.textContent = 'Pago Pendiente';
+                    desc.textContent = 'Tienes un pago atrasado de este mes. Por favor, regularízalo pronto para evitar interrupciones.';
+                    payBtn.style.display = 'block';
+                } else {
+                    badge.className = 'fin-status';
+                    badgeText.textContent = 'Sin Mantenimiento';
+                    desc.textContent = 'No tienes un plan de soporte activo en este momento.';
+                    payBtn.style.display = 'none';
+                }
+
+            } catch (e) {
+                console.error("Error loading portal:", e);
+                document.getElementById('projectName').textContent = "Error de conexión";
+            }
+        });
+
+
+
+        async function loadClientChat(projectId) {
+            const msgsContainer = document.getElementById('clientChatMsgs');
+            msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Cargando mensajes...</div>';
+            
+            const messages = await getMessages(projectId);
+            msgsContainer.innerHTML = '';
+            if(messages.length === 0) {
+                msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Envía un mensaje al CEO para recibir soporte.</div>';
+            } else {
+                messages.forEach(m => {
+                    const isClient = m.sender === 'client';
+                    const timeStr = new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                    msgsContainer.innerHTML += `<div class="msg-bubble ${isClient ? 'msg-client' : 'msg-ceo'}">${m.mensaje} <div class="msg-time">${timeStr}</div></div>`;
+                });
+            }
+            msgsContainer.scrollTop = msgsContainer.scrollHeight;
+        }
+
+        async function sendClientMsg() {
+            const input = document.getElementById('clientChatIn');
+            if(input.value.trim() === '') return;
+            const text = input.value;
+            input.value = '';
+            
+            const msgs = document.getElementById('clientChatMsgs');
+            msgs.innerHTML += `<div class="msg-bubble msg-client">${text} <div class="msg-time">Enviando...</div></div>`;
+            msgs.scrollTop = msgs.scrollHeight;
+            
+            if (window.currentProjectId) {
+                await sendMessage(window.currentProjectId, 'client', text);
+                loadClientChat(window.currentProjectId); // reload real msgs
+            }
+        }
+
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
+</html>

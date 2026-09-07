@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEO Dashboard — JGStudio</title>
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+    <!-- Fontshare: Cabinet Grotesk & Satoshi -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Admin Premium Styles -->
+    <link rel="stylesheet" href="admin-premium.css">
+</head>
+<body>
+
+    <header class="p-header">
+        <div class="p-brand">
+            <a href="index.html" class="p-back" title="Volver al inicio"><i class="fas fa-arrow-left"></i></a>
+            <img src="img/logo_jgs_oficial.png" alt="JGStudio">
+        </div>
+        <div class="p-user">
+            <span class="p-email" id="userEmail">Cargando...</span>
+            <a href="#" class="p-logout" onclick="logout(event)"><i class="fas fa-power-off"></i> Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <main class="p-layout">
+        
+        <h1 class="p-title">Centro de Mando</h1>
+        <p class="p-subtitle">Operaciones en tiempo real · JGStudio</p>
+
+        <!-- CEO Global Metrics — Oversized Hero Numbers -->
+        <div class="ceo-metrics">
+            <div class="metric-card">
+                <div class="metric-label"><i class="fas fa-circle" style="font-size:4px;color:var(--green)"></i> Proyectos</div>
+                <div class="metric-value" id="totalActive">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label"><i class="fas fa-circle" style="font-size:4px;color:var(--red)"></i> Ingresos Recurrentes</div>
+                <div class="metric-value accent" id="totalMrr">$0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label"><i class="fas fa-circle" style="font-size:4px;color:var(--amber)"></i> Leads</div>
+                <div class="metric-value" id="totalLeads">0</div>
+            </div>
+        </div>
+
+
+        <div class="project-grid" id="projectsList">
+            <!-- Proyectos inyectados por JS -->
+        </div>
+
+    </main>
+
+    <!-- Botón Flotante para crear proyecto -->
+    <button class="btn-floating" onclick="openModal()"><i class="fas fa-plus"></i></button>
+
+    <!-- Modal Nuevo Proyecto -->
+    <div class="modal-overlay" id="newProjectModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <h2 class="modal-title">Nuevo Proyecto</h2>
+            <form onsubmit="createProject(event)">
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label>Nombre del Proyecto</label>
+                    <input type="text" id="new_name" placeholder="Ej. E-commerce Premium" required>
+                </div>
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label>Email del Cliente</label>
+                    <input type="email" id="new_email" placeholder="cliente@empresa.com" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Contraseña Temporal</label>
+                        <input type="text" id="new_pass" value="jgstudio2024" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mantenimiento ($)</label>
+                        <input type="number" id="new_monto" value="0">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:24px;">Crear Cliente</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Supabase JS & Auth Logic -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="jg_core_v3.js"></script>
+    
+    <script>
+        async function logout(e) {
+            e.preventDefault();
+            localStorage.removeItem('demo_email');
+            try { await supabaseClient.auth.signOut(); } catch(e){}
+            window.location.href = 'login.html';
+        }
+
+        let currentProjects = [];
+
+        function calculateMetrics(projects) {
+            const totalProjects = projects.length;
+            let totalMrr = 0;
+            let totalLeads = 0;
+            
+            projects.forEach(p => {
+                if (p.mantenimiento === 'paid') totalMrr += Number(p.monto_mantenimiento) || 0;
+                
+                const leadsStr = String(p.leads || '0');
+                const l = leadsStr.replace(/k/i, '000').replace(/[^0-9]/g, '');
+                if (!isNaN(parseInt(l))) totalLeads += parseInt(l);
+            });
+            
+            document.getElementById('totalActive').textContent = totalProjects;
+            document.getElementById('totalMrr').textContent = '$' + totalMrr;
+            document.getElementById('totalLeads').textContent = totalLeads;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const email = localStorage.getItem('jg_user_email') || localStorage.getItem('demo_email');
+            if(email) {
+                document.getElementById('userEmail').textContent = email;
+            } else {
+                window.location.href = 'login.html';
+            }
+
+            try {
+                // Cargar proyectos reales de Supabase
+                currentProjects = await loadAllProjects();
+                calculateMetrics(currentProjects);
+                renderProjects(currentProjects);
+            } catch (e) {
+                console.error("Error loading projects:", e);
+                document.getElementById('projectsList').innerHTML = "<p style='color:red'>Error cargando proyectos. Verifica la conexión a Supabase.</p>";
+            }
+        });
+        
+        function getBadgeHtml(status) {
+            if (status === 'paid') return `<span class="badge paid">Al Día</span>`;
+            if (status === 'pending') return `<span class="badge pending">Pendiente</span>`;
+            return `<span class="badge none">Sin Servicio</span>`;
+        }
+
+        function renderProjects(projects) {
+            const list = document.getElementById('projectsList');
+            if (projects.length === 0) {
+                list.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding: 40px 0;">Aún no has agregado proyectos. Usa el botón flotante (+) para crear uno.</p>';
+                return;
+            }
+            
+            list.innerHTML = '';
+            
+            projects.forEach((p, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.style.animationDelay = `${0.4 + index * 0.1}s`;
+                card.innerHTML = `
+                    <div class="pc-header">
+                        <div style="flex-grow:1; margin-right: 16px;">
+                            <input type="text" id="name_${p.id}" class="pc-title-edit" value="${p.nombre_proyecto}" spellcheck="false" title="Haz clic para editar el nombre">
+                            <div class="pc-client">${p.cliente_email}</div>
+                        </div>
+                        ${getBadgeHtml(p.mantenimiento)}
+                    </div>
+                    <form onsubmit="saveProject(event, '${p.id}')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Mantenimiento ($)</label>
+                                <input type="number" id="monto_${p.id}" value="${p.monto_mantenimiento}">
+                            </div>
+                            <div class="form-group">
+                                <label>Estado de Pago</label>
+                                <select id="mant_${p.id}">
+                                    <option value="paid" ${p.mantenimiento==='paid'?'selected':''}>Pagado</option>
+                                    <option value="pending" ${p.mantenimiento==='pending'?'selected':''}>Pendiente</option>
+                                    <option value="none" ${p.mantenimiento==='none'?'selected':''}>Ninguno</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Fase Actual</label>
+                                <input type="text" id="status_${p.id}" value="${p.estado}">
+                            </div>
+                            <div class="form-group">
+                                <label>Progreso (%)</label>
+                                <input type="number" id="prog_${p.id}" value="${p.progreso}" min="0" max="100">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label>Enlace del Proyecto (URL)</label>
+                                <input type="url" id="url_${p.id}" value="${p.proyecto_url || ''}" placeholder="https://www.proyecto.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                            <div class="form-group">
+                                <label>Visitas</label>
+                                <input type="text" id="v_${p.id}" value="${p.visitas}" readonly style="opacity:0.6;cursor:default;" title="Se actualiza automáticamente">
+                            </div>
+                            <div class="form-group">
+                                <label>Leads / Ventas</label>
+                                <input type="text" id="l_${p.id}" value="${p.leads}">
+                            </div>
+                        </div>
+                        
+                        <div class="card-actions">
+                            <a href="portal.html?viewAs=${encodeURIComponent(p.cliente_email)}" class="btn-secondary" title="Ver lo que ve el cliente" target="_blank">
+                                <i class="far fa-eye"></i> Ver Portal
+                            </a>
+                            <button type="button" class="btn-secondary" onclick="toggleChat('${p.id}')">
+                                <i class="far fa-comments"></i> Chat
+                            </button>
+                            <button type="submit" class="btn-primary">Guardar <i class="fas fa-check"></i></button>
+                        </div>
+
+                        <!-- Chat Section (Hidden by default) -->
+                        <div id="chat_sec_${p.id}" style="display:none; margin-top:24px; padding-top:20px; border-top:1px solid var(--border-dim);">
+                            <div class="b-label" style="margin-bottom:12px;"><i class="far fa-comments"></i> Soporte Directo</div>
+                            <div class="chat-container">
+                                <div class="chat-messages" id="chat_msgs_${p.id}">
+                                    <div class="msg-time" style="text-align:center; margin-bottom:10px;">Cargando mensajes...</div>
+                                </div>
+                                <div class="chat-input-area">
+                                    <input type="text" id="chat_in_${p.id}" class="chat-input" placeholder="Escribe al cliente...">
+                                    <button type="button" class="chat-send" onclick="sendAdminMsg('${p.id}')"><i class="fas fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                `;
+                list.appendChild(card);
+            });
+        }
+        
+        async function toggleChat(id) {
+            const sec = document.getElementById('chat_sec_'+id);
+            if (sec.style.display === 'none') {
+                sec.style.display = 'block';
+                // Cargar mensajes reales
+                const msgsContainer = document.getElementById('chat_msgs_'+id);
+                msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Cargando...</div>';
+                const messages = await getMessages(id);
+                msgsContainer.innerHTML = '';
+                if(messages.length === 0) {
+                    msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">No hay mensajes aún.</div>';
+                } else {
+                    messages.forEach(m => {
+                        const isCeo = m.sender === 'ceo';
+                        const timeStr = new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        msgsContainer.innerHTML += `<div class="msg-bubble ${isCeo ? 'msg-ceo' : 'msg-client'}">${m.mensaje} <div class="msg-time">${timeStr}</div></div>`;
+                    });
+                }
+                msgsContainer.scrollTop = msgsContainer.scrollHeight;
+            } else {
+                sec.style.display = 'none';
+            }
+        }
+        
+        async function sendAdminMsg(id) {
+            const input = document.getElementById('chat_in_'+id);
+            if(input.value.trim() === '') return;
+            const text = input.value;
+            input.value = '';
+            
+            const msgs = document.getElementById('chat_msgs_'+id);
+            msgs.innerHTML += `<div class="msg-bubble msg-ceo">${text} <div class="msg-time">Enviando...</div></div>`;
+            msgs.scrollTop = msgs.scrollHeight;
+            
+            await sendMessage(id, 'ceo', text);
+            // Recargar para mostrar tiempo real (opcional) o dejarlo optimista
+            toggleChat(id); // reload hack
+            toggleChat(id);
+        }
+
+        function openModal() { document.getElementById('newProjectModal').classList.add('active'); }
+        function closeModal() { document.getElementById('newProjectModal').classList.remove('active'); }
+        
+        async function createProject(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.textContent = "Creando...";
+            
+            const nombre = document.getElementById('new_name').value;
+            const email = document.getElementById('new_email').value;
+            const monto = document.getElementById('new_monto').value;
+            
+            try {
+                await createNewProject(nombre, email, monto);
+                closeModal();
+                btn.textContent = "Crear Cliente";
+                alert('¡Cliente creado exitosamente en Supabase!');
+                location.reload(); // Recargar para ver el nuevo
+            } catch(error) {
+                btn.textContent = "Error";
+                alert("Hubo un error guardando en Supabase.");
+            }
+        }
+        
+        async function saveProject(e, id) {
+            e.preventDefault();
+            const btn = e.target.querySelector('.btn-primary');
+            btn.innerHTML = 'Guardando... <i class="fas fa-spinner fa-spin"></i>';
+            
+            const updates = {
+                nombre_proyecto: document.getElementById('name_'+id).value,
+                mantenimiento: document.getElementById('mant_'+id).value,
+                monto_mantenimiento: document.getElementById('monto_'+id).value,
+                estado: document.getElementById('status_'+id).value,
+                progreso: document.getElementById('prog_'+id).value,
+                proyecto_url: document.getElementById('url_'+id).value,
+                visitas: document.getElementById('v_'+id).value,
+                leads: document.getElementById('l_'+id).value
+            };
+            
+            try {
+                await updateProject(id, updates);
+                setTimeout(() => {
+                    btn.innerHTML = '¡Guardado! <i class="fas fa-check"></i>';
+                    btn.style.background = 'var(--success)';
+                    setTimeout(() => {
+                        btn.innerHTML = 'Actualizar <i class="fas fa-check"></i>';
+                        btn.style.background = 'var(--text-main)';
+                    }, 2000);
+                }, 500);
+            } catch (err) {
+                btn.innerHTML = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>

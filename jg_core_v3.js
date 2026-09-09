@@ -20,7 +20,13 @@ async function login(email, password) {
     });
     
     if (authError || !authData.user) {
-        throw new Error('Error de Supabase: ' + (authError ? authError.message : 'Desconocido'));
+        let msg = authError ? authError.message : 'Desconocido';
+        if (msg.includes('Invalid login credentials')) {
+            msg = 'Correo o contraseña incorrectos. Verifica tus datos.';
+        } else if (msg.includes('Failed to fetch')) {
+            msg = 'No se pudo conectar con el servidor de Supabase. Revisa tu conexión a internet o intenta nuevamente.';
+        }
+        throw new Error(msg);
     }
     
     const user = authData.user;

@@ -132,6 +132,11 @@
                 currentProjects = await loadAllProjects();
                 calculateMetrics(currentProjects);
                 renderProjects(currentProjects);
+                
+                // Inicializar badges de notificaciones y suscripciones en tiempo real
+                currentProjects.forEach(p => {
+                    initProjectChatListener(p.id);
+                });
             } catch (e) {
                 console.error("Error loading projects:", e);
                 document.getElementById('projectsList').innerHTML = "<p style='color:red'>Error cargando proyectos. Verifica la conexión a Supabase.</p>";
@@ -214,8 +219,9 @@
                             <a href="portal.html?viewAs=${encodeURIComponent(p.cliente_email)}" class="btn-secondary" title="Ver lo que ve el cliente" target="_blank">
                                 <i class="far fa-eye"></i> Ver Portal
                             </a>
-                            <button type="button" class="btn-secondary" id="btn_chat_${p.id}" onclick="toggleChat('${p.id}', '${escapeHtml(p.nombre_proyecto)}')">
+                            <button type="button" class="btn-secondary btn-chat-trigger" id="btn_chat_${p.id}" onclick="toggleChat('${p.id}', '${escapeHtml(p.nombre_proyecto)}')">
                                 <i class="far fa-comments"></i> Chat
+                                <span class="chat-badge" id="chat_badge_${p.id}" style="display:none;">0</span>
                             </button>
                             <button type="submit" class="btn-primary">Guardar <i class="fas fa-check"></i></button>
                         </div>
@@ -255,6 +261,95 @@
             div.textContent = text || '';
             return div.innerHTML;
         }
+
+        function playNotificationSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const audioCtx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // Nota D5
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.08); // Nota A5
+                gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.35);
+            } catch(e){}
+        }
+
+        async function initProjectChatListener(projectId) {
+            // 1. Calcular mensajes no leídos iniciales desde la base de datos
+            await updateUnreadBadge(projectId);
+
+            // 2. Suscribirse a nuevos mensajes en tiempo real
+            subscribeToChat(projectId, (newMsg) => {
+                const sec = document.getElementById('chat_sec_' + projectId);
+                const isOpen = sec && sec.style.display !== 'none';
+
+                if (isOpen) {
+                    appendAdminMsg(projectId, newMsg);
+                    localStorage.setItem('jg_last_read_' + projectId, newMsg.created_at || new Date().toISOString());
+                } else {
+                    if (newMsg.sender === 'client') {
+                        incrementUnreadBadge(projectId);
+                        playNotificationSound();
+                    }
+                }
+            });
+        }
+
+        async function updateUnreadBadge(projectId) {
+            const lastRead = localStorage.getItem('jg_last_read_' + projectId) || '1970-01-01T00:00:00.000Z';
+            const { data, error } = await supabaseClient
+                .from('mensajes')
+                .select('id, created_at')
+                .eq('proyecto_id', projectId)
+                .eq('sender', 'client')
+                .gt('created_at', lastRead);
+
+            const badge = document.getElementById('chat_badge_' + projectId);
+            const btn = document.getElementById('btn_chat_' + projectId);
+            if (!badge || !btn) return;
+
+            const count = (data && data.length) || 0;
+            if (count > 0) {
+                badge.textContent = count > 9 ? '9+' : count;
+                badge.style.display = 'inline-flex';
+                btn.classList.add('has-unread');
+            } else {
+                badge.style.display = 'none';
+                btn.classList.remove('has-unread');
+            }
+        }
+
+        function incrementUnreadBadge(projectId) {
+            const badge = document.getElementById('chat_badge_' + projectId);
+            const btn = document.getElementById('btn_chat_' + projectId);
+            if (!badge || !btn) return;
+
+            let current = parseInt(badge.textContent, 10) || 0;
+            current++;
+            badge.textContent = current > 9 ? '9+' : current;
+            badge.style.display = 'inline-flex';
+            btn.classList.add('has-unread');
+
+            // Reiniciar animación de atención
+            btn.style.animation = 'none';
+            btn.offsetHeight;
+            btn.style.animation = '';
+        }
+
+        function clearUnreadBadge(projectId) {
+            const badge = document.getElementById('chat_badge_' + projectId);
+            const btn = document.getElementById('btn_chat_' + projectId);
+            if (badge) badge.style.display = 'none';
+            if (btn) btn.classList.remove('has-unread');
+            localStorage.setItem('jg_last_read_' + projectId, new Date().toISOString());
+        }
         
         async function toggleChat(id, projectName) {
             const sec = document.getElementById('chat_sec_'+id);
@@ -262,12 +357,8 @@
             
             if (sec.style.display === 'none') {
                 sec.style.display = 'block';
+                clearUnreadBadge(id);
                 await loadAdminChat(id);
-                
-                // Suscripción Realtime para recibir mensajes del cliente en vivo
-                subscribeToChat(id, (newMsg) => {
-                    appendAdminMsg(id, newMsg);
-                });
 
                 // Foco al input
                 const input = document.getElementById('chat_in_'+id);

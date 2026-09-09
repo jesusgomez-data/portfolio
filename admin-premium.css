@@ -956,3 +956,57 @@ body::after {
     padding: 20px;
     text-align: center;
 }
+
+/* ── Chat Button Unread Notification Badge ── */
+.btn-chat-trigger {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-badge {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    background: var(--red);
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    min-width: 20px;
+    height: 20px;
+    line-height: 16px;
+    border-radius: 10px;
+    padding: 0 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 14px rgba(255, 42, 64, 0.85);
+    border: 2px solid var(--surface-0);
+    z-index: 10;
+    animation: badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badgePop {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.25); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes chatPulseGlow {
+    0%, 100% {
+        border-color: rgba(255, 42, 64, 0.3);
+        box-shadow: 0 0 0 rgba(255, 42, 64, 0);
+    }
+    50% {
+        border-color: var(--red);
+        box-shadow: 0 0 16px rgba(255, 42, 64, 0.4);
+    }
+}
+
+.btn-chat-trigger.has-unread {
+    border-color: var(--red) !important;
+    color: #fff !important;
+    animation: chatPulseGlow 2s infinite ease-in-out;
+}

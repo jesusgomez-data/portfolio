@@ -117,24 +117,94 @@ async function getClientProject(email) {
 }
 
 // ---------------------------
-// SISTEMA DE CHAT
+// SISTEMA DE CHAT EN TIEMPO REAL
 // ---------------------------
+const activeChatChannels = {};
+
 async function getMessages(projectId) {
     const { data, error } = await supabaseClient
         .from('mensajes')
         .select('*')
         .eq('proyecto_id', projectId)
         .order('created_at', { ascending: true });
-    if (error) console.error(error);
+    if (error) {
+        console.error("Error fetching messages:", error);
+        return [];
+    }
     return data || [];
 }
 
 async function sendMessage(projectId, sender, text) {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return null;
+
     const { data, error } = await supabaseClient
         .from('mensajes')
         .insert([
-            { proyecto_id: projectId, sender: sender, mensaje: text }
-        ]);
-    if (error) throw error;
-    return data;
+            { proyecto_id: projectId, sender: sender, mensaje: cleanText }
+        ])
+        .select();
+
+    if (error) {
+        console.error("Error sending message:", error);
+        throw error;
+    }
+
+    const createdMsg = (data && data.length > 0) ? data[0] : null;
+
+    // Notificar instantáneamente a través del canal Realtime
+    if (activeChatChannels[projectId] && createdMsg) {
+        try {
+            activeChatChannels[projectId].send({
+                type: 'broadcast',
+                event: 'new_message',
+                payload: createdMsg
+            });
+        } catch (e) {
+            console.warn("Broadcast warning:", e);
+        }
+    }
+
+    return createdMsg;
+}
+
+function subscribeToChat(projectId, onMessageCallback) {
+    if (!projectId || !supabaseClient) return null;
+
+    // Limpiar canal anterior si existía para evitar duplicados
+    if (activeChatChannels[projectId]) {
+        try {
+            supabaseClient.removeChannel(activeChatChannels[projectId]);
+        } catch(e){}
+    }
+
+    const channel = supabaseClient.channel('chat_room_' + projectId, {
+        config: { broadcast: { self: false } }
+    });
+
+    // 1. Escuchar eventos broadcast en vivo (baja latencia)
+    channel.on('broadcast', { event: 'new_message' }, (payload) => {
+        if (payload && payload.payload && typeof onMessageCallback === 'function') {
+            onMessageCallback(payload.payload);
+        }
+    });
+
+    // 2. Escuchar cambios directos de base de datos
+    channel.on('postgres_changes', {
+        event: 'INSERT',
+        schema: 'public',
+        table: 'mensajes',
+        filter: `proyecto_id=eq.${projectId}`
+    }, (payload) => {
+        if (payload && payload.new && typeof onMessageCallback === 'function') {
+            onMessageCallback(payload.new);
+        }
+    });
+
+    channel.subscribe((status) => {
+        console.log(`[Chat Realtime] Canal ${projectId} estado:`, status);
+    });
+
+    activeChatChannels[projectId] = channel;
+    return channel;
 }

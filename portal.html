@@ -107,16 +107,23 @@
             <div class="bento-card card-chat">
                 <div class="noise-overlay"></div>
                 <div class="card-content">
-                    <div class="b-label"><i class="far fa-comments"></i> Mensajes y Reportes (CEO)</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                        <div class="b-label" style="margin-bottom:0;"><i class="far fa-comments"></i> Soporte Directo · Jesús Gómez (CEO)</div>
+                        <span style="font-family:var(--f-mono); font-size:0.7rem; color:var(--success); display:inline-flex; align-items:center; gap:6px;">
+                            <span style="width:6px; height:6px; border-radius:50%; background:var(--success); box-shadow:0 0 8px var(--success-glow);"></span>
+                            Canal Activo
+                        </span>
+                    </div>
                     <div class="chat-container">
                         <div class="chat-messages" id="clientChatMsgs">
-                            <div class="msg-bubble msg-client">Hola, tengo una duda con la sección de pagos de mi web. <div class="msg-time">Ayer 14:30</div></div>
-                            <div class="msg-bubble msg-ceo">Hola. Ya lo reviso y te aviso en unos minutos. <div class="msg-time">Ayer 15:00</div></div>
+                            <div style="text-align:center; padding: 32px 16px; color:var(--text-muted); font-family:var(--f-mono); font-size:0.8rem;">
+                                <i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i> Conectando con tu canal de soporte...
+                            </div>
                         </div>
-                        <div class="chat-input-area">
-                            <input type="text" id="clientChatIn" class="chat-input" placeholder="Escribe tu consulta al CEO...">
-                            <button type="button" class="chat-send" onclick="sendClientMsg()"><i class="fas fa-paper-plane"></i></button>
-                        </div>
+                        <form class="chat-input-area" id="clientChatForm" onsubmit="handleSendClientMsg(event)">
+                            <input type="text" id="clientChatIn" class="chat-input" placeholder="Escribe tu consulta al CEO (Enter para enviar)..." autocomplete="off">
+                            <button type="submit" class="chat-send" id="clientChatSendBtn" title="Enviar"><i class="fas fa-paper-plane"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -232,37 +239,114 @@
 
 
 
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
+
         async function loadClientChat(projectId) {
             const msgsContainer = document.getElementById('clientChatMsgs');
-            msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Cargando mensajes...</div>';
+            if (!msgsContainer) return;
+
+            msgsContainer.innerHTML = `
+                <div style="text-align:center; padding: 32px 16px; color:var(--text-muted); font-family:var(--f-mono); font-size:0.8rem;">
+                    <i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i> Cargando mensajes...
+                </div>
+            `;
             
             const messages = await getMessages(projectId);
             msgsContainer.innerHTML = '';
-            if(messages.length === 0) {
-                msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Envía un mensaje al CEO para recibir soporte.</div>';
+
+            if (messages.length === 0) {
+                msgsContainer.innerHTML = `
+                    <div style="text-align:center; padding: 36px 16px; color:var(--text-muted); font-family:var(--f-mono); font-size:0.82rem;">
+                        <i class="far fa-comments" style="font-size:2rem; display:block; margin-bottom:12px; opacity:0.35;"></i>
+                        Inicia tu conversación directa con Jesús Gómez (CEO de JGStudio).<br>
+                        Cualquier duda, avance o solicitud puedes escribirla aquí.
+                    </div>
+                `;
             } else {
                 messages.forEach(m => {
-                    const isClient = m.sender === 'client';
-                    const timeStr = new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                    msgsContainer.innerHTML += `<div class="msg-bubble ${isClient ? 'msg-client' : 'msg-ceo'}">${m.mensaje} <div class="msg-time">${timeStr}</div></div>`;
+                    appendClientMsg(m, false);
                 });
             }
             msgsContainer.scrollTop = msgsContainer.scrollHeight;
+
+            // Suscribirse a nuevos mensajes en tiempo real (WebSockets / Supabase Realtime)
+            subscribeToChat(projectId, (newMsg) => {
+                appendClientMsg(newMsg, true);
+            });
         }
 
-        async function sendClientMsg() {
+        function appendClientMsg(m, scroll = true) {
+            const msgsContainer = document.getElementById('clientChatMsgs');
+            if (!msgsContainer) return;
+
+            // Limpiar mensaje de bienvenida o loader si existen
+            if (msgsContainer.children.length === 1 && !msgsContainer.children[0].classList.contains('msg-bubble')) {
+                msgsContainer.innerHTML = '';
+            }
+
+            // Evitar duplicados por id
+            if (m.id && document.getElementById('client_msg_' + m.id)) {
+                return;
+            }
+
+            const isClient = m.sender === 'client';
+            const timeStr = m.created_at ? new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Ahora';
+            const bubble = document.createElement('div');
+            if (m.id) bubble.id = 'client_msg_' + m.id;
+            bubble.className = `msg-bubble ${isClient ? 'msg-client' : 'msg-ceo'}`;
+            
+            bubble.innerHTML = `
+                <div class="msg-sender-tag">
+                    <i class="${isClient ? 'fas fa-user' : 'fas fa-shield-alt'}"></i>
+                    ${isClient ? 'Tú' : 'Jesús Gómez · CEO'}
+                </div>
+                <div>${escapeHtml(m.mensaje)}</div>
+                <div class="msg-time">${timeStr}</div>
+            `;
+            msgsContainer.appendChild(bubble);
+
+            if (scroll) {
+                msgsContainer.scrollTop = msgsContainer.scrollHeight;
+            }
+        }
+
+        async function handleSendClientMsg(e) {
+            if (e) e.preventDefault();
             const input = document.getElementById('clientChatIn');
-            if(input.value.trim() === '') return;
-            const text = input.value;
+            if (!input) return;
+
+            const text = input.value.trim();
+            if (!text || !window.currentProjectId) return;
             input.value = '';
-            
-            const msgs = document.getElementById('clientChatMsgs');
-            msgs.innerHTML += `<div class="msg-bubble msg-client">${text} <div class="msg-time">Enviando...</div></div>`;
-            msgs.scrollTop = msgs.scrollHeight;
-            
-            if (window.currentProjectId) {
-                await sendMessage(window.currentProjectId, 'client', text);
-                loadClientChat(window.currentProjectId); // reload real msgs
+
+            const btn = document.getElementById('clientChatSendBtn');
+            if (btn) btn.disabled = true;
+
+            // Renderizado optimista inmediato
+            const tempId = 'temp_c_' + Date.now();
+            appendClientMsg({
+                id: tempId,
+                sender: 'client',
+                mensaje: text,
+                created_at: new Date().toISOString()
+            });
+
+            try {
+                const savedMsg = await sendMessage(window.currentProjectId, 'client', text);
+                const tempEl = document.getElementById('client_msg_' + tempId);
+                if (tempEl && savedMsg && savedMsg.id) {
+                    tempEl.id = 'client_msg_' + savedMsg.id;
+                }
+            } catch (err) {
+                console.error("Error al enviar mensaje:", err);
+                alert("No se pudo enviar el mensaje. Por favor comprueba tu conexión.");
+            } finally {
+                if (btn) btn.disabled = false;
+                if (input) input.focus();
             }
         }
 

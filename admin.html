@@ -214,69 +214,168 @@
                             <a href="portal.html?viewAs=${encodeURIComponent(p.cliente_email)}" class="btn-secondary" title="Ver lo que ve el cliente" target="_blank">
                                 <i class="far fa-eye"></i> Ver Portal
                             </a>
-                            <button type="button" class="btn-secondary" onclick="toggleChat('${p.id}')">
+                            <button type="button" class="btn-secondary" id="btn_chat_${p.id}" onclick="toggleChat('${p.id}', '${escapeHtml(p.nombre_proyecto)}')">
                                 <i class="far fa-comments"></i> Chat
                             </button>
                             <button type="submit" class="btn-primary">Guardar <i class="fas fa-check"></i></button>
                         </div>
+                    </form>
 
-                        <!-- Chat Section (Hidden by default) -->
-                        <div id="chat_sec_${p.id}" style="display:none; margin-top:24px; padding-top:20px; border-top:1px solid var(--border-dim);">
-                            <div class="b-label" style="margin-bottom:12px;"><i class="far fa-comments"></i> Soporte Directo</div>
-                            <div class="chat-container">
-                                <div class="chat-messages" id="chat_msgs_${p.id}">
-                                    <div class="msg-time" style="text-align:center; margin-bottom:10px;">Cargando mensajes...</div>
-                                </div>
-                                <div class="chat-input-area">
-                                    <input type="text" id="chat_in_${p.id}" class="chat-input" placeholder="Escribe al cliente...">
-                                    <button type="button" class="chat-send" onclick="sendAdminMsg('${p.id}')"><i class="fas fa-paper-plane"></i></button>
+                    <!-- Chat Section (Separado del formulario del proyecto) -->
+                    <div id="chat_sec_${p.id}" class="admin-chat-section" style="display:none;">
+                        <div class="chat-header-bar">
+                            <div class="chat-header-title">
+                                <i class="far fa-comments" style="color:var(--red);"></i> Chat con ${escapeHtml(p.nombre_proyecto)}
+                                <span class="chat-live-pill"><span class="chat-live-dot"></span> En vivo</span>
+                            </div>
+                            <button type="button" class="btn-secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="toggleChat('${p.id}')">
+                                <i class="fas fa-times"></i> Cerrar
+                            </button>
+                        </div>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chat_msgs_${p.id}">
+                                <div class="chat-empty-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <span>Cargando mensajes...</span>
                                 </div>
                             </div>
+                            <form class="chat-input-area" onsubmit="handleSendAdminMsg(event, '${p.id}')">
+                                <input type="text" id="chat_in_${p.id}" class="chat-input" placeholder="Escribe al cliente (Enter para enviar)..." autocomplete="off">
+                                <button type="submit" class="chat-send" id="chat_btn_${p.id}" title="Enviar"><i class="fas fa-paper-plane"></i></button>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 `;
                 list.appendChild(card);
             });
         }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text || '';
+            return div.innerHTML;
+        }
         
-        async function toggleChat(id) {
+        async function toggleChat(id, projectName) {
             const sec = document.getElementById('chat_sec_'+id);
+            if (!sec) return;
+            
             if (sec.style.display === 'none') {
                 sec.style.display = 'block';
-                // Cargar mensajes reales
-                const msgsContainer = document.getElementById('chat_msgs_'+id);
-                msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">Cargando...</div>';
-                const messages = await getMessages(id);
-                msgsContainer.innerHTML = '';
-                if(messages.length === 0) {
-                    msgsContainer.innerHTML = '<div class="msg-time" style="text-align:center;">No hay mensajes aún.</div>';
-                } else {
-                    messages.forEach(m => {
-                        const isCeo = m.sender === 'ceo';
-                        const timeStr = new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                        msgsContainer.innerHTML += `<div class="msg-bubble ${isCeo ? 'msg-ceo' : 'msg-client'}">${m.mensaje} <div class="msg-time">${timeStr}</div></div>`;
-                    });
-                }
-                msgsContainer.scrollTop = msgsContainer.scrollHeight;
+                await loadAdminChat(id);
+                
+                // Suscripción Realtime para recibir mensajes del cliente en vivo
+                subscribeToChat(id, (newMsg) => {
+                    appendAdminMsg(id, newMsg);
+                });
+
+                // Foco al input
+                const input = document.getElementById('chat_in_'+id);
+                if (input) input.focus();
             } else {
                 sec.style.display = 'none';
             }
         }
+
+        async function loadAdminChat(id) {
+            const msgsContainer = document.getElementById('chat_msgs_'+id);
+            if (!msgsContainer) return;
+
+            msgsContainer.innerHTML = `
+                <div class="chat-empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Cargando mensajes...</span>
+                </div>
+            `;
+
+            const messages = await getMessages(id);
+            msgsContainer.innerHTML = '';
+
+            if (messages.length === 0) {
+                msgsContainer.innerHTML = `
+                    <div class="chat-empty-state">
+                        <i class="far fa-comment-dots" style="font-size:1.8rem; opacity:0.35;"></i>
+                        <span>No hay mensajes aún en este proyecto.<br>Escribe abajo para iniciar la conversación.</span>
+                    </div>
+                `;
+            } else {
+                messages.forEach(m => {
+                    appendAdminMsg(id, m, false);
+                });
+            }
+            msgsContainer.scrollTop = msgsContainer.scrollHeight;
+        }
+
+        function appendAdminMsg(id, m, scroll = true) {
+            const msgsContainer = document.getElementById('chat_msgs_'+id);
+            if (!msgsContainer) return;
+
+            // Si estaba el empty state, limpiarlo
+            const emptyState = msgsContainer.querySelector('.chat-empty-state');
+            if (emptyState) {
+                msgsContainer.innerHTML = '';
+            }
+
+            // Evitar duplicados por id
+            if (m.id && document.getElementById('admin_msg_' + m.id)) {
+                return;
+            }
+
+            const isCeo = m.sender === 'ceo';
+            const timeStr = m.created_at ? new Date(m.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Ahora';
+            const bubble = document.createElement('div');
+            if (m.id) bubble.id = 'admin_msg_' + m.id;
+            bubble.className = `msg-bubble ${isCeo ? 'msg-ceo' : 'msg-client'}`;
+            
+            bubble.innerHTML = `
+                <div class="msg-sender-tag">
+                    <i class="${isCeo ? 'fas fa-shield-alt' : 'fas fa-user'}"></i>
+                    ${isCeo ? 'Tú (CEO)' : 'Cliente'}
+                </div>
+                <div>${escapeHtml(m.mensaje)}</div>
+                <div class="msg-time">${timeStr}</div>
+            `;
+            msgsContainer.appendChild(bubble);
+
+            if (scroll) {
+                msgsContainer.scrollTop = msgsContainer.scrollHeight;
+            }
+        }
         
-        async function sendAdminMsg(id) {
+        async function handleSendAdminMsg(e, id) {
+            if (e) e.preventDefault();
             const input = document.getElementById('chat_in_'+id);
-            if(input.value.trim() === '') return;
-            const text = input.value;
+            if (!input) return;
+
+            const text = input.value.trim();
+            if (!text) return;
             input.value = '';
-            
-            const msgs = document.getElementById('chat_msgs_'+id);
-            msgs.innerHTML += `<div class="msg-bubble msg-ceo">${text} <div class="msg-time">Enviando...</div></div>`;
-            msgs.scrollTop = msgs.scrollHeight;
-            
-            await sendMessage(id, 'ceo', text);
-            // Recargar para mostrar tiempo real (opcional) o dejarlo optimista
-            toggleChat(id); // reload hack
-            toggleChat(id);
+
+            const btn = document.getElementById('chat_btn_'+id);
+            if (btn) btn.disabled = true;
+
+            // Renderizado optimista inmediato
+            const tempId = 'temp_' + Date.now();
+            appendAdminMsg(id, {
+                id: tempId,
+                sender: 'ceo',
+                mensaje: text,
+                created_at: new Date().toISOString()
+            });
+
+            try {
+                const savedMsg = await sendMessage(id, 'ceo', text);
+                const tempEl = document.getElementById('admin_msg_' + tempId);
+                if (tempEl && savedMsg && savedMsg.id) {
+                    tempEl.id = 'admin_msg_' + savedMsg.id;
+                }
+            } catch (err) {
+                console.error("Error al enviar mensaje:", err);
+                alert("Error al enviar mensaje. Por favor verifica la conexión.");
+            } finally {
+                if (btn) btn.disabled = false;
+                if (input) input.focus();
+            }
         }
 
         function openModal() { document.getElementById('newProjectModal').classList.add('active'); }

@@ -326,12 +326,27 @@ function main() {
     if (tog && links) {
         tog.addEventListener('click', () => {
             const open = links.classList.toggle('open');
+            if (nav) nav.classList.toggle('menu-open', open);
+            document.body.classList.toggle('menu-open', open);
             icon.className = open ? 'fas fa-times' : 'fas fa-bars';
             if (open && window.gsap) {
-                gsap.fromTo(links.querySelectorAll('li'), { x:40,opacity:0 }, { x:0,opacity:1,stagger:.06,duration:.4,ease:'power3.out',delay:.08 });
+                gsap.fromTo(links.querySelectorAll('li'), { x:30,opacity:0 }, { x:0,opacity:1,stagger:.05,duration:.35,ease:'power3.out',delay:.05 });
             }
         });
-        links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.classList.remove('open'); icon.className='fas fa-bars'; }));
+        links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { 
+            links.classList.remove('open'); 
+            if (nav) nav.classList.remove('menu-open');
+            document.body.classList.remove('menu-open');
+            icon.className = 'fas fa-bars'; 
+        }));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && links.classList.contains('open')) {
+                links.classList.remove('open');
+                if (nav) nav.classList.remove('menu-open');
+                document.body.classList.remove('menu-open');
+                icon.className = 'fas fa-bars';
+            }
+        });
     }
 
     /* Smooth anchor scroll */

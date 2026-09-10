@@ -271,15 +271,116 @@
         background: rgba(255,255,255,.03);
         width: fit-content;
       }
-      .vz-aud-pill i { color: var(--accent); font-size: .55rem; }
+      /* ── VZ WHY CARDS (Beneficios JGStudio) ── */
+      .vz-why-card {
+        position: relative;
+        padding: 0 30px 32px;
+        border-radius: 24px;
+        background: linear-gradient(165deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.005) 100%), rgba(14,14,14,0.78);
+        border: 1px solid rgba(255,255,255,0.07);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+      }
+      .vz-why-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(214,48,49,0.38);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 35px rgba(214,48,49,0.12);
+        background: linear-gradient(165deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%), rgba(18,18,18,0.9);
+      }
+      .vz-why-card .cap-accent-bar {
+        margin-bottom: 22px;
+        width: 100%;
+      }
+      .vz-why-card .rc-icon-wrap {
+        position: static !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(214,48,49,0.16) 0%, rgba(214,48,49,0.05) 100%);
+        border: 1px solid rgba(214,48,49,0.28);
+        color: var(--accent);
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 18px rgba(214,48,49,0.12);
+        transition: transform .35s var(--ease), background .3s, border-color .3s, box-shadow .3s;
+      }
+      .vz-why-card:hover .rc-icon-wrap {
+        transform: translateY(-2px) scale(1.08) rotate(-4deg);
+        background: linear-gradient(135deg, rgba(214,48,49,0.28) 0%, rgba(214,48,49,0.12) 100%);
+        border-color: rgba(214,48,49,0.5);
+        box-shadow: 0 6px 24px rgba(214,48,49,0.32);
+      }
       .vz-why-num {
         font-family: var(--f-m);
-        font-size: .5rem;
-        letter-spacing: 2.5px;
+        font-size: .54rem;
+        font-weight: 700;
+        letter-spacing: 2px;
         color: var(--accent);
         text-transform: uppercase;
-        margin-bottom: 8px;
-        display: block;
+        margin-bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(214,48,49,0.08);
+        border: 1px solid rgba(214,48,49,0.18);
+        line-height: 1;
+      }
+      .vz-why-card h3 {
+        font-family: var(--f-d);
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -.4px;
+        color: var(--cream);
+        margin: 0 0 10px 0;
+        line-height: 1.28;
+      }
+      .vz-why-card p {
+        font-size: .92rem;
+        color: var(--gray);
+        line-height: 1.65;
+        margin: 0;
+      }
+      .vz-aud-card .rc-icon-wrap {
+        position: static !important;
+        margin-bottom: 16px;
+      }
+      @media(max-width:760px) {
+        .vz-why-card {
+          padding: 0 24px 26px;
+        }
+        .vz-why-card .rc-icon-wrap {
+          position: static !important;
+          margin-bottom: 14px;
+        }
+        .vz-aud-card .rc-icon-wrap {
+          position: static !important;
+          margin-bottom: 14px;
+        }
+      }
+      [data-theme="light"] .vz-why-card {
+        background: rgba(255,255,255,0.88);
+        border-color: rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      }
+      [data-theme="light"] .vz-why-card:hover {
+        border-color: rgba(214,48,49,0.35);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      }
+      [data-theme="light"] .vz-why-card h3 {
+        color: var(--cream);
+      }
+      [data-theme="light"] .vz-why-card p {
+        color: #555555;
       }
       .vz-cost-val {
         font-family: var(--f-d);
@@ -751,9 +852,6 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contacto" class="nav-cta" onclick="trackConversionEvent('click_proposal', { source: 'nav' })">Solicitar propuesta →</a></li>
         </ul>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
-            <i class="fas fa-sun" id="theme-icon"></i>
-        </button>
         <button class="nav-toggle" id="menu-toggle" aria-label="Menú"><i class="fas fa-bars" id="menu-icon"></i></button>
     </div>
 </nav>

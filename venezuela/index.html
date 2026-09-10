@@ -719,9 +719,6 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contacto" class="nav-cta" onclick="trackConversionEvent('click_proposal', { source: 'nav' })">Solicitar propuesta →</a></li>
         </ul>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
-            <i class="fas fa-sun" id="theme-icon"></i>
-        </button>
         <button class="nav-toggle" id="menu-toggle" aria-label="Menú"><i class="fas fa-bars" id="menu-icon"></i></button>
     </div>
 </nav>
@@ -1829,12 +1826,19 @@
     // Mobile nav toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
+    const navbar = document.getElementById('navbar');
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            const open = navLinks.classList.toggle('open');
+            if (navbar) navbar.classList.toggle('menu-open', open);
+            document.body.classList.toggle('menu-open', open);
         });
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => navLinks.classList.remove('open'));
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                if (navbar) navbar.classList.remove('menu-open');
+                document.body.classList.remove('menu-open');
+            });
         });
     }
 

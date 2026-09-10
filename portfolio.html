@@ -91,11 +91,39 @@
     .btn-outline:hover { border-color:rgba(255,255,255,.3); }
 
     /* ── NAV ─────────────────────────── */
-    .navbar { position:fixed; top:0; width:100%; z-index:1000; transition:transform .4s var(--ease),background .3s; }
-    .navbar.scrolled { background:rgba(8,8,8,.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+    .navbar { 
+        position:fixed; 
+        top:0; 
+        width:100%; 
+        z-index:1000; 
+        transition:transform .4s var(--ease), border-color .3s; 
+        border-bottom:1px solid transparent;
+    }
+    .navbar::before {
+        content:'';
+        position:absolute;
+        inset:0;
+        background:transparent;
+        pointer-events:none;
+        z-index:-1;
+        transition:background .4s var(--ease), backdrop-filter .4s var(--ease), -webkit-backdrop-filter .4s var(--ease), border-color .4s var(--ease);
+    }
+    .navbar.scrolled::before { 
+        background:rgba(8,8,8,.85); 
+        backdrop-filter:blur(20px); 
+        -webkit-backdrop-filter:blur(20px);
+        border-bottom:1px solid var(--border); 
+    }
+    .navbar.menu-open::before {
+        opacity:0 !important;
+    }
+    body.menu-open {
+        overflow:hidden !important;
+        touch-action:none;
+    }
     .navbar.nav-hidden { transform:translateY(-100%); }
-    .nav-inner { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; max-width:var(--w); margin:0 auto; }
-    .nav-logo { display:flex; align-items:center; gap:12px; }
+    .nav-inner { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; max-width:var(--w); margin:0 auto; position:relative; z-index:1000; }
+    .nav-logo { display:flex; align-items:center; gap:12px; position:relative; z-index:1002; }
     .nav-logo-img { height:34px; width:auto; display:block; transition:opacity .2s; }
     .nav-logo:hover .nav-logo-img { opacity:.85; }
     .nav-logo-light { display:none; }
@@ -114,11 +142,36 @@
 
     @media(max-width:768px){
         .nav-inner { padding:16px 24px; }
-        .nav-toggle { display:block; }
-        .nav-links { position:fixed; inset:0; background:rgba(8,8,8,.97); backdrop-filter:blur(24px); flex-direction:column; justify-content:center; align-items:center; transform:translateX(100%); transition:transform .4s var(--ease); z-index:999; gap:40px; }
+        .theme-toggle { position:relative; z-index:1002; }
+        .nav-toggle { display:block; position:relative; z-index:1002; }
+        .nav-links { 
+            position:fixed; 
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            width:100vw;
+            width:100dvw;
+            height:100vh;
+            height:100dvh;
+            background:rgba(8,8,8,.98); 
+            backdrop-filter:blur(28px); 
+            -webkit-backdrop-filter:blur(28px); 
+            flex-direction:column; 
+            justify-content:flex-start; 
+            align-items:center; 
+            transform:translateX(100%); 
+            transition:transform .38s cubic-bezier(0.16, 1, 0.3, 1); 
+            z-index:1000; 
+            gap:32px; 
+            padding:100px 24px 44px;
+            overflow-y:auto;
+            -webkit-overflow-scrolling:touch;
+            box-sizing:border-box;
+        }
         .nav-links.open { transform:translateX(0); }
-        .nav-links a { font-size:1.5rem; font-family:var(--f-d); }
-        .nav-cta { font-size:1rem !important; border:none !important; padding:0 !important; }
+        .nav-links a { font-size:1.45rem; font-family:var(--f-d); font-weight:700; }
+        .nav-cta { font-size:1rem !important; border:1px solid rgba(214,48,49,.35) !important; padding:10px 22px !important; border-radius:999px !important; background:rgba(214,48,49,.1) !important; }
     }
 
     /* ── PAGE HEADER ─────────────────── */
@@ -483,9 +536,6 @@
             <li><a href="index.html#pricing">Precios</a></li>
             <li><a href="index.html#contact" class="nav-cta">Hablemos →</a></li>
         </ul>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
-            <i class="fas fa-sun" id="theme-icon"></i>
-        </button>
         <button class="nav-toggle" id="menu-toggle" aria-label="Menú"><i class="fas fa-bars" id="menu-icon"></i></button>
     </div>
 </nav>
@@ -777,13 +827,25 @@
     if (toggle && links) {
         toggle.addEventListener('click', () => {
             const open = links.classList.toggle('open');
+            if (nav) nav.classList.toggle('menu-open', open);
+            document.body.classList.toggle('menu-open', open);
             if (menuIcon) { menuIcon.className = open ? 'fas fa-times' : 'fas fa-bars'; }
         });
         links.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => {
                 links.classList.remove('open');
+                if (nav) nav.classList.remove('menu-open');
+                document.body.classList.remove('menu-open');
                 if (menuIcon) menuIcon.className = 'fas fa-bars';
             });
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && links.classList.contains('open')) {
+                links.classList.remove('open');
+                if (nav) nav.classList.remove('menu-open');
+                document.body.classList.remove('menu-open');
+                if (menuIcon) menuIcon.className = 'fas fa-bars';
+            }
         });
     }
 

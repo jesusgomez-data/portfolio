@@ -77,7 +77,7 @@ async function loadAllProjects() {
     return data || [];
 }
 
-async function createNewProject(nombre, email, monto) {
+async function createNewProject(nombre, email, monto, password) {
     const { data, error } = await supabaseClient
         .from('proyectos')
         .insert([
@@ -88,6 +88,19 @@ async function createNewProject(nombre, email, monto) {
         console.error(error);
         throw error;
     }
+
+    // Registrar al cliente en Supabase Auth con su contraseña temporal
+    if (password && email) {
+        try {
+            await supabaseClient.auth.signUp({
+                email: email,
+                password: password
+            });
+        } catch (authErr) {
+            console.warn("Nota sobre registro en Supabase Auth:", authErr);
+        }
+    }
+
     return data;
 }
 

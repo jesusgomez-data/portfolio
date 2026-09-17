@@ -1041,7 +1041,7 @@
             line-height: 1.65;
         }
 
-        /* Responsive Tweaks */
+        /* Responsive Tweaks & Mobile Perfection */
         @media (max-width: 1024px) {
             .p-card.featured-card {
                 grid-template-columns: 1fr;
@@ -1059,34 +1059,353 @@
         }
 
         @media (max-width: 768px) {
-            .showcase-hero {
-                padding: 110px 0 40px;
+            html, body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
             }
+
+            .wrap {
+                padding: 0 16px !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .showcase-hero {
+                padding: 100px 0 32px;
+            }
+
+            .showcase-title-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                width: 100%;
+            }
+
+            .showcase-h1 {
+                font-size: clamp(1.9rem, 8vw, 2.6rem);
+                letter-spacing: -1px;
+                line-height: 1.1;
+                word-break: break-word;
+            }
+
+            .showcase-counter-badge {
+                width: auto;
+                padding: 8px 14px;
+                gap: 10px;
+            }
+
+            .showcase-counter-num {
+                font-size: 1.35rem;
+            }
+
+            .showcase-counter-text {
+                font-size: 0.58rem;
+            }
+
+            .showcase-lead {
+                font-size: 0.92rem;
+                line-height: 1.6;
+                margin-bottom: 24px;
+            }
+
+            .showcase-stats-strip {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding-top: 16px;
+            }
+
+            .s-stat-val {
+                font-size: 1.15rem;
+            }
+
+            .s-stat-lbl {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+
+            /* Sticky Toolbar on Mobile */
+            .toolbar-sticky-wrap {
+                top: 56px;
+                padding: 10px 0;
+                margin-bottom: 22px;
+                width: 100%;
+                max-width: 100vw;
+                box-sizing: border-box;
+                overflow-x: clip;
+            }
+
             .toolbar-inner {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 10px;
+                width: 100%;
+                min-width: 0;
+                box-sizing: border-box;
             }
+
+            .filter-pills {
+                width: 100%;
+                min-width: 0;
+                max-width: 100%;
+                padding: 2px 2px 6px 2px;
+                gap: 6px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-pill {
+                padding: 6px 12px;
+                font-size: 0.72rem;
+                flex-shrink: 0;
+            }
+
+            .filter-pill-count {
+                font-size: 0.58rem;
+                padding: 1px 5px;
+            }
+
+            .toolbar-right {
+                width: 100%;
+                display: flex;
+                gap: 8px;
+                min-width: 0;
+            }
+
             .search-box {
-                min-width: 100%;
+                flex: 1;
+                min-width: 0;
             }
+
+            .search-input {
+                padding: 8px 12px 8px 32px;
+                font-size: 0.78rem;
+                width: 100%;
+            }
+
+            .view-switch {
+                flex-shrink: 0;
+            }
+
+            .view-btn {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            /* Results Header */
+            .results-status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+                font-size: 0.6rem;
+                margin-bottom: 16px;
+            }
+
+            /* Projects Grid */
+            .projects-container {
+                margin-bottom: 45px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+            }
+
+            .p-card {
+                grid-column: span 12 !important;
+                border-radius: 20px;
+                display: flex !important;
+                flex-direction: column !important;
+                min-width: 0;
+            }
+
+            .p-card.featured-card {
+                grid-template-columns: 1fr !important;
+            }
+
+            .p-card-media, .p-card.featured-card .p-card-media {
+                min-height: 200px;
+                height: 200px;
+            }
+
+            .p-card-body {
+                padding: 18px 16px;
+                gap: 14px;
+                min-width: 0;
+            }
+
+            .p-card-title {
+                font-size: 1.3rem;
+            }
+
+            .p-card-desc {
+                font-size: 0.82rem;
+                line-height: 1.55;
+                margin-bottom: 10px;
+            }
+
             .p-psr-strip {
                 grid-template-columns: 1fr;
+                gap: 6px;
+                margin-bottom: 12px;
             }
-            .cs-deep-grid {
-                grid-template-columns: 1fr;
+
+            .p-psr-box {
+                padding: 8px 10px;
             }
-            .cs-metrics-banner {
-                grid-template-columns: 1fr;
-                gap: 12px;
+
+            .p-tech-stack {
+                gap: 5px;
+                margin-bottom: 12px;
             }
-            .cs-modal-content {
-                padding: 24px 20px;
+
+            .p-tech-chip {
+                font-size: 0.58rem;
+                padding: 3px 8px;
             }
-            .philo-grid {
-                grid-template-columns: 1fr;
+
+            .p-card-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding-top: 12px;
             }
+
+            .p-btn-details, .p-btn-live {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                padding: 11px 16px;
+                font-size: 0.82rem;
+                box-sizing: border-box;
+            }
+
+            /* Matrix list on mobile */
             .projects-grid.matrix-view .p-card {
                 grid-template-columns: 1fr;
+                padding: 16px;
+                gap: 14px;
+            }
+
+            .projects-grid.matrix-view .p-card-media {
+                min-height: 180px;
+            }
+
+            /* Modal / Drawer on Mobile */
+            .cs-modal-backdrop {
+                padding: 10px;
+                align-items: flex-end;
+            }
+
+            .cs-modal-card {
+                max-height: 92vh;
+                border-radius: 22px 22px 14px 14px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .cs-modal-close {
+                top: 12px;
+                right: 12px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.85rem;
+            }
+
+            .cs-modal-media-header {
+                height: 170px;
+            }
+
+            .cs-modal-content {
+                padding: 20px 16px 28px;
+            }
+
+            .cs-modal-title {
+                font-size: 1.45rem;
+            }
+
+            .cs-modal-subtitle {
+                font-size: 0.86rem;
+                margin-bottom: 18px;
+            }
+
+            .cs-metrics-banner {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 12px 14px;
+                margin: 18px 0;
+            }
+
+            .cs-metric-cell strong {
+                font-size: 1.35rem;
+            }
+
+            .cs-deep-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .cs-deep-box {
+                padding: 12px 14px;
+            }
+
+            .cs-deep-box p {
+                font-size: 0.82rem;
+            }
+
+            .cs-modal-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                margin-top: 20px;
+                padding-top: 16px;
+            }
+
+            .cs-modal-actions a, .cs-modal-actions button {
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            /* Philosophy on Mobile */
+            .showcase-philosophy {
+                padding: 48px 0;
+            }
+
+            .philo-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .philo-card {
+                padding: 18px 16px;
+            }
+
+            /* Bottom CTA on Mobile */
+            .showcase-cta {
+                padding: 50px 0;
+            }
+
+            .showcase-cta-box {
+                padding: 32px 16px;
+                border-radius: 20px;
+            }
+
+            .showcase-cta-h2 {
+                font-size: 1.55rem;
+            }
+
+            .showcase-cta-p {
+                font-size: 0.86rem;
+                margin-bottom: 20px;
+            }
+
+            .showcase-cta-box .btn-fill, .showcase-cta-box .btn-outline {
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
             }
         }
     </style>

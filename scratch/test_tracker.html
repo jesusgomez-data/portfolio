@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Tracker JGStudio</title>
+</head>
+<body style="background:#111; color:#fff; font-family:sans-serif; text-align:center; padding:50px;">
+    <h1>Test Tracker JGStudio</h1>
+    <button id="btnVisita" style="padding:12px 24px; font-size:18px; margin:10px; cursor:pointer; background:#22c55e; color:#fff; border:none; border-radius:8px;">Simular Visita Web (+1)</button>
+    <button id="btnLead" style="padding:12px 24px; font-size:18px; margin:10px; cursor:pointer; background:#ff2a40; color:#fff; border:none; border-radius:8px;">Simular Nuevo Lead (+1)</button>
+    <div id="log" style="margin-top:30px; font-family:monospace; color:#aaa;"></div>
+
+    <script>
+      const email = 'rival.app.official@gmail.com';
+      const key = 'sb_publishable_SAujRd5vtbNvHU4pxJj5Kw_iEvTbs8w';
+      const url = `https://qxgfijtibracrrlhceeo.supabase.co/rest/v1/proyectos?cliente_email=eq.${encodeURIComponent(email)}`;
+
+      async function updateMetric(type) {
+        const log = document.getElementById('log');
+        log.innerHTML += `<p>Enviando ${type}...</p>`;
+        try {
+          const res = await fetch(`${url}&select=${type === 'visitas' ? 'visitas' : 'leads'}`, {
+            headers: { 'apikey': key, 'Authorization': `Bearer ${key}` }
+          });
+          const data = await res.json();
+          const current = parseInt(data[0]?.[type] || '0', 10);
+          
+          const patchRes = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+              'apikey': key,
+              'Authorization': `Bearer ${key}`,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({ [type]: String(current + 1) })
+          });
+          const updated = await patchRes.json();
+          log.innerHTML += `<p style="color:#4ade80">¡ÉXITO! ${type} actualizadas a: <b>${updated[0]?.[type]}</b></p>`;
+        } catch(e) {
+          log.innerHTML += `<p style="color:#ef4444">Error: ${e.message}</p>`;
+        }
+      }
+
+      document.getElementById('btnVisita').onclick = () => updateMetric('visitas');
+      document.getElementById('btnLead').onclick = () => updateMetric('leads');
+    </script>
+</body>
+</html>

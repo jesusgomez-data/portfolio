@@ -221,3 +221,68 @@ function subscribeToChat(projectId, onMessageCallback) {
     activeChatChannels[projectId] = channel;
     return channel;
 }
+
+// ---------------------------
+// TIEMPO REAL: MÉTRICAS DE PROYECTO (Visitas, Leads, Progreso)
+// ---------------------------
+const activeProjectChannels = {};
+
+function subscribeToProject(projectId, onUpdateCallback) {
+    if (!projectId || !supabaseClient) return null;
+
+    if (activeProjectChannels[projectId]) {
+        try { supabaseClient.removeChannel(activeProjectChannels[projectId]); } catch(e){}
+    }
+
+    const channel = supabaseClient.channel('project_metrics_' + projectId, {
+        config: { broadcast: { self: false } }
+    });
+
+    // 1. Escuchar actualizaciones directas en la base de datos
+    channel.on('postgres_changes', {
+        event: 'UPDATE',
+        schema: 'public',
+        table: 'proyectos',
+        filter: `id=eq.${projectId}`
+    }, (payload) => {
+        if (payload && payload.new && typeof onUpdateCallback === 'function') {
+            onUpdateCallback(payload.new);
+        }
+    });
+
+    // 2. Escuchar eventos broadcast si se emiten
+    channel.on('broadcast', { event: 'metric_update' }, (payload) => {
+        if (payload && payload.payload && typeof onUpdateCallback === 'function') {
+            onUpdateCallback(payload.payload);
+        }
+    });
+
+    channel.subscribe((status) => {
+        console.log(`[Project Realtime] Canal ${projectId} estado:`, status);
+    });
+
+    activeProjectChannels[projectId] = channel;
+    return channel;
+}
+
+function subscribeToAllProjects(onUpdateCallback) {
+    if (!supabaseClient) return null;
+
+    const channel = supabaseClient.channel('all_projects_realtime');
+
+    channel.on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'proyectos'
+    }, (payload) => {
+        if (payload && typeof onUpdateCallback === 'function') {
+            onUpdateCallback(payload);
+        }
+    });
+
+    channel.subscribe((status) => {
+        console.log(`[All Projects Realtime] Estado:`, status);
+    });
+
+    return channel;
+}

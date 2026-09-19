@@ -190,6 +190,35 @@
                 currentProjects.forEach(p => {
                     initProjectChatListener(p.id);
                 });
+
+                // Suscripción en tiempo real a métricas globales de proyectos
+                subscribeToAllProjects(async (payload) => {
+                    if (payload && payload.new) {
+                        const updated = payload.new;
+                        // Actualizar inputs si existen en pantalla
+                        const vInput = document.getElementById('v_' + updated.id);
+                        const lInput = document.getElementById('l_' + updated.id);
+                        if (vInput && vInput.value !== String(updated.visitas)) {
+                            vInput.value = updated.visitas;
+                            vInput.style.transition = 'all 0.3s ease';
+                            vInput.style.background = 'rgba(255, 42, 64, 0.2)';
+                            setTimeout(() => { vInput.style.background = ''; }, 1000);
+                        }
+                        if (lInput && lInput.value !== String(updated.leads)) {
+                            lInput.value = updated.leads;
+                            lInput.style.transition = 'all 0.3s ease';
+                            lInput.style.background = 'rgba(255, 42, 64, 0.2)';
+                            setTimeout(() => { lInput.style.background = ''; }, 1000);
+                        }
+
+                        // Actualizar en el arreglo local y recalcular métricas superiores
+                        const idx = currentProjects.findIndex(p => p.id === updated.id);
+                        if (idx !== -1) {
+                            currentProjects[idx] = { ...currentProjects[idx], ...updated };
+                            calculateMetrics(currentProjects);
+                        }
+                    }
+                });
             } catch (e) {
                 console.error("Error loading projects:", e);
                 document.getElementById('projectsList').innerHTML = "<p style='color:red'>Error cargando proyectos. Verifica la conexión a Supabase.</p>";
@@ -260,7 +289,7 @@
                         <div class="form-row" style="grid-template-columns: 1fr 1fr;">
                             <div class="form-group">
                                 <label>Visitas</label>
-                                <input type="text" id="v_${p.id}" value="${p.visitas}" readonly style="opacity:0.6;cursor:default;" title="Se actualiza automáticamente">
+                                <input type="text" id="v_${p.id}" value="${p.visitas}">
                             </div>
                             <div class="form-group">
                                 <label>Leads / Ventas</label>

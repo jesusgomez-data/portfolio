@@ -201,8 +201,10 @@
                 }, 300);
 
                 // Asignar Métricas
-                document.getElementById('statVisits').innerText = project.visitas || '0';
-                document.getElementById('statLeads').innerText = project.leads || '0';
+                const visitsVal = parseInt(project.visitas, 10) || 0;
+                const leadsVal = parseInt(project.leads, 10) || 0;
+                animateValue("statVisits", 0, visitsVal, 1000);
+                animateValue("statLeads", 0, leadsVal, 1000);
 
                 // Modulo Financiero
                 const badge = document.getElementById('finStatusBadge');
@@ -231,11 +233,79 @@
                     payBtn.style.display = 'none';
                 }
 
+                // Sincronización en Tiempo Real (Visitas, Leads, Progreso en vivo)
+                subscribeToProject(project.id, (updated) => {
+                    if (!updated) return;
+                    
+                    if (updated.visitas !== undefined) {
+                        const currentV = parseInt(document.getElementById('statVisits').textContent, 10) || 0;
+                        const newV = parseInt(updated.visitas, 10) || 0;
+                        if (currentV !== newV) {
+                            animateValue("statVisits", currentV, newV, 800);
+                            triggerMetricFlash('statVisits');
+                        }
+                    }
+
+                    if (updated.leads !== undefined) {
+                        const currentL = parseInt(document.getElementById('statLeads').textContent, 10) || 0;
+                        const newL = parseInt(updated.leads, 10) || 0;
+                        if (currentL !== newL) {
+                            animateValue("statLeads", currentL, newL, 800);
+                            triggerMetricFlash('statLeads');
+                        }
+                    }
+
+                    if (updated.progreso !== undefined) {
+                        const currentP = parseInt(document.getElementById('progressText').textContent, 10) || 0;
+                        const newP = parseInt(updated.progreso, 10) || 0;
+                        if (currentP !== newP) {
+                            const offset = 283 - (283 * newP) / 100;
+                            const circle = document.getElementById('progressCircle');
+                            if (circle) circle.style.strokeDashoffset = offset;
+                            animateValue("progressText", currentP, newP, 800);
+                        }
+                    }
+                });
+
+                // Sondeo ligero de respaldo cada 12 segundos
+                setInterval(async () => {
+                    try {
+                        const refreshed = await getClientProject(email);
+                        if (refreshed) {
+                            const curV = parseInt(document.getElementById('statVisits').textContent, 10) || 0;
+                            const newV = parseInt(refreshed.visitas, 10) || 0;
+                            if (curV !== newV) {
+                                animateValue("statVisits", curV, newV, 800);
+                                triggerMetricFlash('statVisits');
+                            }
+
+                            const curL = parseInt(document.getElementById('statLeads').textContent, 10) || 0;
+                            const newL = parseInt(refreshed.leads, 10) || 0;
+                            if (curL !== newL) {
+                                animateValue("statLeads", curL, newL, 800);
+                                triggerMetricFlash('statLeads');
+                            }
+                        }
+                    } catch(e){}
+                }, 12000);
+
             } catch (e) {
                 console.error("Error loading portal:", e);
                 document.getElementById('projectName').textContent = "Error de conexión";
             }
         });
+
+        function triggerMetricFlash(elId) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            el.style.transition = 'all 0.3s ease';
+            el.style.transform = 'scale(1.15)';
+            el.style.textShadow = '0 0 20px rgba(255, 42, 64, 0.8)';
+            setTimeout(() => {
+                el.style.transform = 'scale(1)';
+                el.style.textShadow = 'none';
+            }, 600);
+        }
 
 
 

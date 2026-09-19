@@ -594,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRegionSwitch();
 });
 
-/* ── Assistant Mini ─────────────────────────────────── */
+/* ── Assistant AI (RAG + Embeddings + Leads) ────────── */
 function initAssistant() {
     const trigger = document.getElementById('assistant-trigger');
     const chatbox = document.getElementById('assistant-chatbox');
@@ -621,9 +621,9 @@ function initAssistant() {
         chatbox.classList.add('open');
         if (tooltip) tooltip.classList.remove('show');
         setTimeout(() => {
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }, 100);
-        chatInput.focus();
+        if (chatInput) chatInput.focus();
     });
 
     closeBtn.addEventListener('click', (e) => {
@@ -631,81 +631,85 @@ function initAssistant() {
         chatbox.classList.remove('open');
     });
 
-    // Answers database
-    const answers = {
-        servicios: "En <strong>JGStudio</strong> cubrimos todo el ciclo digital para impulsar tus ventas. Ofrecemos:<br><br>" +
-                   "• <strong>Desarrollo Web & Apps:</strong> Desde landings de alta conversión hasta plataformas SaaS y apps móviles a medida.<br>" +
-                   "• <strong>Automatización con IA:</strong> Conectamos tus herramientas, creamos chatbots inteligentes y automatizamos flujos repetitivos para ahorrarte horas de trabajo.<br>" +
-                   "• <strong>Branding & Contenido Visual:</strong> Diseño de identidad corporativa y producción de vídeo comercial optimizado para redes y ventas.<br><br>" +
-                   "¿Te interesa alguna de estas áreas en particular?",
-        
-        ia: "La <strong>automatización con Inteligencia Artificial</strong> te permite delegar tareas repetitivas y liberar tiempo. Por ejemplo:<br><br>" +
-            "• Respuestas automáticas e inteligentes a clientes por WhatsApp o email.<br>" +
-            "• Web scraping y recopilación automatizada de datos de competidores.<br>" +
-            "• Sincronización automática de tu CRM, facturación y bases de datos.<br><br>" +
-            "Hacemos que tu tecnología trabaje para ti en piloto automático.",
-        
-        tiempos: "Al ser un estudio ágil e integrado con herramientas de IA de última generación, entregamos mucho más rápido que una agencia tradicional:<br><br>" +
-                 "• <strong>Páginas web y landings:</strong> 1 a 2 semanas.<br>" +
-                 "• <strong>Automatizaciones IA:</strong> 1 a 3 semanas.<br>" +
-                 "• <strong>Plataformas y Apps a medida:</strong> 4 a 8 semanas.<br><br>" +
-                 "Fijamos plazos de entrega exactos en la propuesta inicial.",
-        
-        precios: "Trabajamos con total claridad según tus necesidades:<br><br>" +
-                 "• <strong>Presupuesto Cerrado:</strong> Ideal para proyectos específicos con objetivos concretos y entrega llave en mano.<br>" +
-                 "• <strong>Suscripción Mensual:</strong> Ideal si necesitas un flujo constante de diseño, desarrollo y soporte sin contratar personal a tiempo completo.<br><br>" +
-                 "Si quieres un presupuesto a medida, haz clic en <strong>Precios</strong> en el menú superior o solicita una propuesta en la sección de [Presupuesto](presupuesto.html).",
-        
-        quien: "<strong>Jesús Gómez</strong> es el fundador y especialista de JGStudio. Desarrollador full-stack, experto en automatización de procesos mediante IA y creador de contenido visual. Fundó el estudio con una idea simple: eliminar las agencias tradicionales lentas y costosas, entregando soluciones técnicas de primer nivel a través de un único canal directo, rápido y eficiente.",
-        
-        empezar: "¡Empezar es súper sencillo! Puedes:<br><br>" +
-                 "1. Rellenar nuestro breve formulario haciendo clic en **Hablemos →** en el menú de arriba.<br>" +
-                 "2. Detallar tu proyecto en la página de [Solicitud de Presupuesto](presupuesto.html) para recibir una propuesta en 24h.<br>" +
-                 "3. O si prefieres, déjame tu <strong>correo electrónico</strong> aquí en el chat y Jesús se pondrá en contacto contigo directamente."
-    };
-
     // Handle Quick Option clicks
-    quickOptions.addEventListener('click', (e) => {
-        const btn = e.target.closest('.opt-btn');
-        if (!btn) return;
+    if (quickOptions) {
+        quickOptions.addEventListener('click', (e) => {
+            const btn = e.target.closest('.opt-btn');
+            if (!btn) return;
 
-        const questionKey = btn.dataset.question;
-        const questionText = btn.textContent;
+            const url = btn.dataset.url;
+            if (url) {
+                if (btn.dataset.external === 'true' || url.startsWith('http')) {
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                } else {
+                    window.location.href = url;
+                }
+                return;
+            }
 
-        addUserMessage(questionText);
-        quickOptions.style.display = 'none';
-
-        showTypingIndicator();
-        setTimeout(() => {
-            removeTypingIndicator();
-            addAssistantMessage(answers[questionKey] || "Disculpa, ha ocurrido un error. ¿En qué más puedo ayudarte?");
-            showRemainingOptions(questionKey);
-        }, 1000);
-    });
+            const queryText = btn.dataset.query || btn.textContent.trim();
+            handleUserQuery(queryText);
+        });
+    }
 
     // Handle input field send
     function handleSend() {
+        if (!chatInput) return;
         const query = chatInput.value.trim();
         if (!query) return;
 
-        addUserMessage(query);
         chatInput.value = '';
-        quickOptions.style.display = 'none';
+        handleUserQuery(query);
+    }
+
+    async function handleUserQuery(query) {
+        addUserMessage(query);
+        if (quickOptions) quickOptions.style.display = 'none';
 
         showTypingIndicator();
 
-        setTimeout(() => {
-            removeTypingIndicator();
-            const response = processCustomQuery(query);
-            addAssistantMessage(response);
-            showRemainingOptions();
-        }, 1200);
+        // Calculate dynamic typing delay for realistic interaction
+        const typingDelay = Math.min(Math.max(query.length * 20, 600), 1400);
+
+        try {
+            let aiResult = null;
+            if (window.JGAIEngine && typeof window.JGAIEngine.processUserMessage === 'function') {
+                aiResult = await window.JGAIEngine.processUserMessage(query);
+            }
+
+            setTimeout(() => {
+                removeTypingIndicator();
+
+                if (aiResult) {
+                    const formattedHtml = window.jgFormatMarkdown 
+                        ? window.jgFormatMarkdown(aiResult.text) 
+                        : aiResult.text;
+
+                    addAssistantMessage(formattedHtml, aiResult.isLeadCaptured);
+                    renderSuggestions(aiResult.suggestions || []);
+
+                    if (aiResult.isLeadCaptured && typeof trackConversionEvent === 'function') {
+                        trackConversionEvent('chat_lead_captured', { query });
+                    }
+                } else {
+                    addAssistantMessage("Disculpa, ha ocurrido un error al procesar tu solicitud. ¿En qué más puedo ayudarte?");
+                }
+            }, typingDelay);
+        } catch (err) {
+            console.error('[Assistant] Error:', err);
+            setTimeout(() => {
+                removeTypingIndicator();
+                addAssistantMessage("Ha ocurrido un error inesperado. Puedes contactar directamente a Jesús en la sección de [Presupuesto](presupuesto.html).");
+            }, 600);
+        }
     }
 
-    sendBtn.addEventListener('click', handleSend);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleSend();
-    });
+    if (sendBtn) sendBtn.addEventListener('click', handleSend);
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+    }
 
     function getTime() {
         return new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
@@ -714,14 +718,14 @@ function initAssistant() {
     function addUserMessage(text) {
         const msgDiv = document.createElement('div');
         msgDiv.className = 'message user-msg';
-        msgDiv.innerHTML = `<div class="msg-bubble">${text}</div><span class="msg-time">${getTime()}</span>`;
+        msgDiv.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div><span class="msg-time">${getTime()}</span>`;
         messagesContainer.appendChild(msgDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    function addAssistantMessage(htmlContent) {
+    function addAssistantMessage(htmlContent, isSuccess = false) {
         const msgDiv = document.createElement('div');
-        msgDiv.className = 'message assistant-msg';
+        msgDiv.className = `message assistant-msg${isSuccess ? ' lead-success-msg' : ''}`;
         msgDiv.innerHTML = `<div class="msg-bubble">${htmlContent}</div><span class="msg-time">${getTime()}</span>`;
         messagesContainer.appendChild(msgDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -729,9 +733,14 @@ function initAssistant() {
 
     let typingIndicator = null;
     function showTypingIndicator() {
+        if (typingIndicator) return;
         typingIndicator = document.createElement('div');
         typingIndicator.className = 'message assistant-msg typing-indicator-msg';
-        typingIndicator.innerHTML = `<div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+        typingIndicator.innerHTML = `
+            <div class="msg-bubble">
+                <div class="typing-status-text">Jesús está escribiendo...</div>
+                <div class="typing-dots"><span></span><span></span><span></span></div>
+            </div>`;
         messagesContainer.appendChild(typingIndicator);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
@@ -743,26 +752,27 @@ function initAssistant() {
         }
     }
 
-    function showRemainingOptions(lastKey = '') {
+    function renderSuggestions(suggestions = []) {
+        if (!quickOptions) return;
         quickOptions.innerHTML = '';
         
-        const opts = [
-            { key: 'servicios', text: 'Servicios disponibles' },
-            { key: 'ia', text: 'Automatización con IA' },
-            { key: 'tiempos', text: 'Tiempos de entrega' },
-            { key: 'precios', text: 'Tarifas y precios' },
-            { key: 'quien', text: '¿Quién es Jesús?' },
-            { key: 'empezar', text: '¿Cómo empezamos?' }
-        ];
+        if (!suggestions || suggestions.length === 0) {
+            quickOptions.style.display = 'none';
+            return;
+        }
 
-        opts.forEach(opt => {
-            if (opt.key !== lastKey) {
-                const btn = document.createElement('button');
-                btn.className = 'opt-btn';
-                btn.dataset.question = opt.key;
+        suggestions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            if (opt.url) {
+                btn.dataset.url = opt.url;
+                if (opt.external) btn.dataset.external = 'true';
+                btn.innerHTML = `${opt.text} <i class="fas fa-arrow-up-right-from-square" style="font-size:0.7em; margin-left:4px; opacity:0.7;"></i>`;
+            } else {
+                btn.dataset.query = opt.query || opt.text;
                 btn.textContent = opt.text;
-                quickOptions.appendChild(btn);
             }
+            quickOptions.appendChild(btn);
         });
         
         quickOptions.style.display = 'flex';
@@ -770,34 +780,11 @@ function initAssistant() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    function processCustomQuery(q) {
-        q = q.toLowerCase();
-        
-        if (q.includes('servicio') || q.includes('ofrece') || q.includes('hace') || q.includes('hacen') || q.includes('web') || q.includes('desarrollo') || q.includes('app') || q.includes('pagina') || q.includes('página') || q.includes('diseñ') || q.includes('video') || q.includes('vídeo') || q.includes('branding')) {
-            return answers.servicios;
-        }
-        if (q.includes('ia') || q.includes('inteligencia') || q.includes('gpt') || q.includes('bot') || q.includes('automatiz') || q.includes('agent') || q.includes('flow') || q.includes('scrap')) {
-            return answers.ia;
-        }
-        if (q.includes('tiempo') || q.includes('plazo') || q.includes('tard') || q.includes('entrega') || q.includes('dias') || q.includes('días') || q.includes('semana')) {
-            return answers.tiempos;
-        }
-        if (q.includes('precio') || q.includes('cuanto') || q.includes('cuánto') || q.includes('tarifa') || q.includes('presupuesto') || q.includes('cost') || q.includes('vale') || q.includes('cuesta')) {
-            return answers.precios;
-        }
-        if (q.includes('jesus') || q.includes('jesús') || q.includes('gomez') || q.includes('gómez') || q.includes('quien') || q.includes('quién') || q.includes('creador') || q.includes('fundador')) {
-            return answers.quien;
-        }
-        if (q.includes('empezar') || q.includes('contacto') || q.includes('reunion') || q.includes('reunión') || q.includes('llamada') || q.includes('contratar') || q.includes('correo') || q.includes('email') || q.includes('mail')) {
-            return answers.empezar;
-        }
-        
-        const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-        if (emailRegex.test(q)) {
-            return "¡Muchas gracias! He registrado tu correo. Jesús se pondrá en contacto contigo directamente en menos de 24 horas para resolver tus dudas o agendar una llamada. Si necesitas algo más, aquí estaré.";
-        }
-
-        return "Entiendo. No estoy seguro de tener una respuesta exacta para eso, pero si me dejas tu **correo electrónico (email)** aquí mismo o nos escribes a través de la sección de **Contacto**, Jesús te responderá personalmente en menos de 24 horas.";
+    function escapeHtml(str) {
+        return (str || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 }
 

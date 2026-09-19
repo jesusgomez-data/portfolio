@@ -3746,7 +3746,7 @@ body.menu-open {
 .user-msg      { align-self: flex-end; }
 
 .msg-bubble {
-    padding: 10px 13px;
+    padding: 10px 14px;
     font-family: var(--f-b);
     font-size: 0.82rem;
     line-height: 1.55;
@@ -3754,9 +3754,15 @@ body.menu-open {
 }
 .assistant-msg .msg-bubble {
     background: rgba(255,255,255,0.045);
-    border: 1px solid rgba(255,255,255,0.065);
+    border: 1px solid rgba(255,255,255,0.08);
     color: var(--cream);
     border-radius: 14px 14px 14px 3px;
+}
+.assistant-msg.lead-success-msg .msg-bubble {
+    background: linear-gradient(135deg, rgba(52,211,153,0.12) 0%, rgba(255,255,255,0.03) 100%);
+    border: 1px solid rgba(52,211,153,0.35);
+    color: #e6fcf5;
+    box-shadow: 0 4px 18px rgba(52,211,153,0.1);
 }
 .user-msg .msg-bubble {
     background: var(--accent);
@@ -3764,18 +3770,78 @@ body.menu-open {
     border-radius: 14px 14px 3px 14px;
     box-shadow: 0 4px 14px rgba(214,48,49,0.25);
 }
+
+/* Chat Markdown Formatting */
+.chat-p {
+    margin: 0 0 8px 0;
+}
+.chat-p:last-child {
+    margin-bottom: 0;
+}
+.msg-bubble strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+.msg-bubble em {
+    color: rgba(255, 255, 255, 0.75);
+    font-style: italic;
+}
+.chat-list {
+    margin: 6px 0 8px 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.chat-list li {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.9);
+}
+.chat-list-ordered {
+    list-style-type: decimal;
+    margin-left: 20px;
+}
+.chat-code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--f-m, monospace);
+    font-size: 0.78rem;
+    color: #ff7675;
+}
+.chat-link {
+    color: #ff7675;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+.chat-link:hover {
+    color: #ff9f43;
+}
+
 .msg-time {
     font-family: var(--f-m);
     font-size: 0.55rem;
     letter-spacing: 0.3px;
-    opacity: 0.28;
+    opacity: 0.35;
     margin-top: 4px;
     padding: 0 4px;
 }
 .user-msg .msg-time      { text-align: right; }
 .assistant-msg .msg-time { text-align: left; }
 
-/* ── Typing dots ── */
+/* ── Typing Indicator & Status ── */
+.typing-status-text {
+    font-family: var(--f-m);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+}
 .typing-dots {
     display: flex;
     gap: 5px;
@@ -3801,29 +3867,32 @@ body.menu-open {
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-    margin-top: 6px;
+    margin-top: 8px;
     animation: message-appear 0.4s var(--ease) 0.1s both;
 }
 .opt-btn {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.09);
-    color: rgba(255,255,255,0.72);
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
     border-radius: 20px;
     font-family: var(--f-m);
-    font-size: 0.62rem;
+    font-size: 0.65rem;
     letter-spacing: 0.3px;
     padding: 6px 13px;
     cursor: pointer;
     transition: all 0.22s var(--ease);
     text-align: left;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 .opt-btn:hover {
-    background: rgba(214,48,49,0.1);
-    border-color: rgba(214,48,49,0.4);
-    color: var(--cream);
+    background: rgba(214,48,49,0.15);
+    border-color: rgba(214,48,49,0.45);
+    color: #fff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(214,48,49,0.15);
 }
 
 /* ── Footer ── */
@@ -3898,7 +3967,27 @@ body.menu-open {
 [data-theme="light"] .assistant-msg .msg-bubble {
     background: rgba(0, 0, 0, 0.03);
     border-color: rgba(0, 0, 0, 0.04);
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.85);
+}
+[data-theme="light"] .assistant-msg.lead-success-msg .msg-bubble {
+    background: linear-gradient(135deg, rgba(16,185,129,0.12) 0%, rgba(0,0,0,0.02) 100%);
+    border-color: rgba(16,185,129,0.4);
+    color: #065f46;
+}
+[data-theme="light"] .msg-bubble strong {
+    color: #111827;
+}
+[data-theme="light"] .msg-bubble em {
+    color: #4b5563;
+}
+[data-theme="light"] .chat-list li {
+    color: #374151;
+}
+[data-theme="light"] .typing-status-text {
+    color: rgba(0, 0, 0, 0.5);
+}
+[data-theme="light"] .typing-dots span {
+    background: rgba(0, 0, 0, 0.4);
 }
 [data-theme="light"] .opt-btn {
     background: rgba(0, 0, 0, 0.02);

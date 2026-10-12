@@ -1645,22 +1645,38 @@ body.menu-open {
 
 .footer-col-title {
     font-family: var(--f-m);
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--cream);
-    margin-bottom: 22px;
+    color: #ffffff;
+    margin-bottom: 24px;
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    padding-bottom: 8px;
 }
 
 .footer-col-title::before {
+    display: none !important; /* Elimina punto rojo generico */
+}
+
+.footer-col-title::after {
     content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, rgba(214, 48, 49, 0) 100%);
+    border-radius: 2px;
+}
+
+.f-col-idx {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
 }
 
 .footer-links-list {
@@ -6619,4 +6635,440 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     .vz-aph-sub {
         text-align: center;
     }
-}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SENIOR ARCHITECTURAL SECTION RHYTHM (ALTERNATING CADENCE)
+   Garantiza que ninguna sección consecutiva comparta el mismo color.
+   Alternancia rítmica entre Deep Obsidian Void (#060709),
+   Lighter Architectural Graphite (#11131c) y Dynamic Diagnostic Grid (#08090e).
+   ═══════════════════════════════════════════════════════════ */
+
+/* Tier A: Deep Obsidian Void (#060709) */
+#hero,
+#ia,
+#portfolio,
+#about,
+.vz-faq-section,
+#contacto {
+    background-color: #060709;
+    position: relative;
+}
+
+/* Tier B: Clean Obsidian Diagnostic Lab (#problema) */
+#problema {
+    background-color: #070709 !important;
+    background-image: 
+        radial-gradient(circle at 50% 12%, rgba(214, 48, 49, 0.06) 0%, transparent 60%),
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 28px 28px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+    position: relative;
+}
+
+#problema .cap-card {
+    background: rgba(14, 14, 17, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#problema .cap-card:hover {
+    border-color: rgba(214, 48, 49, 0.45) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(214, 48, 49, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tier C: Red Halftone Ambient Glow System (Exact Match to User Reference Image)
+   Fondo profundo obsidian + resplandores laterales rojos + trama halftone dot-matrix iluminada exclusivamente en los laterales. Cero tonos azules. */
+#servicios,
+#stack,
+.vz-section--alt,
+#precios,
+#express-quiz {
+    background-color: #060709 !important;
+    background-image: 
+        /* Left Red Ambient Glow Flare */
+        radial-gradient(ellipse 42% 75% at -2% 50%, rgba(220, 38, 38, 0.55) 0%, rgba(185, 28, 28, 0.25) 45%, rgba(139, 0, 0, 0.08) 65%, transparent 78%),
+        /* Right Red Ambient Glow Flare (intense, matching reference) */
+        radial-gradient(ellipse 48% 85% at 102% 50%, rgba(239, 68, 68, 0.62) 0%, rgba(220, 38, 38, 0.35) 45%, rgba(159, 18, 57, 0.1) 68%, transparent 82%),
+        /* Very subtle universal micro-grid (3% opacity for tactile texture without washing out center) */
+        radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 20px 20px !important;
+    background-position: 0 0, 0 0, 0 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: inset 0 1px 0 rgba(239, 68, 68, 0.15), inset 0 -1px 0 rgba(239, 68, 68, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Layered Halftone Dot Matrix - illuminated exclusively over the lateral red wings */
+#servicios::before,
+#stack::before,
+.vz-section--alt::before,
+#precios::before,
+#express-quiz::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(circle, #ff2e43 1.8px, transparent 1.8px);
+    background-size: 16px 16px;
+    background-position: 0 0;
+    -webkit-mask-image: 
+        radial-gradient(ellipse 45% 85% at -2% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 72%),
+        radial-gradient(ellipse 52% 90% at 102% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 48%, transparent 80%);
+    mask-image: 
+        radial-gradient(ellipse 45% 85% at -2% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 45%, transparent 72%),
+        radial-gradient(ellipse 52% 90% at 102% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 48%, transparent 80%);
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+    opacity: 0.95;
+}
+
+#servicios > .wrap,
+#stack > .wrap,
+.vz-section--alt > .wrap,
+#precios > .wrap,
+#express-quiz > .wrap {
+    position: relative;
+    z-index: 1;
+}
+
+/* Floating High-Contrast Cards inside Red Halftone Surface (#servicios) */
+#servicios .cap-card {
+    background: rgba(14, 14, 18, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#servicios .cap-card:hover {
+    border-color: rgba(214, 48, 49, 0.55) !important;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.75), 0 0 35px rgba(214, 48, 49, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+#servicios .vz-banner {
+    background: linear-gradient(135deg, rgba(214, 48, 49, 0.16) 0%, rgba(12, 12, 16, 0.96) 100%) !important;
+    border: 1px solid rgba(214, 48, 49, 0.4) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* Deep Obsidian IA Section (#ia) — Preserved 100% Authentic */
+#ia {
+    background-color: #060709 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    position: relative;
+}
+
+/* Stack Tecnológico inside Red Halftone Surface (#stack) */
+#stack .stack-row {
+    border-bottom-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+#stack .stack-row:first-child {
+    border-top-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+#stack .sr-tag {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Pricing Cards inside Red Halftone Surface (#precios) */
+#precios .pr-card {
+    background: rgba(12, 12, 16, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Quiz Wrapper inside Red Halftone Surface (#express-quiz) */
+#express-quiz .quiz-wrapper {
+    background: rgba(12, 12, 16, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.11) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Ventajas Section (6 Razones) — Deep Obsidian Void */
+#ventajas {
+    background-color: #060709 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    position: relative;
+}
+
+#ventajas .vz-why-card {
+    background: rgba(12, 12, 16, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+#ventajas .vz-why-card:hover {
+    border-color: rgba(214, 48, 49, 0.45) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(214, 48, 49, 0.16) !important;
+}
+
+/* Light Theme Support */
+[data-theme="light"] #problema {
+    background-color: #f8fafc !important;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px) !important;
+}
+[data-theme="light"] #servicios,
+[data-theme="light"] #stack,
+[data-theme="light"] .vz-section--alt,
+[data-theme="light"] #precios,
+[data-theme="light"] #express-quiz {
+    background-color: #f1f5f9 !important;
+    background-image: none !important;
+}
+[data-theme="light"] #ia,
+[data-theme="light"] #portfolio,
+[data-theme="light"] #about,
+[data-theme="light"] #ventajas,
+[data-theme="light"] #contacto {
+    background-color: #ffffff !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   ORIGINAL & BESPOKE MICRO-UI COMPONENTS (REEMPLAZO DE CLICHÉS)
+   ═══════════════════════════════════════════════════════════ */
+
+/* 1. BESPOKE LIVE DEPLOY BEACON (REEMPLAZA PUNTO VERDE GENÉRICO) */
+.project-live-indicator {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 5px 14px !important;
+    border-radius: 999px !important;
+    background: rgba(16, 185, 129, 0.08) !important;
+    border: 1px solid rgba(16, 185, 129, 0.26) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    margin-top: 8px !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.25s ease !important;
+    width: fit-content !important;
+}
+
+.project-live-indicator:hover {
+    border-color: rgba(16, 185, 129, 0.5) !important;
+    background: rgba(16, 185, 129, 0.14) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25) !important;
+}
+
+.live-beacon {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.beacon-core {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    position: relative;
+    z-index: 2;
+}
+
+.beacon-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(16, 185, 129, 0.7);
+    animation: beaconPulse 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: 1;
+}
+
+@keyframes beaconPulse {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(2.1); opacity: 0; }
+}
+
+.live-badge-status {
+    font-family: var(--f-m);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #34d399;
+    text-transform: uppercase;
+}
+
+.live-url-sep {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.65rem;
+}
+
+.live-url {
+    font-family: var(--f-m);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.3px;
+}
+
+/* 2. BESPOKE STUDIO INSIGNIA (REEMPLAZA TAG GENÉRICO // 05) */
+.footer-studio-insignia {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(214, 48, 49, 0.08) 100%), rgba(12, 12, 16, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+}
+
+.fsi-phase {
+    font-family: var(--f-m);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #d63031, #ff5252);
+    padding: 3px 9px;
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(214, 48, 49, 0.4);
+}
+
+.fsi-divider {
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.fsi-label {
+    font-family: var(--f-m);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #e2e8f0;
+    text-transform: uppercase;
+}
+
+/* 3. QUIZ SEGMENTED GAUGE (REEMPLAZA PÍLDORA 1 / 3) */
+.quiz-step-gauge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.gauge-bars {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.gauge-bar {
+    width: 16px;
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.35s ease;
+}
+
+.gauge-bar.active {
+    width: 26px;
+    background: linear-gradient(90deg, #d63031, #ff5252);
+    box-shadow: 0 0 12px rgba(214, 48, 49, 0.6);
+}
+
+.gauge-label {
+    font-family: var(--f-m);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: #e2e8f0;
+}
+
+.gauge-label .gl-cur {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.gauge-label .gl-sep {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.gauge-label .gl-tot {
+    color: #94a3b8;
+}
+
+/* 4. WHY CARDS ARCHITECTURAL WATERMARKS & PILLAR CHIPS (REEMPLAZA BENEFICIO 04) */
+.vz-why-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.why-watermark {
+    position: absolute;
+    top: 14px;
+    right: 22px;
+    font-family: var(--f-d);
+    font-size: 4.8rem;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.035);
+    pointer-events: none;
+    user-select: none;
+    transition: color 0.35s ease, transform 0.35s ease;
+}
+
+.vz-why-card:hover .why-watermark {
+    color: rgba(214, 48, 49, 0.14);
+    transform: translateY(-4px) scale(1.05);
+}
+
+.why-pillar-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    margin-bottom: 16px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: all 0.25s ease;
+}
+
+.vz-why-card:hover .why-pillar-chip {
+    background: rgba(214, 48, 49, 0.12);
+    border-color: rgba(214, 48, 49, 0.4);
+}
+
+.wpc-index {
+    font-family: var(--f-m);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #ff5252;
+}
+
+.wpc-label {
+    font-family: var(--f-m);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #e2e8f0;
+    text-transform: uppercase;
+}

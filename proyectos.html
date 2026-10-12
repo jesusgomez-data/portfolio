@@ -135,29 +135,49 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .showcase-counter-display,
         .showcase-counter-badge {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 20px;
-            background: rgba(214, 48, 49, 0.1);
-            border: 1px solid rgba(214, 48, 49, 0.3);
-            border-radius: 16px;
+            gap: 16px;
+            padding: 0;
+            background: none;
+            border: none;
+            border-radius: 0;
             font-family: var(--f-m);
         }
 
+        .scd-num,
         .showcase-counter-num {
-            font-size: 1.6rem;
+            font-family: var(--f-d);
+            font-size: 2.5rem;
             font-weight: 800;
-            color: var(--pg-accent);
+            color: #ffffff;
             line-height: 1;
+            letter-spacing: -0.04em;
         }
 
-        .showcase-counter-text {
+        .scd-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .scd-kicker {
+            font-family: var(--f-m);
             font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--pg-accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .scd-label,
+        .showcase-counter-text {
+            font-size: 0.72rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--pg-cream);
+            color: rgba(240, 236, 229, 0.65);
             line-height: 1.3;
         }
 
@@ -243,11 +263,13 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--pg-border);
             color: var(--pg-gray);
-            font-family: var(--f-b);
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-family: var(--f-m);
+            font-size: 0.70rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             padding: 8px 16px;
-            border-radius: 999px;
+            border-radius: 8px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -266,16 +288,17 @@
             color: #ffffff;
             background: var(--pg-accent);
             border-color: var(--pg-accent);
-            box-shadow: 0 0 16px rgba(214, 48, 49, 0.4);
+            box-shadow: 0 4px 16px rgba(214, 48, 49, 0.35);
         }
 
         .filter-pill-count {
             font-family: var(--f-m);
-            font-size: 0.65rem;
+            font-size: 0.62rem;
+            font-weight: 700;
             background: rgba(0, 0, 0, 0.35);
-            padding: 2px 7px;
-            border-radius: 999px;
-            opacity: 0.85;
+            padding: 2px 6px;
+            border-radius: 4px;
+            opacity: 0.9;
         }
 
         .toolbar-right {
@@ -500,74 +523,90 @@
             margin-bottom: 8px;
         }
 
-        .p-card-num-badge {
-            font-family: var(--f-m);
-            font-size: 0.7rem;
-            color: var(--pg-gray);
+        /* ── BESPOKE SWISS EDITORIAL PROJECT HEADER (CERO PÍLDORAS, CERO PUNTOS TITILANDO) ── */
+        .vz-project-editorial-header {
             display: flex;
-            align-items: center;
-            gap: 8px;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            width: 100%;
         }
 
-        .p-badge {
+        .vz-peh-tag {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .vz-peh-num {
+            font-family: var(--f-d);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .vz-peh-sep {
+            font-family: var(--f-m);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--pg-accent);
+            letter-spacing: 1px;
+        }
+
+        .vz-peh-cat {
+            font-family: var(--f-m);
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 2.2px;
+            color: rgba(240, 236, 229, 0.65);
+            text-transform: uppercase;
+        }
+
+        .vz-peh-link {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             font-family: var(--f-m);
-            font-size: 0.58rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 999px;
+            font-size: 0.75rem;
             font-weight: 600;
+            color: rgba(240, 236, 229, 0.55);
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
-        .p-badge.badge-red {
-            background: rgba(214, 48, 49, 0.15);
-            border: 1px solid rgba(214, 48, 49, 0.35);
-            color: #ff6b6b;
+        .vz-peh-link:hover {
+            color: #ffffff;
         }
 
-        .p-badge.badge-green {
-            background: rgba(52, 211, 153, 0.15);
-            border: 1px solid rgba(52, 211, 153, 0.35);
-            color: #34d399;
+        .vz-peh-link:hover .vz-peh-arrow {
+            transform: translate(2px, -2px);
+            color: var(--pg-accent);
         }
 
-        .p-badge.badge-cyan {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid rgba(0, 240, 255, 0.35);
-            color: #00f0ff;
+        .vz-peh-arrow {
+            font-size: 0.82rem;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
 
-        .p-badge.badge-gold {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            color: #f59e0b;
+        /* Modal header styling */
+        .cs-modal-editorial-header {
+            margin-bottom: 20px;
+            padding-bottom: 14px;
         }
 
-        .p-live-link {
-            font-family: var(--f-m);
-            font-size: 0.65rem;
-            color: var(--pg-gray);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-
-        .p-live-link .live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--pg-green);
-            box-shadow: 0 0 8px var(--pg-green);
-            animation: pulseDot 2s infinite;
-        }
-
-        @keyframes pulseDot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.35); opacity: 0.6; }
+        /* Limpieza de clases legacy */
+        .p-card-top-row,
+        .p-live-link,
+        .p-badge,
+        .live-dot {
+            display: none !important;
         }
 
         .p-card-title {
@@ -1090,18 +1129,21 @@
                 word-break: break-word;
             }
 
+            .showcase-counter-display,
             .showcase-counter-badge {
                 width: auto;
-                padding: 8px 14px;
-                gap: 10px;
+                padding: 0;
+                gap: 12px;
             }
 
+            .scd-num,
             .showcase-counter-num {
-                font-size: 1.35rem;
+                font-size: 1.8rem;
             }
 
+            .scd-label,
             .showcase-counter-text {
-                font-size: 0.58rem;
+                font-size: 0.65rem;
             }
 
             .showcase-lead {
@@ -1453,9 +1495,12 @@
                 </h1>
             </div>
             
-            <div class="showcase-counter-badge">
-                <span class="showcase-counter-num">08+</span>
-                <span class="showcase-counter-text">Proyectos Activos<br>en Producción</span>
+            <div class="showcase-counter-display">
+                <span class="scd-num">08</span>
+                <div class="scd-info">
+                    <span class="scd-kicker">// PRODUCCIÓN ACTIVA</span>
+                    <span class="scd-label">Proyectos Desplegados</span>
+                </div>
             </div>
         </div>
 
@@ -1492,28 +1537,28 @@
             <!-- Category Filter Pills -->
             <div class="filter-pills" id="filter-pills">
                 <button class="filter-pill active" data-filter="all">
-                    <span>⚡ Todos</span>
-                    <span class="filter-pill-count">8</span>
+                    <span>Todos</span>
+                    <span class="filter-pill-count">08</span>
                 </button>
                 <button class="filter-pill" data-filter="saas">
-                    <span>🚀 SaaS &amp; Web Apps</span>
-                    <span class="filter-pill-count">2</span>
+                    <span>SaaS &amp; Web Apps</span>
+                    <span class="filter-pill-count">02</span>
                 </button>
                 <button class="filter-pill" data-filter="ecommerce">
-                    <span>🛍️ E-Commerce &amp; Retail</span>
-                    <span class="filter-pill-count">2</span>
+                    <span>E-Commerce &amp; Retail</span>
+                    <span class="filter-pill-count">02</span>
                 </button>
                 <button class="filter-pill" data-filter="ai-web">
-                    <span>🤖 Webs &amp; Agentes IA</span>
-                    <span class="filter-pill-count">2</span>
+                    <span>Webs &amp; Agentes IA</span>
+                    <span class="filter-pill-count">02</span>
                 </button>
                 <button class="filter-pill" data-filter="data">
-                    <span>📊 Data Analytics &amp; BI</span>
-                    <span class="filter-pill-count">1</span>
+                    <span>Data &amp; BI</span>
+                    <span class="filter-pill-count">01</span>
                 </button>
                 <button class="filter-pill" data-filter="creative">
-                    <span>🎨 Dirección Creativa IA</span>
-                    <span class="filter-pill-count">1</span>
+                    <span>Dirección Creativa IA</span>
+                    <span class="filter-pill-count">01</span>
                 </button>
             </div>
 
@@ -1562,11 +1607,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>01</span> · SaaS DEPORTIVO</span>
-                            <span class="p-badge badge-red"><i class="fa-solid fa-circle-check"></i> SaaS Live</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">01</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">SaaS MULTITENANT &amp; IA</span>
+                            </div>
+                            <a href="https://rivalfit.app" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>rivalfit.app</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>rivalfit.app · Producción Activa</span></div>
                         <h2 class="p-card-title">RivalFit Platform</h2>
                         <p class="p-card-desc">SaaS multitenant para la gestión integral de boxes de CrossFit y gimnasios. Sistema de reservas, portal de atletas, check-in QR, WODs interactivos, Coach de IA adaptativo y pasarela de cobros automatizada con Stripe Connect.</p>
                         
@@ -1620,11 +1671,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>02</span> · E-COMMERCE</span>
-                            <span class="p-badge badge-green"><i class="fa-solid fa-bag-shopping"></i> Cliente Live</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">02</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">E-COMMERCE &amp; RETAIL</span>
+                            </div>
+                            <a href="https://milucandco.vercel.app/" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>milucandco.vercel.app</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>milucandco.vercel.app</span></div>
                         <h2 class="p-card-title">Milu &amp; Co</h2>
                         <p class="p-card-desc">Tienda online de moda femenina diseñada para conversión instantánea. Catálogo dinámico ultra-rápido, filtrado sin recarga de página y checkout fluido adaptado a dispositivos móviles.</p>
                         
@@ -1676,11 +1733,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>03</span> · WEB + AGENTE IA</span>
-                            <span class="p-badge badge-cyan"><i class="fa-solid fa-brain"></i> Agente Activo</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">03</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">WEB &amp; AGENTE IA</span>
+                            </div>
+                            <a href="https://elianisromero.vercel.app/" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>elianisromero.vercel.app</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>elianisromero.vercel.app</span></div>
                         <h2 class="p-card-title">Elianis Romero</h2>
                         <p class="p-card-desc">Plataforma de consultoría y marca personal con agente conversacional de IA integrado. El asistente resuelve dudas, filtra prospectos y agenda sesiones automáticamente 24/7.</p>
                         
@@ -1732,11 +1795,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>04</span> · SALUD &amp; CITAS</span>
-                            <span class="p-badge badge-green"><i class="fa-solid fa-heart-pulse"></i> Cliente Live</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">04</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">SALUD &amp; CITAS</span>
+                            </div>
+                            <a href="https://fabianzambrano.vercel.app/" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>fabianzambrano.vercel.app</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>fabianzambrano.vercel.app</span></div>
                         <h2 class="p-card-title">Fabián Zambrano</h2>
                         <p class="p-card-desc">Web médica de alta conversión para fisioterapia y rehabilitación deportiva. Arquitectura de confianza, desglose claro de tratamientos y sistema directo de solicitud de citas.</p>
                         
@@ -1788,11 +1857,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>05</span> · RETAIL &amp; GSAP</span>
-                            <span class="p-badge badge-green"><i class="fa-solid fa-glasses"></i> Experiencia Live</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">05</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">RETAIL &amp; INTERACCIÓN</span>
+                            </div>
+                            <a href="https://stencil-2.vercel.app/" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>stencil-2.vercel.app</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>stencil-2.vercel.app</span></div>
                         <h2 class="p-card-title">Stencil Eyewear</h2>
                         <p class="p-card-desc">Experiencia digital inmersiva para marca de gafas de sol de diseño. Micro-interacciones cinematográficas a 60fps con GSAP ScrollTrigger y catálogo editorial orientado a lujo.</p>
                         
@@ -1844,11 +1919,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>06</span> · DATA ANALYTICS &amp; BI</span>
-                            <span class="p-badge badge-cyan"><i class="fa-solid fa-chart-pie"></i> Data Pipeline</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">06</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">DATA ANALYTICS &amp; BI</span>
+                            </div>
+                            <a href="https://github.com/jesusgomez-data/retail-sales-data-analysis" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>github.com/jesusgomez-data</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot" style="background:var(--pg-cyan); box-shadow:0 0 8px var(--pg-cyan);"></span><span>jesusgomez-data · GitHub Open Source</span></div>
                         <h2 class="p-card-title">Retail Sales Analysis &amp; BI</h2>
                         <p class="p-card-desc">Pipeline integral de ingeniería y análisis de datos. Extracción y limpieza con Python y SQL, modelado en estrella y cuadro de mando analítico en Power BI con segmentación RFM y KPIs de rentabilidad.</p>
                         
@@ -1900,11 +1981,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>07</span> · DIRECCIÓN CREATIVA IA</span>
-                            <span class="p-badge badge-gold"><i class="fa-solid fa-wand-magic-sparkles"></i> IA Generativa</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">07</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">DIRECCIÓN CREATIVA IA</span>
+                            </div>
+                            <a href="index.html#contenido" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>jgstudio.dev</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot" style="background:var(--pg-gold); box-shadow:0 0 8px var(--pg-gold);"></span><span>JGStudio Creative Engine</span></div>
                         <h2 class="p-card-title">Comercial &amp; Branding Generativo</h2>
                         <p class="p-card-desc">Colección de spots publicitarios, identidad visual y narrativa audiovisual desarrollada íntegramente con modelos generativos de última generación. Calidad cinematográfica sin presupuestos desmedidos.</p>
                         
@@ -1957,11 +2044,17 @@
                 </div>
                 <div class="p-card-body">
                     <div>
-                        <div class="p-card-top-row">
-                            <span class="p-card-num-badge"><span>08</span> · CLIENT OS &amp; REALTIME</span>
-                            <span class="p-badge badge-red"><i class="fa-solid fa-server"></i> Suite Interna</span>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">08</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">CLIENT OS &amp; REALTIME</span>
+                            </div>
+                            <a href="login.html" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>portal.jgstudio.dev</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
                         </div>
-                        <div class="p-live-link"><span class="live-dot"></span><span>portal.jgstudio.dev · Supabase Auth</span></div>
                         <h2 class="p-card-title">JGStudio Client Portal</h2>
                         <p class="p-card-desc">Plataforma privada de gestión de proyectos y comunicación en tiempo real para clientes de JGStudio. Autenticación con roles seguros, seguimiento de hitos de entrega, repositorio de archivos y chat en vivo con WebSockets.</p>
                         
@@ -2090,9 +2183,16 @@
             <img id="modal-img" src="" alt="Project Preview">
         </div>
         <div class="cs-modal-content">
-            <div class="cs-modal-tags-row">
-                <span class="p-badge badge-red" id="modal-badge">SaaS Live</span>
-                <span class="p-live-link" id="modal-url"><span class="live-dot"></span><span>rivalfit.app</span></span>
+            <div class="vz-project-editorial-header cs-modal-editorial-header">
+                <div class="vz-peh-tag">
+                    <span class="vz-peh-num" id="modal-index">01</span>
+                    <span class="vz-peh-sep">//</span>
+                    <span class="vz-peh-cat" id="modal-discipline">SaaS MULTITENANT &amp; IA</span>
+                </div>
+                <a href="#" id="modal-url-link" target="_blank" rel="noopener" class="vz-peh-link">
+                    <span id="modal-url-text">rivalfit.app</span>
+                    <span class="vz-peh-arrow">↗</span>
+                </a>
             </div>
             <h3 class="cs-modal-title" id="modal-title">Título del Proyecto</h3>
             <p class="cs-modal-subtitle" id="modal-subtitle">Descripción detallada del sistema y objetivos.</p>
@@ -2142,13 +2242,12 @@
 
 <!-- SCRIPTS & INTERACTIVITY -->
 <script>
-    // ── DATABASE OF CASE STUDIES (Deep Data) ──
     const PROJECTS_DATA = {
         'rivalfit': {
+            index: '01',
+            discipline: 'SaaS MULTITENANT & IA',
             title: 'RivalFit — Sports & Gym SaaS Platform',
             subtitle: 'Plataforma SaaS multitenant para gimnasios y boxes CrossFit con cobros automatizados Stripe y Coach de IA.',
-            badge: 'SaaS Live',
-            badgeClass: 'badge-red',
             url: 'https://rivalfit.app',
             urlText: 'rivalfit.app',
             image: 'JGStudio/Contenido/Rival Fit App/Dashboard.png',
@@ -2163,10 +2262,10 @@
             archNotes: 'Arquitectura escalable multitenant protegida con políticas Row Level Security (RLS) en Supabase. Integración de Webhooks con Stripe para sincronización instantánea de estados de suscripción.'
         },
         'milu': {
+            index: '02',
+            discipline: 'E-COMMERCE & RETAIL',
             title: 'Milu & Co — E-Commerce de Moda Femenina',
             subtitle: 'Tienda online con catálogo interactivo ultrarrápido y embudo de checkout optimizado para dispositivos móviles.',
-            badge: 'Cliente Live',
-            badgeClass: 'badge-green',
             url: 'https://milucandco.vercel.app/',
             urlText: 'milucandco.vercel.app',
             image: 'img/screenshot_milu.jpg',
@@ -2181,10 +2280,10 @@
             archNotes: 'Renderizado híbrido estático (SSG) y dinámico para garantizar máxima velocidad en redes móviles y posicionamiento orgánico en Google para búsquedas de moda.'
         },
         'elianis': {
+            index: '03',
+            discipline: 'WEB & AGENTE IA',
             title: 'Elianis Romero — Web & Agente IA Conversacional',
             subtitle: 'Plataforma de consultoría y marca personal con agente de IA entrenado para cualificación y agendamiento 24/7.',
-            badge: 'Agente IA Activo',
-            badgeClass: 'badge-cyan',
             url: 'https://elianisromero.vercel.app/',
             urlText: 'elianisromero.vercel.app',
             image: 'img/screenshot_elianis.jpg',
@@ -2199,10 +2298,10 @@
             archNotes: 'Diseño conversacional con memoria contextual y llamadas a funciones para derivar automáticamente a la agenda privada del cliente una vez superado el filtro de cualificación.'
         },
         'fabian': {
+            index: '04',
+            discipline: 'SALUD & CITAS',
             title: 'Fabián Zambrano — Plataforma Médica & Fisioterapia',
             subtitle: 'Sitio web profesional orientado a autoridad médica, presentación de tratamientos y reserva directa.',
-            badge: 'Cliente Live',
-            badgeClass: 'badge-green',
             url: 'https://fabianzambrano.vercel.app/',
             urlText: 'fabianzambrano.vercel.app',
             image: 'img/screenshot_fabian.jpg',
@@ -2217,10 +2316,10 @@
             archNotes: 'Estructura semántica Schema.org para profesionales de la salud con micro-animaciones sutiles que aportan dinamismo sin penalizar la velocidad de carga.'
         },
         'stencil': {
+            index: '05',
+            discipline: 'RETAIL & INTERACCIÓN',
             title: 'Stencil Eyewear — Retail Editorial con GSAP',
             subtitle: 'Experiencia visual cinematográfica para marca de gafas de diseño con micro-animaciones fluidas a 60fps.',
-            badge: 'Experiencia Live',
-            badgeClass: 'badge-green',
             url: 'https://stencil-2.vercel.app/',
             urlText: 'stencil-2.vercel.app',
             image: 'img/screenshot_optica.jpg',
@@ -2235,10 +2334,10 @@
             archNotes: 'Uso de transiciones de aceleración por hardware (GPU transform3d) para garantizar fluidez absoluta incluso en dispositivos móviles de gama media.'
         },
         'retail': {
+            index: '06',
+            discipline: 'DATA ANALYTICS & BI',
             title: 'Retail Sales Analysis & BI Dashboard',
             subtitle: 'Pipeline de datos end-to-end con Python, SQL y cuadro de mando analítico en Power BI.',
-            badge: 'Data Pipeline',
-            badgeClass: 'badge-cyan',
             url: 'https://github.com/jesusgomez-data/retail-sales-data-analysis',
             urlText: 'GitHub jesusgomez-data',
             image: 'img/screenshot_retail.jpg',
@@ -2253,10 +2352,10 @@
             archNotes: 'Modelo dimensional en estrella con tablas de hechos y dimensiones optimizadas para consultas analíticas de baja latencia y reportes ejecutivos.'
         },
         'contenido': {
+            index: '07',
+            discipline: 'DIRECCIÓN CREATIVA IA',
             title: 'Dirección Creativa & Publicidad con IA Generativa',
             subtitle: 'Producción audiovisual y branding comercial hiperrealista con modelos de difusión y vídeo generativo.',
-            badge: 'IA Generativa',
-            badgeClass: 'badge-gold',
             url: 'index.html#contenido',
             urlText: 'JGStudio Creative Showcase',
             image: 'JGStudio/Contenido/Branding/TransformoIdeas.png',
@@ -2271,10 +2370,10 @@
             archNotes: 'Workflows modulares en ComfyUI con LoRAs y ControlNet para control exacto de pose, iluminación y continuidad de producto en piezas comerciales.'
         },
         'portal': {
+            index: '08',
+            discipline: 'CLIENT OS & REALTIME',
             title: 'JGStudio Client Portal & Operating System',
             subtitle: 'Plataforma privada de gestión de proyectos, mensajería en tiempo real y facturación para clientes.',
-            badge: 'Suite Interna',
-            badgeClass: 'badge-red',
             url: 'login.html',
             urlText: 'portal.jgstudio.dev',
             image: 'img/avatar_stats.jpg',
@@ -2303,11 +2402,18 @@
         document.getElementById('modal-title').textContent = data.title;
         document.getElementById('modal-subtitle').textContent = data.subtitle;
 
-        const badgeEl = document.getElementById('modal-badge');
-        badgeEl.className = 'p-badge ' + data.badgeClass;
-        badgeEl.textContent = data.badge;
+        const indexEl = document.getElementById('modal-index');
+        if (indexEl) indexEl.textContent = data.index || '01';
 
-        document.getElementById('modal-url').innerHTML = '<span class="live-dot"></span><span>' + data.urlText + '</span>';
+        const discEl = document.getElementById('modal-discipline');
+        if (discEl) discEl.textContent = data.discipline || 'PROYECTO';
+
+        const urlLink = document.getElementById('modal-url-link');
+        if (urlLink) urlLink.href = data.url;
+
+        const urlText = document.getElementById('modal-url-text');
+        if (urlText) urlText.textContent = data.urlText;
+
         document.getElementById('modal-problem').textContent = data.problem;
         document.getElementById('modal-solution').textContent = data.solution;
         document.getElementById('modal-arch-notes').textContent = data.archNotes;

@@ -297,20 +297,20 @@ function main() {
             const leftOrb = sec.querySelector('.ambient-glow-orb--left');
             const rightOrb = sec.querySelector('.ambient-glow-orb--right');
             const centerOrb = sec.querySelector('.ambient-glow-orb--center');
-            const dotsGrid = sec.querySelector('.ambient-dots-grid');
 
             if (leftOrb) {
                 gsap.fromTo(leftOrb,
-                    { y: -60, scale: 0.95 },
+                    { y: -120, scale: 0.9, opacity: 0.7 },
                     {
-                        y: 200,
-                        scale: 1.15,
+                        y: 480,
+                        scale: 1.25,
+                        opacity: 0.95,
                         ease: 'none',
                         scrollTrigger: {
                             trigger: sec,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 1.2
+                            start: 'top 90%',
+                            end: 'bottom 10%',
+                            scrub: 0.8
                         }
                     }
                 );
@@ -318,16 +318,17 @@ function main() {
 
             if (rightOrb) {
                 gsap.fromTo(rightOrb,
-                    { y: -80, scale: 1.1 },
+                    { y: -160, scale: 1.15, opacity: 0.75 },
                     {
-                        y: 270,
-                        scale: 0.95,
+                        y: 560,
+                        scale: 0.92,
+                        opacity: 1,
                         ease: 'none',
                         scrollTrigger: {
                             trigger: sec,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 1.4
+                            start: 'top 90%',
+                            end: 'bottom 10%',
+                            scrub: 1
                         }
                     }
                 );
@@ -335,31 +336,15 @@ function main() {
 
             if (centerOrb) {
                 gsap.fromTo(centerOrb,
-                    { y: -40, opacity: 0.35 },
+                    { y: -80, opacity: 0.3 },
                     {
-                        y: 140,
-                        opacity: 0.65,
+                        y: 380,
+                        opacity: 0.7,
                         ease: 'none',
                         scrollTrigger: {
                             trigger: sec,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 1.6
-                        }
-                    }
-                );
-            }
-
-            if (dotsGrid) {
-                gsap.fromTo(dotsGrid,
-                    { y: -30 },
-                    {
-                        y: 80,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: sec,
-                            start: 'top bottom',
-                            end: 'bottom top',
+                            start: 'top 90%',
+                            end: 'bottom 10%',
                             scrub: 1.2
                         }
                     }

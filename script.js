@@ -315,33 +315,48 @@ function main() {
             const crosses = stage.querySelector('.vz-ambient-crosses');
 
             if (window.gsap && window.ScrollTrigger) {
-                // Resplandor lateral izquierdo: desciende con el scroll
+                // Resplandor lateral izquierdo: desciende con el scroll con inercia fluida
                 if (leftGlow) {
                     gsap.fromTo(leftGlow,
-                        { y: -180, scale: 0.9, opacity: 0.7 },
+                        { y: -260, scale: 0.88 },
                         {
-                            y: 220,
-                            scale: 1.15,
-                            opacity: 1,
-                            ease: 'none',
+                            y: 340,
+                            scale: 1.16,
+                            ease: 'power1.out',
                             scrollTrigger: {
                                 trigger: sec,
                                 start: 'top bottom',
                                 end: 'bottom top',
-                                scrub: 0.8
+                                scrub: 1.0
                             }
                         }
                     );
                 }
 
-                // Resplandor lateral derecho: desciende con desfase dinámico
+                // Resplandor lateral derecho: desciende con desfase dinámico e inercia cinematográfica
                 if (rightGlow) {
                     gsap.fromTo(rightGlow,
-                        { y: -220, scale: 1.15, opacity: 0.75 },
+                        { y: -300, scale: 1.16 },
                         {
-                            y: 260,
-                            scale: 0.95,
-                            opacity: 1,
+                            y: 380,
+                            scale: 0.92,
+                            ease: 'power1.out',
+                            scrollTrigger: {
+                                trigger: sec,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 1.3
+                            }
+                        }
+                    );
+                }
+
+                // Sutil acento superior
+                if (topGlow) {
+                    gsap.fromTo(topGlow,
+                        { y: -90 },
+                        {
+                            y: 160,
                             ease: 'none',
                             scrollTrigger: {
                                 trigger: sec,
@@ -353,36 +368,18 @@ function main() {
                     );
                 }
 
-                // Sutil acento superior
-                if (topGlow) {
-                    gsap.fromTo(topGlow,
-                        { y: -70, opacity: 0.25 },
-                        {
-                            y: 130,
-                            opacity: 0.8,
-                            ease: 'none',
-                            scrollTrigger: {
-                                trigger: sec,
-                                start: 'top bottom',
-                                end: 'bottom top',
-                                scrub: 1
-                            }
-                        }
-                    );
-                }
-
                 // Micro-cruces de precisión (+): descienden en paralaje de profundidad 3D
                 if (crosses) {
                     gsap.fromTo(crosses,
-                        { y: -60 },
+                        { y: -80 },
                         {
-                            y: 100,
+                            y: 150,
                             ease: 'none',
                             scrollTrigger: {
                                 trigger: sec,
                                 start: 'top bottom',
                                 end: 'bottom top',
-                                scrub: 1.3
+                                scrub: 1.4
                             }
                         }
                     );

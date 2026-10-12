@@ -6904,6 +6904,8 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
 }
 
 .vz-ambient-glow {
@@ -6912,34 +6914,58 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     will-change: transform;
 }
 
-/* Resplandor lateral derecho: Escarlata intenso con caída suave */
+/* Resplandor lateral derecho: Escarlata intenso con caída suave y respiración viva */
 .vz-ambient-glow--right {
     top: -25%;
     right: -12%;
     width: 58%;
     height: 150%;
     background: radial-gradient(ellipse 75% 65% at 95% 50%, 
-        rgba(255, 28, 53, 0.76) 0%, 
-        rgba(235, 18, 42, 0.44) 36%, 
-        rgba(180, 10, 30, 0.15) 62%, 
+        rgba(255, 28, 53, 0.78) 0%, 
+        rgba(235, 18, 42, 0.46) 36%, 
+        rgba(180, 10, 30, 0.16) 62%, 
         transparent 80%);
     filter: blur(28px);
     opacity: 0.95;
+    animation: vzAuraBreatheRight 8s ease-in-out infinite;
 }
 
-/* Resplandor lateral izquierdo: Carmesí profundo */
+/* Resplandor lateral izquierdo: Carmesí profundo con respiración viva */
 .vz-ambient-glow--left {
     top: -30%;
     left: -14%;
     width: 54%;
     height: 150%;
     background: radial-gradient(ellipse 75% 60% at 5% 50%, 
-        rgba(235, 24, 48, 0.6) 0%, 
-        rgba(185, 16, 36, 0.32) 38%, 
-        rgba(120, 6, 22, 0.1) 62%, 
+        rgba(235, 24, 48, 0.65) 0%, 
+        rgba(185, 16, 36, 0.35) 38%, 
+        rgba(120, 6, 22, 0.12) 62%, 
         transparent 76%);
     filter: blur(28px);
     opacity: 0.95;
+    animation: vzAuraBreatheLeft 6.5s ease-in-out infinite 1.2s;
+}
+
+@keyframes vzAuraBreatheRight {
+    0%, 100% {
+        opacity: 0.85;
+        filter: blur(26px) brightness(1);
+    }
+    50% {
+        opacity: 1;
+        filter: blur(34px) brightness(1.15);
+    }
+}
+
+@keyframes vzAuraBreatheLeft {
+    0%, 100% {
+        opacity: 0.82;
+        filter: blur(26px) brightness(1);
+    }
+    50% {
+        opacity: 0.98;
+        filter: blur(32px) brightness(1.12);
+    }
 }
 
 /* Sutil acento superior para continuidad */

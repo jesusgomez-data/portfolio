@@ -2409,7 +2409,7 @@ body.menu-open {
 }
 .prc-badge {
     font-family:var(--f-m); font-size:.46rem; letter-spacing:1.5px;
-    text-transform:uppercase; padding:7px 10px; border:1px solid currentColor; border-radius:999px;
+    text-transform:uppercase; padding:6px 10px; border:1px solid currentColor; border-radius:4px;
     background:rgba(0,0,0,.32);
     backdrop-filter:blur(12px);
 }
@@ -2447,9 +2447,9 @@ body.menu-open {
     display:inline-flex;
     align-items:center;
     gap:7px;
-    padding:7px 10px;
+    padding:6px 10px;
     border:1px solid rgba(255,255,255,.1);
-    border-radius:999px;
+    border-radius:4px;
     background:rgba(255,255,255,.045);
     backdrop-filter:blur(10px);
     font-family:var(--f-m);
@@ -2475,9 +2475,9 @@ body.menu-open {
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:9px 12px;
+    padding:8px 14px;
     border:1px solid rgba(214,48,49,.42);
-    border-radius:999px;
+    border-radius:6px;
     background:rgba(214,48,49,.06);
 }
 .prc-arrow { font-size:.95rem; color:rgba(240,236,229,.22); transition:transform .3s var(--ease),color .2s; }
@@ -2524,7 +2524,7 @@ body.menu-open {
     font-family:var(--f-m); font-size:.58rem; font-weight:700;
     letter-spacing:3px; text-transform:uppercase;
     color:var(--cream); border:1px solid rgba(255,255,255,.12);
-    padding:14px 28px; border-radius:999px; cursor:pointer;
+    padding:14px 28px; border-radius:6px; cursor:pointer;
     transition:border-color .25s,color .25s,background .25s;
     will-change:transform;
 }
@@ -3148,7 +3148,7 @@ body.menu-open {
 .sr-tag {
     font-family:var(--f-m); font-size:.5rem; letter-spacing:1.5px;
     text-transform:uppercase; color:var(--muted);
-    border:1px solid var(--border); padding:5px 12px; border-radius:999px;
+    border:1px solid var(--border); padding:4px 10px; border-radius:4px;
     transition:border-color .2s, color .2s;
 }
 .sr-tag:hover { border-color:rgba(255,255,255,.2); color:var(--cream); }
@@ -3616,8 +3616,8 @@ body.menu-open {
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 999px;
+    padding: 4px 10px;
+    border-radius: 4px;
     backdrop-filter: blur(10px);
 }
 .pc-desc {
@@ -3659,7 +3659,7 @@ body.menu-open {
     font-family: var(--f-b);
     font-weight: 600;
     font-size: 0.8rem;
-    border-radius: 999px;
+    border-radius: 6px;
     transition: all 0.3s;
     cursor: pointer;
 }
@@ -3717,7 +3717,7 @@ body.menu-open {
     font-family: var(--f-b);
     font-weight: 600;
     font-size: 0.8rem;
-    border-radius: 999px;
+    border-radius: 6px;
     transition: background 0.3s, border-color 0.3s;
     cursor: pointer;
 }
@@ -3894,7 +3894,7 @@ body.menu-open {
     font-family: var(--f-b);
     font-weight: 600;
     font-size: 0.82rem;
-    border-radius: 999px;
+    border-radius: 6px;
     transition: all 0.3s;
     border: 1px solid var(--border);
     color: var(--cream);
@@ -4069,13 +4069,13 @@ body.menu-open {
     padding: 3px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 999px;
+    border-radius: 4px;
 }
 
 .reconstruye-flag-badge svg {
     width: 26px;
     height: auto;
-    border-radius: 999px;
+    border-radius: 3px;
     display: block;
 }
 
@@ -4921,7 +4921,7 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
     max-width: 440px;
     background: rgba(15, 15, 15, 0.92);
     border: 1px solid rgba(214, 48, 49, 0.3);
-    border-radius: 999px;
+    border-radius: 12px;
     padding: 6px 74px 6px 8px;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -4946,7 +4946,7 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
     font-size: 0.82rem;
     font-weight: 700;
     padding: 10px 16px;
-    border-radius: 999px;
+    border-radius: 8px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -5064,8 +5064,8 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
     color: var(--accent, #D63031);
     font-family: var(--f-m, monospace);
     font-size: 0.75rem;
-    padding: 3px 10px;
-    border-radius: 999px;
+    padding: 3px 8px;
+    border-radius: 4px;
     border: 1px solid rgba(214, 48, 49, 0.3);
 }
 
@@ -5181,8 +5181,8 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
 .quiz-rf-item {
     font-size: 0.8rem;
     background: rgba(255, 255, 255, 0.05);
-    padding: 6px 14px;
-    border-radius: 999px;
+    padding: 6px 12px;
+    border-radius: 4px;
     color: var(--cream, #fff);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -5238,7 +5238,7 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
     padding: 12px 20px;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 999px;
+    border-radius: 8px;
     font-size: 0.8rem;
     color: var(--gray, #aaa);
 }

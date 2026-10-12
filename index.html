@@ -58,12 +58,6 @@
 
 <div class="scroll-progress" id="scroll-progress"></div>
 
-<!-- Global Ambient Red Glow (Solo 2 destellos para todo el proyecto) -->
-<div class="global-ambient-glow" id="global-ambient-glow" aria-hidden="true">
-    <div class="global-glow-orb global-glow-orb--left" id="global-glow-left"></div>
-    <div class="global-glow-orb global-glow-orb--right" id="global-glow-right"></div>
-</div>
-
 <!-- Nav -->
 <nav class="navbar" id="navbar">
     <div class="nav-inner">
@@ -843,7 +837,7 @@
             <!-- Card 2: E-Commerce (FEATURED / POPULAR) -->
             <div class="senior-price-card theme-featured featured" data-reveal>
                 <div class="spc-badge-pop">
-                    <span class="spc-badge-dot"></span> ALTA DEMANDA
+                    <i class="fas fa-fire"></i> MÁS SOLICITADO
                 </div>
                 <div class="spc-top-bar">
                     <span class="spc-index">02</span>
@@ -1014,7 +1008,7 @@
     <div class="wrap">
         <div class="quiz-wrapper" data-reveal>
             <div class="quiz-header">
-                <span class="quiz-eyebrow"><span class="eyebrow-accent">// 04</span> Diagnóstico de Solución Digital</span>
+                <span class="quiz-eyebrow"><i class="fas fa-bolt"></i> Test de 30 segundos</span>
                 <h2 class="quiz-title">Diagnóstico Express de tu Negocio</h2>
                 <p class="quiz-subtitle">Descubre qué solución tecnológica aumentará tus ventas u optimizará tu tiempo en 3 preguntas rápidas.</p>
             </div>
@@ -1157,7 +1151,7 @@
 </section>
 
 <!-- Formulario de Captación Avanzado -->
-<section id="contacto" style="padding: 100px 0; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+<section id="contacto" style="padding: 100px 0; background: radial-gradient(circle at 50% 0%, rgba(214, 48, 49, 0.12) 0%, var(--bg) 60%); border-top: 1px solid var(--border);">
     <div class="wrap">
         <div class="vz-form-card" data-reveal>
             <div style="text-align: center; margin-bottom: 36px;">
@@ -1292,34 +1286,6 @@
                 <p class="footer-brand-bio">
                     Estudio de ingeniería de software, arquitectura web de alta velocidad y automatización inteligente. Creamos experiencias digitales a medida sin plantillas lentas ni dependencias infladas.
                 </p>
-
-                <!-- Bespoke Studio Telemetry Widget (Architectural & Original) -->
-                <div class="footer-studio-status">
-                    <div class="f-status-row">
-                        <span class="f-status-pulse"></span>
-                        <div class="f-status-meta-group">
-                            <span class="f-status-label">DISPONIBILIDAD ESTUDIO</span>
-                            <span class="f-status-val">Agenda abierta · Admisión Q2/Q3 2026</span>
-                        </div>
-                    </div>
-                    <div class="f-status-divider"></div>
-                    <div class="f-location-row">
-                        <i class="fas fa-location-dot"></i>
-                        <span>Madrid, España <span class="f-loc-tz">[UTC+2]</span> · Despliegue global</span>
-                    </div>
-                </div>
-
-                <!-- Fast Copy Email -->
-                <div class="footer-email-box">
-                    <a href="mailto:jgscoding@gmail.com" class="footer-email-link">
-                        <i class="fas fa-envelope"></i>
-                        <span id="footer-email-text">jgscoding@gmail.com</span>
-                    </a>
-                    <button type="button" class="footer-copy-btn" id="footer-copy-email-btn" onclick="copyFooterEmail()" title="Copiar correo al portapapeles" aria-label="Copiar correo">
-                        <i class="fas fa-copy" id="footer-copy-icon"></i>
-                        <span id="footer-copy-label">Copiar</span>
-                    </button>
-                </div>
             </div>
 
             <!-- Col 1: Soluciones -->
@@ -1408,7 +1374,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-left">
                 <p class="footer-copyright">© 2026 JGStudio · Jesús Gómez Santiago. Todos los derechos reservados.</p>
-                <p class="footer-craft-credit">Diseñado y programado artesanalmente en España con Next-Gen Web Standards · jgstudio.dev</p>
+                <p class="footer-craft-credit">Diseñado y programado artesanalmente con Next-Gen Web Standards · jgstudio.dev</p>
             </div>
 
             <div class="footer-legal-links">
@@ -1525,7 +1491,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Media Lightbox -->
 <div class="vlb" id="vlb" role="dialog" aria-modal="true" aria-label="Visor multimedia">
@@ -1768,57 +1733,6 @@
 
 <!-- Footer & Legal Modal Utilities -->
 <script>
-    function copyFooterEmail() {
-        const email = 'jgscoding@gmail.com';
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(email).then(() => {
-                showCopyFeedback();
-            }).catch(() => {
-                fallbackCopyText(email);
-            });
-        } else {
-            fallbackCopyText(email);
-        }
-    }
-
-    function fallbackCopyText(text) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.opacity = '0';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showCopyFeedback();
-        } catch (err) {
-            prompt('Copia nuestro correo:', text);
-        }
-        document.body.removeChild(textArea);
-    }
-
-    function showCopyFeedback() {
-        const btn = document.getElementById('footer-copy-email-btn');
-        const icon = document.getElementById('footer-copy-icon');
-        const label = document.getElementById('footer-copy-label');
-        if (btn && label && icon) {
-            const originalLabel = label.textContent;
-            label.textContent = '¡Copiado!';
-            icon.className = 'fas fa-check';
-            btn.style.background = '#34d399';
-            btn.style.borderColor = '#34d399';
-            btn.style.color = '#000';
-            setTimeout(() => {
-                label.textContent = originalLabel;
-                icon.className = 'fas fa-copy';
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-            }, 2500);
-        }
-    }
-
     function scrollToTop() {
         if (window.lenis && typeof window.lenis.scrollTo === 'function') {
             window.lenis.scrollTo(0, { duration: 1.2 });

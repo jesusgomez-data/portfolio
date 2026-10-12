@@ -292,65 +292,72 @@ function main() {
             }});
         });
 
-        /* Dynamic Red Ambient Glow Parallax (Scroll-linked reflection movement) */
-        document.querySelectorAll('.section-ambient-red').forEach(sec => {
-            const leftOrb = sec.querySelector('.ambient-glow-orb--left');
-            const rightOrb = sec.querySelector('.ambient-glow-orb--right');
-            const centerOrb = sec.querySelector('.ambient-glow-orb--center');
+        /* Global Red Ambient Glow (Solo 2 destellos para todo el proyecto que bajan con el scroll) */
+        const globalLeftOrb = document.getElementById('global-glow-left');
+        const globalRightOrb = document.getElementById('global-glow-right');
 
-            if (leftOrb) {
-                gsap.fromTo(leftOrb,
-                    { y: -120, scale: 0.9, opacity: 0.7 },
-                    {
-                        y: 480,
-                        scale: 1.25,
-                        opacity: 0.95,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: sec,
-                            start: 'top 90%',
-                            end: 'bottom 10%',
-                            scrub: 0.8
-                        }
+        if (globalLeftOrb && globalRightOrb) {
+            // ScrollTrigger vincula el descenso de los 2 destellos a lo largo de todo el scroll de la página
+            gsap.fromTo(globalLeftOrb,
+                { y: -120, scale: 0.9, opacity: 0.45 },
+                {
+                    y: window.innerHeight * 0.65,
+                    scale: 1.15,
+                    opacity: 0.68,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 1.2
                     }
-                );
-            }
+                }
+            );
 
-            if (rightOrb) {
-                gsap.fromTo(rightOrb,
-                    { y: -160, scale: 1.15, opacity: 0.75 },
-                    {
-                        y: 560,
-                        scale: 0.92,
-                        opacity: 1,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: sec,
-                            start: 'top 90%',
-                            end: 'bottom 10%',
-                            scrub: 1
-                        }
+            gsap.fromTo(globalRightOrb,
+                { y: -160, scale: 1.15, opacity: 0.5 },
+                {
+                    y: window.innerHeight * 0.75,
+                    scale: 0.95,
+                    opacity: 0.72,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 1.4
                     }
-                );
-            }
+                }
+            );
 
-            if (centerOrb) {
-                gsap.fromTo(centerOrb,
-                    { y: -80, opacity: 0.3 },
-                    {
-                        y: 380,
-                        opacity: 0.7,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: sec,
-                            start: 'top 90%',
-                            end: 'bottom 10%',
-                            scrub: 1.2
-                        }
-                    }
-                );
-            }
-        });
+            // Inercia dinámica al hacer scroll: cuando el usuario scrollea hacia abajo, los destellos bajan con él
+            let scrollInertiaTimeout;
+            let prevScrollY = window.scrollY;
+
+            window.addEventListener('scroll', () => {
+                const curY = window.scrollY;
+                const delta = curY - prevScrollY;
+                prevScrollY = curY;
+
+                const boost = Math.max(Math.min(delta * 0.2, 45), -45);
+                gsap.to([globalLeftOrb, globalRightOrb], {
+                    yPercent: boost,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    overwrite: 'auto'
+                });
+
+                clearTimeout(scrollInertiaTimeout);
+                scrollInertiaTimeout = setTimeout(() => {
+                    gsap.to([globalLeftOrb, globalRightOrb], {
+                        yPercent: 0,
+                        duration: 1.2,
+                        ease: 'power3.out',
+                        overwrite: 'auto'
+                    });
+                }, 100);
+            }, { passive: true });
+        }
     }
 
     /* Theme toggle (sol / luna) */

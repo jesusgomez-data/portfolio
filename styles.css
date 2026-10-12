@@ -6926,57 +6926,57 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     will-change: transform;
 }
 
-/* Resplandor lateral derecho: Escarlata intenso con caída suave y respiración viva */
+/* Resplandor lateral derecho: Escarlata sutil y profundo con respiración ambiental tenue */
 .vz-ambient-glow--right {
     top: -25%;
     right: -12%;
     width: 58%;
     height: 150%;
     background: radial-gradient(ellipse 75% 65% at 95% 50%, 
-        rgba(255, 28, 53, 0.78) 0%, 
-        rgba(235, 18, 42, 0.46) 36%, 
-        rgba(180, 10, 30, 0.16) 62%, 
+        rgba(235, 28, 48, 0.42) 0%, 
+        rgba(200, 16, 32, 0.22) 36%, 
+        rgba(140, 8, 20, 0.07) 62%, 
         transparent 80%);
-    filter: blur(28px);
-    opacity: 0.95;
-    animation: vzAuraBreatheRight 8s ease-in-out infinite;
+    filter: blur(44px);
+    opacity: 0.65;
+    animation: vzAuraBreatheRight 9s ease-in-out infinite;
 }
 
-/* Resplandor lateral izquierdo: Carmesí profundo con respiración viva */
+/* Resplandor lateral izquierdo: Carmesí atmosférico suave con respiración viva tenue */
 .vz-ambient-glow--left {
     top: -30%;
     left: -14%;
     width: 54%;
     height: 150%;
     background: radial-gradient(ellipse 75% 60% at 5% 50%, 
-        rgba(235, 24, 48, 0.65) 0%, 
-        rgba(185, 16, 36, 0.35) 38%, 
-        rgba(120, 6, 22, 0.12) 62%, 
+        rgba(220, 24, 42, 0.35) 0%, 
+        rgba(170, 14, 28, 0.17) 38%, 
+        rgba(110, 6, 18, 0.05) 62%, 
         transparent 76%);
-    filter: blur(28px);
-    opacity: 0.95;
-    animation: vzAuraBreatheLeft 6.5s ease-in-out infinite 1.2s;
+    filter: blur(44px);
+    opacity: 0.62;
+    animation: vzAuraBreatheLeft 7.5s ease-in-out infinite 1.2s;
 }
 
 @keyframes vzAuraBreatheRight {
     0%, 100% {
-        opacity: 0.85;
-        filter: blur(26px) brightness(1);
+        opacity: 0.55;
+        filter: blur(40px) brightness(1);
     }
     50% {
-        opacity: 1;
-        filter: blur(34px) brightness(1.15);
+        opacity: 0.72;
+        filter: blur(52px) brightness(1.05);
     }
 }
 
 @keyframes vzAuraBreatheLeft {
     0%, 100% {
-        opacity: 0.82;
-        filter: blur(26px) brightness(1);
+        opacity: 0.52;
+        filter: blur(40px) brightness(1);
     }
     50% {
-        opacity: 0.98;
-        filter: blur(32px) brightness(1.12);
+        opacity: 0.68;
+        filter: blur(50px) brightness(1.04);
     }
 }
 
@@ -6987,30 +6987,31 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     right: 20%;
     height: 40%;
     background: radial-gradient(ellipse 60% 40% at 50% 0%, 
-        rgba(220, 38, 38, 0.12) 0%, 
+        rgba(220, 38, 38, 0.06) 0%, 
         transparent 70%);
-    filter: blur(30px);
+    filter: blur(36px);
 }
 
-/* Micro-Cruces de precisión (+) iluminadas exclusivamente en las alas laterales */
+/* Micro-Cruces de precisión (+) sutiles y refinadas exclusivamente en las alas laterales */
 .vz-ambient-crosses {
     position: absolute;
     inset: -30% 0;
     pointer-events: none;
     z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M11 8v6M8 11h6' stroke='%23ff2e43' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M11 8.5v5M8.5 11h5' stroke='%23e03444' stroke-width='0.9' stroke-linecap='round'/%3E%3C/svg%3E");
     background-size: 22px 22px;
     background-position: 0 0;
-    -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 5%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 88%, rgba(0,0,0,0.85) 95%, rgba(0,0,0,1) 100%);
-    mask-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 5%, rgba(0,0,0,0) 12%, rgba(0,0,0,0) 88%, rgba(0,0,0,0.85) 95%, rgba(0,0,0,1) 100%);
-    opacity: 0.95;
+    -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 4%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(0,0,0,0.45) 96%, rgba(0,0,0,0.85) 100%);
+    mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 4%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, rgba(0,0,0,0.45) 96%, rgba(0,0,0,0.85) 100%);
+    opacity: 0.38;
     will-change: transform;
 }
 
 @media (max-width: 900px) {
     .vz-ambient-crosses {
-        -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 84%, rgba(0,0,0,0.9) 100%);
-        mask-image: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 16%, rgba(0,0,0,0) 84%, rgba(0,0,0,0.9) 100%);
+        -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 86%, rgba(0,0,0,0.7) 100%);
+        mask-image: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 14%, rgba(0,0,0,0) 86%, rgba(0,0,0,0.7) 100%);
+        opacity: 0.30;
     }
 }
 

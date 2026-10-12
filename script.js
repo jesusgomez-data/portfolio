@@ -291,6 +291,81 @@ function main() {
                 gsap.to(obj, { v:target, duration:1.8, ease:'power2.out', onUpdate:() => { el.textContent = isF ? obj.v.toFixed(1) : Math.ceil(obj.v); } });
             }});
         });
+
+        /* Dynamic Red Ambient Glow Parallax (Scroll-linked reflection movement) */
+        document.querySelectorAll('.section-ambient-red').forEach(sec => {
+            const leftOrb = sec.querySelector('.ambient-glow-orb--left');
+            const rightOrb = sec.querySelector('.ambient-glow-orb--right');
+            const centerOrb = sec.querySelector('.ambient-glow-orb--center');
+            const dotsGrid = sec.querySelector('.ambient-dots-grid');
+
+            if (leftOrb) {
+                gsap.fromTo(leftOrb,
+                    { y: -60, scale: 0.95 },
+                    {
+                        y: 200,
+                        scale: 1.15,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sec,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.2
+                        }
+                    }
+                );
+            }
+
+            if (rightOrb) {
+                gsap.fromTo(rightOrb,
+                    { y: -80, scale: 1.1 },
+                    {
+                        y: 270,
+                        scale: 0.95,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sec,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.4
+                        }
+                    }
+                );
+            }
+
+            if (centerOrb) {
+                gsap.fromTo(centerOrb,
+                    { y: -40, opacity: 0.35 },
+                    {
+                        y: 140,
+                        opacity: 0.65,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sec,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.6
+                        }
+                    }
+                );
+            }
+
+            if (dotsGrid) {
+                gsap.fromTo(dotsGrid,
+                    { y: -30 },
+                    {
+                        y: 80,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: sec,
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: 1.2
+                        }
+                    }
+                );
+            }
+        });
     }
 
     /* Theme toggle (sol / luna) */

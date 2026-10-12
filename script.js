@@ -291,6 +291,104 @@ function main() {
                 gsap.to(obj, { v:target, duration:1.8, ease:'power2.out', onUpdate:() => { el.textContent = isF ? obj.v.toFixed(1) : Math.ceil(obj.v); } });
             }});
         });
+
+        /* Dynamic Red Ambient Flares (Efectos rojos y micro-cruces que descienden fluidamente con el scroll) */
+        const ambientSections = document.querySelectorAll('#servicios, #stack, .vz-section--alt, #precios, #express-quiz');
+        ambientSections.forEach(sec => {
+            let stage = sec.querySelector('.vz-ambient-stage');
+            if (!stage) {
+                stage = document.createElement('div');
+                stage.className = 'vz-ambient-stage';
+                stage.setAttribute('aria-hidden', 'true');
+                stage.innerHTML = `
+                    <div class="vz-ambient-glow vz-ambient-glow--left"></div>
+                    <div class="vz-ambient-glow vz-ambient-glow--right"></div>
+                    <div class="vz-ambient-glow vz-ambient-glow--top"></div>
+                    <div class="vz-ambient-crosses"></div>
+                `;
+                sec.prepend(stage);
+            }
+
+            const leftGlow = stage.querySelector('.vz-ambient-glow--left');
+            const rightGlow = stage.querySelector('.vz-ambient-glow--right');
+            const topGlow = stage.querySelector('.vz-ambient-glow--top');
+            const crosses = stage.querySelector('.vz-ambient-crosses');
+
+            if (window.gsap && window.ScrollTrigger) {
+                // Resplandor lateral izquierdo: desciende con el scroll
+                if (leftGlow) {
+                    gsap.fromTo(leftGlow,
+                        { y: -180, scale: 0.9, opacity: 0.7 },
+                        {
+                            y: 220,
+                            scale: 1.15,
+                            opacity: 1,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: sec,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 0.8
+                            }
+                        }
+                    );
+                }
+
+                // Resplandor lateral derecho: desciende con desfase dinámico
+                if (rightGlow) {
+                    gsap.fromTo(rightGlow,
+                        { y: -220, scale: 1.15, opacity: 0.75 },
+                        {
+                            y: 260,
+                            scale: 0.95,
+                            opacity: 1,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: sec,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 1.1
+                            }
+                        }
+                    );
+                }
+
+                // Sutil acento superior
+                if (topGlow) {
+                    gsap.fromTo(topGlow,
+                        { y: -70, opacity: 0.25 },
+                        {
+                            y: 130,
+                            opacity: 0.8,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: sec,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 1
+                            }
+                        }
+                    );
+                }
+
+                // Micro-cruces de precisión (+): descienden en paralaje de profundidad 3D
+                if (crosses) {
+                    gsap.fromTo(crosses,
+                        { y: -60 },
+                        {
+                            y: 100,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: sec,
+                                start: 'top bottom',
+                                end: 'bottom top',
+                                scrub: 1.3
+                            }
+                        }
+                    );
+                }
+            }
+        });
     }
 
     /* Theme toggle (sol / luna) */

@@ -65,22 +65,41 @@ img { display:block; max-width:100%; }
 
 .btn-fill {
     display:inline-flex; align-items:center; gap:8px;
-    background:var(--accent); color:#fff;
+    background:linear-gradient(180deg, #e62e2e 0%, #b81414 100%); color:#fff;
     font-family:var(--f-b); font-weight:600; font-size:.85rem;
-    padding:12px 24px; border:1px solid var(--accent);
-    border-radius:999px; cursor:pointer; transition:background .2s,border-color .2s,transform .2s;
+    padding:12px 24px; border:1px solid rgba(255,255,255,.18);
+    border-radius:8px; cursor:pointer; 
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 16px rgba(220,38,38,.35), inset 0 1px 0 rgba(255,255,255,.28);
+    transition:all .22s cubic-bezier(0.16, 1, 0.3, 1);
     will-change:transform;
 }
-.btn-fill:hover { background:#b82020; border-color:#b82020; }
+.btn-fill:hover { 
+    background:linear-gradient(180deg, #ff3838 0%, #cc1616 100%); 
+    border-color:rgba(255,255,255,.32); 
+    box-shadow: 0 2px 4px rgba(0,0,0,.4), 0 8px 24px rgba(220,38,38,.52), inset 0 1px 0 rgba(255,255,255,.4);
+    transform:translateY(-2px);
+    color:#fff;
+}
+.btn-fill:active { transform:translateY(1px); }
 .btn-outline {
     display:inline-flex; align-items:center; gap:8px;
-    background:transparent; color:var(--cream);
+    background:linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.01) 100%); 
+    color:var(--cream);
     font-family:var(--f-b); font-weight:500; font-size:.85rem;
     padding:12px 24px; border:1px solid rgba(255,255,255,.12);
-    border-radius:999px; cursor:pointer; transition:border-color .2s,color .2s,transform .2s;
+    border-radius:8px; cursor:pointer; 
+    box-shadow: 0 1px 2px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.07);
+    transition:all .22s cubic-bezier(0.16, 1, 0.3, 1);
     will-change:transform;
 }
-.btn-outline:hover { border-color:rgba(255,255,255,.3); }
+.btn-outline:hover { 
+    background:linear-gradient(180deg, rgba(255,255,255,.09) 0%, rgba(255,255,255,.03) 100%);
+    border-color:rgba(255,255,255,.28); 
+    color:#fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.14);
+    transform:translateY(-2px);
+}
+.btn-outline:active { transform:translateY(1px); }
 
 /* ── NAV ────────────────────────── */
 .navbar { 
@@ -2291,27 +2310,20 @@ body.menu-open {
 .live-dot { width:6px; height:6px; border-radius:50%; background:#34d399; animation:pulse-green 2s infinite; }
 @keyframes pulse-green { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.4; transform:scale(.8); } }
 .prc-num {
-    font-family:var(--f-m); font-size:.54rem; letter-spacing:4px;
-    color:rgba(240,236,229,.44);
-    position:relative;
-    padding-left:34px;
-}
-.prc-num::before {
-    content:'';
-    position:absolute;
-    left:0; top:50%;
-    width:22px; height:1px;
-    background:currentColor;
+    font-family:var(--f-d); font-size:.78rem; font-weight:800;
+    color:rgba(240,236,229,.6);
+    letter-spacing:0;
 }
 .prc-badge {
-    font-family:var(--f-m); font-size:.46rem; letter-spacing:1.5px;
-    text-transform:uppercase; padding:7px 10px; border:1px solid currentColor; border-radius:999px;
+    font-family:var(--f-m); font-size:.5rem; letter-spacing:1.2px;
+    font-weight:700;
+    text-transform:uppercase; padding:4px 8px; border:1px solid currentColor; border-radius:4px;
     background:rgba(0,0,0,.32);
     backdrop-filter:blur(12px);
 }
-.prc-red  { color:var(--accent); }
-.prc-green{ color:#34d399; }
-.prc-gold { color:#f59e0b; }
+.prc-red  { color:#ff5252; border-color:rgba(255,82,82,.3); background:rgba(255,82,82,.08); }
+.prc-green{ color:#34d399; border-color:rgba(52,211,153,.3); background:rgba(52,211,153,.08); }
+.prc-gold { color:#f59e0b; border-color:rgba(245,158,11,.3); background:rgba(245,158,11,.08); }
 .prc-bottom {
     display:flex; flex-direction:column; gap:12px;
     max-width:620px;
@@ -5962,18 +5974,22 @@ p strong, .pc-desc strong, .cap-card p strong, .hero-desc strong {
 }
 
 /* ═══════════════════════════════════════════════════
-   GLOBAL ROUNDED DESIGN RULE — NO SHARP 90° EDGES
+   ARCHITECTURAL BUTTON & CONTROL SYSTEM (NO GENERIC 999px PILLS)
    ═══════════════════════════════════════════════════ */
-button, .btn, .btn-fill, .btn-outline, .btn-price, .btn-price-fill, .btn-contact-cta, .nav-cta, .link-pill, .cf-btn, .cont-page-btn, .proj-more-btn {
-    border-radius: 999px !important;
+button, .btn, .btn-fill, .btn-outline, .btn-price, .btn-price-fill, .btn-contact-cta, .cf-btn, .cont-page-btn, .proj-more-btn {
+    border-radius: 8px !important;
+}
+
+.vz-btn-sm {
+    border-radius: 6px !important;
 }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], textarea, select {
-    border-radius: 12px !important;
+    border-radius: 10px !important;
 }
 
 .badge, .tag, .svc-badge, .pc-badge-popular, .reconstruye-flag-badge, .sr-tag, .iac-tags span, .pi-badge {
-    border-radius: 999px !important;
+    border-radius: 5px !important;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -6044,8 +6060,8 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     font-weight: 800;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 999px !important;
+    padding: 4px 8px;
+    border-radius: 4px !important;
     box-shadow: 0 4px 12px rgba(214, 48, 49, 0.4);
     display: inline-flex;
     align-items: center;
@@ -6337,8 +6353,8 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     color: var(--accent);
     background: rgba(214, 48, 49, 0.1);
     border: 1px solid rgba(214, 48, 49, 0.25);
-    padding: 4px 14px;
-    border-radius: 999px !important;
+    padding: 4px 10px;
+    border-radius: 4px !important;
     margin-bottom: 14px;
 }
 
@@ -6362,7 +6378,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     width: 100%;
     height: 4px;
     background: rgba(255, 255, 255, 0.06);
-    border-radius: 999px !important;
+    border-radius: 4px !important;
     margin-bottom: 32px;
     overflow: hidden;
     position: relative;
@@ -6374,7 +6390,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     background: linear-gradient(90deg, #D63031, #ff6b6b);
     box-shadow: 0 0 12px rgba(214, 48, 49, 0.8);
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 999px !important;
+    border-radius: 4px !important;
 }
 
 .quiz-question-heading {
@@ -6395,8 +6411,8 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     color: var(--accent);
     background: rgba(214, 48, 49, 0.12);
     border: 1px solid rgba(214, 48, 49, 0.3);
-    padding: 3px 10px;
-    border-radius: 999px !important;
+    padding: 3px 8px;
+    border-radius: 4px !important;
     letter-spacing: 1px;
     flex-shrink: 0;
 }
@@ -6641,82 +6657,182 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
    ORIGINAL & BESPOKE MICRO-UI COMPONENTS (REEMPLAZO DE CLICHÉS)
    ═══════════════════════════════════════════════════════════ */
 
-/* 1. BESPOKE LIVE DEPLOY BEACON (REEMPLAZA PUNTO VERDE GENÉRICO) */
-.project-live-indicator {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 5px 14px !important;
-    border-radius: 999px !important;
-    background: rgba(16, 185, 129, 0.08) !important;
-    border: 1px solid rgba(16, 185, 129, 0.26) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    margin-top: 8px !important;
-    backdrop-filter: blur(10px) !important;
-    transition: all 0.25s ease !important;
-    width: fit-content !important;
+/* 1. BESPOKE ARCHITECTURAL TELEMETRY BAR (REEMPLAZA CLICHÉS 01 / SAAS LIVE / ACTIVO) */
+.vz-project-telemetry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 7px 12px;
+    background: linear-gradient(180deg, rgba(22, 24, 30, 0.85) 0%, rgba(12, 13, 17, 0.92) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    margin-bottom: 16px;
+    width: 100%;
 }
 
-.project-live-indicator:hover {
-    border-color: rgba(16, 185, 129, 0.5) !important;
-    background: rgba(16, 185, 129, 0.14) !important;
-    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25) !important;
+.vz-telemetry-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.live-beacon {
+.vz-telemetry-idx {
+    font-family: var(--f-d);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.vz-telemetry-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.vz-telemetry-cat {
+    font-family: var(--f-m);
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    line-height: 1.2;
+}
+
+.vz-cat--saas {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.28);
+    color: #f87171;
+}
+
+.vz-cat--ecom {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    color: #34d399;
+}
+
+.vz-cat--ai {
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.28);
+    color: #38bdf8;
+}
+
+.vz-telemetry-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    color: #34d399;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.vz-telemetry-link:hover {
+    background: rgba(16, 185, 129, 0.14);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: #6ee7b7;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.22);
+    transform: translateY(-1px);
+}
+
+.vz-telemetry-radar {
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 
-.beacon-core {
-    width: 6px;
-    height: 6px;
+.radar-dot {
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 10px #10b981;
+    box-shadow: 0 0 8px #10b981;
     position: relative;
     z-index: 2;
 }
 
-.beacon-ring {
+.radar-wave {
     position: absolute;
     inset: -3px;
     border-radius: 50%;
-    border: 1.5px solid rgba(16, 185, 129, 0.7);
-    animation: beaconPulse 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    border: 1px solid rgba(16, 185, 129, 0.6);
+    animation: radarPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
     z-index: 1;
 }
 
-@keyframes beaconPulse {
+@keyframes radarPing {
     0% { transform: scale(0.6); opacity: 1; }
-    100% { transform: scale(2.1); opacity: 0; }
+    100% { transform: scale(2.2); opacity: 0; }
 }
 
-.live-badge-status {
+.vz-telemetry-label {
     font-family: var(--f-m);
-    font-size: 0.58rem;
+    font-size: 0.52rem;
     font-weight: 800;
     letter-spacing: 1.2px;
     color: #34d399;
     text-transform: uppercase;
 }
 
-.live-url-sep {
-    color: rgba(255, 255, 255, 0.25);
-    font-size: 0.65rem;
-}
-
-.live-url {
+.vz-telemetry-host {
     font-family: var(--f-m);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
     color: #e2e8f0;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
+}
+
+.vz-telemetry-arrow {
+    stroke: currentColor;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.vz-telemetry-link:hover .vz-telemetry-arrow {
+    transform: translate(2px, -2px);
+}
+
+@media (max-width: 540px) {
+    .vz-project-telemetry {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 12px;
+    }
+    .vz-telemetry-link {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Fallback legacy compatibility indicator */
+.project-live-indicator {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 4px 10px !important;
+    border-radius: 6px !important;
+    background: rgba(16, 185, 129, 0.08) !important;
+    border: 1px solid rgba(16, 185, 129, 0.26) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.25s ease !important;
+    width: fit-content !important;
 }
 
 /* 2. BESPOKE STUDIO INSIGNIA (REEMPLAZA TAG GENÉRICO // 05) */
@@ -6727,7 +6843,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     padding: 6px 16px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(214, 48, 49, 0.08) 100%), rgba(12, 12, 16, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 999px;
+    border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
     margin-bottom: 20px;
@@ -6741,7 +6857,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     color: #ffffff;
     background: linear-gradient(135deg, #d63031, #ff5252);
     padding: 3px 9px;
-    border-radius: 999px;
+    border-radius: 4px;
     box-shadow: 0 0 10px rgba(214, 48, 49, 0.4);
 }
 
@@ -6766,7 +6882,7 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
     align-items: center;
     gap: 12px;
     padding: 6px 14px;
-    border-radius: 999px;
+    border-radius: 6px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);

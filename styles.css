@@ -2306,9 +2306,6 @@ body.menu-open {
 .projects-stat span { color:var(--cream); font-weight:700; }
 [data-theme="light"] .projects-stat { color:rgba(0,0,0,.5); }
 [data-theme="light"] .projects-stat span { color:var(--cream); }
-.project-live-indicator { display:inline-flex; align-items:center; gap:6px; font-size:.66rem; font-weight:600; color:#34d399; margin-top:8px; }
-.live-dot { width:6px; height:6px; border-radius:50%; background:#34d399; animation:pulse-green 2s infinite; }
-@keyframes pulse-green { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.4; transform:scale(.8); } }
 .prc-num {
     font-family:var(--f-d); font-size:.78rem; font-weight:800;
     color:rgba(240,236,229,.6);
@@ -6659,182 +6656,86 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
    ORIGINAL & BESPOKE MICRO-UI COMPONENTS (REEMPLAZO DE CLICHÉS)
    ═══════════════════════════════════════════════════════════ */
 
-/* 1. BESPOKE ARCHITECTURAL TELEMETRY BAR (REEMPLAZA CLICHÉS 01 / SAAS LIVE / ACTIVO) */
-.vz-project-telemetry {
+/* 1. BESPOKE EDITORIAL PROJECT HEADER (CERO PÍLDORAS, CERO PUNTOS TITILANDO, CERO CAJAS VERDES) */
+.vz-project-editorial-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 12px;
-    padding: 7px 12px;
-    background: linear-gradient(180deg, rgba(22, 24, 30, 0.85) 0%, rgba(12, 13, 17, 0.92) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    margin-bottom: 16px;
+    gap: 16px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
     width: 100%;
 }
 
-.vz-telemetry-meta {
+.vz-peh-tag {
     display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    align-items: baseline;
+    gap: 10px;
 }
 
-.vz-telemetry-idx {
+.vz-peh-num {
     font-family: var(--f-d);
-    font-size: 0.85rem;
+    font-size: 1.15rem;
     font-weight: 800;
     color: #ffffff;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1;
 }
 
-.vz-telemetry-sep {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 0.75rem;
-    font-weight: 300;
-}
-
-.vz-telemetry-cat {
+.vz-peh-sep {
     font-family: var(--f-m);
-    font-size: 0.56rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 1.4px;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.vz-peh-cat {
+    font-family: var(--f-m);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    color: rgba(240, 236, 229, 0.65);
     text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 4px;
-    line-height: 1.2;
 }
 
-.vz-cat--saas {
-    background: rgba(239, 68, 68, 0.12);
-    border: 1px solid rgba(239, 68, 68, 0.28);
-    color: #f87171;
-}
-
-.vz-cat--ecom {
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.28);
-    color: #34d399;
-}
-
-.vz-cat--ai {
-    background: rgba(6, 182, 212, 0.12);
-    border: 1px solid rgba(6, 182, 212, 0.28);
-    color: #38bdf8;
-}
-
-.vz-telemetry-link {
+.vz-peh-link {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 4px 10px;
-    border-radius: 6px;
-    background: rgba(16, 185, 129, 0.06);
-    border: 1px solid rgba(16, 185, 129, 0.22);
-    color: #34d399;
-    text-decoration: none;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-}
-
-.vz-telemetry-link:hover {
-    background: rgba(16, 185, 129, 0.14);
-    border-color: rgba(16, 185, 129, 0.5);
-    color: #6ee7b7;
-    box-shadow: 0 0 16px rgba(16, 185, 129, 0.22);
-    transform: translateY(-1px);
-}
-
-.vz-telemetry-radar {
-    position: relative;
-    width: 8px;
-    height: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.radar-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 8px #10b981;
-    position: relative;
-    z-index: 2;
-}
-
-.radar-wave {
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    border: 1px solid rgba(16, 185, 129, 0.6);
-    animation: radarPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    z-index: 1;
-}
-
-@keyframes radarPing {
-    0% { transform: scale(0.6); opacity: 1; }
-    100% { transform: scale(2.2); opacity: 0; }
-}
-
-.vz-telemetry-label {
+    gap: 6px;
     font-family: var(--f-m);
-    font-size: 0.52rem;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    color: #34d399;
-    text-transform: uppercase;
-}
-
-.vz-telemetry-host {
-    font-family: var(--f-m);
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    color: #e2e8f0;
-    letter-spacing: 0.2px;
+    color: rgba(240, 236, 229, 0.55);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.vz-telemetry-arrow {
+.vz-peh-link:hover {
+    color: #ffffff;
+}
+
+.vz-peh-arrow {
     stroke: currentColor;
     transition: transform 0.2s ease;
     flex-shrink: 0;
 }
 
-.vz-telemetry-link:hover .vz-telemetry-arrow {
+.vz-peh-link:hover .vz-peh-arrow {
     transform: translate(2px, -2px);
+    stroke: #ffffff;
 }
 
-@media (max-width: 540px) {
-    .vz-project-telemetry {
+@media (max-width: 520px) {
+    .vz-project-editorial-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
-        padding: 10px 12px;
+        gap: 8px;
+        padding-bottom: 12px;
     }
-    .vz-telemetry-link {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-
-/* Fallback legacy compatibility indicator */
-.project-live-indicator {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-    padding: 4px 10px !important;
-    border-radius: 6px !important;
-    background: rgba(16, 185, 129, 0.08) !important;
-    border: 1px solid rgba(16, 185, 129, 0.26) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
-    backdrop-filter: blur(10px) !important;
-    transition: all 0.25s ease !important;
-    width: fit-content !important;
 }
 
 /* 2. BESPOKE STUDIO INSIGNIA (REEMPLAZA TAG GENÉRICO // 05) */

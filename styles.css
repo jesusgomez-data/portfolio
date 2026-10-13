@@ -4838,14 +4838,13 @@ body.menu-open {
     .assistant-widget {
         bottom: 12px;
         right: max(16px, calc(50vw - 212px));
-        z-index: 995;
+        z-index: 99999; /* igual que en escritorio: por encima de la barra superior (z 1000) para que el chat abierto se pueda cerrar */
     }
     .avatar-container {
         width: 62px;
         height: 76px;
     }
     .assistant-chatbox {
-        z-index: 1100; /* por encima de la barra superior y su menú hamburguesa, para que la X sea pulsable */
         bottom: 0;
         right: 0;
         width: 100%;

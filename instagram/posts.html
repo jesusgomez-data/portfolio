@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Sistema de posts Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --k:#080808; --r:#D63031; --c:#F0ECE5;
+  --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace;
+  --m:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px}
+
+/* ───────── Marco común ───────── */
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;
+  padding:var(--m);display:flex;flex-direction:column;font-family:var(--f-d)}
+.post.dark{background:var(--k);color:var(--c);--fg:var(--c);--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.5)}
+.post.cream{background:var(--c);color:var(--k);--fg:var(--k);--line:rgba(8,8,8,.16);--dim:rgba(8,8,8,.55)}
+.post.red{background:var(--r);color:var(--k);--fg:var(--k);--line:rgba(8,8,8,.25);--dim:rgba(8,8,8,.6)}
+
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.red .top b{color:var(--c)}
+.top span:nth-child(2){color:var(--dim)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:64px;margin:-4px 0;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.84;letter-spacing:-.012em}
+.h span{display:block;white-space:nowrap}
+.it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;color:var(--r);font-stretch:100%}
+.red .it{color:var(--c)}
+.p{font-size:30px;line-height:1.32;font-weight:400;font-stretch:100%}
+.mono{font-family:var(--f-m);letter-spacing:.12em;text-transform:uppercase;font-size:18px}
+
+/* ───────── 01 Manifiesto ───────── */
+#p01 .h{margin-top:64px}
+#p01 .it{font-size:.94em;line-height:1;margin-top:.02em}
+#p01 .foot{margin-top:auto;display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:end;padding-bottom:44px}
+#p01 .foot .mono{color:var(--dim);line-height:1.6}
+#p01 .p{max-width:640px}
+#p01 .p em{font-style:normal;color:var(--r)}
+
+/* ───────── 02 Caso ───────── */
+#p02 .num{display:flex;align-items:flex-end;gap:26px;margin-top:38px}
+#p02 .num .h{font-size:500px;line-height:.74;color:var(--r);letter-spacing:-.03em}
+#p02 .num .side{padding-bottom:8px}
+#p02 .num .side .h{font-size:118px;color:var(--k);line-height:.84;letter-spacing:-.01em}
+#p02 .num .side .it{font-size:60px;line-height:1.02;color:var(--k);display:block;margin-top:12px}
+#p02 .browser{position:absolute;left:0;right:-150px;top:468px;border-radius:14px 0 0 14px;overflow:hidden;
+  box-shadow:0 40px 80px -30px rgba(8,8,8,.55);background:#111}
+#p02 .bar{height:44px;background:#161616;display:flex;align-items:center;gap:9px;padding:0 18px}
+#p02 .bar i{width:11px;height:11px;border-radius:50%;background:#3a3a3a}
+#p02 .bar u{margin-left:18px;font-family:var(--f-m);font-size:15px;color:#888;text-decoration:none;letter-spacing:.04em}
+#p02 .browser img{display:block;width:100%;height:372px;object-fit:cover;object-position:0 12%}
+#p02 .facts{position:absolute;left:0;right:0;bottom:0;padding:0 0 30px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+#p02 .facts div{border-top:2px solid var(--k);padding-top:14px}
+#p02 .facts .mono{color:var(--r);font-size:16px;font-weight:700}
+#p02 .facts p{font-size:23px;line-height:1.25;margin-top:8px;font-weight:500}
+
+/* ───────── 03 Fricción ───────── */
+#p03 .chat{margin-top:34px;display:flex;flex-direction:column;gap:9px}
+#p03 .b{display:flex;align-items:baseline;gap:18px}
+#p03 .b q{quotes:none;background:var(--k);color:var(--c);font-size:31px;font-weight:500;padding:11px 26px 13px;border-radius:30px 30px 30px 6px}
+#p03 .b time{font-family:var(--f-m);font-size:17px;letter-spacing:.1em;color:rgba(8,8,8,.6)}
+#p03 .b:nth-child(2){margin-left:120px}#p03 .b:nth-child(3){margin-left:36px}
+#p03 .b:nth-child(4){margin-left:210px}#p03 .b:nth-child(5){margin-left:70px}
+#p03 .b:nth-child(6){margin-left:260px}#p03 .b:nth-child(7){margin-left:150px}
+#p03 .b.dup q{background:transparent;color:var(--k);box-shadow:inset 0 0 0 2px var(--k)}
+#p03 .h{margin-top:auto}
+#p03 .it{font-size:.9em;line-height:1.05;white-space:nowrap}
+#p03 .sub{display:flex;justify-content:space-between;align-items:flex-end;margin:22px 0 40px}
+#p03 .sub .p{font-size:27px;max-width:560px;font-weight:500}
+
+/* ───────── 04 Anatomía ───────── */
+#p04 .h{margin-top:44px;font-size:128px}
+#p04 .h .it{display:inline;font-size:.96em}
+#p04 .shot{margin-top:40px;border:1px solid var(--line);border-radius:10px;height:400px;overflow:hidden}
+#p04 .shot div{position:relative;margin-top:-92px}
+#p04 .shot img{display:block;width:100%;filter:brightness(1.3) contrast(1.05)}
+#p04 .pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--r);color:var(--c);
+  font-family:var(--f-m);font-weight:700;font-size:19px;display:grid;place-items:center;box-shadow:0 0 0 7px rgba(214,48,49,.28)}
+#p04 ol{list-style:none;margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}
+#p04 li{display:grid;grid-template-columns:54px 1fr;border-top:1px solid var(--line);padding-top:14px}
+#p04 li i{font-family:var(--f-m);font-style:normal;color:var(--r);font-size:19px;font-weight:700;padding-top:5px}
+#p04 li b{display:block;font-size:26px;font-weight:700;line-height:1.15}
+#p04 li span{display:block;font-size:20px;color:var(--dim);line-height:1.3;margin-top:5px}
+
+/* ───────── 05 Dato ───────── */
+#p05 .big{margin-top:70px;display:flex;align-items:flex-end;gap:20px}
+#p05 .big .h{font-size:470px;line-height:.76;letter-spacing:-.03em}
+#p05 .big .it{font-size:210px;line-height:.8;padding-bottom:6px}
+#p05 .p{font-size:46px;line-height:1.14;font-weight:500;margin-top:60px;max-width:850px;letter-spacing:-.01em}
+#p05 .p em{font-family:var(--f-s);font-style:italic;font-weight:400;color:var(--r)}
+#p05 .scale{margin-top:auto;padding-bottom:42px}
+#p05 .track{height:74px;position:relative;border-left:2px solid var(--k);border-right:2px solid var(--k);
+  background:repeating-linear-gradient(90deg,var(--line) 0 2px,transparent 2px 10%)}
+#p05 .track i{position:absolute;left:0;top:0;bottom:0;width:5%;background:var(--r)}
+#p05 .lab{display:flex;justify-content:space-between;margin-top:14px;color:var(--dim)}
+#p05 .lab b{color:var(--r);font-weight:700}
+#p05 .src{margin-top:26px;font-size:15px;color:var(--dim);letter-spacing:.06em;text-transform:none}
+
+/* ───────── 06 Sistema ───────── */
+#p06{background-image:linear-gradient(rgba(240,236,229,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(240,236,229,.045) 1px,transparent 1px);background-size:54px 54px;background-position:-1px -1px}
+#p06 .clock{margin-top:40px;font-family:var(--f-m);font-weight:700;font-size:150px;letter-spacing:-.04em;line-height:1;color:var(--c)}
+#p06 .clock small{font-size:34px;letter-spacing:.14em;color:var(--dim);font-weight:400;margin-left:14px}
+#p06 .flow{margin-top:38px;position:relative;padding-left:46px}
+#p06 .flow::before{content:"";position:absolute;left:10px;top:20px;bottom:38px;width:2px;background:repeating-linear-gradient(var(--r) 0 8px,transparent 8px 16px)}
+#p06 .n{position:relative;display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:20px;
+  background:#0f0f0f;border:1px solid var(--line);border-radius:10px;padding:19px 26px;margin-bottom:14px}
+#p06 .n::before{content:"";position:absolute;left:-43px;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:50%;background:var(--k);border:2px solid var(--r)}
+#p06 .n time{font-family:var(--f-m);font-size:19px;color:var(--r);letter-spacing:.06em}
+#p06 .n b{font-size:29px;font-weight:600}
+#p06 .n s{text-decoration:none;font-family:var(--f-m);font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+#p06 .n.end{background:var(--r);border-color:var(--r)}
+#p06 .n.end time,#p06 .n.end s{color:var(--c)}
+#p06 .n.end::before{background:var(--r)}
+#p06 .h{margin-top:auto;padding-bottom:40px}
+#p06 .it{font-size:.92em;line-height:1.02}
+
+/* ───────── Portada de vídeo 9:16 (Reels / TikTok) ─────────
+   Zona segura: franja central 1080x1440 (lo que se ve en el grid 3:4). */
+.post.cover{height:1920px;background:radial-gradient(900px 700px at 22% 16%,rgba(214,48,49,.26),transparent 70%),radial-gradient(700px 600px at 95% 92%,rgba(214,48,49,.14),transparent 70%),var(--k)}
+.cover .body{justify-content:center;padding:124px 0 136px}
+.cover .tag{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:20px}
+.cover .tag::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--r)}
+.cover .h{margin-top:40px}
+.cover .it{font-size:.9em;line-height:1.02;margin-top:.03em}
+.cover .play{margin-top:42px;display:flex;align-items:center;gap:26px}
+.cover .play i{width:104px;height:104px;border-radius:50%;background:var(--r);display:grid;place-items:center;flex:none;box-shadow:0 0 0 12px rgba(214,48,49,.22)}
+.cover .play i::after{content:"";border-left:30px solid var(--c);border-top:19px solid transparent;border-bottom:19px solid transparent;margin-left:8px}
+.cover .play b{display:block;font-size:34px;font-weight:700;line-height:1.1}
+.cover .play span{display:block;margin-top:8px;color:var(--dim);font-size:18px}
+.cover .sig{margin-top:36px;display:flex;justify-content:space-between;align-items:flex-end}
+.cover .sig .logo{height:92px;margin:0}
+.cover .sig .mono{color:var(--dim);text-align:right;line-height:1.7;font-size:17px}
+.cover ol{list-style:none;margin-top:46px}
+.cover li{display:grid;grid-template-columns:90px 1fr auto;align-items:baseline;border-top:1px solid var(--line);padding:19px 0 20px}
+.cover li i{font-family:var(--f-m);font-style:normal;font-size:19px;color:var(--r);font-weight:700}
+.cover li b{font-size:44px;font-weight:800;font-stretch:75%;text-transform:uppercase;letter-spacing:.005em;line-height:1}
+.cover li s{text-decoration:none;font-family:var(--f-m);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<!-- 01 · MANIFIESTO -->
+<section class="post dark" id="p01">
+  <header class="top"><span><b>JGS—001</b></span><span>Manifiesto</span><span>2026</span></header>
+  <div class="body">
+    <h1 class="h fit"><span>Tener</span><span>presencia</span><span>online no es</span><span class="it">suficiente.</span></h1>
+    <div class="foot">
+      <p class="mono">Diagnóstico<br>Fricción 00</p>
+      <p class="p">Instagram, WhatsApp y una web no son un sistema comercial. Son tres sitios distintos donde <em>se te escapan clientes.</em></p>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- 02 · CASO -->
+<section class="post cream" id="p02">
+  <header class="top"><span><b>JGS—002</b></span><span>Caso real · Milu &amp; Co</span><span>E-commerce</span></header>
+  <div class="body">
+    <div class="num">
+      <div class="h">12</div>
+      <div class="side"><div class="h">Días</div><span class="it">de la idea<br>a vender online.</span></div>
+    </div>
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><u>milucandco.vercel.app</u></div>
+      <img src="../img/screenshot_milu.jpg" alt="">
+    </div>
+    <div class="facts">
+      <div><span class="mono">Problema</span><p>Ventas que dependían de atender cada mensaje directo.</p></div>
+      <div><span class="mono">Solución</span><p>Tienda en Next.js con catálogo y compra directa.</p></div>
+      <div><span class="mono">Resultado</span><p>Primeras ventas en menos de 48 h.</p></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- 03 · FRICCIÓN -->
+<section class="post red" id="p03">
+  <header class="top"><span><b>JGS—003</b></span><span>Fricción 02 · WhatsApp</span><span>2026</span></header>
+  <div class="body">
+    <div class="chat">
+      <div class="b"><q>¿Precio?</q><time>09:12</time></div>
+      <div class="b dup"><q>¿Precio?</q><time>09:40</time></div>
+      <div class="b"><q>¿Me pasas el catálogo?</q><time>11:05</time></div>
+      <div class="b dup"><q>¿Precio?</q><time>13:27</time></div>
+      <div class="b"><q>¿Hay stock?</q><time>17:58</time></div>
+      <div class="b dup"><q>¿Precio?</q><time>21:16</time></div>
+      <div class="b"><q>¿Sigues ahí?</q><time>23:47</time></div>
+    </div>
+    <h1 class="h fit"><span>Si lo respondes</span><span>a mano,</span><span class="it">no escala.</span></h1>
+    <div class="sub">
+      <p class="p">Lo que tu cliente pregunta siete veces al día debería contestarlo tu web. No tú.</p>
+      <span class="mono">Desliza →</span>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_red.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- 04 · ANATOMÍA -->
+<section class="post dark" id="p04">
+  <header class="top"><span><b>JGS—004</b></span><span>Anatomía · RivalFit</span><span>SaaS</span></header>
+  <div class="body">
+    <h1 class="h"><span>Anatomía de una</span><span>web que <i class="it">convierte.</i></span></h1>
+    <div class="shot"><div>
+      <img src="../img/screenshot_rivalfit.jpg" alt="">
+      <b class="pin" style="left:10%;top:22%">1</b>
+      <b class="pin" style="left:61%;top:29.6%">2</b>
+      <b class="pin" style="left:65%;top:41%">3</b>
+      <b class="pin" style="left:61.5%;top:54%">4</b>
+    </div></div>
+    <ol>
+      <li><i>01</i><div><b>El producto, antes del registro</b><span>Enseñas lo que hay dentro. Nadie compra a ciegas.</span></div></li>
+      <li><i>02</i><div><b>Prueba social en vivo</b><span>Actividad real, no un “clientes felices”.</span></div></li>
+      <li><i>03</i><div><b>Promesa en tres palabras</b><span>Si necesita un párrafo, no es una promesa.</span></div></li>
+      <li><i>04</i><div><b>Un único botón dominante</b><span>Una decisión por pantalla. Solo una.</span></div></li>
+    </ol>
+  </div>
+  <footer class="bot" style="margin-top:28px"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- 05 · DATO -->
+<section class="post cream" id="p05">
+  <header class="top"><span><b>JGS—005</b></span><span>El dato</span><span>UX</span></header>
+  <div class="body">
+    <div class="big"><div class="h">0,05</div><span class="it">s</span></div>
+    <p class="p">Es lo que tarda una persona en formarse la primera impresión de tu web. <em>Antes de leer una sola palabra.</em></p>
+    <div class="scale">
+      <div class="track"><i></i></div>
+      <div class="lab mono"><b>↑ 50 ms · ya te han juzgado</b><span>1 segundo</span></div>
+      <p class="src mono">Fuente: Lindgaard et al., Behaviour &amp; Information Technology, 2006.</p>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- 06 · SISTEMA -->
+<section class="post dark" id="p06">
+  <header class="top"><span><b>JGS—006</b></span><span>Sistema · Automatización IA</span><span>24/7</span></header>
+  <div class="body">
+    <div class="clock">03:14<small>AM</small></div>
+    <div class="flow">
+      <div class="n"><time>03:14:02</time><b>Entra una consulta por la web</b><s>Formulario</s></div>
+      <div class="n"><time>03:14:05</time><b>El agente responde y califica</b><s>IA</s></div>
+      <div class="n"><time>03:14:31</time><b>El contacto queda registrado</b><s>CRM</s></div>
+      <div class="n end"><time>03:15:10</time><b>Cita agendada para las 10:00</b><s>Reserva</s></div>
+    </div>
+    <h1 class="h fit"><span>Nadie despierto.</span><span class="it">Un cliente atendido.</span></h1>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- PORTADA VÍDEO · Reels / TikTok (1080x1920) -->
+<section class="post dark cover" id="cover_video">
+  <header class="top"><span><b>JGS—REEL</b></span><span>Digital Growth Studio</span><span>2026</span></header>
+  <div class="body">
+    <p class="mono tag">Vídeo · Presentación del estudio</p>
+    <h1 class="h fit"><span>Tu negocio</span><span>necesita</span><span>más que una</span><span class="it">página web.</span></h1>
+    <div class="play"><i></i><div><b>Mira lo que construimos.</b><span class="mono">4 servicios · 3 casos reales</span></div></div>
+    <ol>
+      <li><i>01</i><b>Web comercial</b><s>Clientes</s></li>
+      <li><i>02</i><b>E-commerce</b><s>Ventas</s></li>
+      <li><i>03</i><b>IA &amp; Workflows</b><s>Tiempo</s></li>
+      <li><i>04</i><b>Software a medida</b><s>Sistema</s></li>
+    </ol>
+    <div class="sig">
+      <img class="logo" src="logo_dark.png" alt="JGStudio">
+      <p class="mono">Venezuela · España<br>00:38</p>
+    </div>
+  </div>
+  <footer class="bot"><span>@jgstudio.dev</span><span>jgstudio.dev</span></footer>
+</section>
+
+<script>
+// Ajusta el tamaño de los titulares .fit para que la línea más ancha ocupe todo el ancho útil
+document.fonts.ready.then(() => {
+  document.querySelectorAll('.fit').forEach(h => {
+    const max = h.parentElement.clientWidth;
+    h.style.fontSize = '100px';
+    h.style.width = 'max-content';
+    const w = h.getBoundingClientRect().width;
+    h.style.fontSize = (100 * max / w * 0.995) + 'px';
+    h.style.width = '';
+  });
+  window.READY = true;
+});
+</script>
+</body>
+</html>

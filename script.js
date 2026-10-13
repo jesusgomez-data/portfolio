@@ -121,14 +121,16 @@ function initThreeHero() {
 /* ── Hero Promo Video Mode & Transitions ────────── */
 function initHeroPromoVideo(heroTL) {
     const hero = document.getElementById('hero');
-    const video = document.getElementById('hero-video') || document.querySelector('.hero-video-bg');
+    const promoVideo = document.getElementById('hero-video');
+    const ambientVideo = document.getElementById('hero-ambient-video');
     const soundBtn = document.getElementById('hero-sound-btn');
     const skipBtn = document.getElementById('hero-skip-btn');
     const replayBtn = document.getElementById('hero-replay-btn');
     const fill = document.getElementById('hero-video-progress-fill');
 
-    if (!hero || !video) {
+    if (!hero || !promoVideo) {
         if (heroTL) heroTL.play();
+        if (ambientVideo) ambientVideo.play().catch(() => {});
         return;
     }
 
@@ -141,19 +143,22 @@ function initHeroPromoVideo(heroTL) {
         hero.classList.remove('hero-playing-intro');
         hero.classList.add('hero-intro-complete');
 
-        // Configuración para el modo de video de fondo permanente
-        video.loop = true;
-        video.muted = true; // El fondo ambiental siempre en silencio
-        if (soundBtn) {
-            soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>';
+        // Pausar video promocional y activar video ambiental original (burger)
+        try {
+            promoVideo.pause();
+            promoVideo.muted = true;
+        } catch(e) {}
+
+        if (ambientVideo) {
+            ambientVideo.loop = true;
+            ambientVideo.muted = true;
+            if (ambientVideo.paused) {
+                ambientVideo.play().catch(() => {});
+            }
         }
 
-        // Si terminó el video o está pausado, reanudar en bucle suave
-        if (video.ended) {
-            video.currentTime = 0;
-        }
-        if (video.paused) {
-            video.play().catch(() => {});
+        if (soundBtn) {
+            soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>';
         }
 
         // Revelar y animar el texto y la foto con GSAP
@@ -162,51 +167,51 @@ function initHeroPromoVideo(heroTL) {
         }
     }
 
-    // Estado inicial: intro activa
+    // Estado inicial: intro activa con el video promocional
     hero.classList.add('hero-playing-intro');
     hero.classList.remove('hero-intro-complete');
-    video.loop = false;
-    video.muted = true; // Muted requerido para autoplay en todos los navegadores
+    promoVideo.loop = false;
+    promoVideo.muted = true; // Muted requerido para autoplay en navegadores
 
     function ensurePlayback() {
-        video.muted = true;
-        if (video.paused) {
-            const p = video.play();
+        promoVideo.muted = true;
+        if (promoVideo.paused) {
+            const p = promoVideo.play();
             if (p !== undefined) {
                 p.catch(() => {
-                    // Si el navegador bloquea el autoplay, revelar contenido directamente
+                    // Si el navegador bloquea el autoplay, pasar directamente al modo normal
                     finishIntro();
                 });
             }
         }
     }
 
-    if (video.readyState >= 2) {
+    if (promoVideo.readyState >= 2) {
         ensurePlayback();
     } else {
-        video.addEventListener('canplay', ensurePlayback, { once: true });
-        video.addEventListener('loadeddata', ensurePlayback, { once: true });
+        promoVideo.addEventListener('canplay', ensurePlayback, { once: true });
+        promoVideo.addEventListener('loadeddata', ensurePlayback, { once: true });
     }
 
-    // Toggle de sonido al hacer clic en el propio video
-    video.addEventListener('click', () => {
+    // Toggle de sonido al hacer clic en el propio video promocional
+    promoVideo.addEventListener('click', () => {
         if (!isIntroFinished) {
-            video.muted = !video.muted;
+            promoVideo.muted = !promoVideo.muted;
             if (soundBtn) {
-                soundBtn.innerHTML = video.muted 
+                soundBtn.innerHTML = promoVideo.muted 
                     ? '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>'
                     : '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
             }
         }
     });
 
-    // 1. Al terminar el video promocional (38s), restaurar hero con texto y foto
-    video.addEventListener('ended', finishIntro);
+    // 1. Al terminar el video promocional (38s), cambiar al video ambiental original
+    promoVideo.addEventListener('ended', finishIntro);
 
-    // 2. Barra de progreso en vivo
-    video.addEventListener('timeupdate', () => {
-        if (!isIntroFinished && video.duration && fill) {
-            const pct = Math.min((video.currentTime / video.duration) * 100, 100);
+    // 2. Barra de progreso en vivo durante el intro
+    promoVideo.addEventListener('timeupdate', () => {
+        if (!isIntroFinished && promoVideo.duration && fill) {
+            const pct = Math.min((promoVideo.currentTime / promoVideo.duration) * 100, 100);
             fill.style.width = pct + '%';
         }
     });
@@ -215,8 +220,8 @@ function initHeroPromoVideo(heroTL) {
     if (soundBtn) {
         soundBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            video.muted = !video.muted;
-            if (video.muted) {
+            promoVideo.muted = !promoVideo.muted;
+            if (promoVideo.muted) {
                 soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>';
             } else {
                 soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
@@ -241,7 +246,7 @@ function initHeroPromoVideo(heroTL) {
         }
     }, { passive: true });
 
-    // 6. Botón de replay (en el kicker de texto) para volver a ver el video
+    // 6. Botón de replay (en el kicker) para volver a ver el video promocional
     if (replayBtn) {
         replayBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -250,14 +255,20 @@ function initHeroPromoVideo(heroTL) {
             hero.classList.remove('hero-intro-complete');
             hero.classList.add('hero-playing-intro');
 
-            video.loop = false;
-            video.currentTime = 0;
-            video.muted = false; // Interacción directa del usuario: activar audio
+            // Pausar video ambiental
+            if (ambientVideo) {
+                ambientVideo.pause();
+            }
+
+            // Reiniciar y reproducir video promocional con audio activo
+            promoVideo.loop = false;
+            promoVideo.currentTime = 0;
+            promoVideo.muted = false; // Interacción directa del usuario: audio permitido
             if (soundBtn) {
                 soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
             }
             if (fill) fill.style.width = '0%';
-            video.play().catch(() => {});
+            promoVideo.play().catch(() => {});
 
             if (window.lenis && typeof window.lenis.scrollTo === 'function') {
                 window.lenis.scrollTo(0, { duration: 0.8 });

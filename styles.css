@@ -398,29 +398,6 @@ body.menu-open {
     transform: translateY(0);
 }
 
-/* Botón discreto para volver a reproducir en el kicker */
-.hero-replay-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #e0e0e0;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    margin-left: 8px;
-    cursor: pointer;
-    vertical-align: middle;
-    transition: all 0.2s ease;
-}
-.hero-replay-pill:hover {
-    background: rgba(214, 48, 49, 0.2);
-    border-color: rgba(214, 48, 49, 0.6);
-    color: #fff;
-    transform: translateY(-1px);
-}
 
 @media(max-width: 768px) {
     .hero-video-ui {
@@ -7347,4 +7324,18 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="url"], i
 [data-theme="light"] #ventajas,
 [data-theme="light"] #contacto {
     background-color: #ffffff !important;
+}
+
+/* ── Móvil: hero compacto, sin hueco bajo la barra superior ── */
+@media (max-width: 900px) {
+    #hero.vz-hero-pro:not(.hero-playing-intro) {
+        min-height: auto;
+        align-items: flex-start;
+        padding-top: 92px;
+        padding-bottom: 40px;
+    }
+    #hero.vz-hero-pro:not(.hero-playing-intro) .hero-content {
+        padding-top: 12px;
+        padding-bottom: 40px;
+    }
 }

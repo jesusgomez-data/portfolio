@@ -125,7 +125,6 @@ function initHeroPromoVideo(heroTL) {
     const ambientVideo = document.getElementById('hero-ambient-video');
     const soundBtn = document.getElementById('hero-sound-btn');
     const skipBtn = document.getElementById('hero-skip-btn');
-    const replayBtn = document.getElementById('hero-replay-btn');
     const fill = document.getElementById('hero-video-progress-fill');
 
     if (!hero || !promoVideo) {
@@ -273,38 +272,6 @@ function initHeroPromoVideo(heroTL) {
         }
     }, { passive: true });
 
-    // 6. Botón de replay (en el kicker) para volver a ver el video promocional
-    if (replayBtn) {
-        replayBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            isIntroFinished = false;
-            hero.classList.remove('hero-intro-complete');
-            hero.classList.add('hero-playing-intro');
-
-            // Pausar video ambiental
-            if (ambientVideo) {
-                ambientVideo.pause();
-            }
-
-            // Reiniciar y reproducir video promocional con audio activo
-            selectPromoSource();
-            promoVideo.loop = false;
-            promoVideo.currentTime = 0;
-            promoVideo.muted = false; // Interacción directa del usuario: audio permitido
-            if (soundBtn) {
-                soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
-            }
-            if (fill) fill.style.width = '0%';
-            promoVideo.play().catch(() => {});
-
-            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-                window.lenis.scrollTo(0, { duration: 0.8 });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
-    }
 }
 
 /* ── Main ──────────────────────────────────────── */

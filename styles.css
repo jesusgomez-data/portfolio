@@ -284,56 +284,6 @@ body.menu-open {
     pointer-events: auto;
 }
 
-.hero-video-ui-top {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 16px;
-    margin-top: 72px; /* deja libre la barra de navegación superior */
-}
-
-.hero-video-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.hero-video-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(10, 11, 14, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    color: #fff;
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 9px 18px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
-}
-
-.hero-video-btn:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.38);
-    transform: translateY(-1px);
-    color: #fff;
-}
-
-.hero-skip-btn {
-    background: rgba(214, 48, 49, 0.88);
-    border-color: rgba(214, 48, 49, 0.55);
-}
-
-.hero-skip-btn:hover {
-    background: #e84118;
-    border-color: #ff7675;
-}
-
 .hero-video-progress {
     position: absolute;
     bottom: 0;
@@ -475,20 +425,6 @@ body.menu-open {
 @media(max-width: 768px) {
     .hero-video-ui {
         padding: 16px 18px;
-    }
-    .hero-video-ui-top {
-        margin-top: 68px;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    .hero-video-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-    .hero-video-btn {
-        padding: 8px 14px;
-        font-size: 0.76rem;
     }
 }
 

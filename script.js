@@ -167,6 +167,33 @@ function initHeroPromoVideo(heroTL) {
         }
     }
 
+    // Selección explícita del video según viewport: vertical en móvil, panorámico en escritorio
+    function selectPromoSource() {
+        const isMobile = window.innerWidth <= 768;
+        const targetFilename = isMobile ? 'JGStudio_Promo_2026_Vertical.mp4' : 'JGStudio_Promo_2026.mp4';
+        const targetSrc = isMobile 
+            ? 'videos%20promocionales/JGStudio_Promo_2026_Vertical.mp4' 
+            : 'videos%20promocionales/JGStudio_Promo_2026.mp4';
+        const targetPoster = isMobile
+            ? 'videos%20promocionales/JGStudio_Promo_2026_Vertical_portada.jpg'
+            : 'videos%20promocionales/JGStudio_Promo_2026_poster.jpg';
+
+        promoVideo.poster = targetPoster;
+
+        const current = promoVideo.currentSrc || promoVideo.src || '';
+        if (!current.includes(targetFilename)) {
+            promoVideo.src = targetSrc;
+            promoVideo.load();
+        }
+    }
+    selectPromoSource();
+
+    window.addEventListener('resize', () => {
+        if (!hero.classList.contains('hero-intro-complete')) {
+            selectPromoSource();
+        }
+    });
+
     // Estado inicial: intro activa con el video promocional
     hero.classList.add('hero-playing-intro');
     hero.classList.remove('hero-intro-complete');
@@ -261,6 +288,7 @@ function initHeroPromoVideo(heroTL) {
             }
 
             // Reiniciar y reproducir video promocional con audio activo
+            selectPromoSource();
             promoVideo.loop = false;
             promoVideo.currentTime = 0;
             promoVideo.muted = false; // Interacción directa del usuario: audio permitido

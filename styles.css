@@ -219,17 +219,29 @@ body.menu-open {
     z-index: 0;
     object-fit: cover;
     object-position: center center;
-    opacity: 0.35;
     pointer-events: none;
-    filter: contrast(1.08) brightness(0.92);
 }
-/* En móvil enfocamos los motion graphics y efectos 3D evitando solapamiento tipográfico */
+
+/* Video promocional: siempre centrado y sin deformaciones en desktop y móvil */
+.hero-promo-video {
+    object-position: center center !important;
+    filter: none !important;
+    transform: none !important;
+}
+
+/* Video ambiental (burger): opacidad calibrada para fondo */
+.hero-ambient-video {
+    opacity: 0.55;
+    object-position: center center;
+}
 @media(max-width:768px){
-    .hero-video-bg {
-        opacity: 0.32;
-        object-position: 95% center;
-        filter: blur(2px) contrast(1.1) brightness(0.9);
-        transform: scale(1.05); /* previene bordes blancos por el blur */
+    .hero-promo-video {
+        object-fit: contain !important;
+        background-color: #060709;
+    }
+    .hero-ambient-video {
+        opacity: 0.4;
+        object-position: 65% center; /* encuadre óptimo del video burger en vertical */
     }
 }
 

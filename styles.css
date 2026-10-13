@@ -379,12 +379,19 @@ body.menu-open {
     min-height: 100dvh;
 }
 
-#hero.hero-playing-intro .hero-video-bg {
+/* Durante el intro: el video promocional está al 100% visible sin interferencias */
+#hero.hero-playing-intro .hero-promo-video {
     opacity: 1 !important;
     filter: none !important;
     z-index: 10 !important;
     pointer-events: auto !important;
     cursor: pointer;
+}
+
+#hero.hero-playing-intro .hero-ambient-video {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
 }
 
 #hero.hero-playing-intro .hero-overlay {
@@ -414,6 +421,25 @@ body.menu-open {
 /* Transiciones al volver al estado normal */
 #hero .hero-video-bg {
     transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+}
+
+/* Al terminar el intro: el video promocional se oculta y el video ambiental (burger) entra como fondo */
+#hero.hero-intro-complete .hero-promo-video {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+#hero.hero-intro-complete .hero-ambient-video {
+    opacity: 0.55 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+@media(max-width:768px){
+    #hero.hero-intro-complete .hero-ambient-video {
+        opacity: 0.4 !important;
+        object-position: 65% center !important;
+    }
 }
 
 #hero .hero-overlay {
@@ -1974,6 +2000,8 @@ body.menu-open {
     border: 1px solid var(--border);
     border-radius: 12px;
     transition: all 0.2s;
+    min-height: 60px;
+    box-sizing: border-box;
 }
 
 .footer-direct-channel:hover {

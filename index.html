@@ -87,7 +87,15 @@
      ═══════════════════════════════════════════════════════════ -->
 <section id="hero" class="hero vz-hero-pro hero-playing-intro">
     <canvas id="hero-3d" class="hero-canvas"></canvas>
-    <video id="hero-video" autoplay muted playsinline class="hero-video-bg" aria-hidden="true" webkit-playsinline x5-playsinline poster="videos%20promocionales/JGStudio_Promo_2026_poster.jpg">
+    <!-- Video de fondo ambiental (burger: se muestra al terminar el video promocional) -->
+    <video id="hero-ambient-video" muted loop playsinline class="hero-video-bg hero-ambient-video" aria-hidden="true" webkit-playsinline x5-playsinline preload="auto">
+        <source src="JGStudio/videos/burger.mp4" type="video/mp4">
+        <source src="JGStudio/videos/burger.MOV?v=20260709" type="video/quicktime">
+        <source src="JGStudio/videos/burger.MOV?v=20260709" type="video/mp4">
+    </video>
+
+    <!-- Video promocional principal (reproducción limpia durante el intro) -->
+    <video id="hero-video" autoplay muted playsinline class="hero-video-bg hero-promo-video" aria-hidden="true" webkit-playsinline x5-playsinline poster="videos%20promocionales/JGStudio_Promo_2026_poster.jpg">
         <source src="videos%20promocionales/JGStudio_Promo_2026_Vertical.mp4" type="video/mp4" media="(max-width: 768px)">
         <source src="videos%20promocionales/JGStudio_Promo_2026.mp4" type="video/mp4">
         <source src="videos promocionales/JGStudio_Promo_2026.mp4" type="video/mp4">
@@ -1434,8 +1442,7 @@
                     <a href="https://wa.me/34674885902?text=Hola%20Jesús,%20estoy%20interesado%20en%20conversar%20sobre%20un%20proyecto%20web/IA." target="_blank" rel="noopener" class="footer-direct-channel">
                         <div class="footer-channel-icon wa"><i class="fab fa-whatsapp"></i></div>
                         <div class="footer-channel-text">
-                            <span class="footer-channel-label">WhatsApp Oficial</span>
-                            <span class="footer-channel-val">+34 674 885 902</span>
+                            <span class="footer-channel-val">WhatsApp Oficial</span>
                         </div>
                     </a>
                     <a href="mailto:jgscoding@gmail.com" class="footer-direct-channel">

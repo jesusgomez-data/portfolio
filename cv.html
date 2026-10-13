@@ -769,16 +769,17 @@
             print-color-adjust: exact !important;
         }
         .print-bar { display: none !important; }
-        /* Mismo diseño de escritorio, reducido para caber en A4 */
+        /* Mismo diseño de escritorio, reducido para caber en una hoja A4 */
         .cv-wrapper {
             width: 960px !important;
             max-width: none !important;
             margin: 0 !important;
             border: none !important;
             box-shadow: none !important;
-            zoom: .82;
+            zoom: .7;
         }
-        .sec, .exp-item, .cert-item, .proj-card { break-inside: avoid; }
+        /* Una sola hoja A4: todo el CV entra en la altura de la página */
+        html, body { height: 297mm !important; overflow: hidden !important; }
     }
 
     @media screen and (max-width: 899px) {

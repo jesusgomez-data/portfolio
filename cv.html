@@ -177,7 +177,7 @@
         background: var(--surface);
         border: 1px solid var(--border);
     }
-    @media (max-width: 899px) {
+    @media screen and (max-width: 899px) {
         .cv-wrapper {
             margin: 0;
             border: none;
@@ -207,7 +207,7 @@
         background: linear-gradient(135deg, rgba(214,48,49,.05) 0%, transparent 55%, rgba(214,48,49,.02) 100%);
         pointer-events: none;
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .cv-header {
             flex-direction: row;
             align-items: center;
@@ -232,7 +232,7 @@
         transform: scale(1.04);
         box-shadow: 0 0 0 8px rgba(214,48,49,.14);
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .header-photo { width: 88px; height: 88px; }
     }
 
@@ -261,7 +261,7 @@
         gap: 8px 20px;
         justify-content: center;
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .header-contacts { justify-content: flex-start; }
     }
     .hc-item {
@@ -290,7 +290,7 @@
         display: flex;
         flex-direction: column;
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .cv-body {
             display: grid;
             grid-template-columns: 260px 1fr;
@@ -306,7 +306,7 @@
         padding: 32px 28px;
         order: 2; /* mobile: sidebar below main */
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .cv-sidebar {
             order: 0;
             grid-column: 1;
@@ -316,7 +316,7 @@
             padding: 36px 28px;
         }
     }
-    @media (max-width: 899px) {
+    @media screen and (max-width: 899px) {
         .cv-sidebar {
             border-top: 1px solid var(--border);
             padding: 32px 24px;
@@ -330,10 +330,10 @@
         padding: 36px 32px;
         order: 1; /* mobile: main first */
     }
-    @media (min-width: 900px) {
+    @media (min-width: 900px), print {
         .cv-main { grid-column: 2; grid-row: 1; }
     }
-    @media (max-width: 899px) {
+    @media screen and (max-width: 899px) {
         .cv-main { padding: 28px 24px; }
     }
 
@@ -756,219 +756,32 @@
     /* ════════════════════════════════
        PRINT STYLES (Exact Web Design PDF)
     ════════════════════════════════ */
+    /* ════════════════════════════════
+       PDF = misma página que la web
+       El diseño de pantalla no se toca al imprimir. Solo se oculta la barra,
+       se quitan márgenes y se fija el tamaño de página con el script del final.
+    ════════════════════════════════ */
     @media print {
-        @page {
-            margin: 0;
-            size: A4 portrait;
-        }
-
-        html, body {
-            background: var(--bg) !important;
-            color: var(--cream) !important;
+        @page { size: A4; margin: 0; }
+        html, body { margin: 0 !important; padding: 0 !important; background: var(--bg) !important; }
+        *, *::before, *::after {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
         }
-
         .print-bar { display: none !important; }
-
+        /* Mismo diseño de escritorio, reducido para caber en A4 */
         .cv-wrapper {
-            margin: 0 auto !important;
-            max-width: 100% !important;
+            width: 960px !important;
+            max-width: none !important;
+            margin: 0 !important;
             border: none !important;
             box-shadow: none !important;
-            background: var(--surface) !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
+            zoom: .82;
         }
-
-        .cv-header {
-            background: #000000 !important;
-            flex-direction: row !important;
-            text-align: left !important;
-            align-items: center !important;
-            padding: 24px 36px !important;
-            gap: 24px !important;
-            border-bottom: 1px solid rgba(255,255,255,.06) !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .header-photo {
-            width: 76px !important;
-            height: 76px !important;
-            border: 2px solid var(--accent) !important;
-            border-radius: 50% !important;
-            display: block !important;
-            box-shadow: 0 0 0 4px rgba(214,48,49,.1) !important;
-        }
-
-        .header-name { color: var(--cream) !important; font-size: 1.8rem !important; margin-bottom: 4px !important; }
-        .header-title { color: var(--accent) !important; font-size: 0.52rem !important; letter-spacing: 3px !important; margin-bottom: 12px !important; }
-        .header-contacts { justify-content: flex-start !important; gap: 6px 16px !important; }
-        .hc-item { color: var(--gray) !important; font-size: 0.5rem !important; }
-        .hc-item i { color: var(--accent) !important; }
-
-        .cv-body {
-            display: grid !important;
-            grid-template-columns: 240px 1fr !important;
-            background: var(--surface) !important;
-        }
-
-        .cv-sidebar {
-            order: 0 !important;
-            grid-column: 1 !important;
-            grid-row: 1 !important;
-            background: var(--sidebar-bg) !important;
-            border-right: 1px solid var(--border-s) !important;
-            border-top: none !important;
-            padding: 24px 20px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .cv-main {
-            grid-column: 2 !important;
-            grid-row: 1 !important;
-            padding: 24px 28px !important;
-            background: var(--surface) !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .sec { margin-bottom: 22px !important; }
-        .cv-divider { margin: 6px 0 20px !important; background: var(--border) !important; }
-
-        .sec-label {
-            color: var(--accent) !important;
-            border-bottom: 1px solid var(--accent-dim) !important;
-            font-size: 0.5rem !important;
-            padding-bottom: 6px !important;
-            margin-bottom: 14px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .sec-label::before { background: var(--accent) !important; }
-
-        .summary-text { color: var(--gray) !important; font-size: 0.84rem !important; line-height: 1.7 !important; }
-        .summary-text strong { color: var(--cream) !important; }
-
-        .exp-item {
-            padding: 0 0 20px 16px !important;
-            border-left: 2px solid rgba(214,48,49,.2) !important;
-        }
-        .exp-item::before {
-            width: 8px !important;
-            height: 8px !important;
-            background: var(--accent) !important;
-            border: 2px solid var(--surface) !important;
-            left: -5px !important;
-            top: 4px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .exp-role { color: var(--cream) !important; font-size: 0.92rem !important; }
-        .exp-date {
-            background: var(--accent-dim) !important;
-            color: var(--accent) !important;
-            border: 1px solid rgba(214,48,49,.18) !important;
-            font-size: 0.44rem !important;
-            padding: 2px 8px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .exp-company { color: var(--dim) !important; font-size: 0.46rem !important; margin-bottom: 8px !important; }
-        .exp-bullets { gap: 4px !important; }
-        .exp-bullets li { color: var(--gray) !important; font-size: 0.8rem !important; line-height: 1.5 !important; }
-        .exp-bullets li::before { background: var(--accent) !important; }
-
-        .tag {
-            background: rgba(255,255,255,.04) !important;
-            border: 1px solid var(--border) !important;
-            color: var(--gray) !important;
-            font-size: 0.44rem !important;
-            padding: 4px 9px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .tag.hi {
-            background: var(--accent-dim) !important;
-            color: var(--accent) !important;
-            border-color: rgba(214,48,49,.22) !important;
-        }
-
-        .avail-tag {
-            background: rgba(214,48,49,.08) !important;
-            border: 1px solid rgba(214,48,49,.25) !important;
-            color: var(--cream) !important;
-            font-size: 0.44rem !important;
-            padding: 4px 10px !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .sc-icon {
-            background: var(--accent-dim) !important;
-            border: 1px solid rgba(214,48,49,.2) !important;
-            color: var(--accent) !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-        .sc-text, .sc-text a { color: var(--gray) !important; font-size: 0.76rem !important; }
-
-        .cert-name, .edu-degree { color: var(--cream) !important; font-size: 0.8rem !important; }
-        .cert-issuer, .edu-school { color: var(--dim) !important; font-size: 0.44rem !important; }
-        .cert-item { padding: 8px 0 !important; }
-        .edu-list { gap: 10px !important; }
-        .skill-groups { gap: 12px !important; }
-        .skill-group-name { margin-bottom: 6px !important; font-size: 0.42rem !important; }
-        .lang-list { gap: 8px !important; }
-        .lang-name { color: var(--cream) !important; font-size: 0.8rem !important; }
-        .lang-level {
-            background: var(--accent-dim) !important;
-            color: var(--accent) !important;
-            border: 1px solid rgba(214,48,49,.18) !important;
-            font-size: 0.44rem !important;
-            padding: 2px 8px !important;
-        }
-
-        .exp-item, .edu-item, .cert-item, .skill-group, .lang-item {
-            break-inside: avoid;
-            page-break-inside: avoid;
-        }
+        .sec, .exp-item, .cert-item, .proj-card { break-inside: avoid; }
     }
 
-    /* ════════════════════════════════
-       DISPONIBLE PARA — tags
-    ════════════════════════════════ */
-    .avail-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-    .avail-tag {
-        font-family: var(--f-m);
-        font-size: .44rem;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--cream);
-        background: rgba(214,48,49,.08);
-        border: 1px solid rgba(214,48,49,.25);
-        padding: 5px 12px;
-        border-radius: 20px;
-        transition: background .2s, border-color .2s;
-    }
-    .avail-tag:hover {
-        background: rgba(214,48,49,.16);
-        border-color: rgba(214,48,49,.5);
-    }
-
-    /* ════════════════════════════════
-       MOBILE CRITICAL FIX
-    ════════════════════════════════ */
-    @media (max-width: 899px) {
+    @media screen and (max-width: 899px) {
         /* Header */
         .cv-header {
             flex-direction: column !important;
@@ -1009,7 +822,7 @@
         .sec { margin-bottom: 24px !important; }
     }
 
-    @media (max-width: 479px) {
+    @media screen and (max-width: 479px) {
         .header-name      { font-size: 1.4rem !important; }
         .header-contacts  { gap: 6px 12px !important; }
         .hc-item          { font-size: .5rem !important; }

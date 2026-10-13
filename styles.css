@@ -236,7 +236,7 @@ body.menu-open {
 }
 @media(max-width:768px){
     .hero-promo-video {
-        object-fit: cover !important;
+        object-fit: contain !important;
         object-position: center top !important;
         background-color: #060709;
     }

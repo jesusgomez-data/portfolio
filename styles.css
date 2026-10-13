@@ -287,41 +287,9 @@ body.menu-open {
 .hero-video-ui-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 16px;
     margin-top: 72px; /* deja libre la barra de navegación superior */
-}
-
-.hero-video-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(10, 11, 14, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 8px 16px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #f1f2f6;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-
-.hero-video-badge .badge-pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #d63031;
-    box-shadow: 0 0 10px #d63031;
-    animation: heroBadgePulse 1.8s infinite ease-in-out;
-}
-
-@keyframes heroBadgePulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
 }
 
 .hero-video-actions {

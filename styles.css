@@ -4845,6 +4845,7 @@ body.menu-open {
         height: 76px;
     }
     .assistant-chatbox {
+        z-index: 1100; /* por encima de la barra superior y su menú hamburguesa, para que la X sea pulsable */
         bottom: 0;
         right: 0;
         width: 100%;

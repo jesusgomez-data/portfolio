@@ -85,13 +85,37 @@
      Copywriting: venezuela.html (title + desc)
      Social Proof: .hero-proof-strip
      ═══════════════════════════════════════════════════════════ -->
-<section id="hero" class="hero vz-hero-pro">
+<section id="hero" class="hero vz-hero-pro hero-playing-intro">
     <canvas id="hero-3d" class="hero-canvas"></canvas>
-    <video autoplay muted loop playsinline class="hero-video-bg" aria-hidden="true" webkit-playsinline x5-playsinline poster="videos%20promocionales/JGStudio_Promo_2026_poster.jpg">
+    <video id="hero-video" autoplay muted playsinline class="hero-video-bg" aria-hidden="true" webkit-playsinline x5-playsinline poster="videos%20promocionales/JGStudio_Promo_2026_poster.jpg">
+        <source src="videos%20promocionales/JGStudio_Promo_2026_Vertical.mp4" type="video/mp4" media="(max-width: 768px)">
         <source src="videos%20promocionales/JGStudio_Promo_2026.mp4" type="video/mp4">
         <source src="videos promocionales/JGStudio_Promo_2026.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
+
+    <!-- UI Overlay for Promo Video Intro -->
+    <div class="hero-video-ui" id="hero-video-ui" aria-label="Controles del video promocional">
+        <div class="hero-video-ui-top">
+            <div class="hero-video-badge">
+                <span class="badge-pulse"></span>
+                <span>JGStudio · Video Promocional 2026</span>
+            </div>
+            <div class="hero-video-actions">
+                <button type="button" class="hero-video-btn" id="hero-sound-btn" aria-label="Activar sonido">
+                    <i class="fa-solid fa-volume-xmark"></i>
+                    <span class="btn-text">Activar sonido</span>
+                </button>
+                <button type="button" class="hero-video-btn hero-skip-btn" id="hero-skip-btn" aria-label="Saltar intro">
+                    <span class="btn-text">Saltar intro</span>
+                    <i class="fa-solid fa-forward"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hero-video-progress" id="hero-video-progress">
+            <div class="hero-video-progress-fill" id="hero-video-progress-fill"></div>
+        </div>
+    </div>
 
     <!-- Profile photo — right side -->
     <div class="hero-photo" aria-hidden="true">
@@ -108,6 +132,7 @@
 
         <p class="hero-kicker" id="hero-kicker">
             JGStudio &nbsp;·&nbsp;  Venezuela &nbsp;·&nbsp; España <span class="kicker-badge"><i class="fa-solid fa-laptop"></i>Disponible esta semana</span>
+            <button type="button" class="hero-replay-pill" id="hero-replay-btn" aria-label="Ver video promocional"><i class="fa-solid fa-play"></i> Ver video promo</button>
         </p>
 
         <div class="hero-proof-strip">

@@ -251,6 +251,241 @@ body.menu-open {
     }
 }
 
+/* ── Hero Video Mode Controls & Transitions ── */
+.hero-video-ui {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 32px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#hero.hero-playing-intro .hero-video-ui {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.hero-video-ui-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 72px; /* deja libre la barra de navegación superior */
+}
+
+.hero-video-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10, 11, 14, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #f1f2f6;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.hero-video-badge .badge-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d63031;
+    box-shadow: 0 0 10px #d63031;
+    animation: heroBadgePulse 1.8s infinite ease-in-out;
+}
+
+@keyframes heroBadgePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.hero-video-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hero-video-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10, 11, 14, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+
+.hero-video-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.38);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+.hero-skip-btn {
+    background: rgba(214, 48, 49, 0.88);
+    border-color: rgba(214, 48, 49, 0.55);
+}
+
+.hero-skip-btn:hover {
+    background: #e84118;
+    border-color: #ff7675;
+}
+
+.hero-video-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    z-index: 16;
+}
+
+.hero-video-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #d63031, #ff7675);
+    box-shadow: 0 0 12px rgba(214, 48, 49, 0.8);
+    transition: width 0.15s linear;
+}
+
+/* ── ESTADOS DEL HERO: INTRO VS NORMAL ── */
+#hero.hero-playing-intro {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+#hero.hero-playing-intro .hero-video-bg {
+    opacity: 1 !important;
+    filter: none !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+
+#hero.hero-playing-intro .hero-overlay {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#hero.hero-playing-intro .hero-canvas {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+#hero.hero-playing-intro .hero-photo {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateX(40px) !important;
+}
+
+#hero.hero-playing-intro .hero-content {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(30px) !important;
+}
+
+/* Transiciones al volver al estado normal */
+#hero .hero-video-bg {
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+}
+
+#hero .hero-overlay {
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#hero .hero-photo {
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#hero .hero-content {
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#hero.hero-intro-complete .hero-photo {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+#hero.hero-intro-complete .hero-content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Botón discreto para volver a reproducir en el kicker */
+.hero-replay-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #e0e0e0;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    margin-left: 8px;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+}
+.hero-replay-pill:hover {
+    background: rgba(214, 48, 49, 0.2);
+    border-color: rgba(214, 48, 49, 0.6);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+@media(max-width: 768px) {
+    .hero-video-ui {
+        padding: 16px 18px;
+    }
+    .hero-video-ui-top {
+        margin-top: 68px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .hero-video-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .hero-video-btn {
+        padding: 8px 14px;
+        font-size: 0.76rem;
+    }
+}
+
 /* Profile photo — right column */
 .hero-photo {
     position:absolute; right:0; top:0; bottom:0;

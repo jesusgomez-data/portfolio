@@ -118,6 +118,156 @@ function initThreeHero() {
     }, { passive:true });
 }
 
+/* ── Hero Promo Video Mode & Transitions ────────── */
+function initHeroPromoVideo(heroTL) {
+    const hero = document.getElementById('hero');
+    const video = document.getElementById('hero-video') || document.querySelector('.hero-video-bg');
+    const soundBtn = document.getElementById('hero-sound-btn');
+    const skipBtn = document.getElementById('hero-skip-btn');
+    const replayBtn = document.getElementById('hero-replay-btn');
+    const fill = document.getElementById('hero-video-progress-fill');
+
+    if (!hero || !video) {
+        if (heroTL) heroTL.play();
+        return;
+    }
+
+    let isIntroFinished = false;
+
+    function finishIntro() {
+        if (isIntroFinished) return;
+        isIntroFinished = true;
+
+        hero.classList.remove('hero-playing-intro');
+        hero.classList.add('hero-intro-complete');
+
+        // Configuración para el modo de video de fondo permanente
+        video.loop = true;
+        video.muted = true; // El fondo ambiental siempre en silencio
+        if (soundBtn) {
+            soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>';
+        }
+
+        // Si terminó el video o está pausado, reanudar en bucle suave
+        if (video.ended) {
+            video.currentTime = 0;
+        }
+        if (video.paused) {
+            video.play().catch(() => {});
+        }
+
+        // Revelar y animar el texto y la foto con GSAP
+        if (heroTL) {
+            heroTL.restart();
+        }
+    }
+
+    // Estado inicial: intro activa
+    hero.classList.add('hero-playing-intro');
+    hero.classList.remove('hero-intro-complete');
+    video.loop = false;
+    video.muted = true; // Muted requerido para autoplay en todos los navegadores
+
+    function ensurePlayback() {
+        video.muted = true;
+        if (video.paused) {
+            const p = video.play();
+            if (p !== undefined) {
+                p.catch(() => {
+                    // Si el navegador bloquea el autoplay, revelar contenido directamente
+                    finishIntro();
+                });
+            }
+        }
+    }
+
+    if (video.readyState >= 2) {
+        ensurePlayback();
+    } else {
+        video.addEventListener('canplay', ensurePlayback, { once: true });
+        video.addEventListener('loadeddata', ensurePlayback, { once: true });
+    }
+
+    // Toggle de sonido al hacer clic en el propio video
+    video.addEventListener('click', () => {
+        if (!isIntroFinished) {
+            video.muted = !video.muted;
+            if (soundBtn) {
+                soundBtn.innerHTML = video.muted 
+                    ? '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>'
+                    : '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
+            }
+        }
+    });
+
+    // 1. Al terminar el video promocional (38s), restaurar hero con texto y foto
+    video.addEventListener('ended', finishIntro);
+
+    // 2. Barra de progreso en vivo
+    video.addEventListener('timeupdate', () => {
+        if (!isIntroFinished && video.duration && fill) {
+            const pct = Math.min((video.currentTime / video.duration) * 100, 100);
+            fill.style.width = pct + '%';
+        }
+    });
+
+    // 3. Botón para activar / silenciar sonido
+    if (soundBtn) {
+        soundBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            video.muted = !video.muted;
+            if (video.muted) {
+                soundBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> <span class="btn-text">Activar sonido</span>';
+            } else {
+                soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
+            }
+        });
+    }
+
+    // 4. Botón de saltar intro
+    if (skipBtn) {
+        skipBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            finishIntro();
+        });
+    }
+
+    // 5. Si el usuario hace scroll hacia abajo mientras se reproduce, completar transición
+    let hasScrolled = false;
+    window.addEventListener('scroll', () => {
+        if (!isIntroFinished && !hasScrolled && window.scrollY > 200) {
+            hasScrolled = true;
+            finishIntro();
+        }
+    }, { passive: true });
+
+    // 6. Botón de replay (en el kicker de texto) para volver a ver el video
+    if (replayBtn) {
+        replayBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            isIntroFinished = false;
+            hero.classList.remove('hero-intro-complete');
+            hero.classList.add('hero-playing-intro');
+
+            video.loop = false;
+            video.currentTime = 0;
+            video.muted = false; // Interacción directa del usuario: activar audio
+            if (soundBtn) {
+                soundBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i> <span class="btn-text">Silenciar</span>';
+            }
+            if (fill) fill.style.width = '0%';
+            video.play().catch(() => {});
+
+            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+                window.lenis.scrollTo(0, { duration: 0.8 });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
+}
+
 /* ── Main ──────────────────────────────────────── */
 function main() {
 
@@ -136,8 +286,8 @@ function main() {
         /* Scroll progress bar */
         gsap.to('#scroll-progress', { width:'100%', ease:'none', scrollTrigger:{ start:'top top', end:'bottom bottom', scrub:.3 } });
 
-        /* Hero entrance */
-        const heroTL = gsap.timeline({ defaults:{ ease:'power4.out' } });
+        /* Hero entrance (se pausa para dispararse cuando termine o se salte el video intro) */
+        const heroTL = gsap.timeline({ paused: true, defaults:{ ease:'power4.out' } });
 
         // Revelar foto (deslizamiento de clip-path y escala inversa suave)
         if (document.querySelector('.hero-photo-inner')) {
@@ -185,6 +335,9 @@ function main() {
                 1.05
             );
         }
+
+        /* Manejador del video promocional full-screen y transición al hero */
+        initHeroPromoVideo(heroTL);
 
         /* [data-reveal-l] — slide from left */
         gsap.utils.toArray('[data-reveal-l]').forEach(el =>
@@ -386,6 +539,9 @@ function main() {
                 }
             }
         });
+    } else {
+        /* Fallback si GSAP no está disponible */
+        initHeroPromoVideo(null);
     }
 
     /* Theme toggle (sol / luna) */

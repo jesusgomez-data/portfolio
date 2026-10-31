@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Post · Una web que responde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;padding:40px}
+
+/* P6 · Carbón rojo */
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);color:#F0ECE5;
+  background:linear-gradient(160deg,#2A0B0C 0%,#080808 60%);
+  --r:#E84446;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--r);margin-top:50px}
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.88;font-size:124px;margin-top:30px}
+.h span{display:block;white-space:nowrap}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%;color:#F0ECE5}
+.h .r{color:var(--r)}
+.p{font-size:30px;line-height:1.36;margin-top:30px;max-width:800px}
+
+/* Checklist de la web */
+.check{margin-top:auto;margin-bottom:40px;display:flex;flex-direction:column;gap:16px}
+.row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:26px 30px;border:1px solid var(--line);border-radius:18px;background:rgba(8,8,8,.55)}
+.row b{display:block;font-size:34px;font-weight:700;line-height:1.2}
+.row small{display:block;font-family:var(--f-m);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.st{font-family:var(--f-m);font-size:16px;letter-spacing:.12em;text-transform:uppercase;padding:12px 18px;border-radius:999px;white-space:nowrap}
+.st.ok{background:#E84446;color:#080808;font-weight:700}
+.st.no{border:1px solid rgba(240,236,229,.35);color:rgba(240,236,229,.6)}
+</style>
+</head>
+<body>
+<section class="post" id="s01">
+  <header class="top"><span>JGStudio · Idea</span><span>Web</span><b>01</b></header>
+  <div class="body">
+    <div class="kicker">Lo que tu cliente busca</div>
+    <h1 class="h">
+      <span>Publicar más</span>
+      <span class="it">no es vender más.</span>
+      <span class="r">Responder, sí.</span>
+    </h1>
+    <p class="p">Tu cliente necesita tres respuestas antes de escribirte. Si tu web no se las da, la red social te está haciendo perder ventas.</p>
+
+    <div class="check">
+      <div class="row"><div><b>¿Qué haces?</b><small>Lo entiende en 5 segundos</small></div><span class="st ok">Respondido</span></div>
+      <div class="row"><div><b>¿Cuánto cuesta?</b><small>Precio o rango visible</small></div><span class="st no">Sin respuesta</span></div>
+      <div class="row"><div><b>¿Qué hago ahora?</b><small>Un botón claro, no tres</small></div><span class="st ok">Respondido</span></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+</body>
+</html>

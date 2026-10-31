@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Carrusel multi-red · Leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-items:flex-start}
+
+/* Paletas: P3 Sangre (portada y cierre), P1 Noche, P7 Blanco hueso */
+.red{--bg:#D63031;--fg:#080808;--em:#F0ECE5;--line:rgba(8,8,8,.28);--dim:rgba(8,8,8,.7);--ink:#080808;--ac:#F0ECE5}
+.dark{--bg:#080808;--fg:#F0ECE5;--em:#D63031;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58);--ink:#F0ECE5;--ac:#D63031}
+.light{--bg:#FAF8F4;--fg:#111;--em:#D63031;--line:rgba(17,17,17,.16);--dim:rgba(17,17,17,.62);--ink:#111;--ac:#D63031}
+
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);background:var(--bg);color:var(--fg)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--em)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--em);margin-top:48px}
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.88;font-size:132px;margin-top:28px;position:relative;z-index:2}
+.h span{display:block;white-space:nowrap}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%}
+.h .em{color:var(--em)}
+.p{font-size:30px;line-height:1.36;margin-top:26px;max-width:640px;position:relative;z-index:2}
+.draw{position:absolute;z-index:1}
+.draw svg{width:100%;height:100%;fill:none;stroke:var(--ink);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.draw .ac{stroke:var(--ac)}
+.draw .fa{fill:var(--ac);stroke:none}
+.draw .fi{fill:var(--ink);stroke:none}
+.draw text{font-family:var(--f-m);font-size:22px;letter-spacing:.08em;fill:var(--ink);stroke:none;text-transform:uppercase}
+.note{position:absolute;z-index:3;font-family:var(--f-s);font-style:italic;font-size:46px;line-height:1;color:var(--em);transform:rotate(-6deg)}
+.list{list-style:none;margin-top:auto;margin-bottom:40px;position:relative;z-index:2;display:flex;flex-direction:column;gap:16px}
+.list li{display:flex;gap:18px;align-items:center;font-size:32px;font-weight:600}
+.list li i{flex:none;width:16px;height:16px;background:var(--em);transform:rotate(45deg)}
+.shot{position:absolute;z-index:2;border-radius:16px;overflow:hidden;background:#111;box-shadow:0 40px 70px -30px rgba(0,0,0,.6);border:1px solid rgba(240,236,229,.14)}
+.shot .bar{height:36px;background:#1a1a1a;display:flex;align-items:center;gap:8px;padding:0 16px}
+.shot .bar i{width:10px;height:10px;border-radius:50%;background:#3a3a3a}
+.shot .bar u{margin-left:14px;font-family:var(--f-m);font-size:15px;color:#888;text-decoration:none}
+.shot{display:flex;flex-direction:column}
+.shot img{display:block;width:100%;flex:1;min-height:0;object-fit:cover;object-position:50% 30%}
+.cta-row{margin-top:auto;margin-bottom:40px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;position:relative;z-index:2}
+.cta-row .btn{background:var(--fg);color:var(--bg);font-weight:800;font-size:28px;letter-spacing:.02em;padding:26px 42px;border-radius:999px;text-transform:uppercase}
+.cta-row .url{font-family:var(--f-m);font-size:20px;letter-spacing:.12em;text-transform:uppercase;line-height:1.6}
+.cta-row .url span{color:var(--dim)}
+</style>
+</head>
+<body>
+
+<!-- ═════════════ 01 · PORTADA (rojo) ═════════════ -->
+<section class="post red" id="s01">
+  <header class="top"><span>JGStudio · Leads</span><span>Primera impresión</span><b>01 / 05</b></header>
+  <div class="body">
+    <div class="kicker">Tu web tiene un solo trabajo</div>
+    <h1 class="h">
+      <span>Convencer</span>
+      <span>en</span>
+      <span class="it" style="font-size:190px">5 segundos.</span>
+    </h1>
+    <p class="p">Es lo que tarda tu cliente en decidir si se queda o se va. Y casi nadie lo mide.</p>
+    <div class="draw" style="right:-10px;top:560px;width:440px;height:440px">
+      <svg viewBox="0 0 400 500">
+        <!-- reloj de arena -->
+        <path d="M100 40 H300" stroke-width="10"/>
+        <path d="M100 460 H300" stroke-width="10"/>
+        <path d="M120 40 L280 40 L200 240 L120 40 Z" />
+        <path d="M200 260 L120 460 L280 460 Z" />
+        <path class="fa" d="M200 260 L150 430 L250 430 Z" style="fill:#080808"/>
+        <path class="ac" d="M200 240 L200 262" stroke-width="6"/>
+        <path d="M130 90 Q 200 120 270 90" stroke-dasharray="4 10"/>
+        <circle class="fa" cx="200" cy="330" r="6"/>
+        <circle class="fa" cx="210" cy="370" r="5"/>
+      </svg>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_red.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 02 · EL PROBLEMA (oscuro) ═════════════ -->
+<section class="post dark" id="s02">
+  <header class="top"><span>02 · El problema</span><span>Visitas perdidas</span><b>02 / 05</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:60px"><span>Si no entiende</span><span class="em">qué haces,</span><span>se va.</span></h2>
+    <p class="p">Sin una frase clara, sin precio y sin un paso siguiente, la visita se queda en “a ver”, y de ahí a ningún lado.</p>
+    <div class="draw" style="right:-20px;top:600px;width:560px;height:520px">
+      <svg viewBox="0 0 400 380">
+        <!-- puerta -->
+        <rect x="200" y="40" width="150" height="300" rx="6"/>
+        <path d="M200 40 L240 60 L240 320 L200 340" />
+        <circle class="fa" cx="324" cy="200" r="7"/>
+        <!-- persona saliendo -->
+        <circle cx="100" cy="110" r="22"/>
+        <path d="M100 136 L100 230 M100 160 L70 200 M100 160 L130 200 M100 230 L80 300 M100 230 L122 300"/>
+        <path class="ac" d="M140 200 L176 200 M166 188 L184 200 L166 212" stroke-width="6"/>
+        <path d="M40 350 Q 200 330 380 352"/>
+      </svg>
+    </div>
+    <div class="note" style="left:72px;top:820px">¡adiós!</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 03 · LO QUE CONVIERTE (claro) ═════════════ -->
+<section class="post light" id="s03">
+  <header class="top"><span>03 · La solución</span><span>Lo que convierte</span><b>03 / 05</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:60px"><span>Tres cosas</span><span class="em">atraen</span><span>leads.</span></h2>
+    <ul class="list">
+      <li><i></i>Una frase que se entiende en segundos.</li>
+      <li><i></i>Una prueba real, no promesas.</li>
+      <li><i></i>Un único paso siguiente, claro.</li>
+    </ul>
+    <div class="draw" style="right:10px;top:360px;width:460px;height:460px">
+      <svg viewBox="0 0 400 400">
+        <!-- imán -->
+        <path d="M110 80 V220 A90 90 0 0 0 290 220 V80 H230 V220 A30 30 0 0 1 170 220 V80 Z" class="ac" style="fill:#D63031;stroke:none"/>
+        <path d="M110 80 H170 V110 H110 Z M230 80 H290 V110 H230 Z" class="fi"/>
+        <!-- leads -->
+        <circle class="fa" cx="60" cy="60" r="14"/>
+        <circle class="fa" cx="340" cy="50" r="12"/>
+        <circle class="fa" cx="40" cy="250" r="10"/>
+        <circle class="fa" cx="360" cy="240" r="14"/>
+        <circle class="fa" cx="200" cy="30" r="10"/>
+        <path d="M60 60 Q 110 100 130 130 M340 50 Q 280 90 262 120 M40 250 Q 80 230 110 220 M360 240 Q 320 230 290 220" stroke-dasharray="4 8"/>
+        <path d="M60 370 Q 200 350 340 372"/>
+      </svg>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 04 · PRUEBA REAL (oscuro) ═════════════ -->
+<section class="post dark" id="s04">
+  <header class="top"><span>04 · Prueba real</span><span>Caso Stencil2</span><b>04 / 05</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:60px"><span>Así se ve</span><span class="em">una web</span><span>que vende.</span></h2>
+    <p class="p" style="max-width:800px">Precio, envío gratis y garantía, a la vista en la misma página. Sin tener que preguntar.</p>
+    <div class="shot" style="left:72px;right:72px;top:560px">
+      <div class="bar"><i></i><i></i><i></i><u>stencil-2.vercel.app</u></div>
+      <img src="carrusel_leads_assets/stencil_precios_garantia.jpg" alt="Precios, envío gratis y garantía en la web de Stencil2">
+    </div>
+
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 05 · CIERRE (rojo) ═════════════ -->
+<section class="post red" id="s05">
+  <header class="top"><span>05 · Siguiente paso</span><span>Revisión</span><b>05 / 05</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:60px"><span>¿Tu web</span><span class="it">gana</span><span>los 5 segundos?</span></h2>
+    <p class="p">Escríbenos <b>WEB</b> por DM y te enviamos una revisión de tu primera pantalla: qué se entiende, qué no y qué cambiar primero.</p>
+    <div class="draw" style="right:-20px;top:560px;width:560px;height:440px">
+      <svg viewBox="0 0 400 320">
+        <!-- burbuja de chat -->
+        <path d="M40 40 H360 Q 380 40 380 60 V200 Q 380 220 360 220 H180 L110 290 V220 H40 Q 20 220 20 200 V60 Q 20 40 40 40 Z" />
+        <path d="M70 100 H300 M70 130 H250" />
+        <path class="ac" d="M70 170 H200" stroke-width="10"/>
+        <path d="M300 250 Q 340 280 380 240" stroke-dasharray="4 8"/>
+      </svg>
+    </div>
+    <div class="cta-row">
+      <div class="btn">Escribe WEB por DM</div>
+      <div class="url">jgstudio.dev<br><span>@jgstudio.dev</span></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_red.png" alt="JGStudio"><span class="mono">Ideas que se convierten en productos reales</span></footer>
+</section>
+
+</body>
+</html>

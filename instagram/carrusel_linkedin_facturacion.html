@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Carrusel LinkedIn · Facturación con IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-items:flex-start}
+
+/* Paletas del carrusel: P2 Papel (portada) y P1 Noche (contenido) */
+.p2{--bg:#F0ECE5;--fg:#080808;--em:#080808;--r:#D63031;--line:rgba(8,8,8,.16);--dim:rgba(8,8,8,.62);--card:#FFFFFF}
+.p1{--bg:#080808;--fg:#F0ECE5;--em:#D63031;--r:#D63031;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.55);--card:#141414}
+
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);background:var(--bg);color:var(--fg)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;font-size:118px;margin-top:56px}
+.h span{display:block;white-space:nowrap}
+.h .r{color:var(--r)}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%}
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--r);margin-top:50px}
+.p{font-size:30px;line-height:1.36;margin-top:30px;max-width:800px}
+.mono{font-family:var(--f-m);letter-spacing:.12em;text-transform:uppercase;font-size:18px}
+.swipe{font-family:var(--f-m);font-size:18px;letter-spacing:.14em;color:var(--fg)}
+
+/* Listas y tarjetas */
+.list{list-style:none;margin-top:44px;border-top:2px solid var(--fg)}
+.list li{display:flex;align-items:center;gap:22px;padding:26px 0;border-bottom:1px solid var(--line);font-size:32px;font-weight:500;line-height:1.25}
+.list li i{flex:none;width:40px;height:40px;border-radius:50%;background:var(--r);color:var(--bg);font-style:normal;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center}
+
+.cards{display:flex;flex-direction:column;gap:16px;margin-top:44px}
+.card{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;padding:26px 30px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.card .n{font-family:var(--f-s);font-style:italic;font-size:72px;line-height:1;color:var(--r)}
+.card b{display:block;font-size:38px;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:1}
+.card small{display:block;font-size:24px;color:var(--dim);margin-top:8px;line-height:1.3}
+
+/* Flujo (slide 3) */
+.flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin-top:44px}
+.node{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 30px}
+.node .mono{color:var(--r);font-size:16px}
+.node b{display:block;font-size:36px;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:1;margin-top:8px}
+.node small{display:block;font-size:24px;color:var(--dim);margin-top:8px;line-height:1.3}
+.arrow{align-self:center;width:4px;height:44px;background:var(--r);position:relative}
+.arrow:after{content:"";position:absolute;left:-8px;bottom:-2px;border-top:12px solid var(--r);border-left:10px solid transparent;border-right:10px solid transparent}
+.node.ai{border-color:var(--r);box-shadow:0 0 0 4px rgba(214,48,49,.12)}
+
+/* Calendario de recordatorios (slide 5) */
+.timeline{margin-top:44px;position:relative;padding-left:44px}
+.timeline:before{content:"";position:absolute;left:12px;top:20px;bottom:20px;width:2px;background:var(--r)}
+.tl{position:relative;padding:22px 28px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:16px}
+.tl:before{content:"";position:absolute;left:-40px;top:50%;margin-top:-9px;width:18px;height:18px;border-radius:50%;background:var(--r)}
+.tl .mono{color:var(--r);font-size:16px}
+.tl b{display:block;font-size:30px;font-weight:700;margin-top:6px}
+.tl small{font-size:22px;color:var(--dim)}
+
+/* Ejemplo de mensaje (slide 5) */
+.msg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 26px;margin-top:36px;font-size:24px;line-height:1.4}
+.msg .mono{color:var(--dim);font-size:15px;display:block;margin-bottom:10px}
+
+/* Errores (slide 6) */
+.warn{margin-top:44px;display:flex;flex-direction:column;gap:16px}
+.warn div{display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start;padding:24px 28px;border:1px solid var(--line);border-radius:16px;background:var(--card);font-size:28px;line-height:1.3}
+.warn i{font-style:normal;font-family:var(--f-m);font-size:22px;font-weight:700;color:var(--r)}
+
+/* CTA (slide 7) */
+.cta{margin-top:auto;margin-bottom:40px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.cta .btn{background:var(--fg);color:var(--bg);font-weight:800;font-size:28px;letter-spacing:.02em;padding:26px 42px;border-radius:999px;text-transform:uppercase}
+.cta .url{font-family:var(--f-m);font-size:20px;letter-spacing:.12em;text-transform:uppercase;line-height:1.6}
+.cta .url span{color:var(--dim)}
+/* Ajustes */
+.toc{list-style:none;margin-top:44px;display:flex;flex-direction:column;gap:0;border-top:2px solid var(--fg)}
+.toc li{display:grid;grid-template-columns:90px 1fr;align-items:center;padding:13px 0;border-bottom:1px solid var(--line);font-size:28px;font-weight:500}
+.toc li span{font-family:var(--f-m);font-size:18px;letter-spacing:.12em;color:var(--r)}
+.note{margin-top:auto;margin-bottom:40px;padding:28px 32px;border-left:6px solid var(--r);background:var(--card);border-radius:12px;font-size:28px;line-height:1.35}
+.note b{display:block;font-family:var(--f-m);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--r);margin-bottom:10px;font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- ═════════════ 01 · PORTADA ═════════════ -->
+<section class="post p2" id="s01">
+  <header class="top"><span>JGStudio · Guía</span><span>Facturación con IA</span><b>01 / 07</b></header>
+  <div class="body">
+    <div class="kicker">Paso a paso · para fundadores</div>
+    <h1 class="h">
+      <span>Tu facturación</span>
+      <span>en piloto</span>
+      <span class="r">automático.</span>
+    </h1>
+    <p class="p">Cómo integrar un bot de IA que emite facturas y envía recordatorios de pago, sin tecnicismos.</p>
+    <ul class="toc">
+      <li><span>01</span>Define el disparador</li>
+      <li><span>02</span>Conecta tu fuente de datos</li>
+      <li><span>03</span>Diseña la plantilla legal</li>
+      <li><span>04</span>Programa los recordatorios</li>
+      <li><span>05</span>Prueba con facturas de prueba</li>
+      <li><span>06</span>Evita los errores típicos</li>
+      <li><span>07</span>Lánzalo y revisa cada mes</li>
+    </ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span class="swipe">Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 02 · EL PROBLEMA ═════════════ -->
+<section class="post p1" id="s02">
+  <header class="top"><span>02 · El problema</span><span>Cobros</span><b>02 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>Facturar a mano</span>
+      <span>te cuesta</span>
+      <span class="r">tiempo y dinero.</span>
+    </h2>
+    <ul class="list">
+      <li><i>✕</i>Facturas que salen tarde, o no salen.</li>
+      <li><i>✕</i>Recordatorios de pago que nadie envía.</li>
+      <li><i>✕</i>Cobros que se alargan sin seguimiento.</li>
+      <li><i>✕</i>Horas al mes que no van a vender.</li>
+    </ul>
+    <div class="note"><b>La clave</b>Tu tiempo tiene que ir a vender, no a perseguir pagos.</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 03 · QUÉ HACE EL BOT ═════════════ -->
+<section class="post p1" id="s03">
+  <header class="top"><span>03 · La solución</span><span>Cómo funciona</span><b>03 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>Tres piezas,</span>
+      <span class="r">sin código complicado.</span>
+    </h2>
+    <style>#s03 .h{font-size:92px}</style>
+    <div class="flow">
+      <div class="node"><span class="mono">01 · Datos</span><b>Tu fuente</b><small>Pedidos o clientes en tu hoja, CRM o tienda.</small></div>
+      <div class="arrow"></div>
+      <div class="node ai"><span class="mono">02 · IA</span><b>El bot</b><small>Genera la factura con esos datos y revisa importes.</small></div>
+      <div class="arrow"></div>
+      <div class="node"><span class="mono">03 · Envío</span><b>Email o WhatsApp</b><small>Envía la factura, el enlace de pago y los recordatorios.</small></div>
+    </div>
+    <div class="note"><b>Regla de oro</b>El bot ejecuta. Tú validas. Nunca al revés.</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 04 · PASOS 1-3 ═════════════ -->
+<section class="post p1" id="s04">
+  <style>#s04 .h{font-size:104px}</style>
+  <header class="top"><span>04 · Paso a paso</span><span>Parte 1</span><b>04 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>Primero,</span>
+      <span class="r">prepara el terreno.</span>
+    </h2>
+    <div class="cards">
+      <div class="card"><span class="n">1</span><div><b>Define el disparador</b><small>¿Qué evento genera la factura? Por ejemplo, un pedido cerrado o un servicio terminado.</small></div></div>
+      <div class="card"><span class="n">2</span><div><b>Conecta tu fuente</b><small>Una sola hoja o CRM como origen de datos. Empieza con una, no con todas.</small></div></div>
+      <div class="card"><span class="n">3</span><div><b>Plantilla legal</b><small>Diseña la factura con tus datos fiscales. Revísala con tu gestor antes de usarla.</small></div></div>
+    </div>
+    <div class="note" style="margin-top:auto"><b>Empieza pequeño</b>Un solo flujo bien montado vale más que cinco a medias. Escalar viene después.</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 05 · PASOS 4-6 ═════════════ -->
+<section class="post p1" id="s05">
+  <header class="top"><span>05 · Paso a paso</span><span>Parte 2</span><b>05 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>Luego,</span>
+      <span class="r">que los cobros avancen.</span>
+    </h2>
+    <style>#s05 .h{font-size:88px}</style>
+    <div class="timeline">
+      <div class="tl"><span class="mono">Día 0 · al emitir</span><b>Factura + enlace de pago</b><small>Envío automático al cerrar el pedido.</small></div>
+      <div class="tl"><span class="mono">Día 7 · sin pago</span><b>Recordatorio amable</b><small>El bot escribe con tono cordial.</small></div>
+      <div class="tl"><span class="mono">Día 15 · sin pago</span><b>Aviso final</b><small>Te avisa a ti para decidir el siguiente paso.</small></div>
+    </div>
+    <div class="msg" style="margin-top:auto;margin-bottom:40px"><span class="mono">Ejemplo de recordatorio</span>Hola, te escribo por la factura 0427. Si ya la pagaste, ignora este mensaje. Aquí tienes el enlace por si lo necesitas.</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 06 · ERRORES ═════════════ -->
+<section class="post p1" id="s06">
+  <header class="top"><span>06 · Antes de lanzar</span><span>Errores</span><b>06 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>Cuatro errores</span>
+      <span class="r">que evitar.</span>
+    </h2>
+    <div class="warn">
+      <div><i>01</i><span>No dejes que la IA invente datos fiscales. Valida importes, IVA y numeración.</span></div>
+      <div><i>02</i><span>Prueba con facturas de prueba antes de enviar a clientes reales.</span></div>
+      <div><i>03</i><span>Revisa el tono de los recordatorios: que suene a tu marca, no a robot.</span></div>
+      <div><i>04</i><span>Revisa los requisitos de facturación de tu país con tu gestor.</span></div>
+    </div>
+    <div class="note" style="margin-top:auto"><b>Checklist antes de activar</b>Datos fiscales validados · 3 facturas de prueba · tono de recordatorios revisado.</div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 07 · CIERRE ═════════════ -->
+<section class="post p2" id="s07">
+  <header class="top"><span>07 · Siguiente paso</span><span>Hablemos</span><b>07 / 07</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:64px">
+      <span>¿Lo montamos</span>
+      <span class="r">contigo?</span>
+    </h2>
+    <p class="p">Te guiamos sin tecnicismos: diagnóstico, montaje y un primer ciclo de prueba antes de ponerlo en marcha.</p>
+    <div class="cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px">
+      <div class="card" style="display:block;padding:26px"><span class="mono" style="color:var(--r)">01</span><b style="margin-top:14px">Diagnóstico</b><small>Qué facturas y cobros hoy te consumen tiempo.</small></div>
+      <div class="card" style="display:block;padding:26px"><span class="mono" style="color:var(--r)">02</span><b style="margin-top:14px">Montaje</b><small>Bot, plantillas y recordatorios conectados a tus datos.</small></div>
+      <div class="card" style="display:block;padding:26px"><span class="mono" style="color:var(--r)">03</span><b style="margin-top:14px">Prueba</b><small>Un ciclo de pruebas antes de activarlo con clientes.</small></div>
+    </div>
+    <div class="cta">
+      <div class="btn">Escríbenos por DM</div>
+      <div class="url">jgstudio.dev<br><span>@jgstudio.dev</span></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span class="mono">Ideas que se convierten en productos reales</span></footer>
+</section>
+
+</body>
+</html>

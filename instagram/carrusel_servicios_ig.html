@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Carrusel IG · Lo que construimos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-items:flex-start}
+
+/* P2 Papel (portada) y P1 Noche (contenido) */
+.p2{--bg:#F0ECE5;--fg:#080808;--r:#D63031;--line:rgba(8,8,8,.16);--dim:rgba(8,8,8,.62)}
+.p1{--bg:#080808;--fg:#F0ECE5;--r:#D63031;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58)}
+/* P4 Grafito (solo portada) */
+.p4{--bg:radial-gradient(circle at 85% 0%,rgba(214,48,49,.24),transparent 55%),#161616;--fg:#F0ECE5;--r:#D63031;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58)}
+
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);background:var(--bg);color:var(--fg)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;font-size:124px;margin-top:44px;position:relative;z-index:2}
+.h span{display:block;white-space:nowrap}
+.h .r{color:var(--r)}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%}
+.p{font-size:30px;line-height:1.36;margin-top:28px;max-width:640px;position:relative;z-index:2}
+.tag{display:inline-block;font-family:var(--f-m);font-size:18px;letter-spacing:.14em;text-transform:uppercase;background:var(--r);color:#080808;padding:10px 18px;border-radius:999px;margin-top:0}
+.draw{position:absolute;right:-10px;top:600px;width:440px;height:440px;z-index:1}
+.draw svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.draw .acc{stroke:var(--r)}
+.list{list-style:none;margin-top:auto;margin-bottom:40px;position:relative;z-index:2;display:flex;flex-direction:column;gap:14px}
+.list li{display:flex;gap:18px;align-items:center;font-size:30px;font-weight:500}
+.list li i{flex:none;width:14px;height:14px;background:var(--r);transform:rotate(45deg)}
+.sticker{position:absolute;z-index:3;background:var(--r);color:#080808;font-family:var(--f-m);font-weight:700;font-size:20px;letter-spacing:.1em;text-transform:uppercase;padding:14px 20px;transform:rotate(-6deg);border-radius:6px}
+
+.cta{margin-top:auto;margin-bottom:40px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;position:relative;z-index:2}
+.cta .btn{background:var(--r);color:#080808;font-weight:800;font-size:28px;letter-spacing:.02em;padding:26px 42px;border-radius:999px;text-transform:uppercase}
+.cta .url{font-family:var(--f-m);font-size:20px;letter-spacing:.12em;text-transform:uppercase;line-height:1.6}
+.cta .url span{color:var(--dim)}
+</style>
+</head>
+<body>
+
+<!-- ═════════════ 01 · PORTADA (P2 Papel) ═════════════ -->
+<section class="post p4" id="s01">
+  <header class="top"><span>JGStudio · Servicios</span><span>Lo que construimos</span><b>01 / 06</b></header>
+  <div class="sticker" style="right:90px;top:250px">Hecho a medida</div>
+  <div class="body">
+    <h1 class="h" style="margin-top:70px">
+      <span>Lo que</span>
+      <span>construimos</span>
+      <span class="r">para tu negocio.</span>
+    </h1>
+    <p class="p">Cuatro servicios, un mismo objetivo: que tu negocio se entienda, venda y ahorre tiempo.</p>
+    <div class="draw" style="right:-30px;top:520px">
+      <svg viewBox="0 0 400 400">
+        <path d="M40 300 C 90 250, 130 330, 180 280 S 280 230, 330 120"/>
+        <path class="acc" d="M300 110 L332 118 L322 146"/>
+        <circle class="acc" cx="90" cy="110" r="30"/>
+        <path d="M60 60 l12 -8 M70 40 l0 -14 M114 46 l10 -12"/>
+        <path d="M250 330 l0 -40 M230 310 l40 0"/>
+        <path class="acc" d="M330 300 l10 -4 l-4 10 M340 330 l12 0"/>
+        <path d="M30 380 Q 200 360 370 385"/>
+      </svg>
+    </div>
+    <ul class="list" style="margin-top:auto">
+      <li><i></i>Web comercial</li>
+      <li><i></i>E-commerce</li>
+      <li><i></i>IA y automatización</li>
+      <li><i></i>Software a medida</li>
+    </ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 02 · WEB COMERCIAL (P1) ═════════════ -->
+<section class="post p1" id="s02">
+  <header class="top"><span>01 · Servicio</span><span>Web comercial</span><b>02 / 06</b></header>
+  <div class="body">
+    <h2 class="h"><span>Una web que</span><span class="r">se entiende</span><span>en segundos.</span></h2>
+    <p class="p">Tu negocio explicado con claridad: qué haces, para quién y qué hacer ahora.</p>
+    <div class="draw">
+      <svg viewBox="0 0 400 400">
+        <rect x="60" y="90" width="280" height="190" rx="14"/>
+        <path d="M40 300 L360 300 M160 300 L160 290 M240 300 L240 290"/>
+        <path d="M90 130 L200 130 M90 160 L260 160 M90 190 L170 190"/>
+        <rect class="acc" x="90" y="220" width="110" height="34" rx="17"/>
+        <path class="acc" d="M300 60 l8 20 l20 8 l-20 8 l-8 20 l-8 -20 l-20 -8 l20 -8 z"/>
+        <path class="acc" d="M50 350 Q 200 330 350 355"/>
+      </svg>
+    </div>
+    <ul class="list"><li><i></i>Mensaje claro en la primera pantalla</li><li><i></i>Un botón principal, no tres</li><li><i></i>Pensada para móvil</li></ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 03 · E-COMMERCE (P1) ═════════════ -->
+<section class="post p1" id="s03">
+  <header class="top"><span>02 · Servicio</span><span>E-commerce</span><b>03 / 06</b></header>
+  <div class="body">
+    <h2 class="h"><span>Tu tienda</span><span>cobra</span><span class="r">sin el DM.</span></h2>
+    <p class="p">Catálogo, compra directa y seguimiento en un solo lugar, sin depender de responder mensaje a mensaje.</p>
+    <div class="draw">
+      <svg viewBox="0 0 400 400">
+        <path d="M100 150 L300 150 L320 340 L80 340 Z"/>
+        <path d="M150 150 Q 200 40 250 150"/>
+        <circle cx="150" cy="200" r="8"/><circle cx="250" cy="200" r="8"/>
+        <path class="acc" d="M40 110 l20 0 M40 130 l14 0"/>
+        <path class="acc" d="M330 90 l12 -12 M340 100 l20 -2 M320 70 l-2 -18"/>
+        <path d="M40 370 Q 200 350 360 372"/>
+      </svg>
+    </div>
+    <ul class="list"><li><i></i>Catálogo organizado</li><li><i></i>Pago y envío integrados</li><li><i></i>Pedidos que no dependen de ti</li></ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 04 · IA Y AUTOMATIZACIÓN (P1) ═════════════ -->
+<section class="post p1" id="s04">
+  <header class="top"><span>03 · Servicio</span><span>IA y automatización</span><b>04 / 06</b></header>
+  <div class="body">
+    <h2 class="h"><span>Lo repetitivo,</span><span class="r">en piloto</span><span>automático.</span></h2>
+    <p class="p">Respuestas, facturas y recordatorios que se envían solos. Tú validas, el sistema ejecuta.</p>
+    <div class="draw" style="top:600px;right:-10px">
+      <svg viewBox="0 0 400 400">
+        <path d="M60 90 h180 a30 30 0 0 1 30 30 v60 a30 30 0 0 1 -30 30 h-120 l-30 30 v-30 h-0 a30 30 0 0 1 -30 -30 v-60 a30 30 0 0 1 30 -30 z"/>
+        <path d="M160 230 h160 a30 30 0 0 1 30 30 v40 a30 30 0 0 1 -30 30 h-10 v30 l-30 -30 h-120 a30 30 0 0 1 -30 -30 v-40 a30 30 0 0 1 30 -30 z"/>
+        <path class="acc" d="M110 128 l16 16 l30 -30"/>
+        <path class="acc" d="M210 300 h110 M210 315 h70"/>
+        <path class="acc" d="M330 60 l10 -20 l10 20 l20 10 l-20 10 l-10 20 l-10 -20 l-20 -10 z"/>
+      </svg>
+    </div>
+    <ul class="list"><li><i></i>Respuestas a cualquier hora</li><li><i></i>Facturas y recordatorios de pago</li><li><i></i>Tú decides lo que se envía</li></ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 05 · SOFTWARE A MEDIDA (P1) ═════════════ -->
+<section class="post p1" id="s05">
+  <header class="top"><span>04 · Servicio</span><span>Software a medida</span><b>05 / 06</b></header>
+  <div class="body">
+    <h2 class="h"><span>Tu proceso,</span><span class="r">en una</span><span>herramienta.</span></h2>
+    <p class="p">Cuando ningún software encaja con cómo trabajas, lo construimos para ti.</p>
+    <div class="draw">
+      <svg viewBox="0 0 400 400">
+        <rect x="100" y="80" width="180" height="250" rx="14"/>
+        <rect class="acc" x="150" y="60" width="80" height="36" rx="10"/>
+        <path d="M130 150 h120 M130 190 h120 M130 230 h70"/>
+        <circle class="acc" cx="300" cy="290" r="38"/>
+        <circle class="acc" cx="300" cy="290" r="12"/>
+        <path class="acc" d="M300 240 v-14 M300 340 v14 M250 290 h-14 M350 290 h14"/>
+        <path d="M40 370 Q 200 350 360 372"/>
+      </svg>
+    </div>
+    <ul class="list"><li><i></i>Diseñada alrededor de tu operación</li><li><i></i>Integrada con lo que ya usas</li><li><i></i>Crece cuando tú creces</li></ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 06 · CIERRE (P2) ═════════════ -->
+<section class="post p2" id="s06">
+  <header class="top"><span>05 · Siguiente paso</span><span>Hablemos</span><b>06 / 06</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:60px"><span>¿Cuál es</span><span class="r">tu siguiente</span><span>paso?</span></h2>
+    <p class="p">Cuéntanos qué quieres mejorar y te decimos por dónde empezaríamos.</p>
+    <div class="draw" style="top:360px;right:-10px">
+      <svg viewBox="0 0 400 400">
+        <path class="acc" d="M60 300 C 120 220, 200 260, 250 170 S 320 110, 350 80"/>
+        <path class="acc" d="M330 70 L352 78 L344 100"/>
+        <path d="M70 360 Q 200 340 340 362"/>
+        <path d="M120 110 l10 -12 M280 300 l12 10 M70 200 l-14 -6"/>
+        <circle cx="130" cy="260" r="6"/><circle cx="210" cy="330" r="6"/>
+      </svg>
+    </div>
+    <div class="cta">
+      <div class="btn">Escríbenos por DM</div>
+      <div class="url">jgstudio.dev<br><span>@jgstudio.dev</span></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>Ideas que se convierten en productos reales</span></footer>
+</section>
+
+</body>
+</html>

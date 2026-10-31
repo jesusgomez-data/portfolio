@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Carrusel RivalFit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --k:#080808; --r:#D63031; --c:#F0ECE5;
+  --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace;
+  --m:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-items:flex-start}
+
+/* ───────── Marco común (4:5, 1080×1350) ───────── */
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;flex:none;
+  padding:var(--m);display:flex;flex-direction:column;font-family:var(--f-d)}
+.dark{background:var(--k);color:var(--c);--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.55)}
+.cream{background:var(--c);color:var(--k);--line:rgba(8,8,8,.16);--dim:rgba(8,8,8,.6)}
+.post > *{position:relative;z-index:1}
+.post > .bg{position:absolute;z-index:0}
+
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;letter-spacing:-.005em;font-size:118px}
+.h span{display:block;white-space:nowrap}
+.h .r{color:var(--r)}
+.it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%}
+.p{font-size:30px;line-height:1.36;font-weight:400;max-width:720px}
+.p em{font-style:normal;color:var(--r);font-weight:600}
+.mono{font-family:var(--f-m);letter-spacing:.12em;text-transform:uppercase;font-size:18px}
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--r);margin-bottom:28px}
+.swipe{font-family:var(--f-m);font-size:18px;letter-spacing:.14em;color:var(--r)}
+
+/* ───────── 01 · Portada ───────── */
+.s1 .bg{inset:0;background:
+  linear-gradient(180deg,rgba(8,8,8,.92) 0%,rgba(8,8,8,.55) 45%,rgba(8,8,8,.95) 100%),
+  url(carrusel_rivalfit_assets/hero_gym.png) 62% 40%/cover}
+.s1 .h{font-size:150px;line-height:.84;margin-top:70px}
+.s1 .h .r{color:var(--r)}
+.s1 .lead{margin-top:auto;display:grid;grid-template-columns:1fr;gap:26px;padding-bottom:40px}
+.s1 .lead .p{font-size:32px;max-width:640px}
+.s1 .arrow{width:120px;height:4px;background:var(--r);position:relative}
+.s1 .arrow::after{content:"";position:absolute;right:-2px;top:-8px;border-left:14px solid var(--r);border-top:10px solid transparent;border-bottom:10px solid transparent}
+
+/* ───────── 02 · Problema ───────── */
+.s2 .h{font-size:94px}
+.s2 .sub{margin-top:34px}
+.net{position:relative;height:370px;margin:26px 0 8px}
+.net svg{position:absolute;inset:0;width:100%;height:100%}
+.tile{position:absolute;width:132px;height:132px;border-radius:30px;background:var(--k);color:var(--c);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  box-shadow:0 26px 40px -22px rgba(8,8,8,.55);font-family:var(--f-m);font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+.tile svg{width:44px;height:44px;fill:none;stroke:var(--c);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hub{position:absolute;width:84px;height:84px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:var(--r);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(214,48,49,.15)}
+.hub svg{width:40px;height:40px;fill:none;stroke:var(--k);stroke-width:2;stroke-linecap:round}
+.pains{list-style:none;border-top:2px solid var(--k)}
+.pains li{display:flex;align-items:center;gap:22px;padding:17px 0;border-bottom:1px solid rgba(8,8,8,.18);font-size:28px;font-weight:500}
+.pains li i{flex:none;width:34px;height:34px;border-radius:50%;background:var(--r);color:var(--c);font-style:normal;font-weight:800;
+  font-size:19px;display:flex;align-items:center;justify-content:center}
+
+/* ───────── 03 · Solución ───────── */
+.s3 .h{font-size:96px}
+.s3 .p{margin-top:36px;max-width:500px;font-size:29px}
+.s3 .tags{display:flex;flex-direction:column;gap:14px;margin-top:40px}
+.s3 .tags span{font-family:var(--f-m);font-size:18px;letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(240,236,229,.25);
+  padding:14px 20px;border-radius:999px;width:max-content;color:var(--c)}
+.s3 .tags span b{color:var(--r);font-weight:500;margin-right:10px}
+.phone{position:absolute;right:-18px;top:400px;width:330px;height:640px;border-radius:64px;background:#141414;
+  padding:14px;box-shadow:0 60px 90px -40px rgba(0,0,0,.9),inset 0 0 0 2px #2a2a2a;z-index:2}
+.phone .scr{width:100%;height:100%;border-radius:50px;overflow:hidden;background:#000}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+
+/* ───────── 04 · Funcionalidades ───────── */
+.s4{padding-left:96px}
+.s4::before{content:"";position:absolute;left:72px;top:0;bottom:0;width:2px;background:var(--r);opacity:.85}
+.s4 .h{font-size:96px}
+.s4 .p{margin-top:30px;font-size:28px;max-width:760px}
+.feat{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:36px}
+.feat li{display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:center;padding:18px 26px;
+  background:#111;border:1px solid rgba(240,236,229,.1);border-radius:18px}
+.feat .ic{width:64px;height:64px;border-radius:16px;border:1px solid rgba(214,48,49,.6);display:flex;align-items:center;justify-content:center;background:rgba(214,48,49,.08)}
+.feat .ic svg{width:32px;height:32px;fill:none;stroke:var(--r);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat b{display:block;font-size:28px;font-weight:700;letter-spacing:-.005em}
+.feat small{display:block;font-size:22px;color:var(--dim);margin-top:4px;font-weight:400}
+.feat .n{font-family:var(--f-m);font-size:16px;color:var(--r);letter-spacing:.12em;margin-left:auto}
+
+/* ───────── 05 · Diseño → desarrollo ───────── */
+.s5 .h{font-size:96px}
+.s5 .stage{position:relative;flex:1;margin-top:34px;min-height:0}
+.paper{position:absolute;left:0;top:0;width:400px;height:330px;background:#FBF8F2;border:1px solid rgba(8,8,8,.12);
+  box-shadow:0 20px 40px -26px rgba(8,8,8,.45);transform:rotate(-1.5deg);padding:6px}
+.paper svg{width:100%;height:100%}
+.screen{position:absolute;right:0;bottom:0;width:600px;border-radius:14px;overflow:hidden;background:#111;
+  box-shadow:0 40px 70px -30px rgba(8,8,8,.7);border:1px solid rgba(8,8,8,.9)}
+.screen .bar{height:34px;background:#161616;display:flex;align-items:center;gap:8px;padding:0 14px}
+.screen .bar i{width:9px;height:9px;border-radius:50%;background:#3a3a3a}
+.screen img{display:block;width:100%;height:auto}
+.note{position:absolute;left:430px;top:40px;font-family:var(--f-s);font-style:italic;font-size:34px;line-height:1.1;color:var(--k)}
+.note.arrow-note{transform:rotate(-4deg)}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--k);margin:24px 0 22px}
+.steps li{padding-top:16px;font-family:var(--f-m);font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+.steps li b{display:block;font-family:var(--f-d);font-size:26px;letter-spacing:-.01em;text-transform:none;font-weight:700;margin-top:6px}
+.steps li i{font-style:normal;color:var(--r)}
+
+/* ───────── 06 · Cierre ───────── */
+.s6 .bg{inset:0;background:
+  linear-gradient(90deg,rgba(8,8,8,1) 0%,rgba(8,8,8,.85) 42%,rgba(8,8,8,.35) 100%),
+  url(carrusel_rivalfit_assets/hero_gym.png) 70% 30%/cover}
+.s6 .h{font-size:124px;margin-top:70px}
+.s6 .p{margin-top:36px;font-size:31px;max-width:640px}
+.cta{margin-top:auto;margin-bottom:40px;display:flex;align-items:center;gap:26px}
+.cta .btn{background:var(--r);color:var(--c);font-family:var(--f-d);font-weight:800;font-size:28px;letter-spacing:.02em;
+  padding:26px 42px;border-radius:999px;display:flex;align-items:center;gap:18px;text-transform:uppercase;box-shadow:0 20px 50px -18px rgba(214,48,49,.8)}
+.cta .btn svg{width:30px;height:30px;stroke:var(--c);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.cta .url{font-family:var(--f-m);font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);line-height:1.5}
+.cta .url span{color:var(--dim)}
+.tagline{font-family:var(--f-m);font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:right;line-height:1.6}
+</style>
+</head>
+<body>
+
+<!-- ═════════════ 01 · PORTADA ═════════════ -->
+<section class="post dark s1" id="s01">
+  <div class="bg"></div>
+  <header class="top"><span>JGStudio · Caso real</span><span>RivalFit</span><b>01 / 06</b></header>
+  <div class="body">
+    <div class="kicker" style="margin-top:64px">Así nació un producto</div>
+    <h1 class="h">
+      <span>De un problema</span>
+      <span class="r">real</span>
+      <span>a un producto</span>
+      <span class="r">real.</span>
+    </h1>
+    <div class="lead">
+      <div class="arrow"></div>
+      <p class="p">De la experiencia real en el entrenamiento, la competición y la gestión de un centro deportivo, nació RivalFit.</p>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span class="swipe">Desliza →</span></footer>
+</section>
+
+<!-- ═════════════ 02 · EL PROBLEMA ═════════════ -->
+<section class="post cream s2" id="s02">
+  <header class="top"><span>02 · El problema</span><span>Datos dispersos</span><b>02 / 06</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:58px">
+      <span>El deporte genera datos.</span>
+      <span class="r">Pero están dispersos.</span>
+    </h2>
+    <p class="p sub">Atletas, entrenadores y centros usan varias herramientas que no se comunican entre sí.</p>
+
+    <div class="net">
+      <svg viewBox="0 0 936 370" preserveAspectRatio="none" aria-hidden="true">
+        <g stroke="#080808" stroke-width="1.6" fill="none" opacity=".55">
+          <path d="M120 130 C 240 60, 330 40, 330 110"/>
+          <path d="M330 110 C 430 40, 520 60, 580 120"/>
+          <path d="M580 120 C 700 140, 760 190, 800 230"/>
+          <path d="M120 130 C 90 200, 150 280, 230 300"/>
+          <path d="M230 300 C 320 340, 420 300, 540 330"/>
+          <path d="M540 330 C 660 340, 740 290, 800 230"/>
+          <path d="M120 130 Q 300 170 468 185"/>
+          <path d="M330 110 Q 400 150 468 185"/>
+          <path d="M580 120 Q 520 160 468 185"/>
+          <path d="M800 230 Q 640 210 468 185"/>
+          <path d="M230 300 Q 360 250 468 185"/>
+          <path d="M540 330 Q 500 260 468 185"/>
+        </g>
+      </svg>
+      <!-- Iconos genéricos (sin logos de terceros) -->
+      <div class="tile" style="left:50px;top:65px"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h5"/></svg>Notas</div>
+      <div class="tile" style="left:255px;top:0"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M4 14h16M10 4v16"/></svg>Hojas</div>
+      <div class="tile" style="left:500px;top:40px"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Chats</div>
+      <div class="tile" style="left:700px;top:150px"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</div>
+      <div class="tile" style="left:150px;top:230px"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/></svg>Pagos</div>
+      <div class="tile" style="left:430px;top:238px"><svg viewBox="0 0 24 24"><path d="M12 4l8 14H4z"/></svg>Nube</div>
+      <div class="hub"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></div>
+    </div>
+
+    <ul class="pains">
+      <li><i>✕</i>Información repartida en diferentes apps</li>
+      <li><i>✕</i>Falta de seguimiento real del progreso</li>
+      <li><i>✕</i>Dificultad para analizar resultados</li>
+      <li><i>✕</i>Poca visibilidad para los centros</li>
+    </ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- ═════════════ 03 · LA SOLUCIÓN ═════════════ -->
+<section class="post dark s3" id="s03">
+  <header class="top"><span>03 · La solución</span><span>RivalFit</span><b>03 / 06</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:58px">
+      <span>Un ecosistema</span>
+      <span>diseñado para</span>
+      <span class="r">conectar</span>
+      <span class="r">todo lo que importa.</span>
+    </h2>
+    <p class="p">RivalFit reúne entrenamiento, competiciones, resultados y comunidad en una sola plataforma.</p>
+    <div class="tags">
+      <span><b>●</b>Entrenamiento</span>
+      <span><b>●</b>Competiciones</span>
+      <span><b>●</b>Resultados</span>
+      <span><b>●</b>Comunidad</span>
+    </div>
+    <div class="phone"><div class="scr"><img src="carrusel_rivalfit_assets/app_training.png" alt="Pantalla de entrenamiento de RivalFit"></div></div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- ═════════════ 04 · FUNCIONALIDADES ═════════════ -->
+<section class="post dark s4" id="s04">
+  <header class="top"><span>04 · Decisiones de producto</span><span>Funcionalidades</span><b>04 / 06</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:58px">
+      <span>Funcionalidades</span>
+      <span>que nacen de la</span>
+      <span>experiencia <span class="r" style="display:inline">real.</span></span>
+    </h2>
+    <p class="p">Cada función responde a una necesidad concreta de atletas, entrenadores y centros deportivos.</p>
+
+    <ul class="feat">
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-1.4 1.6-2 3-2s2.5.6 3 2M15 10h3M15 13h3"/></svg></div>
+        <div><b>Rival ID</b><small>Tu identidad como atleta, en una sola vista.</small></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M7 12h2.5l1.5-3 2 6 1.5-3H17"/></svg></div>
+        <div><b>Registro de entrenamientos</b><small>Sesiones guardadas en segundos.</small></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5v1a3 3 0 0 0 3 3M16 6h3v1a3 3 0 0 1-3 3M12 13v4M8 20h8M10 17h4"/></svg></div>
+        <div><b>Historial de competiciones</b><small>Todos tus resultados, ordenados.</small></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 16v-5M12 16V8M17 16v-9"/></svg></div>
+        <div><b>Estadísticas y progresión</b><small>Visualiza tu evolución semana a semana.</small></div>
+      </li>
+      <li>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="10" r="2.5"/><path d="M3.5 19c.5-3 2.7-4.5 5.5-4.5s5 1.5 5.5 4.5M14 15.5c2.5-.3 4.5 1 5 3.5"/></svg></div>
+        <div><b>Comunidad</b><small>Conecta con otros atletas y con tu centro.</small></div>
+      </li>
+    </ul>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- ═════════════ 05 · DEL DISEÑO AL DESARROLLO ═════════════ -->
+<section class="post cream s5" id="s05">
+  <header class="top"><span>05 · Del diseño al desarrollo</span><span>Proceso</span><b>05 / 06</b></header>
+  <div class="body">
+    <h2 class="h" style="margin-top:58px">
+      <span>De un boceto</span>
+      <span class="r">a una funcionalidad</span>
+      <span class="r">real.</span>
+    </h2>
+
+    <div class="stage">
+      <div class="paper">
+        <svg viewBox="0 0 388 318" aria-hidden="true">
+          <g fill="none" stroke="#080808" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="14" y="14" width="150" height="112" rx="6" stroke-dasharray="6 5"/>
+            <circle cx="50" cy="60" r="18"/>
+            <path d="M80 52h70M80 72h54"/>
+            <rect x="182" y="14" width="192" height="50" rx="6"/>
+            <rect x="182" y="78" width="192" height="48" rx="6" stroke-dasharray="6 5"/>
+            <rect x="14" y="142" width="360" height="72" rx="6"/>
+            <path d="M36 170h60M120 170h60M204 170h60M288 170h60"/>
+            <path d="M30 240 q 120 30 300 0" stroke-dasharray="3 6"/>
+            <path d="M24 262h120M24 282h80"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="13" fill="#080808" letter-spacing="1">
+            <text x="24" y="150">PERFIL</text>
+            <text x="190" y="46">STATS</text>
+            <text x="190" y="110">HISTORIAL</text>
+          </g>
+        </svg>
+      </div>
+      <div class="note">Del boceto a<br>la pantalla</div>
+
+      <div class="screen">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <img src="carrusel_rivalfit_assets/web_dashboard.png" alt="Panel de gestión del centro en RivalFit">
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li><i>01</i><b>UX/UI</b></li>
+      <li><i>02</i><b>Desarrollo</b></li>
+      <li><i>03</i><b>Integraciones</b></li>
+      <li><i>04</i><b>Testing</b></li>
+      <li><i>05</i><b>Lanzamiento</b></li>
+    </ol>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+
+<!-- ═════════════ 06 · CIERRE ═════════════ -->
+<section class="post dark s6" id="s06">
+  <div class="bg"></div>
+  <header class="top"><span>06 · Más que una app</span><span>Comunidad</span><b>06 / 06</b></header>
+  <div class="body">
+    <h2 class="h">
+      <span>Tecnología</span>
+      <span>para personas</span>
+      <span>que viven</span>
+      <span class="r">el deporte.</span>
+    </h2>
+    <p class="p">RivalFit es un proyecto de JGStudio creado para atletas, entrenadores y centros que quieren llevar su progreso al siguiente nivel.</p>
+
+    <div class="cta">
+      <div class="btn">Conoce el caso
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="url">jgstudio.dev<br><span>@jgstudio.dev</span></div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span class="tagline" style="text-align:right">Ideas que se convierten<br>en productos reales</span></footer>
+</section>
+
+<script>
+document.fonts.ready.then(() => { window.READY = true; });
+</script>
+</body>
+</html>

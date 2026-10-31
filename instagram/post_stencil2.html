@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Post Stencil2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E3DACB; --fg:#1A1410; --r:#B3262A; --line:rgba(26,20,16,.18); --dim:rgba(26,20,16,.62);
+  --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;padding:40px}
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);background:var(--bg);color:var(--fg)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;font-size:128px;margin-top:36px}
+.h span{display:block;white-space:nowrap}
+.h .r{color:var(--r)}
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--r);margin-top:44px}
+.p{font-size:30px;line-height:1.36;margin-top:30px;max-width:760px}
+.frame{margin-top:40px;width:936px;height:356px;border-radius:14px;overflow:hidden;background:#111;
+  box-shadow:0 40px 70px -30px rgba(26,20,16,.6);border:1px solid rgba(26,20,16,.9)}
+.frame .bar{height:34px;background:#161616;display:flex;align-items:center;gap:8px;padding:0 14px}
+.frame .bar i{width:9px;height:9px;border-radius:50%;background:#3a3a3a}
+.frame .bar u{margin-left:14px;font-family:var(--f-m);font-size:14px;color:#888;text-decoration:none;letter-spacing:.04em}
+.frame img{display:block;width:100%;height:322px;object-fit:cover;object-position:50% 40%}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px;margin-bottom:auto}
+.facts div{border-top:2px solid var(--fg);padding-top:14px}
+.facts .mono{font-family:var(--f-m);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--r)}
+.facts p{font-size:22px;line-height:1.3;margin-top:8px}
+</style>
+</head>
+<body>
+<section class="post" id="s01">
+  <header class="top"><span>JGS — Caso real</span><span>E-commerce</span><b>Stencil2</b></header>
+  <div class="kicker">Tienda online · gafas de sol</div>
+  <h1 class="h">
+    <span>Gafas para</span>
+    <span>los días</span>
+    <span class="r">de sol.</span>
+  </h1>
+  <p class="p">Colecciones de gafas de sol con compra directa en la web, envío gratis desde 50 EUR y 30 días de garantía.</p>
+  <div class="frame">
+    <div class="bar"><i></i><i></i><i></i><u>stencil-2.vercel.app</u></div>
+    <img src="stencil2_assets/hero.jpg" alt="Página de inicio de Stencil2">
+  </div>
+  <div class="facts">
+    <div><span class="mono">Envío</span><p>Gratis desde 50 EUR</p></div>
+    <div><span class="mono">Garantía</span><p>30 días</p></div>
+    <div><span class="mono">Pago</span><p>Datos siempre protegidos</p></div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* tareas.css — Lista de tareas + pestañas Chat/Tareas (portal y admin) */
+
+.tk-scope {
+    --tk-bg: #0f0f0f;
+    --tk-line: rgba(255, 255, 255, .07);
+    --tk-line-strong: rgba(255, 255, 255, .14);
+    --tk-cream: #F0ECE5;
+    --tk-gray: #8a8a8a;
+    --tk-accent: #D63031;
+    --tk-accent-bright: #ff4d4f;
+    --tk-green: #34d399;
+    --tk-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    --tk-display: 'Cabinet Grotesk', 'DM Sans', sans-serif;
+    --tk-body: 'Satoshi', 'DM Sans', sans-serif;
+}
+
+.tk-scope [hidden] { display: none !important; }
+
+/* ---------- Pestañas ---------- */
+.tk-tabs { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--tk-line); border-radius: 999px; background: rgba(0, 0, 0, .3); }
+.tk-tab {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border: 0; border-radius: 999px;
+    background: transparent; color: var(--tk-gray);
+    font: 500 13px/1 var(--tk-mono); cursor: pointer;
+    transition: background .2s, color .2s;
+}
+.tk-tab:hover { color: var(--tk-cream); }
+.tk-tab.active { background: var(--tk-accent); color: #fff; }
+.tk-count {
+    min-width: 20px; height: 20px; padding: 0 6px;
+    display: inline-grid; place-items: center;
+    border-radius: 999px; background: var(--tk-cream); color: #080808;
+    font: 700 11px/1 var(--tk-mono);
+}
+.tk-tab.active .tk-count { background: #fff; color: var(--tk-accent); }
+
+/* ---------- Panel ---------- */
+.tk-panel { color: var(--tk-cream); font-family: var(--tk-body); }
+
+.tk-summary-row { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.tk-summary { font: 500 13px/1 var(--tk-mono); color: var(--tk-gray); white-space: nowrap; }
+.tk-meter-track { flex: 1; min-width: 120px; height: 6px; border-radius: 999px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+.tk-meter { height: 100%; width: 0; background: var(--tk-green); border-radius: 999px; transition: width .6s cubic-bezier(.16, 1, .3, 1); }
+
+.tk-form { display: flex; gap: 8px; margin-bottom: 18px; }
+.tk-input {
+    flex: 1; min-width: 0;
+    background: rgba(0, 0, 0, .3); border: 1px solid var(--tk-line); border-radius: 10px;
+    height: 40px; padding: 0 14px; color: var(--tk-cream); font: 400 .95rem var(--tk-body);
+}
+.tk-input::placeholder { color: #4a4a4a; }
+.tk-input:focus { outline: none; border-color: var(--tk-accent); }
+.tk-add {
+    display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+    padding: 0 20px; border: 0; border-radius: 999px;
+    background: var(--tk-accent); color: #fff;
+    font: 700 13px/1 var(--tk-body); cursor: pointer; transition: transform .2s;
+}
+.tk-add:hover { transform: translateY(-1px); }
+
+.tk-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow-y: auto; }
+.tk-item {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 12px;
+    border: 1px solid var(--tk-line);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .02);
+    transition: border-color .3s, opacity .3s;
+}
+.tk-item:hover { border-color: var(--tk-line-strong); }
+.tk-item.hecha { opacity: .55; }
+.tk-item.en_proceso { border-color: rgba(214, 48, 49, .35); }
+
+.tk-check {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1.5px solid var(--tk-line-strong);
+    font-size: 11px; color: #04110b;
+}
+.tk-item.hecha .tk-check { background: var(--tk-green); border-color: var(--tk-green); }
+.tk-item.en_proceso .tk-check { border-color: var(--tk-accent); box-shadow: inset 0 0 0 4px rgba(214, 48, 49, .25); }
+
+.tk-body { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.tk-title { font-family: var(--tk-display); font-weight: 700; font-size: 1rem; letter-spacing: -.2px; overflow-wrap: anywhere; }
+.tk-item.hecha .tk-title { text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, .3); }
+.tk-meta { font: 400 11.5px/1.4 var(--tk-mono); color: var(--tk-gray); }
+
+.tk-state {
+    font: 700 10.5px/1 var(--tk-mono); letter-spacing: .08em; text-transform: uppercase;
+    padding: 6px 10px; border-radius: 999px; border: 1px solid var(--tk-line-strong); color: var(--tk-gray);
+    white-space: nowrap;
+}
+.tk-state-en_proceso { color: var(--tk-accent-bright); border-color: rgba(214, 48, 49, .45); background: rgba(214, 48, 49, .08); }
+.tk-state-hecha { color: var(--tk-green); border-color: rgba(52, 211, 153, .35); background: rgba(52, 211, 153, .08); }
+
+/* Acciones del profesional: dentro de la fila, bajo la metadata en pantallas angostas */
+.tk-item:has(.tk-actions) { grid-template-columns: 26px minmax(0, 1fr) auto auto; }
+.tk-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.tk-actions button {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 999px;
+    border: 1px solid var(--tk-line-strong); background: transparent; color: var(--tk-cream);
+    font: 500 12px/1 var(--tk-mono); cursor: pointer; transition: border-color .2s, color .2s;
+}
+.tk-actions button:hover { border-color: var(--tk-accent); color: var(--tk-accent-bright); }
+.tk-actions button.tk-primary { background: var(--tk-green); border-color: var(--tk-green); color: #04110b; font-weight: 700; }
+.tk-actions button.tk-primary:hover { background: #2bbd8a; border-color: #2bbd8a; color: #04110b; }
+.tk-actions button:disabled { opacity: .5; cursor: default; }
+
+.tk-empty { margin: 8px 0 0; padding: 28px 16px; text-align: center; font: 400 13px/1.6 var(--tk-mono); color: var(--tk-gray); }
+
+/* Sin estado en la fila del cliente: no muestra acciones, ocupa dos columnas */
+@media (max-width: 560px) {
+    .tk-item, .tk-item:has(.tk-actions) { grid-template-columns: 26px minmax(0, 1fr); }
+    .tk-state { grid-column: 2; justify-self: start; }
+    .tk-actions { grid-column: 2; justify-content: flex-start; }
+    .tk-form { flex-direction: column; }
+    .tk-add { justify-content: center; padding: 13px 20px; }
+}

@@ -86,13 +86,6 @@ function initThreeHero() {
     grid.position.set(0, -14, -4);
     scene.add(grid);
 
-    const t1 = new THREE.Mesh(new THREE.TorusGeometry(11,.27,8,64), new THREE.MeshBasicMaterial({ color:0xD63031, wireframe:true, transparent:true, opacity:.18 }));
-    t1.position.set(22, 4, -8); scene.add(t1);
-    const t2 = new THREE.Mesh(new THREE.TorusGeometry(6.5,.18,6,40), new THREE.MeshBasicMaterial({ color:0xF0ECE5, wireframe:true, transparent:true, opacity:.06 }));
-    t2.position.set(-20,-2,-6); t2.rotation.z = Math.PI*.4; scene.add(t2);
-    const ico = new THREE.Mesh(new THREE.IcosahedronGeometry(4.2,1), new THREE.MeshBasicMaterial({ color:0xD63031, wireframe:true, transparent:true, opacity:.14 }));
-    ico.position.set(-24,8,-5); scene.add(ico);
-
     const m = { x:0,y:0,tx:0,ty:0 };
     window.addEventListener('mousemove', e => { m.x=(e.clientX/innerWidth)*2-1; m.y=-(e.clientY/innerHeight)*2+1; }, { passive:true });
 
@@ -102,9 +95,6 @@ function initThreeHero() {
         m.tx += (m.x-m.tx)*.04; m.ty += (m.y-m.ty)*.04;
         gridMat.uniforms.uTime.value = t;
         gridMat.uniforms.uMouse.value.set(m.tx, m.ty);
-        t1.rotation.x = t*.14+m.ty*.28; t1.rotation.y = t*.19+m.tx*.28;
-        t2.rotation.x = -t*.09-m.ty*.18; t2.rotation.z = t*.12+Math.PI*.4;
-        ico.rotation.y = t*.17+m.tx*.2; ico.rotation.x = t*.1-m.ty*.15;
         camera.position.x = m.tx*2.6; camera.position.y = m.ty*1.6+6;
         camera.lookAt(0,0,0);
         renderer.render(scene, camera);

@@ -5,7 +5,12 @@
       "WebFetch(domain:fabianzambrano.vercel.app)",
       "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\jesus\\\\Documents\\\\AntiGravity\\\\Portfolio\" -Force)",
       "Bash(start \"\" \"c:\\\\Users\\\\jesus\\\\Documents\\\\AntiGravity\\\\Portfolio\\\\index.html\")",
-      "WebFetch(domain:cyrillic.digital)"
+      "WebFetch(domain:cyrillic.digital)",
+      "Bash(cd \"c:/Users/jesus/Documents/AntiGravity/Portfolio\" && wc -l admin-premium.css && cat admin-premium.css; ls \"/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe\" \"/c/Program Files/Google/Chrome/Application/chrome.exe\" 2>/dev/null)",
+      "Read(//c/Program Files \\\\\\(x86\\\\\\)/Microsoft/Edge/Application/**)",
+      "Bash(xargs -0 du -ch)",
+      "Bash(xargs -0 ls -S)",
+      "Bash(xargs -0 grep -lIE \"sk-[A-Za-z0-9]{20}|service_role|SUPABASE_SERVICE|PRIVATE KEY|EAA[A-Za-z0-9]{20}\")"
     ]
   }
 }

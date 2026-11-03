@@ -1496,7 +1496,7 @@
             </div>
             
             <div class="showcase-counter-display">
-                <span class="scd-num">08</span>
+                <span class="scd-num">09</span>
                 <div class="scd-info">
                     <span class="scd-kicker">// PRODUCCIÓN ACTIVA</span>
                     <span class="scd-label">Proyectos Desplegados</span>
@@ -1538,7 +1538,7 @@
             <div class="filter-pills" id="filter-pills">
                 <button class="filter-pill active" data-filter="all">
                     <span>Todos</span>
-                    <span class="filter-pill-count">08</span>
+                    <span class="filter-pill-count">09</span>
                 </button>
                 <button class="filter-pill" data-filter="saas">
                     <span>SaaS &amp; Web Apps</span>
@@ -1550,7 +1550,7 @@
                 </button>
                 <button class="filter-pill" data-filter="ai-web">
                     <span>Webs &amp; Agentes IA</span>
-                    <span class="filter-pill-count">02</span>
+                    <span class="filter-pill-count">03</span>
                 </button>
                 <button class="filter-pill" data-filter="data">
                     <span>Data &amp; BI</span>
@@ -1586,7 +1586,7 @@
     <div class="wrap">
         <!-- Results Status -->
         <div class="results-status-bar">
-            <span>MOSTRANDO: <strong id="visible-count">8</strong> DE <strong>8</strong> CASOS DE ESTUDIO</span>
+            <span>MOSTRANDO: <strong id="visible-count">9</strong> DE <strong>9</strong> CASOS DE ESTUDIO</span>
             <span>ORDENADO POR: <strong>RELEVANCIA &amp; IMPACTO</strong></span>
         </div>
 
@@ -2092,6 +2092,70 @@
                 </div>
             </article>
 
+            <!-- 09 · JGStudio Social (automatización de Instagram) -->
+            <article class="p-card" data-category="ai-web" data-tags="instagram automatizacion publicacion programada nextjs supabase manychat meta api leads cron reels carruseles ia contenido" data-id="social" style="--card-glow: rgba(214, 48, 49, 0.2);">
+                <div class="p-card-media">
+                    <img src="img/screenshot_social.jpg" alt="JGStudio Social: panel de publicación programada en Instagram" loading="lazy">
+                    <div class="p-card-media-overlay"></div>
+                    <div class="p-card-frame"></div>
+                    <div class="p-card-quick-actions">
+                        <a href="https://instagram.com/jgstudio.dev" target="_blank" rel="noopener" class="p-quick-btn" title="Ver el resultado en Instagram" onclick="event.stopPropagation();">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-card-body">
+                    <div>
+                        <div class="vz-project-editorial-header">
+                            <div class="vz-peh-tag">
+                                <span class="vz-peh-num">09</span>
+                                <span class="vz-peh-sep">//</span>
+                                <span class="vz-peh-cat">AUTOMATIZACIÓN &amp; CONTENIDO IA</span>
+                            </div>
+                            <a href="https://instagram.com/jgstudio.dev" target="_blank" rel="noopener" class="vz-peh-link" onclick="event.stopPropagation();">
+                                <span>@jgstudio.dev</span>
+                                <span class="vz-peh-arrow">↗</span>
+                            </a>
+                        </div>
+                        <h2 class="p-card-title">JGStudio Social</h2>
+                        <p class="p-card-desc">Sistema propio que publica en Instagram por ti: cola de posts, carruseles y reels con fecha y hora, panel de gestión y captura de clientes potenciales cuando alguien comenta una palabra clave. El contenido se genera con IA y en código, con la identidad de marca.</p>
+
+                        <div class="p-psr-strip">
+                            <div class="p-psr-box">
+                                <span class="psr-label">Problema</span>
+                                <span class="psr-text">Publicar a mano cada semana y perder los comentarios sin responder.</span>
+                            </div>
+                            <div class="p-psr-box">
+                                <span class="psr-label">Solución</span>
+                                <span class="psr-text">Cola programada, publicación automática y comentario → mensaje privado.</span>
+                            </div>
+                            <div class="p-psr-box res">
+                                <span class="psr-label">Resultado</span>
+                                <span class="psr-text">3 piezas por semana a las 19:00, sin intervención manual.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-tech-stack">
+                            <span class="p-tech-chip">Next.js 16</span>
+                            <span class="p-tech-chip">Supabase</span>
+                            <span class="p-tech-chip">Meta Graph API</span>
+                            <span class="p-tech-chip">Vercel Blob</span>
+                            <span class="p-tech-chip">Playwright</span>
+                            <span class="p-tech-chip">ffmpeg</span>
+                        </div>
+                    </div>
+
+                    <div class="p-card-actions">
+                        <button class="p-btn-details" onclick="openCaseStudy('social'); event.stopPropagation();">
+                            <i class="fa-solid fa-file-code"></i> Ficha Técnica
+                        </button>
+                        <a href="https://instagram.com/jgstudio.dev" target="_blank" rel="noopener" class="p-btn-live" onclick="event.stopPropagation();">
+                            Ver en Instagram ↗
+                        </a>
+                    </div>
+                </div>
+            </article>
+
         </div>
     </div>
 </main>
@@ -2386,6 +2450,24 @@
             ],
             tech: ['Supabase Auth & Realtime', 'PostgreSQL RLS', 'WebSockets', 'JavaScript ES6+', 'Glassmorphism UI'],
             archNotes: 'Sistema de autenticación tokenizada con JWT y control de acceso basado en roles (RBAC) para aislar completamente la información de cada proyecto.'
+        },
+        'social': {
+            index: '09',
+            discipline: 'AUTOMATIZACIÓN & CONTENIDO IA',
+            title: 'JGStudio Social — Publicación y Captación en Instagram',
+            subtitle: 'Sistema propio que programa y publica posts, carruseles y reels, y convierte los comentarios en conversaciones con clientes potenciales.',
+            url: 'https://instagram.com/jgstudio.dev',
+            urlText: '@jgstudio.dev',
+            image: 'img/screenshot_social.jpg',
+            problem: 'Mantener Instagram al día cuesta horas cada semana: diseñar, redactar, publicar a su hora y contestar a mano a quien pregunta. Sin constancia no hay audiencia, y los comentarios sin respuesta son clientes perdidos.',
+            solution: 'Construimos un panel con cola de publicación y un cron propio que publica cada pieza a su hora. Los comentarios con una palabra clave activan una respuesta pública y un mensaje privado. Las piezas se generan con HTML renderizado con Playwright y vídeo motion graphics con ffmpeg, con la identidad de marca.',
+            metrics: [
+                { val: '3 / semana', lbl: 'Post, carrusel y reel' },
+                { val: '19:00', lbl: 'Publicación automática' },
+                { val: '0 €', lbl: 'Coste de herramientas de pago' }
+            ],
+            tech: ['Next.js 16', 'TypeScript', 'Supabase Postgres', 'Meta Graph API', 'Vercel Blob', 'ManyChat', 'Playwright', 'ffmpeg'],
+            archNotes: 'La publicación es una máquina de estados (programada → procesando → publicada) que Instagram valida en dos pasos: creación del contenedor y publicación. El panel está protegido con autenticación y el contenido nunca depende de servicios de pago.'
         }
     };
 

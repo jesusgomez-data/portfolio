@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Post · Contestas mañana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;padding:40px}
+
+/* P6 · Carbón rojo */
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);color:#F0ECE5;background:linear-gradient(160deg,#2A0B0C,#080808 60%);
+  --r:#E84446;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--r)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--r);margin-top:56px}
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;font-size:128px;margin-top:26px}
+.h span{display:block;white-space:nowrap}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%;color:#F0ECE5}
+.h .r{color:var(--r)}
+.p{font-size:31px;line-height:1.36;margin-top:36px;max-width:820px}
+
+/* Llamada a la acción por comentario */
+.cta{margin-top:auto;margin-bottom:40px;border:1px solid var(--line);border-radius:18px;padding:34px 36px;
+  background:rgba(240,236,229,.04);display:flex;flex-direction:column;gap:14px}
+.cta .k{font-family:var(--f-m);font-size:18px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.cta .w{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:84px;line-height:.9;color:#F0ECE5}
+.cta .w em{font-style:normal;color:var(--r)}
+.cta .d{font-size:28px;line-height:1.36;color:var(--dim)}
+</style>
+</head>
+<body>
+<section class="post" id="s01">
+  <header class="top"><span>Esto te cuesta clientes</span><span>Nº 01</span><b>INFO</b></header>
+  <div class="body">
+    <div class="kicker">Respuesta lenta</div>
+    <h1 class="h">
+      <span>Contestas</span>
+      <span class="it">mañana.</span>
+      <span class="r" style="margin-top:30px">Tu cliente ya</span>
+      <span class="r" style="margin-top:20px">compró fuera.</span>
+    </h1>
+    <p class="p">Quien te escribe quiere respuesta ahora. Si tardas horas, pregunta al siguiente. La solución no es vivir pegado al móvil: es que tu negocio conteste solo, a cualquier hora.</p>
+
+    <div class="cta">
+      <span class="k">Para ver cómo se arregla</span>
+      <div class="w">Comenta <em>INFO</em></div>
+      <div class="d">Te lo cuento por mensaje privado.</div>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>jgstudio.dev</span></footer>
+</section>
+</body>
+</html>

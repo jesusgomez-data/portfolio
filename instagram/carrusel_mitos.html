@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>JGStudio — Carrusel 4 mitos sobre digitalizar tu negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --f-d:'Archivo',sans-serif; --f-s:'Fraunces',serif; --f-m:'JetBrains Mono',monospace; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:flex;flex-wrap:wrap;gap:40px;padding:40px;align-items:flex-start}
+
+/* Paletas del carrusel (solo dos): P5 Ceniza cálida (portada y cierre) y P1 Noche (interior) */
+.p5{--bg:#E3DACB;--fg:#1A1410;--em:#B3262A;--r:#B3262A;--line:rgba(26,20,16,.2);--dim:rgba(26,20,16,.62);--card:rgba(26,20,16,.05)}
+.p1{--bg:#080808;--fg:#F0ECE5;--em:#D63031;--r:#D63031;--line:rgba(240,236,229,.16);--dim:rgba(240,236,229,.58);--card:rgba(240,236,229,.04)}
+
+.post{width:1080px;height:1350px;position:relative;overflow:hidden;padding:72px;display:flex;flex-direction:column;
+  font-family:var(--f-d);background:var(--bg);color:var(--fg)}
+.top,.bot{display:flex;justify-content:space-between;align-items:center;flex:none;
+  font-family:var(--f-m);font-size:19px;letter-spacing:.14em;text-transform:uppercase}
+.top{padding-bottom:22px;border-bottom:1px solid var(--line)}
+.top b{font-weight:500;color:var(--em)}
+.bot{padding-top:22px;border-top:1px solid var(--line);color:var(--dim)}
+.logo{height:60px;display:block}
+.body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+.kicker{font-family:var(--f-m);font-size:20px;letter-spacing:.16em;text-transform:uppercase;color:var(--em);margin-top:44px}
+.h{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.86;font-size:150px;margin-top:30px}
+.h span{display:block;white-space:nowrap}
+.h .it{font-family:var(--f-s);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.03em;font-stretch:100%;color:var(--fg)}
+.h .r{color:var(--r)}
+.p{font-size:31px;line-height:1.36;margin-top:34px;max-width:800px}
+
+/* Mito y verdad (diapositivas interiores) */
+.label{font-family:var(--f-m);font-size:18px;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.label::before{content:"";width:34px;height:2px;background:currentColor}
+.label.mito{color:var(--dim)}
+.label.verdad{color:var(--em)}
+.myth{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.95;font-size:84px;margin-top:16px;color:rgba(240,236,229,.62);
+  text-decoration:line-through;text-decoration-color:var(--r);text-decoration-thickness:5px}
+.arrow{margin:28px 0 22px;display:flex;align-items:center;gap:14px;color:var(--em)}
+.arrow::before{content:"";flex:1;height:2px;background:var(--line)}
+.arrow svg{width:34px;height:34px;flex:none}
+.truth{font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.92;font-size:96px;margin-top:16px}
+.truth em{font-style:normal;color:var(--em)}
+.why{font-size:30px;line-height:1.38;margin-top:30px;max-width:840px;color:var(--fg)}
+
+.todo{margin-top:auto;margin-bottom:34px;padding:26px 30px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.todo .label{color:var(--dim);margin-bottom:14px}
+.todo ol{list-style:none;display:flex;flex-direction:column;gap:12px}
+.todo li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;font-size:28px;line-height:1.3;font-weight:500}
+.todo li b{font-family:var(--f-s);font-style:italic;font-weight:400;font-size:40px;line-height:1;color:var(--em)}
+
+/* Portada */
+.vs{margin-top:auto;margin-bottom:36px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.vs .pill{font-family:var(--f-m);font-size:22px;letter-spacing:.16em;text-transform:uppercase;padding:18px 30px;border-radius:999px;border:2px solid var(--fg)}
+.vs .pill.no{text-decoration:line-through;text-decoration-color:var(--r);text-decoration-thickness:3px;color:var(--dim);border-color:var(--line)}
+.vs .pill.si{background:var(--r);color:var(--bg);border-color:var(--r)}
+.vs svg{width:44px;height:44px;color:var(--fg)}
+
+/* Cierre */
+.cta{margin-top:auto;margin-bottom:34px;display:flex;flex-direction:column;gap:18px}
+.cta .row{display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:center;padding:24px 28px;border:1px solid var(--line);border-radius:20px;background:var(--card)}
+.cta .row i{font-style:normal;display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--r);color:var(--bg);font-size:30px;font-weight:800}
+.cta .row b{display:block;font-size:34px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.cta .row span{display:block;font-size:24px;color:var(--dim);margin-top:6px;line-height:1.3}
+.url{font-family:var(--f-m);font-size:20px;letter-spacing:.14em;text-transform:uppercase}
+.url b{color:var(--em);font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- 01 · Portada -->
+<section class="post p5" id="s01">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Negocio digital</span><b>01 / 06</b></header>
+  <div class="body">
+    <div class="kicker">Lo que se cree · Lo que funciona</div>
+    <h1 class="h">
+      <span>4 mitos</span>
+      <span class="it">sobre digitalizar</span>
+      <span class="r">tu negocio.</span>
+    </h1>
+    <p class="p">Cuatro ideas que mucha gente da por ciertas y lo que de verdad ayuda a vender más con menos esfuerzo.</p>
+    <div class="vs">
+      <span class="pill no">Mito</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <span class="pill si">La verdad</span>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- 02 · Mito 1 -->
+<section class="post p1" id="s02">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Negocio digital</span><b>02 / 06</b></header>
+  <div class="body">
+    <div class="kicker" style="margin-top:40px">Mito 01</div>
+    <div class="myth">«Necesito una app.»</div>
+    <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+    <div class="label verdad">La verdad</div>
+    <div class="truth">Necesitas un <em>sistema que venda.</em></div>
+    <p class="why">Antes que una app, tu cliente necesita encontrarte, entender qué haces y poder escribirte en un clic.</p>
+    <div class="todo">
+      <div class="label">Qué hacer</div>
+      <ol>
+        <li><b>1</b><span>Una web que se entienda en 5 segundos.</span></li>
+        <li><b>2</b><span>Un botón de contacto siempre visible.</span></li>
+        <li><b>3</b><span>Responder rápido por WhatsApp.</span></li>
+      </ol>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- 03 · Mito 2 -->
+<section class="post p1" id="s03">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Negocio digital</span><b>03 / 06</b></header>
+  <div class="body">
+    <div class="kicker" style="margin-top:40px">Mito 02</div>
+    <div class="myth">«Con Instagram ya no necesito web.»</div>
+    <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+    <div class="label verdad">La verdad</div>
+    <div class="truth">La red te presta la audiencia. <em style="display:block">Tu web es tuya.</em></div>
+    <p class="why">Es el único lugar donde tú pones las reglas: tu mensaje, tu horario y los datos de quien te escribe.</p>
+    <div class="todo">
+      <div class="label">Qué hacer</div>
+      <ol>
+        <li><b>1</b><span>Usa las redes para que te descubran.</span></li>
+        <li><b>2</b><span>Lleva a esa gente a tu web.</span></li>
+        <li><b>3</b><span>Allí, pídele su contacto con un solo paso.</span></li>
+      </ol>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- 04 · Mito 3 -->
+<section class="post p1" id="s04">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Negocio digital</span><b>04 / 06</b></header>
+  <div class="body">
+    <div class="kicker" style="margin-top:40px">Mito 03</div>
+    <div class="myth">«La IA es solo para grandes empresas.»</div>
+    <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+    <div class="label verdad">La verdad</div>
+    <div class="truth">Un negocio pequeño también puede tener <em>su asistente.</em></div>
+    <p class="why">Responder las mismas preguntas, agendar citas o enviar recordatorios se puede automatizar sin un equipo técnico.</p>
+    <div class="todo">
+      <div class="label">Qué hacer</div>
+      <ol>
+        <li><b>1</b><span>Anota las 5 preguntas que más te hacen.</span></li>
+        <li><b>2</b><span>Automatiza esas respuestas.</span></li>
+        <li><b>3</b><span>Reserva tu tiempo para lo que pide trato humano.</span></li>
+      </ol>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- 05 · Mito 4 -->
+<section class="post p1" id="s05">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Negocio digital</span><b>05 / 06</b></header>
+  <div class="body">
+    <div class="kicker" style="margin-top:40px">Mito 04</div>
+    <div class="myth">«Automatizar es perder el trato personal.»</div>
+    <div class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+    <div class="label verdad">La verdad</div>
+    <div class="truth">Automatizas lo repetitivo para <em>dedicarte a lo humano.</em></div>
+    <p class="why">Lo que se repite cada día lo hace un sistema. La confianza con tu cliente la sigues construyendo tú.</p>
+    <div class="todo">
+      <div class="label">Qué hacer</div>
+      <ol>
+        <li><b>1</b><span>Lo repetitivo, a un sistema.</span></li>
+        <li><b>2</b><span>Lo importante, para ti.</span></li>
+        <li><b>3</b><span>Cada mes, revisa qué se puede mejorar.</span></li>
+      </ol>
+    </div>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_dark.png" alt="JGStudio"><span>Desliza →</span></footer>
+</section>
+
+<!-- 06 · Cierre -->
+<section class="post p5" id="s06">
+  <header class="top"><span>JGStudio · Mito vs verdad</span><span>Tu turno</span><b>06 / 06</b></header>
+  <div class="body">
+    <div class="kicker">Ahora cuéntanos</div>
+    <h1 class="h" style="font-size:124px">
+      <span>¿Cuál de</span>
+      <span class="it">estos mitos</span>
+      <span class="r">creías tú?</span>
+    </h1>
+    <div class="cta">
+      <div class="row"><i>1</i><div><b>Cuéntalo en los comentarios</b><span>Dinos el número del mito y lo hablamos.</span></div></div>
+      <div class="row"><i>2</i><div><b>Guárdalo para volver a él</b><span>Es una lista rápida para revisar tu negocio.</span></div></div>
+      <div class="row"><i>3</i><div><b>Envíaselo a quien tenga un negocio</b><span>Seguro que a alguien le ahorra un error.</span></div></div>
+    </div>
+    <p class="url">Tu negocio necesita más que una página web · <b>jgstudio.dev</b></p>
+  </div>
+  <footer class="bot"><img class="logo" src="logo_light.png" alt="JGStudio"><span>@jgstudio.dev</span></footer>
+</section>
+
+</body>
+</html>

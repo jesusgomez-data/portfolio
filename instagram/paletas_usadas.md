@@ -13,3 +13,6 @@ Registro para no repetir la portada de un post con la misma paleta (ver skill `j
 | 2026-10-26 | Carrusel IG "Lo que construimos" (4 servicios, dibujos) | P4 Grafito | P1 Noche | L2 Titular dominante |
 | 2026-10-27 | Carrusel IG "Mapa de fugas" (6 slides, dibujos, claro) | P7 Blanco hueso (#FAF8F4, nueva) | P7 Blanco hueso | L2 Titular dominante |
 | 2026-10-30 | Carrusel multi-red "Convencer en 5 segundos" (5 slides, IG/LinkedIn/TikTok) | P3 Sangre | P3 Sangre | L2 Titular dominante |
+| 2026-11-01 | Post único "Tu web recibe visitas" (CTA INFO, oscuro) | P1 Noche | P1 Noche | L2 Titular dominante |
+| 2026-11-03 | Carrusel "4 mitos sobre digitalizar tu negocio" (6 slides) | P5 Ceniza cálida | P5 Ceniza cálida | L2 Titular dominante |
+| 2026-11-07 | Post único "Contestas mañana" (serie Esto te cuesta clientes Nº1, CTA INFO) | P6 Carbón rojo | P6 Carbón rojo | L2 Titular dominante |

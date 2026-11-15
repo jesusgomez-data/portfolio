@@ -40,7 +40,7 @@
     <!-- Fraunces (editorial serif) -->
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20261013l">
+    <link rel="stylesheet" href="styles.css?v=20261115d">
 </head>
 <body>
 
@@ -163,17 +163,30 @@
     </div>
 </section>
 
-<!-- Stats strip -->
-<div class="stats-strip">
-    <div class="stat-block"><span class="stat-n">100%</span><span class="stat-l">Código a medida</span></div>
-    <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">4+</span><span class="stat-l">Proyectos en producción</span></div>
-    <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">&lt;24h</span><span class="stat-l">Tiempo de respuesta</span></div>
-    <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">0</span><span class="stat-l">Intermediarios</span></div>
-    <div class="stats-divider"></div>
-    <div class="stat-block"><span class="stat-n">★★★★★</span><span class="stat-l">Enfoque comercial</span></div>
+<!-- Stats strip (Architectural Swiss Ledger) -->
+<div class="wrap">
+    <div class="stats-strip">
+        <div class="stat-block">
+            <span class="stat-kicker">01 // ARQUITECTURA</span>
+            <span class="stat-n">100%</span>
+            <span class="stat-l">Código propio · Sin plantillas</span>
+        </div>
+        <div class="stat-block">
+            <span class="stat-kicker">02 // PRODUCCIÓN</span>
+            <span class="stat-n">09</span>
+            <span class="stat-l">Sistemas desplegados en activo</span>
+        </div>
+        <div class="stat-block">
+            <span class="stat-kicker">03 // RENDIMIENTO</span>
+            <span class="stat-n">&lt; 0.6s</span>
+            <span class="stat-l">Carga media Core Web Vitals</span>
+        </div>
+        <div class="stat-block">
+            <span class="stat-kicker">04 // EJECUCIÓN</span>
+            <span class="stat-n">&lt; 24h</span>
+            <span class="stat-l">Respuesta directa sin intermediarios</span>
+        </div>
+    </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
@@ -192,121 +205,313 @@
             <p class="vz-sub">
                 Tu empresa puede tener Instagram, WhatsApp y una página web. Pero si tus clientes no encuentran fácilmente lo que necesitan, no pueden contactarte rápidamente o el proceso depende completamente de responder mensajes manualmente, <strong>estás perdiendo oportunidades comerciales todos los días</strong>.
             </p>
-            <p class="vz-sub" style="margin-top:14px;"><strong>JGStudio convierte tu presencia digital en una herramienta comercial activa.</strong></p>
+            <p class="vz-sub vz-sub--highlight"><strong>JGStudio convierte tu presencia digital en una herramienta comercial activa.</strong></p>
         </div>
 
         <div class="capabilities-grid vz-grid-2x2">
-            <!-- Fricción 01 -->
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-browser">
-                    <div class="ci-browser-bar"><span></span><span></span><span></span></div>
-                    <div class="ci-browser-body">
-                      <div class="ci-graph">
-                        <div class="ci-graph-line ci-line-flat"></div>
-                        <div class="ci-graph-dots">
-                          <div class="ci-dot" style="bottom:40%;left:10%"></div>
-                          <div class="ci-dot" style="bottom:38%;left:30%"></div>
-                          <div class="ci-dot" style="bottom:36%;left:50%"></div>
-                          <div class="ci-dot" style="bottom:35%;left:70%"></div>
-                          <div class="ci-dot" style="bottom:34%;left:88%"></div>
+            <!-- Fricción 01: Vector Funnel & Conversion Trajectory -->
+            <div class="cap-card cap-card--diag" id="diag-card-01" data-reveal>
+                <div>
+                    <div class="cap-accent-bar"></div>
+                    <div class="vz-project-editorial-header cap-editorial-head">
+                        <div class="vz-peh-tag">
+                            <span class="vz-peh-num">01</span>
+                            <span class="vz-peh-sep">//</span>
+                            <span class="vz-peh-cat">FRICCIÓN COMERCIAL</span>
                         </div>
-                        <div class="ci-no-sales">0 ventas</div>
-                      </div>
+                        <span class="cap-diag-code" id="diag-funnel-code">SYS // CRO_FUNNEL</span>
                     </div>
-                  </div>
+
+                    <div class="diag-stage diag-stage--funnel">
+                        <div class="diag-funnel-canvas">
+                            <svg class="diag-funnel-svg" viewBox="0 0 280 112" fill="none">
+                                <defs>
+                                    <linearGradient id="jgsCurveFill" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="rgba(214,48,49,0.34)"/>
+                                        <stop offset="100%" stop-color="rgba(214,48,49,0.0)"/>
+                                    </linearGradient>
+                                    <linearGradient id="jgsCurveStroke" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#D63031"/>
+                                        <stop offset="100%" stop-color="#ff6b6b"/>
+                                    </linearGradient>
+                                    <path id="jgsActivePath" d="M 14 58 C 72 58, 114 42, 168 28 C 206 18, 236 15, 262 14"/>
+                                    <path id="jgsLeakPath" d="M 14 58 C 68 58, 96 86, 176 94 L 244 96"/>
+                                </defs>
+                                <!-- Baseline coordinate guides -->
+                                <line x1="12" y1="24" x2="268" y2="24" stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 3"/>
+                                <line x1="12" y1="58" x2="268" y2="58" stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 3"/>
+                                <line x1="12" y1="92" x2="268" y2="92" stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 3"/>
+
+                                <!-- Legacy drop-off trajectory (78% bounce) -->
+                                <use href="#jgsLeakPath" stroke="rgba(240,236,229,0.22)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                <circle r="2.2" fill="rgba(240,236,229,0.45)">
+                                    <animateMotion dur="3.4s" repeatCount="indefinite" path="M 14 58 C 68 58, 96 86, 176 94 L 244 96"/>
+                                </circle>
+                                <text x="150" y="87" fill="rgba(240,236,229,0.38)" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="0.8">✕ 78% FUGA SIN EMBUDO</text>
+
+                                <!-- JGS Active Conversion Curve -->
+                                <path d="M 14 58 C 72 58, 114 42, 168 28 C 206 18, 236 15, 262 14 L 262 96 L 14 96 Z" fill="url(#jgsCurveFill)"/>
+                                <use href="#jgsActivePath" stroke="url(#jgsCurveStroke)" stroke-width="2.4" stroke-linecap="round"/>
+                                <use class="diag-flow-stroke" href="#jgsActivePath" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.3" stroke-linecap="round"/>
+
+                                <!-- Travelling High-Velocity Data Photon -->
+                                <circle r="3.6" fill="#ffffff" filter="drop-shadow(0 0 6px #ff4d4d)">
+                                    <animateMotion dur="2.6s" repeatCount="indefinite" path="M 14 58 C 72 58, 114 42, 168 28 C 206 18, 236 15, 262 14"/>
+                                </circle>
+
+                                <!-- Checkpoints -->
+                                <circle class="diag-cp-dot" data-cp="0" cx="14" cy="58" r="3.8" fill="#F0ECE5" stroke="#D63031" stroke-width="1.5"/>
+                                <circle class="diag-cp-dot" data-cp="1" cx="136" cy="36" r="3.8" fill="#0b0c10" stroke="#D63031" stroke-width="1.8"/>
+                                <circle class="diag-pulse-ring" cx="262" cy="14" r="6.5" fill="rgba(214,48,49,0.45)"/>
+                                <circle class="diag-cp-dot is-active" data-cp="2" cx="262" cy="14" r="4.2" fill="#ff4d4d" stroke="#ffffff" stroke-width="1.3"/>
+                                <text x="86" y="25" id="diag-funnel-svg-label" fill="#F0ECE5" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="700" letter-spacing="0.8">ARQUITECTURA CRO · ACTIVA</text>
+                            </svg>
+                            <div class="diag-funnel-nodes" id="diag-funnel-steps">
+                                <span data-step="0" data-mult="1.0" data-lbl="Tráfico captado (< 0.5s)" data-svg="01 // CAPTACIÓN RÁPIDA"><b>01</b> TRÁFICO</span>
+                                <span data-step="1" data-mult="2.4" data-lbl="Retención en embudo CRO" data-svg="02 // FILTRADO COMERCIAL"><b>02</b> FILTRO CRO</span>
+                                <span class="is-active" data-step="2" data-mult="3.4" data-lbl="Conversión a leads cualificados" data-svg="03 // CIERRE DE LEADS"><b>03</b> LEAD ACTIVO</span>
+                            </div>
+                        </div>
+
+                        <div class="diag-kpi-panel">
+                            <span class="diag-kpi-old">78% REBOTE</span>
+                            <div class="diag-kpi-num" id="diag-funnel-kpi"><em>+</em><span id="diag-funnel-val">3.4</span><em>×</em></div>
+                            <span class="diag-kpi-lbl" id="diag-funnel-lbl">Conversión a leads cualificados</span>
+                        </div>
+                    </div>
+
+                    <div class="diag-body">
+                        <h3>Tu web no convierte</h3>
+                        <p>Una página bonita no sirve si opera como un folleto pasivo. Diseñamos embudos de alta conversión pensados para transformar tráfico en consultas, reservas y ventas.</p>
+                    </div>
                 </div>
-                <div class="cap-head">
-                    <span class="cap-num">01 · FRICCIÓN</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
+
+                <div class="diag-ledger">
+                    <div class="diag-ledger-cell">
+                        <span class="diag-lc-kicker">SÍNTOMA ACTUAL</span>
+                        <span class="diag-lc-val">Visitas sin captura comercial</span>
+                    </div>
+                    <div class="diag-ledger-cell diag-ledger-cell--jgs">
+                        <span class="diag-lc-kicker">INGENIERÍA JGS</span>
+                        <a href="#contacto" class="diag-lc-cta" onclick="selectProjectType('Página web', 'diag_01')">
+                            Web Comercial CRO <span>→</span>
+                        </a>
+                    </div>
                 </div>
-                <h3>Tu web no convierte</h3>
-                <p>Una página bonita no sirve si no genera consultas, reservas o ventas directas para tu negocio.</p>
-                <div class="cap-examples"><span>Conversión</span><span>Leads</span></div>
-                <span class="cap-arrow">→</span>
             </div>
 
-            <!-- Fricción 02 -->
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-wa-scene">
-                    <div class="ci-wa-stack">
-                      <div class="ci-wa-bubble ci-wa-b1">&#x1F4AC; ¿Precio?</div>
-                      <div class="ci-wa-bubble ci-wa-b2">&#x1F4C4; Catálogo PDF?</div>
-                      <div class="ci-wa-bubble ci-wa-b3">&#x1F4E6; ¿Hay stock?</div>
-                      <div class="ci-wa-bubble ci-wa-b4">&#x1F4B3; Envío hoy?</div>
+            <!-- Fricción 02: Autonomous AI Switchboard & Queue Router -->
+            <div class="cap-card cap-card--diag" id="diag-card-02" data-reveal>
+                <div>
+                    <div class="cap-accent-bar"></div>
+                    <div class="vz-project-editorial-header cap-editorial-head">
+                        <div class="vz-peh-tag">
+                            <span class="vz-peh-num">02</span>
+                            <span class="vz-peh-sep">//</span>
+                            <span class="vz-peh-cat">CUELLO DE BOTELLA</span>
+                        </div>
+                        <span class="cap-diag-code" id="diag-router-code">SYS // AI_SWITCHBOARD</span>
                     </div>
-                    <div class="ci-wa-reply">
-                      <div class="ci-wa-reply-label">Respondiendo manualmente...</div>
-                      <div class="ci-wa-dots"><span></span><span></span><span></span></div>
+
+                    <div class="diag-stage diag-stage--router">
+                        <div class="diag-queue-col" id="diag-router-in">
+                            <span class="diag-col-tag">CAOS MANUAL · −3.5H/DÍA</span>
+                            <div class="diag-dm-item is-active" data-route="0" data-speed="0.6s">
+                                <s>"Hola, ¿precio y tallas?"</s>
+                                <span class="diag-dm-wait">+3h</span>
+                            </div>
+                            <div class="diag-dm-item" data-route="1" data-speed="0.8s">
+                                <s>Catalogo_2025_Final.pdf</s>
+                                <span class="diag-dm-wait">manual</span>
+                            </div>
+                            <div class="diag-dm-item" data-route="2" data-speed="0.4s">
+                                <s>14 chats sin responder</s>
+                                <span class="diag-dm-wait">fuga</span>
+                            </div>
+                        </div>
+
+                        <div class="diag-router-hub">
+                            <span class="diag-hub-beam diag-hub-beam--in"></span>
+                            <div class="diag-hub-core is-pulsing" id="diag-hub-core">
+                                <span>IA</span>
+                                <small id="diag-hub-speed">0.6s</small>
+                            </div>
+                            <span class="diag-hub-beam diag-hub-beam--out"></span>
+                        </div>
+
+                        <div class="diag-queue-col" id="diag-router-out">
+                            <span class="diag-col-tag diag-col-tag--ok">MOTOR AUTÓNOMO 24/7</span>
+                            <div class="diag-out-item is-active" data-route="0">
+                                <span class="diag-out-dot"></span>
+                                <span>Catálogo &amp; Stock vivo</span>
+                            </div>
+                            <div class="diag-out-item" data-route="1">
+                                <span class="diag-out-dot"></span>
+                                <span>Lead filtrado por IA</span>
+                            </div>
+                            <div class="diag-out-item" data-route="2">
+                                <span class="diag-out-dot"></span>
+                                <span>Pago / Cita agendada</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
+                    <div class="diag-body">
+                        <h3>Dependencia de WhatsApp</h3>
+                        <p>Si cada venta exige responder preguntas repetitivas y enviar PDFs manualmente por DM, tu facturación tiene el techo de tu tiempo libre.</p>
+                    </div>
                 </div>
-                <div class="cap-head">
-                    <span class="cap-num">02 · FRICCIÓN</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+
+                <div class="diag-ledger">
+                    <div class="diag-ledger-cell">
+                        <span class="diag-lc-kicker">SÍNTOMA ACTUAL</span>
+                        <span class="diag-lc-val">Atención manual DM por DM</span>
+                    </div>
+                    <div class="diag-ledger-cell diag-ledger-cell--jgs">
+                        <span class="diag-lc-kicker">INGENIERÍA JGS</span>
+                        <a href="#contacto" class="diag-lc-cta" onclick="selectProjectType('E-commerce', 'diag_02')">
+                            Catálogo &amp; Agente IA 24/7 <span>→</span>
+                        </a>
+                    </div>
                 </div>
-                <h3>Dependencia de WhatsApp</h3>
-                <p>Si todo depende de responder manualmente cada consulta y enviar catálogos en PDF, tu negocio no escala.</p>
-                <div class="cap-examples"><span>WhatsApp</span><span>Catálogos</span></div>
-                <span class="cap-arrow">→</span>
             </div>
 
-            <!-- Fricción 03 -->
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-clipboard">
-                    <div class="ci-clip-top"></div>
-                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:70%"></div></div>
-                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:55%"></div></div>
-                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:80%"></div></div>
-                    <div class="ci-clip-row"><div class="ci-check ci-check-pending"></div><div class="ci-clip-bar" style="width:40%"></div></div>
-                    <div class="ci-pen"></div>
-                  </div>
+            <!-- Fricción 03: Event Pipeline DAG (n8n / Supabase / CRM) -->
+            <div class="cap-card cap-card--diag" id="diag-card-03" data-reveal>
+                <div>
+                    <div class="cap-accent-bar"></div>
+                    <div class="vz-project-editorial-header cap-editorial-head">
+                        <div class="vz-peh-tag">
+                            <span class="vz-peh-num">03</span>
+                            <span class="vz-peh-sep">//</span>
+                            <span class="vz-peh-cat">COSTE OPERATIVO</span>
+                        </div>
+                        <span class="cap-diag-code">SYS // DAG_PIPELINE</span>
+                    </div>
+
+                    <div class="diag-stage diag-stage--pipeline">
+                        <div class="diag-pipe-top">
+                            <span id="diag-pipe-stage-name">PIPELINE // N8N_SUPABASE_SYNC</span>
+                            <span class="diag-pipe-status"><span class="diag-live-dot"></span> 0.0h GESTIÓN MANUAL</span>
+                        </div>
+
+                        <div class="diag-dag-row" id="diag-dag-nodes">
+                            <div class="diag-dag-node" data-dag="0" data-stage="INGEST // WEBHOOK_PAYLOAD" data-trace="Evento capturado en tiempo real · 0 intervención" data-ms="42ms">
+                                <span class="diag-dn-step">NODO 01</span>
+                                <span class="diag-dn-title">Webhook</span>
+                                <span class="diag-dn-sub">Lead / Pago</span>
+                            </div>
+                            <span class="diag-dag-link" data-link="0"><span class="diag-link-pulse"></span>──►</span>
+                            <div class="diag-dag-node diag-dag-node--active" data-dag="1" data-stage="ENGINE // N8N_ORCHESTRATOR" data-trace="Reglas de negocio &amp; agente IA ejecutados" data-ms="118ms">
+                                <span class="diag-dn-step">NODO 02</span>
+                                <span class="diag-dn-title">Motor n8n</span>
+                                <span class="diag-dn-sub">Reglas &amp; IA</span>
+                            </div>
+                            <span class="diag-dag-link" data-link="1"><span class="diag-link-pulse"></span>──►</span>
+                            <div class="diag-dag-node" data-dag="2" data-stage="COMMIT // SUPABASE_POSTGRES" data-trace="Cliente, reserva y estado persistidos en DB" data-ms="154ms">
+                                <span class="diag-dn-step">NODO 03</span>
+                                <span class="diag-dn-title">Supabase</span>
+                                <span class="diag-dn-sub">Registro DB</span>
+                            </div>
+                            <span class="diag-dag-link" data-link="2"><span class="diag-link-pulse"></span>──►</span>
+                            <div class="diag-dag-node" data-dag="3" data-stage="DISPATCH // CRM_WHATSAPP_SYNC" data-trace="Notificación, factura y CRM actualizados al 100%" data-ms="180ms">
+                                <span class="diag-dn-step">NODO 04</span>
+                                <span class="diag-dn-title">CRM &amp; Avisos</span>
+                                <span class="diag-dn-sub">Sync 100%</span>
+                            </div>
+                        </div>
+
+                        <div class="diag-pipe-foot">
+                            <span id="diag-pipe-trace"><s>Excel · Copiar/pegar · Tareas manuales</s></span>
+                            <span>LATENCIA: <b id="diag-pipe-ms">180ms</b></span>
+                        </div>
+                    </div>
+
+                    <div class="diag-body">
+                        <h3>Procesos manuales</h3>
+                        <p>Reservas, altas de clientes, cobros, recordatorios y sincronización con tu CRM se ejecutan solos en segundo plano mediante flujos de ingeniería sin errores.</p>
+                    </div>
                 </div>
-                <div class="cap-head">
-                    <span class="cap-num">03 · FRICCIÓN</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+
+                <div class="diag-ledger">
+                    <div class="diag-ledger-cell">
+                        <span class="diag-lc-kicker">SÍNTOMA ACTUAL</span>
+                        <span class="diag-lc-val">Hojas de cálculo y fricción</span>
+                    </div>
+                    <div class="diag-ledger-cell diag-ledger-cell--jgs">
+                        <span class="diag-lc-kicker">INGENIERÍA JGS</span>
+                        <a href="#contacto" class="diag-lc-cta" onclick="selectProjectType('Automatización / IA', 'diag_03')">
+                            Pipelines &amp; Automatización <span>→</span>
+                        </a>
+                    </div>
                 </div>
-                <h3>Procesos manuales</h3>
-                <p>Reservas, registros de clientes, formularios y seguimiento de leads pueden y deben automatizarse.</p>
-                <div class="cap-examples"><span>Reservas</span><span>CRM</span><span>Leads</span></div>
-                <span class="cap-arrow">→</span>
             </div>
 
-            <!-- Fricción 04 -->
-            <div class="cap-card" data-reveal>
-                <div class="cap-accent-bar"></div>
-                <div class="cap-illustration" aria-hidden="true">
-                  <div class="ci-template">
-                    <div class="ci-tmpl-header"></div>
-                    <div class="ci-tmpl-body">
-                      <div class="ci-tmpl-col ci-tmpl-col--wide">
-                        <div class="ci-tmpl-block"></div>
-                        <div class="ci-tmpl-block" style="height:8px;width:60%"></div>
-                      </div>
-                      <div class="ci-tmpl-col">
-                        <div class="ci-tmpl-block ci-tmpl-img"></div>
-                      </div>
+            <!-- Fricción 04: Core Vitals Radial Gauge & Stack Spec Matrix -->
+            <div class="cap-card cap-card--diag" id="diag-card-04" data-reveal>
+                <div>
+                    <div class="cap-accent-bar"></div>
+                    <div class="vz-project-editorial-header cap-editorial-head">
+                        <div class="vz-peh-tag">
+                            <span class="vz-peh-num">04</span>
+                            <span class="vz-peh-sep">//</span>
+                            <span class="vz-peh-cat">TECHO TÉCNICO</span>
+                        </div>
+                        <span class="cap-diag-code">SYS // CUSTOM_CORE</span>
                     </div>
-                    <div class="ci-lock">
-                      <div class="ci-lock-arch"></div>
-                      <div class="ci-lock-body"><div class="ci-lock-hole"></div></div>
+
+                    <div class="diag-stage diag-stage--core">
+                        <div class="diag-gauge-wrap" id="diag-gauge-trigger" title="Haz clic o pasa el cursor para auditar">
+                            <svg class="diag-gauge-svg" viewBox="0 0 80 80">
+                                <!-- Outer track -->
+                                <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="5"/>
+                                <!-- Legacy inner slow arc -->
+                                <circle cx="40" cy="40" r="24" fill="none" stroke="rgba(240,236,229,0.16)" stroke-width="2.5" stroke-dasharray="62 150" transform="rotate(-90 40 40)"/>
+                                <!-- JGS 99/100 Crimson Neon Arc -->
+                                <circle id="diag-core-arc" cx="40" cy="40" r="32" fill="none" stroke="#D63031" stroke-width="5" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="4" transform="rotate(-90 40 40)"/>
+                                <text id="diag-core-num" x="40" y="42" text-anchor="middle" fill="#ffffff" font-family="Cabinet Grotesk, sans-serif" font-size="20" font-weight="800">99</text>
+                                <text id="diag-core-lbl" x="40" y="53" text-anchor="middle" fill="rgba(240,236,229,0.52)" font-family="JetBrains Mono, monospace" font-size="6.2" letter-spacing="0.8">CORE VITAL</text>
+                            </svg>
+                            <div class="diag-gauge-meta" id="diag-core-lcp">LCP <span>0.4s</span></div>
+                        </div>
+
+                        <div class="diag-spec-matrix" id="diag-core-rows">
+                            <div class="diag-spec-row is-active" data-core="0" data-score="99" data-lbl="CORE VITAL" data-meta="LCP" data-val="0.4s">
+                                <span class="diag-spec-key">RUNTIME</span>
+                                <span class="diag-spec-legacy">Plantilla / Plugins</span>
+                                <span class="diag-spec-jgs">Next.js 15 Edge</span>
+                            </div>
+                            <div class="diag-spec-row" data-core="1" data-score="100" data-lbl="ESCALA API" data-meta="TTFB" data-val="38ms">
+                                <span class="diag-spec-key">ESCALA</span>
+                                <span class="diag-spec-legacy">Límite de plantilla</span>
+                                <span class="diag-spec-jgs">API &amp; DB Propia</span>
+                            </div>
+                            <div class="diag-spec-row" data-core="2" data-score="100" data-lbl="PROPIEDAD" data-meta="LOCK-IN" data-val="0%">
+                                <span class="diag-spec-key">CÓDIGO</span>
+                                <span class="diag-spec-legacy">Alquiler cerrado</span>
+                                <span class="diag-spec-jgs">100% Propiedad</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="ci-tmpl-label">PLANTILLA</div>
-                  </div>
+
+                    <div class="diag-body">
+                        <h3>Tecnología limitada</h3>
+                        <p>Cuando una plantilla genérica frena tu operativa o tu velocidad de carga, desarrollamos plataformas a medida con arquitectura limpia y propiedad total del código.</p>
+                    </div>
                 </div>
-                <div class="cap-head">
-                    <span class="cap-num">04 · FRICCIÓN</span>
-                    <div class="cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+
+                <div class="diag-ledger">
+                    <div class="diag-ledger-cell">
+                        <span class="diag-lc-kicker">SÍNTOMA ACTUAL</span>
+                        <span class="diag-lc-val">Plantilla rígida y lenta</span>
+                    </div>
+                    <div class="diag-ledger-cell diag-ledger-cell--jgs">
+                        <span class="diag-lc-kicker">INGENIERÍA JGS</span>
+                        <a href="#contacto" class="diag-lc-cta" onclick="selectProjectType('Software a medida', 'diag_04')">
+                            Software &amp; SaaS a medida <span>→</span>
+                        </a>
+                    </div>
                 </div>
-                <h3>Tecnología limitada</h3>
-                <p>Si tu negocio necesita algo que una plantilla genérica no puede resolver, construimos la solución a medida.</p>
-                <div class="cap-examples"><span>A medida</span><span>Escalable</span></div>
-                <span class="cap-arrow">→</span>
             </div>
         </div>
     </div>
@@ -424,106 +629,277 @@
         </div>
 
         <div class="ia-bento">
-            <!-- Claude -->
+            <!-- 01 Claude (Tall Left Flagship) -->
             <div class="iac iac-claude" data-reveal>
-                <div class="iac-deco">Claude</div>
-                <div class="iac-top">
-                    <span class="iac-num">01</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#d97706">C</div>
-                <h4 class="iac-name">Claude<span class="iac-maker">Anthropic</span></h4>
-                <p class="iac-desc">Mi asistente principal de código. Revisión de arquitectura, generación de componentes complejos, debugging avanzado y construcción de agentes autónomos con la API integrada en proyectos reales.</p>
-                <div class="iac-tags"><span>Code Review</span><span>AI Agents</span><span>API Integration</span><span>Arquitectura</span></div>
-            </div>
-
-            <!-- AntiGravity -->
-            <div class="iac iac-antigrav" data-reveal>
-                <div class="iac-deco">AG</div>
-                <div class="iac-top">
-                    <span class="iac-num">02</span>
-                    <span class="iac-pill iac-diario">● Diario</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#D63031">⚛</div>
-                <h4 class="iac-name">AntiGravity<span class="iac-maker">Multi-Agent</span></h4>
-                <p class="iac-desc">Orquestador de workflows IA. Encadena agentes especializados para tareas complejas en mi desarrollo diario.</p>
-                <div class="iac-tags"><span>Multi-Agent</span><span>Workflows</span></div>
-            </div>
-
-            <!-- Gemini -->
-            <div class="iac iac-gemini" data-reveal>
-                <div class="iac-deco">G</div>
-                <div class="iac-top">
-                    <span class="iac-num">03</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <div class="iac-icon-wrap" style="--ic:#4285f4">G</div>
-                <h4 class="iac-name">Gemini<span class="iac-maker">Google</span></h4>
-                <p class="iac-desc">Análisis multimodal y procesamiento de documentos extensos. Integración clave con el ecosistema Google.</p>
-                <div class="iac-tags"><span>Multimodal</span><span>Research</span></div>
-            </div>
-
-            <!-- ChatGPT -->
-            <div class="iac iac-chatgpt" data-reveal>
-                <div class="iac-deco">GPT</div>
-                <div class="iac-top">
-                    <span class="iac-num">04</span>
-                    <span class="iac-pill iac-avanzado">● Avanzado</span>
-                </div>
-                <h4 class="iac-name">ChatGPT <span class="iac-maker">OpenAI</span></h4>
-                <p class="iac-desc">API integrada en Rival Fit. GPT-4o para chatbots contextuales y análisis de rendimiento atlético.</p>
-                <div class="iac-tags"><span>OpenAI API</span><span>GPT-4o</span><span>Chatbots</span></div>
-            </div>
-
-            <!-- Cursor -->
-            <div class="iac iac-cursor" data-reveal>
-                <div class="iac-deco">&gt;_</div>
-                <div class="iac-top">
-                    <span class="iac-num">05</span>
-                    <span class="iac-pill iac-diario">● Diario</span>
-                </div>
-                <h4 class="iac-name">Cursor AI<span class="iac-maker">IDE</span></h4>
-                <p class="iac-desc">Entorno principal de desarrollo con IA integrada. Pair-programming real — la IA entiende el contexto completo.</p>
-                <div class="iac-tags"><span>Pair Prog.</span><span>Refactor</span><span>IDE</span></div>
-            </div>
-
-            <!-- n8n -->
-            <div class="iac iac-n8n" data-reveal>
-                <div class="iac-deco">n8n</div>
-                <div class="iac-top">
-                    <span class="iac-num">06</span>
-                    <span class="iac-pill iac-produccion">● Producción</span>
-                </div>
-                <div class="iac-n8n-inner">
-                    <div>
-                        <h4 class="iac-name">n8n<span class="iac-maker">Automatización</span></h4>
-                        <p class="iac-desc">Pipelines que conectan APIs, bases de datos y modelos de IA. Workflows en producción: publicaciones automáticas, alertas inteligentes, procesamiento de datos en tiempo real.</p>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">01</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">ANTHROPIC · CORE</span>
                     </div>
-                    <div class="iac-tags"><span>Pipelines</span><span>API Chaining</span><span>Automation</span><span>Triggers</span></div>
+                    <span class="ia-live-status"><span class="ia-live-dot"></span>SONNET 3.7 API</span>
                 </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark ia-brand-mark--accent" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+                            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+                            <circle cx="12" cy="12" r="3.2" fill="#0b0c10" stroke="currentColor" stroke-width="1.7"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">Claude <span class="iac-maker">Anthropic</span></h4>
+                        <span class="ia-role-sub">Motor principal de arquitectura, auditoría y agentes autónomos</span>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Asistente central de ingeniería de software. Diseño de arquitecturas escalables, refactorización de sistemas complejos, debugging profundo y agentes conversacionales conectados vía API en producción.</p>
+
+                <!-- Bespoke Architecture & Execution Trace Console -->
+                <div class="ia-arch-console" aria-hidden="true">
+                    <div class="ia-console-bar">
+                        <div class="ia-console-dots"><span></span><span></span><span></span></div>
+                        <span class="ia-console-title">claude-architect // prod-pipeline.ts</span>
+                        <span class="ia-console-meta">200K CTX</span>
+                    </div>
+                    <div class="ia-console-body">
+                        <div class="ia-trace-row">
+                            <span class="ia-tr-step">01</span>
+                            <span class="ia-tr-cmd">AST_AUDIT</span>
+                            <span class="ia-tr-detail">Esquema multi-tenant &amp; políticas RLS</span>
+                            <span class="ia-tr-badge ia-tr-badge--ok">VERIFIED</span>
+                        </div>
+                        <div class="ia-trace-row">
+                            <span class="ia-tr-step">02</span>
+                            <span class="ia-tr-cmd">EDGE_SSR</span>
+                            <span class="ia-tr-detail">Next.js 15 App Router · Zero bloat</span>
+                            <span class="ia-tr-badge">99 VITAL</span>
+                        </div>
+                        <div class="ia-trace-row">
+                            <span class="ia-tr-step">03</span>
+                            <span class="ia-tr-cmd">AGENT_API</span>
+                            <span class="ia-tr-detail">Agente comercial activo 24/7 en cliente</span>
+                            <span class="ia-tr-badge ia-tr-badge--live">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="ia-console-metrics">
+                        <div>
+                            <span class="ia-cm-k">VENTANA</span>
+                            <strong class="ia-cm-v">200K Tokens</strong>
+                        </div>
+                        <div>
+                            <span class="ia-cm-k">PRECISIÓN</span>
+                            <strong class="ia-cm-v">Producción</strong>
+                        </div>
+                        <div>
+                            <span class="ia-cm-k">LATENCIA</span>
+                            <strong class="ia-cm-v">&lt; 420ms</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="iac-tags"><span>System Architecture</span><span>Autonomous Agents</span><span>Code Review</span><span>Anthropic SDK</span></div>
+            </div>
+
+            <!-- 02 AntiGravity -->
+            <div class="iac iac-antigrav" data-reveal>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">02</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">MULTI-AGENT</span>
+                    </div>
+                    <span class="ia-live-status"><span class="ia-live-dot"></span>SWARM ACTIVO</span>
+                </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark ia-brand-mark--accent" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <circle cx="12" cy="5" r="2.5"/>
+                            <circle cx="5" cy="18" r="2.5"/>
+                            <circle cx="19" cy="18" r="2.5"/>
+                            <path d="M10.5 7L6.5 15.8M13.5 7l4 8.8M7.5 18h9"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">AntiGravity <span class="iac-maker">Orchestrator</span></h4>
+                        <span class="ia-role-sub">Coordinación de agentes en paralelo para desarrollo y QA</span>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Orquestador de flujos agénticos. Encadena agentes especializados para investigación de código, implementación y verificación visual automatizada.</p>
+
+                <div class="ia-mini-schematic" aria-hidden="true">
+                    <span class="ia-ms-node">Planner</span>
+                    <span class="ia-ms-arrow">──►</span>
+                    <span class="ia-ms-node ia-ms-node--active">Builder</span>
+                    <span class="ia-ms-arrow">──►</span>
+                    <span class="ia-ms-node">Playwright QA</span>
+                    <span class="ia-ms-arrow">──►</span>
+                    <span class="ia-ms-node">Deploy</span>
+                </div>
+
+                <div class="iac-tags"><span>Multi-Agent Swarm</span><span>Automated QA</span><span>CI/CD Workflows</span></div>
+            </div>
+
+            <!-- 03 Gemini -->
+            <div class="iac iac-gemini" data-reveal>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">03</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">GOOGLE DEEP MIND</span>
+                    </div>
+                    <span class="ia-live-status">2M CONTEXT</span>
+                </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M12 2C12 7.52 16.48 12 22 12C16.48 12 12 16.48 12 22C12 16.48 7.52 12 2 12C7.52 12 12 7.52 12 2Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">Gemini 2.5 Pro <span class="iac-maker">Google</span></h4>
+                        <span class="ia-role-sub">Síntesis multimodal de repositorios completos, vídeo y documentación</span>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Análisis simultáneo de bases de código completas, especificaciones PDF y flujos visuales de interfaz con integración directa en Google Cloud.</p>
+
+                <div class="ia-mini-schematic" aria-hidden="true">
+                    <span class="ia-ms-node">Repo Completo</span>
+                    <span class="ia-ms-arrow">+</span>
+                    <span class="ia-ms-node">Docs / UI</span>
+                    <span class="ia-ms-arrow">──►</span>
+                    <span class="ia-ms-node ia-ms-node--active">Síntesis 2M Tokens</span>
+                </div>
+
+                <div class="iac-tags"><span>Multimodal Engine</span><span>Long-Context</span><span>Google Cloud</span></div>
+            </div>
+
+            <!-- 04 ChatGPT -->
+            <div class="iac iac-chatgpt" data-reveal>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">04</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">OPENAI</span>
+                    </div>
+                    <span class="ia-live-status"><span class="ia-live-dot"></span>PROD API</span>
+                </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7"/>
+                            <circle cx="12" cy="12" r="3.2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">GPT-4o API <span class="iac-maker">OpenAI</span></h4>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Motor integrado en producción para el Coach IA de RivalFit y asistentes de cualificación comercial con respuestas en tiempo real.</p>
+
+                <div class="ia-spec-strip" aria-hidden="true">
+                    <span>ENDPOINT // RIVALFIT_COACH</span>
+                    <b>STREAM &lt; 0.6s</b>
+                </div>
+
+                <div class="iac-tags"><span>OpenAI API</span><span>Function Calling</span><span>Real-Time Chat</span></div>
+            </div>
+
+            <!-- 05 Cursor -->
+            <div class="iac iac-cursor" data-reveal>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">05</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">AI-NATIVE IDE</span>
+                    </div>
+                    <span class="ia-live-status">AST INDEXED</span>
+                </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <rect x="3" y="4" width="18" height="16" rx="2.5"/>
+                            <path d="M8 10l3 2.5L8 15M13 15h4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">Cursor AI <span class="iac-maker">IDE</span></h4>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Entorno de ingeniería indexado al 100% del repositorio para refactorizaciones multi-archivo precisas y entregas sin deuda técnica.</p>
+
+                <div class="ia-spec-strip" aria-hidden="true">
+                    <span>INDEX // FULL_CODEBASE</span>
+                    <b>MULTI-FILE DIFF</b>
+                </div>
+
+                <div class="iac-tags"><span>Codebase Indexing</span><span>Composer</span><span>Zero Tech-Debt</span></div>
+            </div>
+
+            <!-- 06 n8n -->
+            <div class="iac iac-n8n" data-reveal>
+                <div class="vz-project-editorial-header ia-card-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">06</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">AUTOMATIZACIÓN</span>
+                    </div>
+                    <span class="ia-live-status"><span class="ia-live-dot"></span>PIPELINES 24/7</span>
+                </div>
+
+                <div class="ia-title-row">
+                    <div class="ia-brand-mark ia-brand-mark--accent" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <rect x="2.5" y="9" width="5" height="6" rx="1.2"/>
+                            <rect x="16.5" y="4" width="5" height="6" rx="1.2"/>
+                            <rect x="16.5" y="14" width="5" height="6" rx="1.2"/>
+                            <path d="M7.5 12h4.5m0 0V7h4.5m-4.5 5v5h4.5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="iac-name">n8n Workflows <span class="iac-maker">Automation</span></h4>
+                    </div>
+                </div>
+
+                <p class="iac-desc">Orquestación de eventos entre webhooks, bases de datos Supabase, pasarelas Stripe, WhatsApp y modelos de IA sin intervención humana.</p>
+
+                <div class="ia-spec-strip" aria-hidden="true">
+                    <span>WEBHOOK ──► IA ──► CRM</span>
+                    <b>0.0h MANUAL</b>
+                </div>
+
+                <div class="iac-tags"><span>Event Pipelines</span><span>API Webhooks</span><span>CRM Sync</span></div>
             </div>
         </div>
 
         <div class="ia-stats">
             <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">⚡</div>
+                <span class="ia-stat-kicker">01 // VELOCIDAD</span>
                 <div class="ia-stat-n">10×</div>
-                <div class="ia-stat-l">más rápido en desarrollo gracias a IA</div>
+                <div class="ia-stat-l">ciclos de desarrollo e iteración más rápidos con arquitectura asistida</div>
             </div>
             <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🤖</div>
-                <div class="ia-stat-n">Agentes</div>
-                <div class="ia-stat-l">autónomos integrados en proyectos reales</div>
+                <span class="ia-stat-kicker">02 // AUTONOMÍA</span>
+                <div class="ia-stat-n">24/7</div>
+                <div class="ia-stat-l">agentes autónomos integrados en sistemas reales de negocio</div>
             </div>
             <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🛠</div>
-                <div class="ia-stat-n">6+</div>
-                <div class="ia-stat-l">herramientas IA en uso activo cada semana</div>
+                <span class="ia-stat-kicker">03 // ECOSISTEMA</span>
+                <div class="ia-stat-n">06+</div>
+                <div class="ia-stat-l">motores y orquestadores IA en uso diario de producción</div>
             </div>
             <div class="ia-stat" data-reveal>
-                <div class="ia-stat-icon">🔄</div>
-                <div class="ia-stat-n">Real</div>
-                <div class="ia-stat-l">workflows en producción, no demos</div>
+                <span class="ia-stat-kicker">04 // IMPACTO REAL</span>
+                <div class="ia-stat-n">100%</div>
+                <div class="ia-stat-l">workflows operando en clientes reales, cero demos vacías</div>
             </div>
         </div>
     </div>
@@ -619,9 +995,9 @@
         </div>
 
         <div class="projects-intro-strip" data-reveal>
-            <div class="projects-stat"><span>3 proyectos</span> en producción activa ahora mismo</div>
-            <div class="projects-stat"><span>100%</span> con código propio, sin plantillas</div>
-            <div class="projects-stat"><span>2 de 3</span> tienen IA integrada en producción</div>
+            <div class="projects-stat"><span>09 sistemas</span> desplegados en producción activa</div>
+            <div class="projects-stat"><span>100%</span> arquitectura propia sin plantillas</div>
+            <div class="projects-stat"><span>IA + Cloud</span> integrados en flujos reales de negocio</div>
         </div>
 
         <!-- Project 1: RivalFit -->
@@ -766,20 +1142,58 @@
     </div>
     <div class="wrap">
         <div class="vz-deep-showcase" data-reveal>
-            <span class="label" style="color: var(--accent);">Caso de Éxito</span>
-            <h2 class="vz-h2" data-title style="margin: 12px 0 16px;">De una idea a un producto digital.</h2>
-            <p class="vz-sub" style="max-width: 780px;">
-                <strong>RivalFit</strong> es una plataforma digital desarrollada para gestionar atletas, membresías, reservas y operaciones de un centro deportivo.
-            </p>
-
-            <div class="vz-gallery-strip">
-                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="Dashboard RivalFit" loading="lazy"></div>
-                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/CoachIA.png" alt="Coach IA RivalFit" loading="lazy"></div>
-                <div class="vz-gallery-item"><img src="JGStudio/Contenido/Rival Fit App/Agenda.png" alt="Reservas y Clases RivalFit" loading="lazy"></div>
+            <div class="vz-project-editorial-header vz-case-editorial-header">
+                <div class="vz-peh-tag">
+                    <span class="vz-peh-num">DOSSIER</span>
+                    <span class="vz-peh-sep">//</span>
+                    <span class="vz-peh-cat">CASO DE ESTUDIO DESTACADO · RIVALFIT.APP</span>
+                </div>
+                <div class="vz-case-stack">
+                    <span>Next.js 15</span>
+                    <span>Supabase RLS</span>
+                    <span>Stripe Connect</span>
+                    <span>OpenAI API</span>
+                </div>
             </div>
 
-            <div style="display: flex; gap: 14px; flex-wrap: wrap; position: relative; z-index: 1;">
+            <h2 class="vz-h2" data-title style="margin: 10px 0 16px;">De una idea operativa a un SaaS completo en producción.</h2>
+            <p class="vz-sub" style="max-width: 780px;">
+                <strong>RivalFit</strong> es una plataforma multitenant construida desde cero para gestionar atletas, membresías recurrentes, programación WOD asistida por IA y reservas de centros deportivos de alto rendimiento.
+            </p>
+
+            <div class="vz-case-metrics">
+                <div class="vz-cm-cell">
+                    <span class="vz-cm-val">100%</span>
+                    <span class="vz-cm-lbl">Cobros automatizados Stripe</span>
+                </div>
+                <div class="vz-cm-cell">
+                    <span class="vz-cm-val">+85%</span>
+                    <span class="vz-cm-lbl">Retención de atletas activos</span>
+                </div>
+                <div class="vz-cm-cell">
+                    <span class="vz-cm-val">0h</span>
+                    <span class="vz-cm-lbl">Gestión manual en WhatsApp</span>
+                </div>
+            </div>
+
+            <div class="vz-gallery-strip">
+                <figure class="vz-gallery-item">
+                    <img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="Dashboard Operativo RivalFit" loading="lazy">
+                    <figcaption class="vz-gallery-caption">01 // DASHBOARD OPERATIVO &amp; CONTROL DE ATLETAS</figcaption>
+                </figure>
+                <figure class="vz-gallery-item">
+                    <img src="JGStudio/Contenido/Rival Fit App/CoachIA.png" alt="Coach IA Adaptativo RivalFit" loading="lazy">
+                    <figcaption class="vz-gallery-caption">02 // COACH IA ADAPTATIVO &amp; PROGRAMACIÓN WOD</figcaption>
+                </figure>
+                <figure class="vz-gallery-item">
+                    <img src="JGStudio/Contenido/Rival Fit App/Agenda.png" alt="Motor de Reservas y Clases RivalFit" loading="lazy">
+                    <figcaption class="vz-gallery-caption">03 // MOTOR DE RESERVAS, AGENDA Y SUSCRIPCIONES</figcaption>
+                </figure>
+            </div>
+
+            <div class="vz-case-actions">
                 <a href="https://rivalfit.app" target="_blank" rel="noopener" class="btn-outline">Ver proyecto en vivo ↗</a>
+                <a href="proyectos.html#rivalfit" class="btn-outline">Abrir ficha técnica completa</a>
                 <a href="#contacto" class="btn-fill magnetic" onclick="selectProjectType('Software a medida', 'case_deep_rivalfit')">Solicitar propuesta →</a>
             </div>
         </div>
@@ -863,7 +1277,7 @@
         </div>
 
         <div class="pricing-trust-strip" data-reveal>
-            <span class="pricing-trust-item"><i class="fas fa-star"></i> <strong>100% Satisfacción</strong></span>
+            <span class="pricing-trust-item"><i class="fas fa-check"></i> <strong>100% Satisfacción</strong></span>
             <span class="pricing-trust-item"><i class="fas fa-shield-alt"></i> <strong>Código 100% propio</strong></span>
             <span class="pricing-trust-item"><i class="fas fa-bolt"></i> <strong>Respuesta en &lt; 24h</strong></span>
             <span class="pricing-trust-item"><i class="fas fa-user-check"></i> <strong>Soporte directo 1 a 1</strong></span>
@@ -873,8 +1287,8 @@
             <!-- Card 1: Web Comercial -->
             <div class="senior-price-card theme-red" data-reveal>
                 <div class="spc-top-bar">
-                    <span class="spc-index">01</span>
-                    <span class="spc-category">Páginas Web</span>
+                    <span class="spc-index">01 //</span>
+                    <span class="spc-category">WEB COMERCIAL</span>
                 </div>
                 <h3 class="spc-title">Web Comercial</h3>
                 <div class="spc-price-box">
@@ -886,15 +1300,15 @@
                     Sitios web corporativos y landing pages <strong>ultrarrápidas</strong>, optimizadas para posicionamiento SEO y conversión de visitas en clientes.
                 </p>
                 <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Diseño responsive &amp; UI a medida</li>
-                    <li><i class="fas fa-check-circle"></i> Carga ultra-rápida (Score 95+)</li>
-                    <li><i class="fas fa-check-circle"></i> Integración WhatsApp &amp; CRM</li>
+                    <li><i class="fas fa-check"></i> Diseño responsive &amp; UI a medida</li>
+                    <li><i class="fas fa-check"></i> Carga ultra-rápida (Score 95+)</li>
+                    <li><i class="fas fa-check"></i> Integración WhatsApp &amp; CRM</li>
                 </ul>
                 <div class="spc-quote">
-                    <div class="spc-avatar">M</div>
+                    <div class="spc-avatar"><img src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" loading="lazy"></div>
                     <div class="spc-quote-text">
-                        <p>"Multiplicamos nuestras consultas en 2 semanas."</p>
-                        <span>Milu &amp; Co · Marca Comercial</span>
+                        <p>"De depender de Instagram a captar citas clínicas y consultas directas cada semana."</p>
+                        <span>Fabián Zambrano · Plataforma Clínica</span>
                     </div>
                 </div>
                 <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Página web', 'pricing_web')">
@@ -905,11 +1319,11 @@
             <!-- Card 2: E-Commerce (FEATURED / POPULAR) -->
             <div class="senior-price-card theme-featured featured" data-reveal>
                 <div class="spc-badge-pop">
-                    <i class="fas fa-fire"></i> MÁS SOLICITADO
+                    RECOMENDADO // ALTA CONVERSIÓN
                 </div>
                 <div class="spc-top-bar">
-                    <span class="spc-index">02</span>
-                    <span class="spc-category">Ventas Online</span>
+                    <span class="spc-index">02 //</span>
+                    <span class="spc-category">E-COMMERCE</span>
                 </div>
                 <h3 class="spc-title">E-Commerce</h3>
                 <div class="spc-price-box">
@@ -921,15 +1335,15 @@
                     Tiendas online de alto rendimiento con catálogo interactivo, pagos automatizados, inventario y <strong>checkout sin fricción</strong>.
                 </p>
                 <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Catálogo &amp; Pasarelas de Pago (Stripe/Zelle)</li>
-                    <li><i class="fas fa-check-circle"></i> Panel de control de stock y pedidos</li>
-                    <li><i class="fas fa-check-circle"></i> Arquitectura escalable sin comisiones</li>
+                    <li><i class="fas fa-check"></i> Catálogo &amp; Pasarelas de Pago (Stripe/Zelle)</li>
+                    <li><i class="fas fa-check"></i> Panel de control de stock y pedidos</li>
+                    <li><i class="fas fa-check"></i> Arquitectura escalable sin comisiones</li>
                 </ul>
                 <div class="spc-quote">
-                    <div class="spc-avatar">F</div>
+                    <div class="spc-avatar"><img src="img/screenshot_milu.jpg" alt="Milu &amp; Co" loading="lazy"></div>
                     <div class="spc-quote-text">
-                        <p>"Proceso de compra fluido y ventas automáticas."</p>
-                        <span>Fabián Z. · E-Commerce Founder</span>
+                        <p>"Pasamos de enviar PDFs por DM a vender en automático en menos de 48h tras el lanzamiento."</p>
+                        <span>Milu &amp; Co · E-Commerce Retail</span>
                     </div>
                 </div>
                 <a href="#contacto" class="spc-btn spc-btn-primary" onclick="selectProjectType('E-commerce', 'pricing_ecom')">
@@ -938,10 +1352,10 @@
             </div>
 
             <!-- Card 3: IA & Workflows -->
-            <div class="senior-price-card theme-cyan" data-reveal>
+            <div class="senior-price-card theme-arch" data-reveal>
                 <div class="spc-top-bar">
-                    <span class="spc-index">03</span>
-                    <span class="spc-category">Automatización</span>
+                    <span class="spc-index">03 //</span>
+                    <span class="spc-category">IA &amp; WORKFLOWS</span>
                 </div>
                 <h3 class="spc-title">IA &amp; Workflows</h3>
                 <div class="spc-price-box">
@@ -953,15 +1367,15 @@
                     Agentes conversacionales con IA, sistemas inteligentes de captura de leads y <strong>automatización de procesos</strong> internos.
                 </p>
                 <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Agentes IA entrenados con tu conocimiento</li>
-                    <li><i class="fas fa-check-circle"></i> Integración n8n / Make / APIs</li>
-                    <li><i class="fas fa-check-circle"></i> Respuestas 24/7 y cualificación de leads</li>
+                    <li><i class="fas fa-check"></i> Agentes IA entrenados con tu conocimiento</li>
+                    <li><i class="fas fa-check"></i> Integración n8n / Make / APIs</li>
+                    <li><i class="fas fa-check"></i> Respuestas 24/7 y cualificación de leads</li>
                 </ul>
                 <div class="spc-quote">
-                    <div class="spc-avatar">S</div>
+                    <div class="spc-avatar"><img src="img/screenshot_elianis.jpg" alt="Elianis Romero" loading="lazy"></div>
                     <div class="spc-quote-text">
-                        <p>"Ahorramos más de 15h semanales en tareas datos."</p>
-                        <span>Cliente SaaS · Automatización</span>
+                        <p>"Más de 3 horas diarias ahorradas cualificando clientes y agendando sesiones 24/7 con IA."</p>
+                        <span>Elianis Romero · Consultoría &amp; Agente IA</span>
                     </div>
                 </div>
                 <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Automatización / IA', 'pricing_ia')">
@@ -970,10 +1384,10 @@
             </div>
 
             <!-- Card 4: Software a Medida -->
-            <div class="senior-price-card theme-gold" data-reveal>
+            <div class="senior-price-card theme-arch" data-reveal>
                 <div class="spc-top-bar">
-                    <span class="spc-index">04</span>
-                    <span class="spc-category">Desarrollo Custom</span>
+                    <span class="spc-index">04 //</span>
+                    <span class="spc-category">SOFTWARE A MEDIDA</span>
                 </div>
                 <h3 class="spc-title">Software a Medida</h3>
                 <div class="spc-price-box">
@@ -985,15 +1399,15 @@
                     Plataformas web complejas, aplicaciones SaaS, CRMs internos y sistemas empresariales con <strong>código propio y arquitectura limpia</strong>.
                 </p>
                 <ul class="spc-features">
-                    <li><i class="fas fa-check-circle"></i> Arquitectura full-stack personalizada</li>
-                    <li><i class="fas fa-check-circle"></i> Base de datos dedicada y APIs robustas</li>
-                    <li><i class="fas fa-check-circle"></i> Propiedad 100% del código fuente</li>
+                    <li><i class="fas fa-check"></i> Arquitectura full-stack personalizada</li>
+                    <li><i class="fas fa-check"></i> Base de datos dedicada y APIs robustas</li>
+                    <li><i class="fas fa-check"></i> Propiedad 100% del código fuente</li>
                 </ul>
                 <div class="spc-quote">
-                    <div class="spc-avatar">T</div>
+                    <div class="spc-avatar"><img src="JGStudio/Contenido/Rival Fit App/Dashboard.png" alt="RivalFit" loading="lazy"></div>
                     <div class="spc-quote-text">
-                        <p>"Cero fallos, velocidad máxima y código limpio."</p>
-                        <span>Tech Lead · Startup Platform</span>
+                        <p>"100% de cobros automatizados con Stripe y gestión integral de atletas en tiempo real."</p>
+                        <span>RivalFit · SaaS Multitenant</span>
                     </div>
                 </div>
                 <a href="#contacto" class="spc-btn spc-btn-secondary" onclick="selectProjectType('Software a medida', 'pricing_soft')">
@@ -1235,7 +1649,7 @@
             <!-- Resultado -->
             <div class="quiz-step" data-step="result">
                 <div class="quiz-result-card">
-                    <span class="quiz-result-badge"><i class="fas fa-star"></i> Solución Recomendada para tu Negocio</span>
+                    <span class="quiz-result-badge">DIAGNÓSTICO COMPLETADO // SOLUCIÓN RECOMENDADA</span>
                     <h3 class="quiz-result-title" id="quiz-res-title">Web Corporativa &amp; Autoridad</h3>
                     <p class="quiz-result-desc" id="quiz-res-desc">Tu negocio necesita una presencia digital sólida, de alto impacto y orientada a transmitir confianza absoluta y captar clientes en piloto automático.</p>
                     <div class="quiz-result-features" id="quiz-res-features">
@@ -1251,97 +1665,163 @@
     </div>
 </section>
 
-<!-- Formulario de Captación Avanzado -->
-<section id="contacto" style="padding: 100px 0; background: radial-gradient(circle at 50% 0%, rgba(214, 48, 49, 0.12) 0%, var(--bg) 60%); border-top: 1px solid var(--border);">
+<!-- Formulario de Captación Avanzado (Briefing Ejecutivo a 2 Columnas) -->
+<section id="contacto" class="vz-contact-section">
     <div class="wrap">
-        <div class="vz-form-card" data-reveal>
-            <div style="text-align: center; margin-bottom: 36px;">
-                <span class="label" style="color: var(--accent);">Contacto</span>
-                <h3 class="vz-h3" style="font-size: clamp(1.8rem, 3.2vw, 2.5rem); letter-spacing: -1px; margin-top: 8px;">
-                    Cuéntanos sobre tu proyecto.
-                </h3>
-            </div>
+        <div class="section-top" data-reveal-l>
+            <span class="label">Briefing Ejecutivo</span>
+            <span class="label-count">Respuesta &lt; 24h</span>
+        </div>
 
-            <form id="vz-lead-form" onsubmit="handleFormSubmit(event)">
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
-                    <div>
-                        <label class="label" style="display:block; margin-bottom:8px;" for="form-name">Nombre *</label>
-                        <input type="text" id="form-name" class="vz-form-input" placeholder="Tu nombre" required onfocus="trackConversionEvent('form_start')">
-                    </div>
-                    <div>
-                        <label class="label" style="display:block; margin-bottom:8px;" for="form-company">Empresa *</label>
-                        <input type="text" id="form-company" class="vz-form-input" placeholder="Nombre de tu empresa" required>
+        <div class="vz-contact-layout">
+            <!-- Columna Izquierda: Protocolo & Canales Directos -->
+            <aside class="vz-contact-aside" data-reveal>
+                <div class="vz-project-editorial-header vz-contact-editorial-head">
+                    <div class="vz-peh-tag">
+                        <span class="vz-peh-num">CONTACTO DIRECTO</span>
+                        <span class="vz-peh-sep">//</span>
+                        <span class="vz-peh-cat">BRIEFING DE PROYECTO</span>
                     </div>
                 </div>
 
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px;">
-                    <div>
-                        <label class="label" style="display:block; margin-bottom:8px;" for="form-email">Email *</label>
-                        <input type="email" id="form-email" class="vz-form-input" placeholder="tu@empresa.com" required>
-                    </div>
-                    <div>
-                        <label class="label" style="display:block; margin-bottom:8px;" for="form-phone">Teléfono / WhatsApp *</label>
-                        <input type="tel" id="form-phone" class="vz-form-input" placeholder="+34 ..." required>
-                    </div>
-                </div>
-
-                <div style="margin-bottom:20px;">
-                    <label class="label" style="display:block; margin-bottom:8px;" for="form-city">Ciudad / Ubicación *</label>
-                    <input type="text" id="form-city" class="vz-form-input" placeholder="Ej: Madrid, Barcelona, Caracas..." required>
-                </div>
-
-                <div style="margin-bottom:22px;">
-                    <label class="label" style="display:block; margin-bottom:10px;">Tipo de proyecto *</label>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="project-chips">
-                        <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización / IA')">Automatización / IA</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
-                    </div>
-                    <input type="hidden" id="form-project-type" value="Página web">
-                </div>
-
-                <div style="margin-bottom:22px;">
-                    <label class="label" style="display:block; margin-bottom:8px;" for="form-details">¿Qué necesitas?</label>
-                    <textarea id="form-details" class="vz-form-textarea" rows="5" placeholder="Describe lo que quieres construir, mejorar o automatizar..."></textarea>
-                </div>
-
-                <div style="margin-bottom:22px;">
-                    <label class="label" style="display:block; margin-bottom:10px;">Presupuesto aproximado</label>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="budget-chips">
-                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, 'Menos de $500')">Menos de $500</button>
-                        <button type="button" class="vz-chip-btn selected" onclick="selectBudget(this, '$500 – $1.000')">$500 – $1.000</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$1.000 – $2.500')">$1.000 – $2.500</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$2.500 – $5.000')">$2.500 – $5.000</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$5.000+')">$5.000+</button>
-                    </div>
-                    <input type="hidden" id="form-budget" value="$500 – $1.000">
-                </div>
-
-                <div style="margin-bottom:32px;">
-                    <label class="label" style="display:block; margin-bottom:10px;">¿Cuándo te gustaría tenerlo?</label>
-                    <div style="display:flex; flex-wrap:wrap; gap:8px;" id="deadline-chips">
-                        <button type="button" class="vz-chip-btn selected" onclick="selectDeadline(this, 'Lo antes posible')">Lo antes posible</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 semanas')">1 – 2 semanas</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '2 – 4 semanas')">2 – 4 semanas</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 meses')">1 – 2 meses</button>
-                        <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, 'Sin fecha definida')">Sin fecha definida</button>
-                    </div>
-                    <input type="hidden" id="form-deadline" value="Lo antes posible">
-                </div>
-
-                <input type="hidden" id="form-extras" value="">
-
-                <button type="submit" id="vz-submit-btn" class="btn-fill magnetic" style="width:100%; justify-content:center; padding:16px; font-size:0.95rem;">
-                    Enviar solicitud →
-                </button>
-
-                <p style="font-family:var(--f-m); font-size:0.62rem; color:var(--gray); text-align:center; margin-top:14px; letter-spacing:1px;">
-                    Te responderemos en menos de 24 horas con una propuesta a medida.
+                <h2 class="vz-h2 vz-contact-title" data-title>
+                    Hablemos de arquitectura, plazos y retorno de inversión.
+                </h2>
+                <p class="vz-sub vz-contact-desc">
+                    Sin llamadas comerciales interminables ni intermediarios. Recibe una evaluación técnica directa de quien diseñará y programará tu sistema.
                 </p>
 
-                <div id="vz-form-feedback" style="display:none; margin-top:20px; padding:16px; border-radius:14px; text-align:center;"></div>
-            </form>
+                <div class="vz-protocol-list">
+                    <div class="vz-protocol-step">
+                        <span class="vz-ps-index">01</span>
+                        <div class="vz-ps-body">
+                            <strong>Auditoría &amp; Alcance en &lt;24h</strong>
+                            <span>Analizamos tus fricciones actuales y definimos la arquitectura exacta necesaria.</span>
+                        </div>
+                    </div>
+                    <div class="vz-protocol-step">
+                        <span class="vz-ps-index">02</span>
+                        <div class="vz-ps-body">
+                            <strong>Propuesta Técnica Cerrada</strong>
+                            <span>Presupuesto detallado, cronograma por hitos y cero costes ocultos.</span>
+                        </div>
+                    </div>
+                    <div class="vz-protocol-step">
+                        <span class="vz-ps-index">03</span>
+                        <div class="vz-ps-body">
+                            <strong>Sprint de Desarrollo &amp; Despliegue</strong>
+                            <span>Entregas continuas en portal privado hasta lanzamiento en producción.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vz-direct-channels">
+                    <a href="https://wa.me/34674885902?text=Hola%20Jesús,%20quiero%20comentar%20un%20proyecto%20con%20JGStudio." target="_blank" rel="noopener" class="vz-direct-card">
+                        <span class="vz-dc-kicker">WHATSAPP OFICIAL</span>
+                        <span class="vz-dc-val">+34 674 885 902</span>
+                        <span class="vz-dc-arrow">↗</span>
+                    </a>
+                    <a href="mailto:jgscoding@gmail.com" class="vz-direct-card">
+                        <span class="vz-dc-kicker">EMAIL DIRECTO</span>
+                        <span class="vz-dc-val">jgscoding@gmail.com</span>
+                        <span class="vz-dc-arrow">↗</span>
+                    </a>
+                    <a href="presupuesto.html" class="vz-direct-card vz-direct-card--accent">
+                        <span class="vz-dc-kicker">ESTIMADOR INTERACTIVO</span>
+                        <span class="vz-dc-val">Calculadora de presupuesto por módulos</span>
+                        <span class="vz-dc-arrow">→</span>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Columna Derecha: Formulario -->
+            <div class="vz-form-card" data-reveal>
+                <div class="vz-form-head">
+                    <span class="vz-form-kicker">SPEC SHEET // NUEVO PROYECTO</span>
+                    <h3 class="vz-h3 vz-form-title">Cuéntanos sobre tu proyecto.</h3>
+                </div>
+
+                <form id="vz-lead-form" onsubmit="handleFormSubmit(event)">
+                    <div class="vz-form-row-2">
+                        <div class="vz-form-field">
+                            <label class="label vz-form-label" for="form-name">Nombre *</label>
+                            <input type="text" id="form-name" class="vz-form-input" placeholder="Tu nombre" required onfocus="trackConversionEvent('form_start')">
+                        </div>
+                        <div class="vz-form-field">
+                            <label class="label vz-form-label" for="form-company">Empresa *</label>
+                            <input type="text" id="form-company" class="vz-form-input" placeholder="Nombre de tu empresa" required>
+                        </div>
+                    </div>
+
+                    <div class="vz-form-row-2">
+                        <div class="vz-form-field">
+                            <label class="label vz-form-label" for="form-email">Email *</label>
+                            <input type="email" id="form-email" class="vz-form-input" placeholder="tu@empresa.com" required>
+                        </div>
+                        <div class="vz-form-field">
+                            <label class="label vz-form-label" for="form-phone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="form-phone" class="vz-form-input" placeholder="+34 ..." required>
+                        </div>
+                    </div>
+
+                    <div class="vz-form-group">
+                        <label class="label vz-form-label" for="form-city">Ciudad / Ubicación *</label>
+                        <input type="text" id="form-city" class="vz-form-input" placeholder="Ej: Madrid, Barcelona, Caracas..." required>
+                    </div>
+
+                    <div class="vz-form-group">
+                        <label class="label vz-form-label">Tipo de proyecto *</label>
+                        <div class="vz-form-chips" id="project-chips">
+                            <button type="button" class="vz-chip-btn selected" onclick="selectChip(this, 'Página web')">Página web</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'E-commerce')">E-commerce</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Automatización / IA')">Automatización / IA</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectChip(this, 'Software a medida')">Software a medida</button>
+                        </div>
+                        <input type="hidden" id="form-project-type" value="Página web">
+                    </div>
+
+                    <div class="vz-form-group">
+                        <label class="label vz-form-label" for="form-details">¿Qué necesitas?</label>
+                        <textarea id="form-details" class="vz-form-textarea" rows="4" placeholder="Describe lo que quieres construir, mejorar o automatizar..."></textarea>
+                    </div>
+
+                    <div class="vz-form-group">
+                        <label class="label vz-form-label">Presupuesto aproximado</label>
+                        <div class="vz-form-chips" id="budget-chips">
+                            <button type="button" class="vz-chip-btn" onclick="selectBudget(this, 'Menos de $500')">Menos de $500</button>
+                            <button type="button" class="vz-chip-btn selected" onclick="selectBudget(this, '$500 – $1.000')">$500 – $1.000</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$1.000 – $2.500')">$1.000 – $2.500</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$2.500 – $5.000')">$2.500 – $5.000</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectBudget(this, '$5.000+')">$5.000+</button>
+                        </div>
+                        <input type="hidden" id="form-budget" value="$500 – $1.000">
+                    </div>
+
+                    <div class="vz-form-group vz-form-group--last">
+                        <label class="label vz-form-label">¿Cuándo te gustaría tenerlo?</label>
+                        <div class="vz-form-chips" id="deadline-chips">
+                            <button type="button" class="vz-chip-btn selected" onclick="selectDeadline(this, 'Lo antes posible')">Lo antes posible</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 semanas')">1 – 2 semanas</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '2 – 4 semanas')">2 – 4 semanas</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, '1 – 2 meses')">1 – 2 meses</button>
+                            <button type="button" class="vz-chip-btn" onclick="selectDeadline(this, 'Sin fecha definida')">Sin fecha definida</button>
+                        </div>
+                        <input type="hidden" id="form-deadline" value="Lo antes posible">
+                    </div>
+
+                    <input type="hidden" id="form-extras" value="">
+
+                    <button type="submit" id="vz-submit-btn" class="btn-fill magnetic vz-form-submit">
+                        Enviar solicitud →
+                    </button>
+
+                    <p class="vz-form-sla">
+                        Te responderemos en menos de 24 horas con una propuesta técnica a medida.
+                    </p>
+
+                    <div id="vz-form-feedback" class="vz-form-feedback" style="display:none;"></div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -1639,10 +2119,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/umd/index.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="config.js"></script>
 <script src="jg_ai_engine.js?v=20260919-rag2"></script>
-<script src="script.js?v=20261013"></script>
+<script src="script.js?v=20261115d"></script>
 
 <!-- Form & Chip Helper Scripts -->
 <script>
@@ -1683,9 +2162,9 @@
             'Automatización & IA': 'Automatización / IA',
             'Branding & Contenido': 'Página web'
         };
-        const targetType = map[typeName] || typeName;
+        const targetType = (map[typeName] || typeName).toLowerCase();
         document.querySelectorAll('#project-chips .vz-chip-btn').forEach(btn => {
-            if (btn.innerText.trim() === targetType) {
+            if (btn.textContent.trim().toLowerCase() === targetType) {
                 btn.click();
             }
         });

@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="styles.css?v=20261013l">
+    <link rel="stylesheet" href="styles.css?v=20261115a">
 
     <style>
         /* ═══════════════════════════════════════════════════════════
@@ -29,18 +29,18 @@
         
         :root {
             --pg-bg: #070708;
-            --pg-surface: rgba(14, 14, 16, 0.7);
-            --pg-surface-hover: rgba(22, 22, 26, 0.9);
+            --pg-surface: rgba(14, 14, 16, 0.78);
+            --pg-surface-hover: rgba(22, 22, 26, 0.92);
             --pg-border: rgba(255, 255, 255, 0.08);
             --pg-border-hover: rgba(214, 48, 49, 0.45);
             --pg-accent: #D63031;
             --pg-accent-glow: rgba(214, 48, 49, 0.22);
-            --pg-cyan: #00f0ff;
-            --pg-cyan-glow: rgba(0, 240, 255, 0.18);
-            --pg-green: #34d399;
-            --pg-green-glow: rgba(52, 211, 153, 0.18);
-            --pg-gold: #f59e0b;
-            --pg-gold-glow: rgba(245, 158, 11, 0.18);
+            --pg-cyan: #D63031;
+            --pg-cyan-glow: rgba(214, 48, 49, 0.16);
+            --pg-green: #F0ECE5;
+            --pg-green-glow: rgba(240, 236, 229, 0.12);
+            --pg-gold: rgba(240, 236, 229, 0.85);
+            --pg-gold-glow: rgba(214, 48, 49, 0.14);
             --pg-cream: #F0ECE5;
             --pg-gray: #888888;
             --pg-muted: #444444;
@@ -62,8 +62,8 @@
             pointer-events: none;
             z-index: 0;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(214, 48, 49, 0.07) 0%, transparent 40%),
-                radial-gradient(circle at 90% 60%, rgba(0, 240, 255, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 12% 18%, rgba(214, 48, 49, 0.08) 0%, transparent 42%),
+                radial-gradient(circle at 88% 58%, rgba(240, 236, 229, 0.025) 0%, transparent 45%),
                 radial-gradient(circle at 50% 90%, rgba(214, 48, 49, 0.05) 0%, transparent 50%);
         }
 
@@ -99,7 +99,7 @@
             padding: 6px 14px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--pg-border);
-            border-radius: 999px;
+            border-radius: 6px;
             transition: all 0.25s var(--pg-ease);
         }
 
@@ -326,7 +326,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--pg-border);
-            border-radius: 999px;
+            border-radius: 8px !important;
             padding: 9px 16px 9px 36px;
             color: var(--pg-cream);
             font-family: var(--f-b);
@@ -345,7 +345,7 @@
             display: inline-flex;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--pg-border);
-            border-radius: 999px;
+            border-radius: 8px;
             padding: 3px;
         }
 
@@ -354,7 +354,7 @@
             border: none;
             color: var(--pg-gray);
             padding: 6px 12px;
-            border-radius: 999px;
+            border-radius: 6px !important;
             cursor: pointer;
             font-size: 0.85rem;
             transition: all 0.2s var(--pg-ease);
@@ -702,7 +702,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.12);
             padding: 10px 18px;
-            border-radius: 999px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.25s var(--pg-ease);
         }
@@ -725,7 +725,7 @@
             background: var(--pg-accent);
             border: 1px solid var(--pg-accent);
             padding: 10px 20px;
-            border-radius: 999px;
+            border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             transition: all 0.25s var(--pg-ease);
@@ -1658,7 +1658,7 @@
             </article>
 
             <!-- 02 · Milu & Co -->
-            <article class="p-card" data-category="ecommerce" data-tags="nextjs tailwind e-commerce tienda moda vercel stripe checkout" data-id="milu" style="--card-glow: rgba(52, 211, 153, 0.2);">
+            <article class="p-card" data-category="ecommerce" data-tags="nextjs tailwind e-commerce tienda moda vercel stripe checkout" data-id="milu" style="--card-glow: rgba(214, 48, 49, 0.16);">
                 <div class="p-card-media">
                     <img src="img/screenshot_milu.jpg" alt="Milu & Co E-commerce" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -1720,7 +1720,7 @@
             </article>
 
             <!-- 03 · Elianis Romero -->
-            <article class="p-card" data-category="ai-web" data-tags="nextjs openai agente chatbot ia captacion citas consultoria" data-id="elianis" style="--card-glow: rgba(0, 240, 255, 0.2);">
+            <article class="p-card" data-category="ai-web" data-tags="nextjs openai agente chatbot ia captacion citas consultoria" data-id="elianis" style="--card-glow: rgba(214, 48, 49, 0.16);">
                 <div class="p-card-media">
                     <img src="img/screenshot_elianis.jpg" alt="Elianis Romero Plataforma" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -1782,7 +1782,7 @@
             </article>
 
             <!-- 04 · Fabián Zambrano -->
-            <article class="p-card" data-category="ai-web" data-tags="salud fisioterapia citas medicas reservas landing conversion nextjs" data-id="fabian" style="--card-glow: rgba(52, 211, 153, 0.2);">
+            <article class="p-card" data-category="ai-web" data-tags="salud fisioterapia citas medicas reservas landing conversion nextjs" data-id="fabian" style="--card-glow: rgba(214, 48, 49, 0.16);">
                 <div class="p-card-media">
                     <img src="img/screenshot_fabian.jpg" alt="Fabián Zambrano" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -1844,7 +1844,7 @@
             </article>
 
             <!-- 05 · Stencil Eyewear -->
-            <article class="p-card" data-category="ecommerce" data-tags="retail gafas optica gsap animaciones ecommerce interactivo html css" data-id="stencil" style="--card-glow: rgba(52, 211, 153, 0.2);">
+            <article class="p-card" data-category="ecommerce" data-tags="retail gafas optica gsap animaciones ecommerce interactivo html css" data-id="stencil" style="--card-glow: rgba(240, 236, 229, 0.12);">
                 <div class="p-card-media">
                     <img src="img/screenshot_optica.jpg" alt="Stencil Eyewear" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -1906,7 +1906,7 @@
             </article>
 
             <!-- 06 · Retail Sales Analysis & BI -->
-            <article class="p-card" data-category="data" data-tags="python sql powerbi bi data analytics etl dashboard pandas retail" data-id="retail" style="--card-glow: rgba(0, 240, 255, 0.2);">
+            <article class="p-card" data-category="data" data-tags="python sql powerbi bi data analytics etl dashboard pandas retail" data-id="retail" style="--card-glow: rgba(240, 236, 229, 0.12);">
                 <div class="p-card-media">
                     <img src="img/screenshot_retail.jpg" alt="Retail Sales Analysis Dashboard" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -1968,7 +1968,7 @@
             </article>
 
             <!-- 07 · Contenido Comercial & Branding IA -->
-            <article class="p-card" data-category="creative" data-tags="midjourney flux runway kling comfyui branding video ia contenido marketing" data-id="contenido" style="--card-glow: rgba(245, 158, 11, 0.2);">
+            <article class="p-card" data-category="creative" data-tags="midjourney flux runway kling comfyui branding video ia contenido marketing" data-id="contenido" style="--card-glow: rgba(214, 48, 49, 0.16);">
                 <div class="p-card-media">
                     <img src="JGStudio/Contenido/Branding/TransformoIdeas.png" alt="Contenido Comercial con IA" loading="lazy">
                     <div class="p-card-media-overlay"></div>
@@ -2211,7 +2211,7 @@
                 <a href="presupuesto.html" class="btn-fill magnetic" style="padding:16px 36px; font-size:1rem;">
                     <span>Solicitar propuesta a medida →</span>
                 </a>
-                <a href="https://wa.me/34611082522?text=Hola%20Jesús,%20vi%20tu%20página%20de%20proyectos%20y%20me%20gustaría%20cotizar%20un%20proyecto" target="_blank" rel="noopener" class="btn-outline magnetic" style="padding:16px 28px; font-size:0.95rem;">
+                <a href="https://wa.me/34674885902?text=Hola%20Jesús,%20vi%20tu%20página%20de%20proyectos%20y%20me%20gustaría%20cotizar%20un%20proyecto" target="_blank" rel="noopener" class="btn-outline magnetic" style="padding:16px 28px; font-size:0.95rem;">
                     <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
                 </a>
             </div>
@@ -2241,7 +2241,9 @@
 <div class="cs-modal-backdrop" id="case-study-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="cs-modal-card">
         <button class="cs-modal-close" id="modal-close-btn" aria-label="Cerrar modal">
-            <i class="fa-solid fa-xmark"></i>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true">
+                <path d="M3.5 3.5L12.5 12.5M12.5 3.5L3.5 12.5"/>
+            </svg>
         </button>
         <div class="cs-modal-media-header">
             <img id="modal-img" src="" alt="Project Preview">

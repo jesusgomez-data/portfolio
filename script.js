@@ -154,6 +154,9 @@ function initHeroPromoVideo(heroTL) {
         if (heroTL) {
             heroTL.restart();
         }
+        if (window.ScrollTrigger) {
+            setTimeout(() => ScrollTrigger.refresh(), 50);
+        }
     }
 
     // Selección explícita del video según viewport: vertical en móvil, panorámico en escritorio
@@ -537,6 +540,13 @@ function main() {
         });
     } else {
         /* Fallback si GSAP no está disponible */
+        document.querySelectorAll(
+            '#hero-kicker, .hero-title, .hero-proof-strip, .hero-logo-float, .hero-bottom, .hero-indicator-item, [data-reveal], [data-reveal-l], .svc-col, .proj-item, .ia-card, .iac, .ia-stat, .stack-row'
+        ).forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            el.style.clipPath = 'none';
+        });
         initHeroPromoVideo(null);
     }
 
@@ -1154,17 +1164,34 @@ function initExpressQuiz() {
         const ctaBtn = document.getElementById('quiz-res-cta');
         const badgeEl = quizSection.querySelector('.quiz-result-badge');
 
+        const typeLabelMap = {
+            web: 'Página web',
+            landing: 'Página web',
+            ecom: 'E-commerce',
+            automatizacion: 'Automatización / IA',
+            ia: 'Automatización / IA',
+            app: 'Software a medida'
+        };
+        const targetLabel = typeLabelMap[res.tipoParam] || 'Página web';
+
         if (titleEl) titleEl.textContent = res.title;
         if (descEl) descEl.textContent = res.desc;
         if (badgeEl) {
-            badgeEl.innerHTML = `<i class="fas fa-star"></i> Solución Recomendada (${res.priceTag})`;
+            badgeEl.textContent = `DIAGNÓSTICO COMPLETADO // ${res.priceTag}`;
         }
         if (featsEl) {
             featsEl.innerHTML = res.features.map(f => `<span class="quiz-rf-item"><i class="fas fa-check"></i> ${f}</span>`).join('');
         }
         if (ctaBtn) {
-            ctaBtn.href = `presupuesto.html?tipo=${res.tipoParam}`;
             ctaBtn.textContent = `Solicitar propuesta para ${res.title} →`;
+            const hasInlineContact = document.getElementById('contacto') && document.getElementById('project-chips');
+            if (hasInlineContact) {
+                ctaBtn.href = '#contacto';
+                ctaBtn.setAttribute('onclick', `selectProjectType('${targetLabel}', 'quiz_result')`);
+            } else {
+                ctaBtn.href = `presupuesto.html?tipo=${res.tipoParam}`;
+                ctaBtn.removeAttribute('onclick');
+            }
         }
     }
 }
@@ -1277,6 +1304,32 @@ window.selectProjectType = function(typeName, sourceId) {
         trackConversionEvent('click_proposal', { source: sourceId || 'cta', preselected_type: typeName });
     }
 
+    const contactSection = document.getElementById('contacto');
+    const projectChips = document.getElementById('project-chips');
+
+    if (contactSection && projectChips) {
+        const chipMap = {
+            'Página web': 'Página web',
+            'Landing Page': 'Página web',
+            'Web Corporativa': 'Página web',
+            'E-commerce': 'E-commerce',
+            'Tienda Online': 'E-commerce',
+            'Automatización / IA': 'Automatización / IA',
+            'Automatización & IA': 'Automatización / IA',
+            'Software a medida': 'Software a medida',
+            'App / SaaS': 'Software a medida',
+            'Branding & Contenido': 'Página web'
+        };
+        const targetChip = chipMap[typeName] || typeName;
+        projectChips.querySelectorAll('.vz-chip-btn, .chip-btn').forEach(btn => {
+            if (btn.textContent.trim().toLowerCase() === targetChip.toLowerCase()) {
+                window.selectChip(btn, btn.textContent.trim());
+            }
+        });
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+        return;
+    }
+
     const typeParams = {
         'Página web': 'web',
         'Landing Page': 'landing',
@@ -1292,5 +1345,262 @@ window.selectProjectType = function(typeName, sourceId) {
 
     window.location.href = `presupuesto.html?tipo=${p}`;
 };
+
+/* ═══════════════════════════════════════════════════════════
+   DYNAMIC ARCHITECTURAL SCHEMATICS ENGINE (#problema & #ia)
+   ═══════════════════════════════════════════════════════════ */
+(function initDynamicSchematics() {
+    function setup() {
+        /* ── 01. CRO FUNNEL: Checkpoint Sync + Counter + Hover/Click ── */
+        const funnelCard = document.getElementById('diag-card-01');
+        if (funnelCard) {
+            const steps = Array.from(funnelCard.querySelectorAll('#diag-funnel-steps span[data-step]'));
+            const dots = Array.from(funnelCard.querySelectorAll('.diag-cp-dot'));
+            const valEl = document.getElementById('diag-funnel-val');
+            const lblEl = document.getElementById('diag-funnel-lbl');
+            const svgLbl = document.getElementById('diag-funnel-svg-label');
+            let funnelIdx = 2;
+            let funnelPaused = false;
+
+            function animateValue(targetFloat, durationMs) {
+                if (!valEl) return;
+                const startVal = parseFloat(valEl.textContent) || 1.0;
+                const t0 = performance.now();
+                function tick(now) {
+                    const p = Math.min((now - t0) / durationMs, 1);
+                    const ease = 1 - Math.pow(1 - p, 3);
+                    const cur = startVal + (targetFloat - startVal) * ease;
+                    valEl.textContent = cur.toFixed(1);
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }
+
+            function activateFunnelStep(idx, animateNum) {
+                funnelIdx = idx;
+                steps.forEach((s, i) => s.classList.toggle('is-active', i === idx));
+                dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+                const activeStep = steps[idx];
+                if (activeStep) {
+                    const targetMult = parseFloat(activeStep.getAttribute('data-mult') || '3.4');
+                    if (animateNum) animateValue(targetMult, 420);
+                    else if (valEl) valEl.textContent = targetMult.toFixed(1);
+                    if (lblEl) lblEl.textContent = activeStep.getAttribute('data-lbl') || '';
+                    if (svgLbl) svgLbl.textContent = activeStep.getAttribute('data-svg') || 'ARQUITECTURA CRO';
+                }
+            }
+
+            steps.forEach((s, i) => {
+                s.addEventListener('mouseenter', () => { funnelPaused = true; activateFunnelStep(i, true); });
+                s.addEventListener('click', () => { funnelPaused = true; activateFunnelStep(i, true); });
+            });
+            funnelCard.addEventListener('mouseleave', () => { funnelPaused = false; });
+
+            setInterval(() => {
+                if (funnelPaused || document.hidden) return;
+                const next = (funnelIdx + 1) % steps.length;
+                activateFunnelStep(next, true);
+            }, 2200);
+        }
+
+        /* ── 02. AI SWITCHBOARD: Live Queue Routing + Hub Radar Pulse ── */
+        const routerCard = document.getElementById('diag-card-02');
+        if (routerCard) {
+            const inItems = Array.from(routerCard.querySelectorAll('#diag-router-in .diag-dm-item'));
+            const outItems = Array.from(routerCard.querySelectorAll('#diag-router-out .diag-out-item'));
+            const hubCore = document.getElementById('diag-hub-core');
+            const hubSpeed = document.getElementById('diag-hub-speed');
+            let routeIdx = 0;
+            let routePaused = false;
+
+            function activateRoute(idx) {
+                routeIdx = idx;
+                inItems.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+                outItems.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+                if (hubSpeed && inItems[idx]) {
+                    hubSpeed.textContent = inItems[idx].getAttribute('data-speed') || '0.8s';
+                }
+                if (hubCore) {
+                    hubCore.classList.remove('is-pulsing');
+                    void hubCore.offsetWidth;
+                    hubCore.classList.add('is-pulsing');
+                }
+            }
+
+            inItems.forEach((el, i) => {
+                el.addEventListener('mouseenter', () => { routePaused = true; activateRoute(i); });
+                el.addEventListener('click', () => { routePaused = true; activateRoute(i); });
+            });
+            outItems.forEach((el, i) => {
+                el.addEventListener('mouseenter', () => { routePaused = true; activateRoute(i); });
+                el.addEventListener('click', () => { routePaused = true; activateRoute(i); });
+            });
+            routerCard.addEventListener('mouseleave', () => { routePaused = false; });
+
+            setInterval(() => {
+                if (routePaused || document.hidden) return;
+                activateRoute((routeIdx + 1) % inItems.length);
+            }, 1900);
+        }
+
+        /* ── 03. DAG PIPELINE: 4-Node Execution Wave + Laser Connectors + Inspector ── */
+        const dagCard = document.getElementById('diag-card-03');
+        if (dagCard) {
+            const nodes = Array.from(dagCard.querySelectorAll('.diag-dag-node'));
+            const links = Array.from(dagCard.querySelectorAll('.diag-dag-link'));
+            const stageName = document.getElementById('diag-pipe-stage-name');
+            const traceEl = document.getElementById('diag-pipe-trace');
+            const msEl = document.getElementById('diag-pipe-ms');
+            let dagIdx = 1;
+            let dagPaused = false;
+
+            function activateDagNode(idx) {
+                dagIdx = idx;
+                nodes.forEach((n, i) => {
+                    n.classList.toggle('diag-dag-node--active', i === idx);
+                    n.classList.toggle('diag-dag-node--done', i < idx);
+                });
+                links.forEach((l, i) => {
+                    l.classList.toggle('is-firing', i === idx - 1 || (idx === 0 && i === 0));
+                });
+                const activeNode = nodes[idx];
+                if (activeNode) {
+                    if (stageName) stageName.textContent = activeNode.getAttribute('data-stage') || 'PIPELINE // N8N_SUPABASE_SYNC';
+                    if (traceEl) traceEl.textContent = activeNode.getAttribute('data-trace') || '';
+                    if (msEl) msEl.textContent = activeNode.getAttribute('data-ms') || '180ms';
+                }
+            }
+
+            nodes.forEach((n, i) => {
+                n.addEventListener('mouseenter', () => { dagPaused = true; activateDagNode(i); });
+                n.addEventListener('click', () => { dagPaused = true; activateDagNode(i); });
+            });
+            dagCard.addEventListener('mouseleave', () => { dagPaused = false; });
+
+            setInterval(() => {
+                if (dagPaused || document.hidden) return;
+                activateDagNode((dagIdx + 1) % nodes.length);
+            }, 1450);
+        }
+
+        /* ── 04. CUSTOM CORE: Animated Radial Gauge + Stack Scanner ── */
+        const coreCard = document.getElementById('diag-card-04');
+        if (coreCard) {
+            const rows = Array.from(coreCard.querySelectorAll('#diag-core-rows .diag-spec-row'));
+            const arc = document.getElementById('diag-core-arc');
+            const numEl = document.getElementById('diag-core-num');
+            const lblEl = document.getElementById('diag-core-lbl');
+            const lcpEl = document.getElementById('diag-core-lcp');
+            const gaugeWrap = document.getElementById('diag-gauge-trigger');
+            const CIRC = 201;
+            let coreIdx = 0;
+            let corePaused = false;
+
+            function animateGauge(targetScore, durationMs) {
+                if (!arc || !numEl) return;
+                const startScore = parseInt(numEl.textContent, 10) || 40;
+                const t0 = performance.now();
+                function step(now) {
+                    const p = Math.min((now - t0) / durationMs, 1);
+                    const ease = 1 - Math.pow(1 - p, 3);
+                    const cur = Math.round(startScore + (targetScore - startScore) * ease);
+                    numEl.textContent = String(cur);
+                    const offset = CIRC - (cur / 100) * (CIRC - 3);
+                    arc.style.strokeDashoffset = String(Math.max(2, offset));
+                    if (p < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            }
+
+            function activateCoreRow(idx, sweepFromZero) {
+                coreIdx = idx;
+                rows.forEach((r, i) => r.classList.toggle('is-active', i === idx));
+                const row = rows[idx];
+                if (!row) return;
+                const targetScore = parseInt(row.getAttribute('data-score') || '99', 10);
+                const lbl = row.getAttribute('data-lbl') || 'CORE VITAL';
+                const meta = row.getAttribute('data-meta') || 'LCP';
+                const val = row.getAttribute('data-val') || '0.4s';
+
+                if (lblEl) lblEl.textContent = lbl;
+                if (lcpEl) lcpEl.innerHTML = `${meta} <span>${val}</span>`;
+                if (sweepFromZero && numEl && arc) {
+                    numEl.textContent = '12';
+                    arc.style.strokeDashoffset = '180';
+                }
+                animateGauge(targetScore, sweepFromZero ? 900 : 420);
+            }
+
+            rows.forEach((r, i) => {
+                r.addEventListener('mouseenter', () => { corePaused = true; activateCoreRow(i, false); });
+                r.addEventListener('click', () => { corePaused = true; activateCoreRow(i, true); });
+            });
+            if (gaugeWrap) {
+                gaugeWrap.addEventListener('click', () => { activateCoreRow(coreIdx, true); });
+                gaugeWrap.addEventListener('mouseenter', () => { activateCoreRow(coreIdx, true); });
+            }
+            coreCard.addEventListener('mouseleave', () => { corePaused = false; });
+
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            activateCoreRow(0, true);
+                        }
+                    });
+                }, { threshold: 0.35 });
+                io.observe(coreCard);
+            }
+
+            setInterval(() => {
+                if (corePaused || document.hidden) return;
+                activateCoreRow((coreIdx + 1) % rows.length, false);
+            }, 2300);
+        }
+
+        /* ── 05. #ia CONSOLE & SCHEMATIC LIVE CYCLING ── */
+        const iaTraces = Array.from(document.querySelectorAll('.ia-arch-console .ia-trace-row'));
+        if (iaTraces.length) {
+            let tIdx = 0;
+            iaTraces.forEach((r, i) => {
+                r.classList.toggle('is-active', i === 0);
+                r.addEventListener('mouseenter', () => {
+                    tIdx = i;
+                    iaTraces.forEach((el, j) => el.classList.toggle('is-active', j === i));
+                });
+            });
+            setInterval(() => {
+                if (document.hidden) return;
+                tIdx = (tIdx + 1) % iaTraces.length;
+                iaTraces.forEach((el, j) => el.classList.toggle('is-active', j === tIdx));
+            }, 1800);
+        }
+
+        document.querySelectorAll('.ia-mini-schematic').forEach(schem => {
+            const nodes = Array.from(schem.querySelectorAll('.ia-ms-node'));
+            if (nodes.length < 2) return;
+            let sIdx = nodes.findIndex(n => n.classList.contains('ia-ms-node--active'));
+            if (sIdx < 0) sIdx = 0;
+            nodes.forEach((n, i) => {
+                n.addEventListener('mouseenter', () => {
+                    sIdx = i;
+                    nodes.forEach((el, j) => el.classList.toggle('ia-ms-node--active', j === i));
+                });
+            });
+            setInterval(() => {
+                if (document.hidden) return;
+                sIdx = (sIdx + 1) % nodes.length;
+                nodes.forEach((el, j) => el.classList.toggle('ia-ms-node--active', j === sIdx));
+            }, 1650);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setup);
+    } else {
+        setup();
+    }
+})();
+
 
 
